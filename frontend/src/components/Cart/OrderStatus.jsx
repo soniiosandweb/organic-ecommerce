@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { emptyCart } from '../../actions/cartAction';
-import { clearErrors, getPaymentStatus, newOrder } from '../../actions/orderAction';
+import { clearErrors, getPaymentStatus, newOrderData } from '../../actions/orderAction';
 import Loader from '../Layouts/Loader';
 
 const OrderStatus = () => {
@@ -35,7 +35,7 @@ const OrderStatus = () => {
                         status: txn.status,
                     };
     
-                    dispatch(newOrder(orderData));
+                    dispatch(newOrderData(orderData));
     
                 } else {
                     enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
