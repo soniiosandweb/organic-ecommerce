@@ -26,3 +26,7 @@ body {
 .bg-primary-green{
   background-color: green;
 }
+.banner-slider,
+.banner-slider-img{
+  height: 500px;
+}

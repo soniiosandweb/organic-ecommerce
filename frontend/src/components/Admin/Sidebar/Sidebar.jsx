@@ -92,7 +92,7 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
                     return (
                         <div key={index}>
                             {label === "Logout" ? (
-                                <button onClick={handleLogout} className="hover:bg-gray-700 flex gap-3 items-center py-3 px-4 font-medium">
+                                <button onClick={handleLogout} className="hover:bg-gray-700 flex gap-3 items-center py-3 px-4 font-medium w-full">
                                     <span>{icon}</span>
                                     <span>{label}</span>
                                 </button>
