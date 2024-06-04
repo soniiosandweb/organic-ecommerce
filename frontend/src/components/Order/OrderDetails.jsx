@@ -29,7 +29,7 @@ const OrderDetails = () => {
             <MetaData title="Order Details | Organic" />
 
             <MinCategory />
-            <main className="w-full mt-14 sm:mt-4">
+            <main className="w-full sm:mt-4">
                 {loading ? <Loader /> : (
                     <>
                         {order && order.user && order.shippingInfo && (

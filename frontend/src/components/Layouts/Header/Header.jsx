@@ -1,6 +1,8 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
 import Searchbar from './Searchbar';
 import logo from '../../../assets/images/logo.png';
 import PrimaryDropDownMenu from './PrimaryDropDownMenu';
@@ -14,33 +16,70 @@ const Header = () => {
 
   const { cartItems } = useSelector(state => state.cart);
 
+  const { wishlistItems } = useSelector((state) => state.wishlist);
+
   const [togglePrimaryDropDown, setTogglePrimaryDropDown] = useState(false);
+
+  const [mobileToggleClass, setMobileToggleClass ] = useState(true);
+
+  const menuLinks = [
+    {
+      name: "Contact Us",
+      redirect: "/",
+    },
+    {
+      name: "About Us",
+      redirect: "/",
+    },
+    {
+      name: "Careers",
+      redirect: "/",
+    },
+    {
+      name: "Organic Stories",
+      redirect: "/",
+    },
+  ]
 
   return (
 
-    <header className="bg-primary-green fixed top-0 py-2.5 w-full z-10">
+    <header className="bg-white sticky top-0 py-4 w-full z-10 shadow">
 
       {/* <!-- navbar container --> */}
       <div className="w-full sm:w-11/12 px-1 m-auto flex justify-between items-center relative">
 
-        {/* <!-- logo & search container --> */}
-        <div className="flex items-center flex-1">
-          <Link className="h-7 mr-1 sm:mr-4" to="/">
+        {/* <!-- logo & nav container --> */}
+        <div className="flex items-center">
+
+          <div className="xl:hidden flex items-center mr-6">
+            <button className="mobile-menu-button" onClick={() => setMobileToggleClass(!mobileToggleClass)}>
+              <MenuIcon />
+            </button>
+          </div>
+          <Link className="h-12 mr-6" to="/">
             <img draggable="false" className="h-full w-full object-contain" src={logo} alt="Organic Logo" />
           </Link>
 
-          <Searchbar />
-        </div>
-        {/* <!-- logo & search container --> */}
+          <nav className={`${mobileToggleClass ? 'hidden' : 'flex'} xl:flex xl:flex-row flex-col navigation-menu items-center flex-1 gap-0.5 sm:gap-7 absolute w-full top-16 xl:relative xl:top-0 bg-white`}>
+            {menuLinks.map((item, i) => (
+              <Link to={item.redirect} className="text-black font-medium cursor-pointer" key={i}>{item.name}</Link>
+            ))}
+          </nav>
 
-        {/* <!-- right navs --> */}
-        <div className="flex items-center justify-between ml-1 sm:ml-0 gap-0.5 sm:gap-7 relative">
+        </div>
+        {/* <!-- logo & nav container --> */}
+
+
+        {/* <!-- right navs and searchbar --> */}
+        <div className="flex flex-1 items-center justify-end ml-1 sm:ml-0 gap-0.5 sm:gap-7 relative">
+
+          <Searchbar />
 
           {isAuthenticated === false ?
-            <Link to="/login" className="px-3 sm:px-9 py-0.5 text-primary-blue bg-white border font-medium rounded-sm cursor-pointer">Login</Link>
+            <Link to="/login" className="text-black font-medium cursor-pointer uppercase">Login / Register</Link>
             :
             (
-              <span className="userDropDown flex items-center text-white font-medium gap-1 cursor-pointer" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>{user.name && user.name.split(" ", 1)}
+              <span className="userDropDown flex items-center text-black font-medium gap-1 cursor-pointer" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>{user.name && user.name.split(" ", 1)}
                 <span>{togglePrimaryDropDown ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
               </span>
             )
@@ -48,18 +87,25 @@ const Header = () => {
 
           {togglePrimaryDropDown && <PrimaryDropDownMenu setTogglePrimaryDropDown={setTogglePrimaryDropDown} user={user} />}
 
+          <Link to="/cart" className="flex items-center text-black font-medium gap-2 relative">
+            <span><FavoriteBorderOutlinedIcon /></span>
+            
+            <div className="w-5 h-5 p-2 bg-primary-green text-white text-xs rounded-full absolute -top-2 left-3 flex justify-center items-center border">
+              {wishlistItems.length}
+            </div>
 
-          <Link to="/cart" className="flex items-center text-white font-medium gap-2 relative">
-            <span><ShoppingCartIcon /></span>
-            {cartItems.length > 0 &&
-              <div className="w-5 h-5 p-2 bg-red-500 text-xs rounded-full absolute -top-2 left-3 flex justify-center items-center border">
-                {cartItems.length}
-              </div>
-            }
-            Cart
+          </Link>
+
+
+          <Link to="/cart" className="flex items-center text-black font-medium gap-2 relative">
+            <span><LocalMallOutlinedIcon /></span>
+           
+            <div className="w-5 h-5 p-2 bg-primary-green text-white text-xs rounded-full absolute -top-2 left-3 flex justify-center items-center border">
+              {cartItems.length}
+            </div>
           </Link>
         </div>
-        {/* <!-- right navs --> */}
+        {/* <!-- right navs and searchbar --> */}
 
       </div>
       {/* <!-- navbar container --> */}

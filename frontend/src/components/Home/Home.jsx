@@ -27,7 +27,7 @@ const Home = () => {
     <>
       <MetaData title="Online Shopping Site for Organic Products. Best Offers!" />
       
-      <main className="flex flex-col gap-3 mt-14">
+      <main className="flex flex-col gap-3">
         <Banner />
         <Categories />
         {/* <DealSlider title={"Discounts for You"} /> */}

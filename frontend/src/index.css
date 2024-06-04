@@ -23,10 +23,18 @@ body {
 }
 /* login signup sidebar bg image */
 
+/* theme color */
 .bg-primary-green{
   background-color: green;
 }
+
+/* banner slider */
 .banner-slider,
 .banner-slider-img{
   height: 500px;
+}
+
+/* search bar */
+.searchbar-header{
+   max-width: 50%
 }
