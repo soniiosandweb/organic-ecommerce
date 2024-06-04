@@ -1,65 +1,45 @@
-import mobiles from '../../assets/images/Categories/phone.png';
-import fashion from '../../assets/images/Categories/fashion.png';
-import electronics from '../../assets/images/Categories/electronics.png';
-import home from '../../assets/images/Categories/home.png';
-import travel from '../../assets/images/Categories/travel.png';
-import appliances from '../../assets/images/Categories/appliances.png';
-import furniture from '../../assets/images/Categories/furniture.png';
-import beauty from '../../assets/images/Categories/beauty.png';
-import grocery from '../../assets/images/Categories/grocery.png';
 import { Link } from 'react-router-dom';
+import cereal from '../../assets/images/Categories/Cereal.jpg';
+import dairy from '../../assets/images/Categories/Dairy.jpg';
+import drinks from '../../assets/images/Categories/Drinks.jpg';
+import fruits from '../../assets/images/Categories/Fruits.jpg';
+import vegetable from '../../assets/images/Categories/Vegetable.jpg';
 
 const catNav = [
     {
-        name: "Mobiles",
-        icon: mobiles,
+        name: "Cereal",
+        icon: cereal,
     },
     {
-        name: "Fashion",
-        icon: fashion,
+        name: "Dairy",
+        icon: dairy,
     },
     {
-        name: "Electronics",
-        icon: electronics,
+        name: "Drinks",
+        icon: drinks,
     },
     {
-        name: "Home",
-        icon: home,
+        name: "Fruits",
+        icon: fruits,
     },
     {
-        name: "Travel",
-        icon: travel,
-    },
-    {
-        name: "Appliances",
-        icon: appliances,
-    },
-    {
-        name: "Furniture",
-        icon: furniture,
-    },
-    {
-        name: "Beauty,Toys & more",
-        icon: beauty,
-    },
-    {
-        name: "Grocery",
-        icon: grocery,
+        name: "Vegetable",
+        icon: vegetable,
     },
 ]
 
 const Categories = () => {
     return (
-        <section className="hidden sm:block bg-white mt-4 mb-4 min-w-full px-12 py-1 shadow overflow-hidden">
+        <section className="block bg-white mt-4 mb-4 min-w-full py-4 overflow-hidden">
 
-            <div className="flex items-center justify-between mt-4">
+            <div className="w-full sm:w-11/12 px-4 m-auto flex items-center justify-between flex-wrap">
 
                 {catNav.map((item, i) => (
-                    <Link to={`/products?category=${item.name}`} className="flex flex-col gap-1 items-center p-2 group" key={i}>
-                        <div className="h-16 w-16">
-                            <img draggable="false" className="h-full w-full object-contain" src={item.icon} alt={item.name} />
+                    <Link to={`/products?category=${item.name}`} className="flex flex-col gap-1 items-center p-2 group w-6/12 md:w-1/5" key={i}>
+                        <div className="h-20 w-20 md:h-24 md:w-24 xl:h-40 xl:w-40">
+                            <img draggable="false" className="h-full w-full rounded-full object-contain border-4 border-gray" src={item.icon} alt={item.name} />
                         </div>
-                        <span className="text-sm text-gray-800 font-medium group-hover:text-primary-blue">{item.name}</span>
+                        <span className="text-xl text-black mt-5 font-medium group-hover:text-primary-green">{item.name}</span>
                     </Link>
                 ))}
 

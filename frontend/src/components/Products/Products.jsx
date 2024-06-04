@@ -77,14 +77,14 @@ const Products = () => {
                             {/* <!-- filters header --> */}
                             <div className="flex items-center justify-between gap-5 px-4 py-2 border-b">
                                 <p className="text-lg font-medium">Filters</p>
-                                <span className="uppercase text-primary-blue text-xs cursor-pointer font-medium" onClick={() => clearFilters()}>clear all</span>
+                                <span className="uppercase text-primary-green text-md cursor-pointer font-medium" onClick={() => clearFilters()}>clear all</span>
                             </div>
 
                             <div className="flex flex-col gap-2 py-3 text-sm overflow-hidden">
 
                                 {/* price slider filter */}
                                 <div className="flex flex-col gap-2 border-b px-4">
-                                    <span className="font-medium text-xs">PRICE</span>
+                                    <span className="font-medium text-md">PRICE</span>
 
                                     <Slider
                                         value={price}
@@ -93,6 +93,7 @@ const Products = () => {
                                         getAriaLabel={() => 'Price range slider'}
                                         min={0}
                                         max={200000}
+                                        color='primary'
                                     />
 
                                     <div className="flex gap-3 items-center justify-between mb-2 min-w-full">
@@ -107,7 +108,7 @@ const Products = () => {
                                 <div className="flex flex-col border-b px-4">
 
                                     <div className="flex justify-between cursor-pointer py-2 pb-4 items-center" onClick={() => setCategoryToggle(!categoryToggle)}>
-                                        <p className="font-medium text-xs uppercase">Category</p>
+                                        <p className="font-medium text-md uppercase">Category</p>
                                         {categoryToggle ?
                                             <ExpandLessIcon sx={{ fontSize: "20px" }} /> :
                                             <ExpandMoreIcon sx={{ fontSize: "20px" }} />
@@ -138,7 +139,7 @@ const Products = () => {
                                 <div className="flex flex-col border-b px-4">
 
                                     <div className="flex justify-between cursor-pointer py-2 pb-4 items-center" onClick={() => setRatingsToggle(!ratingsToggle)}>
-                                        <p className="font-medium text-xs uppercase">ratings</p>
+                                        <p className="font-medium text-md uppercase">ratings</p>
                                         {ratingsToggle ?
                                             <ExpandLessIcon sx={{ fontSize: "20px" }} /> :
                                             <ExpandMoreIcon sx={{ fontSize: "20px" }} />

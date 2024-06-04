@@ -5,7 +5,6 @@ export const categories = [
     "Drinks",
     "Fruits",
     "Vegetable",
-    "Home",
 ];
 
 // Product Sliders Offers

@@ -20,8 +20,8 @@ const OrderItem = (props) => {
 
                 <div className="flex flex-col gap-1 overflow-hidden">
                     <p className="text-sm">{name.length > 40 ? `${name.substring(0, 40)}...` : name}</p>
-                    <p className="text-xs text-gray-500 mt-2">Quantity: {quantity}</p>
-                    <p className="text-xs text-gray-500">Total: ₹{(quantity * price).toLocaleString()}</p>
+                    <p className="text-md text-gray-500 mt-2">Quantity: {quantity}</p>
+                    <p className="text-md text-gray-500">Total: ₹{(quantity * price).toLocaleString()}</p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row mt-1 sm:mt-0 gap-2 sm:gap-20 sm:w-1/2">
@@ -53,10 +53,10 @@ const OrderItem = (props) => {
                             )}
                         </p>
                         {orderStatus === "Delivered" ?
-                            <p className="text-xs ml-1">Your item has been {orderStatus}</p>
+                            <p className="text-md ml-1">Your item has been {orderStatus}</p>
                             : orderStatus === "Shipped" ?
-                                <p className="text-xs ml-1">Your item has been {orderStatus}</p> :
-                                <p className="text-xs ml-1">Seller has processed your order</p>
+                                <p className="text-md ml-1">Your item has been {orderStatus}</p> :
+                                <p className="text-md ml-1">Seller has processed your order</p>
                         }
                     </div>
                 </div>

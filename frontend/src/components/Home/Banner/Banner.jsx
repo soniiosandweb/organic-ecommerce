@@ -2,8 +2,9 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './Banner.css';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Link } from 'react-router-dom';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import banner1 from '../../../assets/images/Banners/banner1.jpg';
 import banner2 from '../../../assets/images/Banners/banner2.jpg';
 import banner3 from '../../../assets/images/Banners/banner3.jpg';
@@ -11,7 +12,7 @@ import banner3 from '../../../assets/images/Banners/banner3.jpg';
 export const PreviousBtn = ({ className, onClick }) => {
   return (
     <div className={className} onClick={onClick}>
-      <ArrowBackIosIcon />
+      <ChevronLeftIcon fontSize="large"/>
     </div>
   )
 }
@@ -19,7 +20,7 @@ export const PreviousBtn = ({ className, onClick }) => {
 export const NextBtn = ({ className, onClick }) => {
   return (
     <div className={className} onClick={onClick}>
-      <ArrowForwardIosIcon />
+      <ChevronRightIcon fontSize="large" />
     </div>
   )
 }
@@ -27,7 +28,7 @@ export const NextBtn = ({ className, onClick }) => {
 const Banner = () => {
 
   const settings = {
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 2000,
     dots: false,
     infinite: true,
@@ -38,14 +39,37 @@ const Banner = () => {
     nextArrow: <NextBtn />,
   };
 
-  const banners = [banner1,banner2,banner3];
+  const banners = [
+    {
+      subtitle : "To Be Considered An Organic",
+      title: "Nourishing With Organic Fare",
+      image : banner1,
+    },
+    {
+      subtitle : "Vitality from the Earth",
+      title: "Optimizing Health With Fresh",
+      image : banner2,
+    },
+    {
+      subtitle : "Nutritional Wonders",
+      title: "Health Perks Of Organic",
+      image : banner3,
+    }
+  ];
 
   return (
     <>
       <section className="w-full rounded-sm shadow relative overflow-hidden banner-slider">
         <Slider {...settings}>
           {banners.map((el, i) => (
-            <img draggable="false" className="w-full object-cover banner-slider-img" src={el} alt="banner" key={i} />
+            <div className='w-full h-full relative banner-slider-img' key={i}>
+              <div className='flex items-center justify-center p-12 h-full flex-col gap-5 text-center'>
+                <p className='text-xl text-white'>{el.subtitle}</p>
+                <h1 className='text-white text-5xl'>{el.title}</h1>
+                <Link to="/products" className="bg-primary-green text-md font-medium text-white px-5 py-2.5 rounded-sm shadow-lg uppercase">view all</Link>
+              </div>
+              <img draggable="false" className="w-full object-cover object-center absolute top-0 h-full" src={el.image} alt="banner" style={{zIndex: "-1"}} />
+            </div>
           ))}
         </Slider>
       </section>
