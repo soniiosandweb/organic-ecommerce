@@ -161,8 +161,14 @@ const UpdateProduct = () => {
             setWarranty(product.warranty);
             if(product.brand){
                 setBrand(product.brand.name);
-                setLogoPreview(product.brand.logo.url);
+
+                if(product.brand.logo){
+                    setLogoPreview(product.brand.logo.url);
+                }
             }
+
+            
+
             
             setHighlights(product.highlights);
             setSpecs(product.specifications);

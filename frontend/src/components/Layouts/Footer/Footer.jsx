@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import paymentMethods from '../../../assets/images/payment-methods.svg';
 import { useLocation } from 'react-router-dom';
-import logo from '../../../assets/images/logo.png';
+import logo from '../../../assets/images/logo-white.png';
 import { Link } from 'react-router-dom';
 
 const footerLinks = [
@@ -98,7 +98,7 @@ const Footer = () => {
                 
                 <div className="w-full sm:w-1/1 text-center md:text-left">
 
-                  <Link className="h-12 mb-10 flex w-max mx-auto md:mx-0" to="/">
+                  <Link className="h-20 mb-6 flex w-max mx-auto md:mx-0" to="/">
                     <img draggable="false" className="h-full w-full object-contain" src={logo} alt="Organic Logo" />
                   </Link>
 
@@ -117,9 +117,9 @@ const Footer = () => {
 
                 {footerLinks.map((el, i) => (
                   <div className="w-full md:w-1/4 flex flex-col gap-2 mb-3 sm:mb-6 md:ml-5 items-center md:items-start" key={i}>
-                    <h2 className="text-white mb-5 uppercase border-b">{el.title}</h2>
+                    <h2 className="text-white mb-5 text-lg font-semibold capitalize">{el.title} <span className='text-primary-green'>~</span></h2>
                     {el.links.map((item, i) => (
-                      <a href={item.redirect} target="_blank" rel="noreferrer" className="hover:underline" key={i}>{item.name}</a>
+                      <a href={item.redirect} target="_blank" rel="noreferrer" className="hover:text-primary-green" key={i}>{item.name}</a>
                     ))}
 
                   </div>

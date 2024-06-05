@@ -56,7 +56,12 @@ function App() {
   useEffect(() => {
     WebFont.load({
       google: {
-        families: ["Roboto:300,400,500,600,700"]
+        families: ["Barlow:300,400,500,600,700"]
+      },
+    });
+    WebFont.load({
+      google: {
+        families: ["Lora:300,400,500,600,700"]
       },
     });
   });

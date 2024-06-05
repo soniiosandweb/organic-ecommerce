@@ -4,14 +4,19 @@
 
 body {
     background-color: #fff;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Barlow', sans-serif;
 }
-
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+  font-family: 'Lora', sans-serif;
+}
+.font-lora{
+  font-family: 'Lora', sans-serif;
+}
 /* hover navbar dropdown arrow */
 .arrow_down {
   border-left: 11px solid transparent;
   border-right: 11px solid transparent;
-  border-bottom: 11px solid #fff;
+  border-bottom: 11px solid #ccc;
 }
 /* hover navbar dropdown arrow */
 

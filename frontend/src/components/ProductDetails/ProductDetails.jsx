@@ -197,10 +197,10 @@ const ProductDetails = () => {
                                     {/* <!-- price desc --> */}
 
                                     {/* <!-- warranty & brand --> */}
-                                    <div className="flex gap-8 mt-2 items-center text-sm">
+                                    {/* <div className="flex gap-8 mt-2 items-center text-sm">
                                         <img draggable="false" className="w-20 h-8 p-0.5 border object-contain" src={product.brand?.logo.url} alt={product.brand && product.brand.name} />
                                         <span>{product.warranty} Year Warranty</span>
-                                    </div>
+                                    </div> */}
                                     {/* <!-- warranty & brand --> */}
 
                                     {/* <!-- delivery details --> */}

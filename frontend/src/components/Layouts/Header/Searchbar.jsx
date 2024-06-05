@@ -18,7 +18,7 @@ const Searchbar = () => {
 
     return (
         <form onSubmit={handleSubmit} className="w-full px-4 sm:px-8 py-3 justify-between items-center shadow bg-white rounded-full overflow-hidden searchbar-header hidden lg:flex">
-            <input name="header-search-bar" value={keyword} onChange={(e) => setKeyword(e.target.value)} className="text-sm flex-1 outline-none border-none placeholder-gray-500" type="text" placeholder="Search Product..." />
+            <input name="header-search-bar" value={keyword} onChange={(e) => setKeyword(e.target.value)} className="text-md flex-1 outline-none border-none placeholder-gray-500" type="text" placeholder="Search Product..." />
             <button type="submit" className="text-primary-green"><SearchIcon /></button>
         </form>
     );

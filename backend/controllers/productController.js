@@ -106,6 +106,10 @@ exports.createProduct = asyncErrorHandler(async (req, res, next) => {
             name: req.body.brandname,
             logo: brandLogo
         }
+    } else {
+        req.body.brand = {
+            name: req.body.brandname,
+        }
     }
 
     req.body.images = imagesLink;
@@ -175,6 +179,10 @@ exports.updateProduct = asyncErrorHandler(async (req, res, next) => {
         req.body.brand = {
             name: req.body.brandname,
             logo: brandLogo
+        }
+    } else {
+        req.body.brand = {
+            name: req.body.brandname,
         }
     }
     
