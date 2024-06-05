@@ -92,7 +92,7 @@ const Footer = () => {
     <>
       {!adminRoute && (
         <>
-          <footer className="mt-20 w-full bg-black text-white text-md flex flex-col overflow-hidden">
+          <footer className="w-full bg-black text-white text-md flex flex-col overflow-hidden">
             <div className="w-full sm:w-11/12 px-2 py-14 m-auto flex flex-col md:flex-row justify-between items-center md:items-start relative border-b border-gray-600">
               <div className="w-full sm:w-5/12 px-2 flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between">
                 

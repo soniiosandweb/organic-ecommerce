@@ -9,7 +9,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import SearchIcon from '@mui/icons-material/Search';
-import MinCategory from '../Layouts/MinCategory';
 import MetaData from '../Layouts/MetaData';
 
 const orderStatus = ["Processing", "Shipped", "Delivered"];
@@ -108,7 +107,6 @@ const MyOrders = () => {
         <>
             <MetaData title="My Orders | Organic" />
 
-            <MinCategory />
             <main className="w-full sm:mt-0">
 
                 {/* <!-- row --> */}

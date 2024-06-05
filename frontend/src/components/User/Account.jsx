@@ -3,7 +3,6 @@ import Sidebar from './Sidebar';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../Layouts/Loader';
-import MinCategory from '../Layouts/MinCategory';
 import MetaData from '../Layouts/MetaData';
 
 const Account = () => {
@@ -29,7 +28,6 @@ const Account = () => {
 
             {loading ? <Loader /> :
                 <>
-                    <MinCategory />
                     <main className="w-full sm:mt-0">
 
                         {/* <!-- row --> */}

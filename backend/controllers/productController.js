@@ -93,24 +93,24 @@ exports.createProduct = asyncErrorHandler(async (req, res, next) => {
         });
     }
 
-    if(req.body.logo){
-        const result = await cloudinary.v2.uploader.upload(req.body.logo, {
-            folder: "brands",
-        });
-        const brandLogo = {
-            public_id: result.public_id,
-            url: result.secure_url,
-        };
+    // if(req.body.logo){
+    //     const result = await cloudinary.v2.uploader.upload(req.body.logo, {
+    //         folder: "brands",
+    //     });
+    //     const brandLogo = {
+    //         public_id: result.public_id,
+    //         url: result.secure_url,
+    //     };
 
-        req.body.brand = {
-            name: req.body.brandname,
-            logo: brandLogo
-        }
-    } else {
-        req.body.brand = {
-            name: req.body.brandname,
-        }
-    }
+    //     req.body.brand = {
+    //         name: req.body.brandname,
+    //         logo: brandLogo
+    //     }
+    // } else {
+    //     req.body.brand = {
+    //         name: req.body.brandname,
+    //     }
+    // }
 
     req.body.images = imagesLink;
     req.body.user = req.user.id;
@@ -166,25 +166,21 @@ exports.updateProduct = asyncErrorHandler(async (req, res, next) => {
         req.body.images = imagesLink;
     }
 
-    if (req.body.logo.length > 0) {
-        await cloudinary.v2.uploader.destroy(product.brand.logo.public_id);
-        const result = await cloudinary.v2.uploader.upload(req.body.logo, {
-            folder: "brands",
-        });
-        const brandLogo = {
-            public_id: result.public_id,
-            url: result.secure_url,
-        };
+    // if (req.body.logo.length > 0) {
+    //     await cloudinary.v2.uploader.destroy(product.brand.logo.public_id);
+    //     const result = await cloudinary.v2.uploader.upload(req.body.logo, {
+    //         folder: "brands",
+    //     });
+    //     const brandLogo = {
+    //         public_id: result.public_id,
+    //         url: result.secure_url,
+    //     };
 
-        req.body.brand = {
-            name: req.body.brandname,
-            logo: brandLogo
-        }
-    } else {
-        req.body.brand = {
-            name: req.body.brandname,
-        }
-    }
+    //     req.body.brand = {
+    //         name: req.body.brandname,
+    //         logo: brandLogo
+    //     }
+    // } 
     
     if(req.body.specifications){
         let specs = [];

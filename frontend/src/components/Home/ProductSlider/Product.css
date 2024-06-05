@@ -1,0 +1,14 @@
+.product-slider-home .slick-track
+{
+    display: flex !important;
+    height: 100%;
+}
+
+.product-slider-home .slick-slide
+{
+    height: auto;
+}
+.product-slider-home .slick-slide> div
+{
+    height: 100%;
+}

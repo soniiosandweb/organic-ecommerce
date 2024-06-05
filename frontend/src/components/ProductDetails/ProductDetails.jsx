@@ -1,7 +1,7 @@
 import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 import { clearErrors, getProductDetails, getSimilarProducts, newReview } from '../../actions/productAction';
 import { NextBtn, PreviousBtn } from '../Home/Banner/Banner';
@@ -22,9 +22,8 @@ import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
 import { NEW_REVIEW_RESET } from '../../constants/productConstants';
 import { addItemsToCart } from '../../actions/cartAction';
-import { getDeliveryDate, getDiscount } from '../../utils/functions';
+import { getDiscount } from '../../utils/functions';
 import { addToWishlist, removeFromWishlist } from '../../actions/wishlistAction';
-import MinCategory from '../Layouts/MinCategory';
 import MetaData from '../Layouts/MetaData';
 
 const ProductDetails = () => {
@@ -129,7 +128,6 @@ const ProductDetails = () => {
             {loading ? <Loader /> : (
                 <>
                     <MetaData title={product.name} />
-                    <MinCategory />
                     <main className="w-full sm:mt-0">
 
                         {/* <!-- product image & description container --> */}
@@ -196,22 +194,15 @@ const ProductDetails = () => {
                                     )}
                                     {/* <!-- price desc --> */}
 
-                                    {/* <!-- warranty & brand --> */}
-                                    {/* <div className="flex gap-8 mt-2 items-center text-sm">
-                                        <img draggable="false" className="w-20 h-8 p-0.5 border object-contain" src={product.brand?.logo.url} alt={product.brand && product.brand.name} />
-                                        <span>{product.warranty} Year Warranty</span>
-                                    </div> */}
-                                    {/* <!-- warranty & brand --> */}
-
                                     {/* <!-- delivery details --> */}
-                                    <div className="flex gap-16 mt-4 items-center text-sm font-medium">
+                                    {/* <div className="flex gap-16 mt-4 items-center text-sm font-medium">
                                         <p className="text-gray-500">Delivery</p>
                                         <span>Delivery by {getDeliveryDate()}</span>
-                                    </div>
+                                    </div> */}
                                     {/* <!-- delivery details --> */}
 
                                     {/* <!-- highlights & services details --> */}
-                                    <div className="flex flex-col sm:flex-row justify-between">
+                                    <div className="flex flex-col sm:flex-col justify-between">
                                         {/* <!-- highlights details --> */}
                                         <div className="flex gap-16 mt-4 items-stretch text-sm">
                                             <p className="text-gray-500 font-medium">Highlights</p>
@@ -244,20 +235,6 @@ const ProductDetails = () => {
                                         {/* <!-- services details --> */}
                                     </div>
                                     {/* <!-- highlights & services details --> */}
-
-                                    {/* <!-- seller details --> */}
-                                    <div className="flex gap-16 mt-4 items-center text-sm font-medium">
-                                        <p className="text-gray-500">Seller</p>
-                                        <Link className="font-medium text-primary-green ml-3" to="/">{product.brand && product.brand.name}</Link>
-                                    </div>
-                                    {/* <!-- seller details --> */}
-
-                                    {/* <!-- description details --> */}
-                                    <div className="flex flex-col sm:flex-row gap-1 sm:gap-14 mt-4 items-stretch text-sm">
-                                        <p className="text-gray-500 font-medium">Description</p>
-                                        <span>{product.description}</span>
-                                    </div>
-                                    {/* <!-- description details --> */}
 
                                     {/* <!-- border box --> */}
                                     <div className="w-full mt-6 rounded-sm border flex flex-col">

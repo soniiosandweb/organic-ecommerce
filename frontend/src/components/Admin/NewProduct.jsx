@@ -7,7 +7,7 @@ import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import { NEW_PRODUCT_RESET } from '../../constants/productConstants';
 import { createProduct, clearErrors } from '../../actions/productAction';
-import ImageIcon from '@mui/icons-material/Image';
+// import ImageIcon from '@mui/icons-material/Image';
 import { categories } from '../../utils/constants';
 import MetaData from '../Layouts/MetaData';
 import BackdropLoader from '../Layouts/BackdropLoader';
@@ -31,16 +31,12 @@ const NewProduct = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState();
-    const [cuttedPrice, setCuttedPrice] = useState(0);
+    const [cuttedPrice, setCuttedPrice] = useState();
     const [category, setCategory] = useState("");
     const [stock, setStock] = useState();
     const [warranty, setWarranty] = useState(0);
-    const [brand, setBrand] = useState("");
     const [images, setImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
-
-    const [logo, setLogo] = useState("");
-    const [logoPreview, setLogoPreview] = useState("");
 
     const handleSpecsChange = (e) => {
         setSpecsInput({ ...specsInput, [e.target.name]: e.target.value });
@@ -66,19 +62,6 @@ const NewProduct = () => {
         setSpecs(specs.filter((s, i) => i !== index))
     }
 
-    const handleLogoChange = (e) => {
-        const reader = new FileReader();
-
-        reader.onload = () => {
-            if (reader.readyState === 2) {
-                setLogoPreview(reader.result);
-                setLogo(reader.result);
-            }
-        };
-
-        reader.readAsDataURL(e.target.files[0]);
-    }
-
     const handleProductImageChange = (e) => {
         const files = Array.from(e.target.files);
 
@@ -101,19 +84,6 @@ const NewProduct = () => {
     const newProductSubmitHandler = (e) => {
         e.preventDefault();
 
-        // required field checks
-        // if (highlights.length <= 0) {
-        //     enqueueSnackbar("Add Highlights", { variant: "warning" });
-        //     return;
-        // }
-        // if (!logo) {
-        //     enqueueSnackbar("Add Brand Logo", { variant: "warning" });
-        //     return;
-        // }
-        // if (specs.length <= 1) {
-        //     enqueueSnackbar("Add Minimum 2 Specifications", { variant: "warning" });
-        //     return;
-        // }
         if (images.length <= 0) {
             enqueueSnackbar("Add Product Images", { variant: "warning" });
             return;
@@ -128,9 +98,7 @@ const NewProduct = () => {
         formData.set("category", category);
         formData.set("stock", stock);
         formData.set("warranty", warranty);
-        formData.set("brandname", brand);
-        formData.set("logo", logo);
-
+       
         images.forEach((image) => {
             formData.append("images", image);
         });
@@ -279,33 +247,6 @@ const NewProduct = () => {
                                 </div>
                             ))}
                         </div>
-                    </div>
-
-                    <h2 className="font-medium">Brand Details</h2>
-                    <div className="flex justify-between gap-4 items-start">
-                        <TextField
-                            label="Brand"
-                            type="text"
-                            variant="outlined"
-                            size="small"
-                            value={brand}
-                            onChange={(e) => setBrand(e.target.value)}
-                        />
-                        <div className="w-24 h-10 flex items-center justify-center border rounded-lg">
-                            {!logoPreview ? <ImageIcon /> :
-                                <img draggable="false" src={logoPreview} alt="Brand Logo" className="w-full h-full object-contain" />
-                            }
-                        </div>
-                        <label className="rounded bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow hover:shadow-lg">
-                            <input
-                                type="file"
-                                name="logo"
-                                accept="image/*"
-                                onChange={handleLogoChange}
-                                className="hidden"
-                            />
-                            Choose Logo
-                        </label>
                     </div>
 
                 </div>

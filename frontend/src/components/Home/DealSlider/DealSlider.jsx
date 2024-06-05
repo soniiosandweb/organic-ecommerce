@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { offerProducts } from '../../../utils/constants';
 import { getRandomProducts } from '../../../utils/functions';
 
+
 export const settings = {
     autoplay: true,
     autoplaySpeed: 5000,
@@ -28,8 +29,8 @@ export const settings = {
         {
             breakpoint: 600,
             settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
+                slidesToShow: 1,
+                slidesToScroll: 1
             }
         },
         {
@@ -53,7 +54,7 @@ const DealSlider = ({ title }) => {
             <hr />
             {/* <!-- header --> */}
 
-                <Slider {...settings}>
+                <Slider {...settings} >
                     {getRandomProducts(offerProducts, 12).map((item, i) => (
                         <Product {...item} key={i} />
                     ))}

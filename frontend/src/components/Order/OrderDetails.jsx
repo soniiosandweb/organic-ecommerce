@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import { clearErrors, getOrderDetails } from '../../actions/orderAction';
 import Loader from '../Layouts/Loader';
 import TrackStepper from './TrackStepper';
-import MinCategory from '../Layouts/MinCategory';
 import MetaData from '../Layouts/MetaData';
 
 const OrderDetails = () => {
@@ -28,7 +27,6 @@ const OrderDetails = () => {
         <>
             <MetaData title="Order Details | Organic" />
 
-            <MinCategory />
             <main className="w-full sm:mt-4">
                 {loading ? <Loader /> : (
                     <>

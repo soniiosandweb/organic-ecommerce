@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, getSliderProducts } from '../../actions/productAction';
 import { useSnackbar } from 'notistack';
 import MetaData from '../Layouts/MetaData';
+import ProductServices from './ProductServices/ProductServices';
+import Testimonials from './Testimonials/Testimonials';
 
 const Home = () => {
 
@@ -32,6 +34,11 @@ const Home = () => {
         <Categories />
         {/* <DealSlider title={"Discounts for You"} /> */}
         {!loading && <ProductSlider title={"Trending Products"} tagline={"Latest Products"} />}
+
+        <ProductServices />
+
+        <Testimonials />
+
       </main>
     </>
   );

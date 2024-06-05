@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { clearErrors, getProducts } from '../../actions/productAction';
 import Loader from '../Layouts/Loader';
-import MinCategory from '../Layouts/MinCategory';
 import Product from './Product';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -62,153 +61,152 @@ const Products = () => {
         <>
             <MetaData title="All Products | Organic" />
 
-            <MinCategory />
             <main className="w-full sm:mt-0">
+                <div className="py-16 sm:w-11/12 m-auto px-4 w-full">
+                    {/* <!-- row --> */}
+                    <div className="flex gap-5">
 
-                {/* <!-- row --> */}
-                <div className="flex gap-3 mt-2 sm:mt-2 sm:mx-3 m-auto mb-7">
+                        {/* <!-- sidebar column  --> */}
+                        <div className="hidden lg:flex flex-col w-1/5 px-1">
 
-                    {/* <!-- sidebar column  --> */}
-                    <div className="hidden sm:flex flex-col w-1/5 px-1">
+                            {/* <!-- nav tiles --> */}
+                            <div className="flex flex-col bg-white rounded-sm shadow">
 
-                        {/* <!-- nav tiles --> */}
-                        <div className="flex flex-col bg-white rounded-sm shadow">
-
-                            {/* <!-- filters header --> */}
-                            <div className="flex items-center justify-between gap-5 px-4 py-2 border-b">
-                                <p className="text-lg font-medium">Filters</p>
-                                <span className="uppercase text-primary-green text-md cursor-pointer font-medium" onClick={() => clearFilters()}>clear all</span>
-                            </div>
-
-                            <div className="flex flex-col gap-2 py-3 text-sm overflow-hidden">
-
-                                {/* price slider filter */}
-                                <div className="flex flex-col gap-2 border-b px-4">
-                                    <span className="font-medium text-md">PRICE</span>
-
-                                    <Slider
-                                        value={price}
-                                        onChange={priceHandler}
-                                        valueLabelDisplay="auto"
-                                        getAriaLabel={() => 'Price range slider'}
-                                        min={0}
-                                        max={200000}
-                                        color='primary'
-                                    />
-
-                                    <div className="flex gap-3 items-center justify-between mb-2 min-w-full">
-                                        <span className="flex-1 border px-4 py-1 rounded-sm text-gray-800 bg-gray-50">₹{price[0].toLocaleString()}</span>
-                                        <span className="font-medium text-gray-400">to</span>
-                                        <span className="flex-1 border px-4 py-1 rounded-sm text-gray-800 bg-gray-50">₹{price[1].toLocaleString()}</span>
-                                    </div>
+                                {/* <!-- filters header --> */}
+                                <div className="flex items-center justify-between gap-5 px-4 py-2 border-b flex-col xl:flex-row">
+                                    <p className="text-lg font-bold uppercase">Filters</p>
+                                    <span className="capitalize bg-primary-green text-white text-md cursor-pointer font-semibold px-5 py-2.5 rounded-full shadow-lg hover:bg-black" onClick={() => clearFilters()}>clear all</span>
                                 </div>
-                                {/* price slider filter */}
 
-                                {/* category filter */}
-                                <div className="flex flex-col border-b px-4">
+                                <div className="flex flex-col gap-2 py-3 text-sm overflow-hidden">
 
-                                    <div className="flex justify-between cursor-pointer py-2 pb-4 items-center" onClick={() => setCategoryToggle(!categoryToggle)}>
-                                        <p className="font-medium text-md uppercase">Category</p>
-                                        {categoryToggle ?
-                                            <ExpandLessIcon sx={{ fontSize: "20px" }} /> :
-                                            <ExpandMoreIcon sx={{ fontSize: "20px" }} />
-                                        }
-                                    </div>
+                                    {/* price slider filter */}
+                                    <div className="flex flex-col gap-2 border-b px-4">
+                                        <span className="text-lg font-semibold">Price</span>
 
-                                    {categoryToggle && (
-                                        <div className="flex flex-col pb-1">
-                                            <FormControl>
-                                                <RadioGroup
-                                                    aria-labelledby="category-radio-buttons-group"
-                                                    onChange={(e) => setCategory(e.target.value)}
-                                                    name="category-radio-buttons"
-                                                    value={category}
-                                                >
-                                                    {categories.map((el, i) => (
-                                                        <FormControlLabel  key={i} value={el} control={<Radio size="small" />} label={<span className="text-sm">{el}</span>} />
-                                                    ))}
-                                                </RadioGroup>
-                                            </FormControl>
+                                        <Slider
+                                            value={price}
+                                            onChange={priceHandler}
+                                            valueLabelDisplay="auto"
+                                            getAriaLabel={() => 'Price range slider'}
+                                            min={0}
+                                            max={200000}
+                                            color='primary'
+                                        />
+
+                                        <div className="flex gap-3 items-center justify-between mb-2 min-w-full flex-col xl:flex-row">
+                                            <span className="flex-1 border px-4 py-1 rounded-sm text-gray-800 bg-gray-50">₹{price[0].toLocaleString()}</span>
+                                            <span className="font-medium text-gray-400">to</span>
+                                            <span className="flex-1 border px-4 py-1 rounded-sm text-gray-800 bg-gray-50">₹{price[1].toLocaleString()}</span>
                                         </div>
-                                    )}
-
-                                </div>
-                                {/* category filter */}
-
-                                {/* ratings filter */}
-                                <div className="flex flex-col border-b px-4">
-
-                                    <div className="flex justify-between cursor-pointer py-2 pb-4 items-center" onClick={() => setRatingsToggle(!ratingsToggle)}>
-                                        <p className="font-medium text-md uppercase">ratings</p>
-                                        {ratingsToggle ?
-                                            <ExpandLessIcon sx={{ fontSize: "20px" }} /> :
-                                            <ExpandMoreIcon sx={{ fontSize: "20px" }} />
-                                        }
                                     </div>
+                                    {/* price slider filter */}
 
-                                    {ratingsToggle && (
-                                        <div className="flex flex-col pb-1">
-                                            <FormControl>
-                                                <RadioGroup
-                                                    aria-labelledby="ratings-radio-buttons-group"
-                                                    onChange={(e) => setRatings(e.target.value)}
-                                                    value={ratings}
-                                                    name="ratings-radio-buttons"
-                                                >
-                                                    {[4, 3, 2, 1].map((el, i) => (
-                                                        <FormControlLabel value={el} key={i} control={<Radio size="small" />} label={<span className="flex items-center text-sm">{el}<StarIcon sx={{ fontSize: "12px", mr: 0.5 }} /> & above</span>} />
-                                                    ))}
-                                                </RadioGroup>
-                                            </FormControl>
+                                    {/* category filter */}
+                                    <div className="flex flex-col border-b px-4">
+
+                                        <div className="flex justify-between cursor-pointer py-2 pb-4 items-center" onClick={() => setCategoryToggle(!categoryToggle)}>
+                                            <p className="text-lg font-semibold">Category</p>
+                                            {categoryToggle ?
+                                                <ExpandLessIcon sx={{ fontSize: "20px" }} /> :
+                                                <ExpandMoreIcon sx={{ fontSize: "20px" }} />
+                                            }
                                         </div>
-                                    )}
+
+                                        {categoryToggle && (
+                                            <div className="flex flex-col pb-1">
+                                                <FormControl>
+                                                    <RadioGroup
+                                                        aria-labelledby="category-radio-buttons-group"
+                                                        onChange={(e) => setCategory(e.target.value)}
+                                                        name="category-radio-buttons"
+                                                        value={category}
+                                                    >
+                                                        {categories.map((el, i) => (
+                                                            <FormControlLabel  key={i} value={el} control={<Radio size="small" />} label={<span className="text-sm">{el}</span>} />
+                                                        ))}
+                                                    </RadioGroup>
+                                                </FormControl>
+                                            </div>
+                                        )}
+
+                                    </div>
+                                    {/* category filter */}
+
+                                    {/* ratings filter */}
+                                    <div className="flex flex-col px-4">
+
+                                        <div className="flex justify-between cursor-pointer py-2 pb-4 items-center" onClick={() => setRatingsToggle(!ratingsToggle)}>
+                                            <p className="text-lg font-semibold">Ratings</p>
+                                            {ratingsToggle ?
+                                                <ExpandLessIcon sx={{ fontSize: "20px" }} /> :
+                                                <ExpandMoreIcon sx={{ fontSize: "20px" }} />
+                                            }
+                                        </div>
+
+                                        {ratingsToggle && (
+                                            <div className="flex flex-col pb-1">
+                                                <FormControl>
+                                                    <RadioGroup
+                                                        aria-labelledby="ratings-radio-buttons-group"
+                                                        onChange={(e) => setRatings(e.target.value)}
+                                                        value={ratings}
+                                                        name="ratings-radio-buttons"
+                                                    >
+                                                        {[4, 3, 2, 1].map((el, i) => (
+                                                            <FormControlLabel value={el} key={i} control={<Radio size="small" />} label={<span className="flex items-center text-sm">{el}<StarIcon sx={{ fontSize: "12px", mr: 0.5 }} /> & above</span>} />
+                                                        ))}
+                                                    </RadioGroup>
+                                                </FormControl>
+                                            </div>
+                                        )}
+
+                                    </div>
+                                    {/* ratings filter */}
 
                                 </div>
-                                {/* ratings filter */}
 
                             </div>
+                            {/* <!-- nav tiles --> */}
 
                         </div>
-                        {/* <!-- nav tiles --> */}
+                        {/* <!-- sidebar column  --> */}
 
-                    </div>
-                    {/* <!-- sidebar column  --> */}
+                        {/* <!-- search column --> */}
+                        <div className="flex-1">
 
-                    {/* <!-- search column --> */}
-                    <div className="flex-1">
-
-                        {!loading && products?.length === 0 && (
-                            <div className="flex flex-col items-center justify-center gap-3 bg-white shadow-sm rounded-sm p-6 sm:p-16">
-                                <img draggable="false" className="w-1/2 h-44 object-contain" src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/error-no-search-results_2353c5.png" alt="Search Not Found" />
-                                <h1 className="text-2xl font-medium text-gray-900">Sorry, no results found!</h1>
-                                <p className="text-xl text-center text-primary-grey">Please check the spelling or try searching for something else</p>
-                            </div>
-                        )}
-
-                        {loading ? <Loader /> : (
-                            <div className="flex flex-col gap-2 pb-4 justify-center items-center w-full overflow-hidden bg-white">
-
-                                <div className="grid grid-cols-1 sm:grid-cols-4 w-full place-content-start overflow-hidden p-4 border-b shadow-lg">
-                                    {products?.map((product) => (
-                                            <Product {...product} key={product._id} />
-                                        ))
-                                    }
+                            {!loading && products?.length === 0 && (
+                                <div className="flex flex-col items-center justify-center gap-3 bg-white shadow-sm rounded-sm p-6 sm:p-16">
+                                    <img draggable="false" className="w-1/2 h-44 object-contain" src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/error-no-search-results_2353c5.png" alt="Search Not Found" />
+                                    <h1 className="text-2xl font-medium text-gray-900">Sorry, no results found!</h1>
+                                    <p className="text-xl text-center text-primary-grey">Please check the spelling or try searching for something else</p>
                                 </div>
-                                {filteredProductsCount > resultPerPage && (
-                                    <Pagination
-                                        count={Number(((filteredProductsCount + 6) / resultPerPage).toFixed())}
-                                        page={currentPage}
-                                        onChange={(e, val) => setCurrentPage(val)}
-                                        color="primary"
-                                    />
-                                )}
-                            </div>
-                        )}
-                    </div>
-                    {/* <!-- search column --> */}
-                </div >
-                {/* <!-- row --> */}
+                            )}
 
+                            {loading ? <Loader /> : (
+                                <div className="flex flex-col gap-2 pb-4 justify-center items-center w-full overflow-hidden bg-white">
+
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 w-full place-content-start overflow-hidden gap-5 pb-4">
+                                        {products?.map((product) => (
+                                                <Product {...product} key={product._id} />
+                                            ))
+                                        }
+                                    </div>
+                                    {filteredProductsCount > resultPerPage && (
+                                        <Pagination
+                                            count={Number(((filteredProductsCount + 6) / resultPerPage).toFixed())}
+                                            page={currentPage}
+                                            onChange={(e, val) => setCurrentPage(val)}
+                                            color="primary"
+                                        />
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                        {/* <!-- search column --> */}
+                    </div >
+                    {/* <!-- row --> */}
+                </div>
             </main >
         </>
     );
