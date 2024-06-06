@@ -2,14 +2,52 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { getRandomProducts } from '../../../utils/functions';
-import { settings } from '../DealSlider/DealSlider';
 import Product from './Product';
 import trendingImg from '../../../assets/images/ProductSlider/trending.jpg';
 import './Product.css';
+import { NextBtn, PreviousBtn } from '../Banner/Banner';
 
 const ProductSlider = ({ title, tagline }) => {
 
     const { loading, products } = useSelector((state) => state.products);
+
+    var settings = {
+        autoplay: true,
+        autoplaySpeed: 5000,
+        dots: false,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        initialSlide: 1,
+        swipe: false,
+        pauseOnHover: true,
+        arrows: false,
+        prevArrow: <PreviousBtn />,
+        nextArrow: <NextBtn />,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
 
     return (
         <section className="bg-white w-full overflow-hidden">
