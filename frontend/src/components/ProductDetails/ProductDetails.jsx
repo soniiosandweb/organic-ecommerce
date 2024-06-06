@@ -144,7 +144,7 @@ const ProductDetails = () => {
                                                 ))}
                                             </Slider>
                                             <div className="absolute top-4 right-4 shadow-lg bg-white w-9 h-9 border flex items-center justify-center rounded-full">
-                                                <span onClick={addToWishlistHandler} className={`${itemInWishlist ? "text-red-500" : "hover:text-red-500 text-gray-300"} cursor-pointer`}><FavoriteIcon sx={{ fontSize: "18px" }} /></span>
+                                                <span onClick={addToWishlistHandler} className={`${itemInWishlist ? "text-red-500" : "hover:text-red-500 text-gray-300"} cursor-pointer`}><FavoriteIcon sx={{ fontSize: "24px" }} /></span>
                                             </div>
                                         </div>
 
@@ -177,7 +177,7 @@ const ProductDetails = () => {
                                         <h1 className="text-4xl font-semibold">{product.name}</h1>
                                         {/* <!-- rating badge --> */}
                                         <span className="text-sm text-gray-500 font-medium flex gap-2 items-center">
-                                            <span className="text-md px-1.5 py-0.5 bg-primary-green rounded-sm text-white flex items-center gap-0.5">{product.ratings && product.ratings.toFixed(1)} <StarIcon sx={{ fontSize: "12px" }} /></span>
+                                            <span className="text-md px-1.5 py-0.5 bg-primary-yellow rounded-sm text-white flex items-center gap-0.5">{product.ratings && product.ratings.toFixed(1)} <StarIcon sx={{ fontSize: "12px" }} /></span>
                                             <span>{product.numOfReviews} Reviews</span>
                                         </span>
                                         {/* <!-- rating badge --> */}
@@ -250,7 +250,7 @@ const ProductDetails = () => {
                             <div className="w-full mt-20 rounded-sm border flex flex-col">
                                 <div className="flex justify-between items-center border-b px-6 py-4">
                                     <h2 className="text-2xl font-medium">Ratings & Reviews</h2>
-                                    <button onClick={handleDialogClose} className="shadow bg-primary-yellow text-white px-4 py-2 rounded-sm hover:shadow-lg">Rate Product</button>
+                                    <button onClick={handleDialogClose} className="shadow bg-primary-green text-white px-4 py-2 rounded-full hover:bg-black hover:shadow-lg">Rate Product</button>
                                 </div>
 
                                 <Dialog aria-labelledby='review-dialog'  open={open} onClose={handleDialogClose}>
@@ -277,8 +277,8 @@ const ProductDetails = () => {
                                     </DialogContent>
                                 
                                     <DialogActions>
-                                        <button onClick={handleDialogClose} className="py-2 px-6 rounded shadow bg-white border border-red-500 hover:bg-red-100 text-red-600 uppercase">Cancel</button>
-                                        <button onClick={reviewSubmitHandler} className="py-2 px-6 rounded bg-green-600 hover:bg-green-700 text-white shadow uppercase">Submit</button>
+                                        <button onClick={handleDialogClose} className="py-2 px-6 rounded-full shadow bg-red-700 hover:bg-black text-white uppercase">Cancel</button>
+                                        <button onClick={reviewSubmitHandler} className="py-2 px-6 rounded-full bg-primary-green hover:bg-black text-white shadow uppercase">Submit</button>
                                     </DialogActions>
                                 </Dialog>
 

@@ -260,3 +260,26 @@ exports.deleteUser = asyncErrorHandler(async (req, res, next) => {
         success: true
     });
 });
+
+exports.contactEmail = asyncErrorHandler(async (req, res, next) => {
+
+    try {
+        await sendEmail({
+            email: process.env.SENDGRID_MAIL,
+            templateId: process.env.SENDGRID_RESET_TEMPLATEID,
+            data: {
+                name: req.body.name,
+                email: req.body.email,
+                message: req.body.message,
+            }
+        });
+
+        res.status(200).json({
+            success: true,
+            message: `Email sent successfully`,
+        });
+
+    } catch (error) {
+        return next(new ErrorHandler(error.message, 500))
+    }
+});

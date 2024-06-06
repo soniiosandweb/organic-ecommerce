@@ -41,6 +41,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import {
   Elements
 } from '@stripe/react-stripe-js';
+import ContactUs from './components/ContactUs/ContactUs';
 
 function App() {
 
@@ -101,6 +102,8 @@ function App() {
         <Route path="/products/:keyword" element={<Products />} />
 
         <Route path="/cart" element={<Cart />} />
+
+        <Route path="/contact" element={<ContactUs />} />
 
         {/* order process */}
         <Route path="/shipping" element={
