@@ -22,11 +22,6 @@ const NewProduct = () => {
 
     const [highlights, setHighlights] = useState([]);
     const [highlightInput, setHighlightInput] = useState("");
-    const [specs, setSpecs] = useState([]);
-    const [specsInput, setSpecsInput] = useState({
-        title: "",
-        description: ""
-    });
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -38,16 +33,6 @@ const NewProduct = () => {
     const [images, setImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
 
-    const handleSpecsChange = (e) => {
-        setSpecsInput({ ...specsInput, [e.target.name]: e.target.value });
-    }
-
-    const addSpecs = () => {
-        if (!specsInput.title.trim() || !specsInput.title.trim()) return;
-        setSpecs([...specs, specsInput]);
-        setSpecsInput({ title: "", description: "" });
-    }
-
     const addHighlight = () => {
         if (!highlightInput.trim()) return;
         setHighlights([...highlights, highlightInput]);
@@ -56,10 +41,6 @@ const NewProduct = () => {
 
     const deleteHighlight = (index) => {
         setHighlights(highlights.filter((h, i) => i !== index))
-    }
-
-    const deleteSpec = (index) => {
-        setSpecs(specs.filter((s, i) => i !== index))
     }
 
     const handleProductImageChange = (e) => {
@@ -105,10 +86,6 @@ const NewProduct = () => {
 
         highlights.forEach((h) => {
             formData.append("highlights", h);
-        });
-
-        specs.forEach((s) => {
-            formData.append("specifications", JSON.stringify(s));
         });
 
         dispatch(createProduct(formData));
@@ -252,26 +229,7 @@ const NewProduct = () => {
                 </div>
 
                 <div className="flex flex-col gap-2 m-2 sm:w-1/2">
-                    <h2 className="font-medium">Specifications</h2>
-
-                    <div className="flex justify-evenly gap-2 items-center">
-                        <TextField value={specsInput.title} onChange={handleSpecsChange} name="title" label="Name" placeholder="Model No" variant="outlined" size="small" />
-                        <TextField value={specsInput.description} onChange={handleSpecsChange} name="description" label="Description" placeholder="WJDK42DF5" variant="outlined" size="small" />
-                        <span onClick={() => addSpecs()} className="py-2 px-6 bg-primary-green text-white rounded hover:shadow-lg cursor-pointer">Add</span>
-                    </div>
-
-                    <div className="flex flex-col gap-1.5">
-                        {specs.map((spec, i) => (
-                            <div className="flex justify-between items-center text-sm rounded bg-blue-50 py-1 px-2">
-                                <p className="text-gray-500 font-medium">{spec.title}</p>
-                                <p>{spec.description}</p>
-                                <span onClick={() => deleteSpec(i)} className="text-red-600 hover:bg-red-200 bg-red-100 p-1 rounded-full cursor-pointer">
-                                    <DeleteIcon />
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-
+                
                     <h2 className="font-medium">Product Images</h2>
                     <div className="flex gap-2 overflow-x-auto h-32 border rounded">
                         {imagesPreview.map((image, i) => (

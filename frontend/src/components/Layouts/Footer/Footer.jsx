@@ -119,7 +119,7 @@ const Footer = () => {
                   <div className="w-full md:w-1/4 flex flex-col gap-2 mb-3 sm:mb-6 md:ml-5 items-center md:items-start" key={i}>
                     <h2 className="text-white mb-5 text-lg font-semibold capitalize">{el.title} <span className='text-primary-green'>~</span></h2>
                     {el.links.map((item, i) => (
-                      <a href={item.redirect} target="_blank" rel="noreferrer" className="hover:text-primary-green" key={i}>{item.name}</a>
+                      <a href={item.redirect} rel="noreferrer" className="hover:text-primary-green" key={i}>{item.name}</a>
                     ))}
 
                   </div>

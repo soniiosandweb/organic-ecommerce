@@ -25,6 +25,7 @@ import { getDiscount } from '../../utils/functions';
 import { addToWishlist, removeFromWishlist } from '../../actions/wishlistAction';
 import MetaData from '../Layouts/MetaData';
 import DealSlider from '../Home/DealSlider/DealSlider';
+
 const ProductDetails = () => {
 
     const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const ProductDetails = () => {
     const settings = {
         autoplay: true,
         autoplaySpeed: 2000,
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
@@ -130,16 +131,16 @@ const ProductDetails = () => {
                     <main className="w-full sm:mt-0">
                         <div className="py-16 sm:w-11/12 m-auto px-4 w-full relative z-10">
                             {/* <!-- product image & description container --> */}
-                            <div className="w-full flex flex-col sm:flex-row bg-white sm:p-2 relative">
+                            <div className="w-full flex flex-col sm:flex-row gap-5 bg-white relative pb-10">
 
                                 {/* <!-- image wrapper --> */}
                                 <div className="w-full md:w-2/5">
                                     {/* <!-- imgbox --> */}
-                                    <div className="flex flex-col gap-3 m-3 sm:sticky top-16">
-                                        <div className="w-full h-full pb-6 border relative">
-                                            <Slider {...settings}>
+                                    <div className="flex flex-col gap-3 sm:sticky top-16">
+                                        <div className="w-full h-full p-5 border relative">
+                                            <Slider {...settings} className='arrows-position-0'>
                                                 {product.images && product.images.map((item, i) => (
-                                                    <img draggable="false" className="w-full h-96 object-contain" src={item.url} alt={product.name} key={i} />
+                                                    <img draggable="false" className="w-full object-contain" src={item.url} alt={product.name} key={i} />
                                                 ))}
                                             </Slider>
                                             <div className="absolute top-4 right-4 shadow-lg bg-white w-9 h-9 border flex items-center justify-center rounded-full">
@@ -171,7 +172,7 @@ const ProductDetails = () => {
                                 <div className="flex-1 py-2 px-3">
 
                                     {/* <!-- whole product description --> */}
-                                    <div className="flex flex-col gap-4 mb-4">
+                                    <div className="flex flex-col gap-4">
 
                                         <h1 className="text-4xl font-semibold">{product.name}</h1>
                                         {/* <!-- rating badge --> */}
@@ -182,11 +183,12 @@ const ProductDetails = () => {
                                         {/* <!-- rating badge --> */}
 
                                         {/* <!-- price desc --> */}
-                                        <div className="flex items-baseline gap-2 text-3xl font-medium">
-                                            <h2 className="text-black text-3xl font-medium">₹{product.price?.toLocaleString()}</h2>
+                                        <h2 className="flex items-baseline gap-2 text-3xl font-medium">
+                                            <span className="text-black text-3xl font-medium">₹{product.price?.toLocaleString()}</span>
                                             <span className="text-base text-gray-500 line-through font-medium text-xl">₹{product.cuttedPrice?.toLocaleString()}</span>
                                             <span className="text-base text-primary-green font-medium text-xl">{getDiscount(product.price, product.cuttedPrice)}%&nbsp;off</span>
-                                        </div>
+                                        </h2>
+
                                         {product.stock <= 10 && product.stock > 0 && (
                                             <span className="text-red-500 text-sm font-medium">Hurry, Only {product.stock} left!</span>
                                         )}
@@ -229,94 +231,12 @@ const ProductDetails = () => {
 
                                         {/* <!-- border box --> */}
                                         <div className="w-full mt-6 rounded-sm border flex flex-col">
-                                            <h3 className="px-6 py-4 border-b text-2xl font-medium">Product Description</h3>
+                                            <h3 className="px-6 py-4 border-b text-xl font-semibold">Product Description</h3>
                                             <div className="p-6">
-                                                <p className="text-sm">{product.description}</p>
+                                                <p className="text-md">{product.description}</p>
                                             </div>
                                         </div>
                                         {/* <!-- border box --> */}
-
-                                        {/* <!-- specifications border box --> */}
-                                        <div className="w-full mt-4 pb-4 rounded-sm border flex flex-col">
-                                            <h2 className="px-6 py-4 border-b text-2xl font-medium">Specifications</h2>
-                                            <h2 className="px-6 py-3 text-lg">General</h2>
-
-                                            {/* <!-- specs list --> */}
-                                            {product.specifications?.map((spec, i) => (
-                                                <div className="px-6 py-2 flex items-center text-sm" key={i}>
-                                                    <p className="text-gray-500 w-3/12">{spec.title}</p>
-                                                    <p className="flex-1">{spec.description}</p>
-                                                </div>
-                                            ))}
-                                            {/* <!-- specs list --> */}
-
-                                        </div>
-                                        {/* <!-- specifications border box --> */}
-
-                                        {/* <!-- reviews border box --> */}
-                                        <div className="w-full mt-4 rounded-sm border flex flex-col">
-                                            <div className="flex justify-between items-center border-b px-6 py-4">
-                                                <h2 className="text-2xl font-medium">Ratings & Reviews</h2>
-                                                <button onClick={handleDialogClose} className="shadow bg-primary-yellow text-white px-4 py-2 rounded-sm hover:shadow-lg">Rate Product</button>
-                                            </div>
-
-                                            <Dialog
-                                                aria-labelledby='review-dialog'
-                                                open={open}
-                                                onClose={handleDialogClose}
-                                            >
-                                                <DialogTitle className="border-b">Submit Review</DialogTitle>
-                                                <DialogContent className="flex flex-col m-1 gap-4">
-                                                    <Rating
-                                                        onChange={(e) => setRating(e.target.value)}
-                                                        value={rating}
-                                                        size='large'
-                                                        precision={0.5}
-                                                    />
-                                                    <TextField
-                                                        label="Review"
-                                                        multiline
-                                                        rows={3}
-                                                        sx={{ width: 400 }}
-                                                        size="small"
-                                                        variant="outlined"
-                                                        value={comment}
-                                                        onChange={(e) => setComment(e.target.value)}
-                                                    />
-                                                </DialogContent>
-                                                <DialogActions>
-                                                    <button onClick={handleDialogClose} className="py-2 px-6 rounded shadow bg-white border border-red-500 hover:bg-red-100 text-red-600 uppercase">Cancel</button>
-                                                    <button onClick={reviewSubmitHandler} className="py-2 px-6 rounded bg-green-600 hover:bg-green-700 text-white shadow uppercase">Submit</button>
-                                                </DialogActions>
-                                            </Dialog>
-
-                                            <div className="flex items-center border-b">
-                                                <h2 className="px-6 py-3 text-3xl font-semibold">{product.ratings && product.ratings.toFixed(1)}<StarIcon /></h2>
-                                                <p className="text-lg text-gray-500">({product.numOfReviews}) Reviews</p>
-                                            </div>
-
-                                            {viewAll ?
-                                                product.reviews?.map((rev, i) => (
-                                                    <div className="flex flex-col gap-2 py-4 px-6 border-b" key={i}>
-                                                        <Rating name="read-only" value={rev.rating} readOnly size="small" precision={0.5} />
-                                                        <p>{rev.comment}</p>
-                                                        <span className="text-sm text-gray-500">by {rev.name}</span>
-                                                    </div>
-                                                )).reverse()
-                                                :
-                                                product.reviews?.slice(-3).map((rev, i) => (
-                                                    <div className="flex flex-col gap-2 py-4 px-6 border-b" key={i}>
-                                                        <Rating name="read-only" value={rev.rating} readOnly size="small" precision={0.5} />
-                                                        <p>{rev.comment}</p>
-                                                        <span className="text-sm text-gray-500">by {rev.name}</span>
-                                                    </div>
-                                                )).reverse()
-                                            }
-                                            {product.reviews?.length > 3 &&
-                                                <button onClick={() => setViewAll(!viewAll)} className="w-1/3 m-2 rounded-sm shadow hover:shadow-lg py-2 bg-primary-green text-white">{viewAll ? "View Less" : "View All"}</button>
-                                            }
-                                        </div>
-                                        {/* <!-- reviews border box --> */}
 
                                     </div>
 
@@ -326,8 +246,72 @@ const ProductDetails = () => {
                             </div>
                             {/* <!-- product image & description container --> */}
 
+                            {/* <!-- reviews border box --> */}
+                            <div className="w-full mt-20 rounded-sm border flex flex-col">
+                                <div className="flex justify-between items-center border-b px-6 py-4">
+                                    <h2 className="text-2xl font-medium">Ratings & Reviews</h2>
+                                    <button onClick={handleDialogClose} className="shadow bg-primary-yellow text-white px-4 py-2 rounded-sm hover:shadow-lg">Rate Product</button>
+                                </div>
+
+                                <Dialog aria-labelledby='review-dialog'  open={open} onClose={handleDialogClose}>
+
+                                    <DialogTitle className="border-b">Submit Review</DialogTitle>
+                                    
+                                    <DialogContent className="flex flex-col m-1 gap-4">
+                                        <Rating
+                                            onChange={(e) => setRating(e.target.value)}
+                                            value={rating}
+                                            size='large'
+                                            precision={0.5}
+                                        />
+                                        <TextField
+                                            label="Review"
+                                            multiline
+                                            rows={3}
+                                            sx={{ width: 400 }}
+                                            size="small"
+                                            variant="outlined"
+                                            value={comment}
+                                            onChange={(e) => setComment(e.target.value)}
+                                        />
+                                    </DialogContent>
+                                
+                                    <DialogActions>
+                                        <button onClick={handleDialogClose} className="py-2 px-6 rounded shadow bg-white border border-red-500 hover:bg-red-100 text-red-600 uppercase">Cancel</button>
+                                        <button onClick={reviewSubmitHandler} className="py-2 px-6 rounded bg-green-600 hover:bg-green-700 text-white shadow uppercase">Submit</button>
+                                    </DialogActions>
+                                </Dialog>
+
+                                <div className="flex items-center border-b">
+                                    <h2 className="px-6 py-3 text-3xl font-semibold">{product.ratings && product.ratings.toFixed(1)}<StarIcon /></h2>
+                                    <p className="text-lg text-gray-500">({product.numOfReviews}) Reviews</p>
+                                </div>
+
+                                {viewAll ?
+                                    product.reviews?.map((rev, i) => (
+                                        <div className="flex flex-col gap-2 py-4 px-6 border-b" key={i}>
+                                            <Rating name="read-only" value={rev.rating} readOnly size="small" precision={0.5} />
+                                            <p>{rev.comment}</p>
+                                            <span className="text-sm text-gray-500">by {rev.name}</span>
+                                        </div>
+                                    )).reverse()
+                                    :
+                                    product.reviews?.slice(-3).map((rev, i) => (
+                                        <div className="flex flex-col gap-2 py-4 px-6 border-b" key={i}>
+                                            <Rating name="read-only" value={rev.rating} readOnly size="small" precision={0.5} />
+                                            <p>{rev.comment}</p>
+                                            <span className="text-sm text-gray-500">by {rev.name}</span>
+                                        </div>
+                                    )).reverse()
+                                }
+                                {product.reviews?.length > 3 &&
+                                    <button onClick={() => setViewAll(!viewAll)} className="w-1/3 m-2 rounded-sm shadow hover:shadow-lg py-2 bg-primary-green text-white">{viewAll ? "View Less" : "View All"}</button>
+                                }
+                            </div>
+                            {/* <!-- reviews border box --> */}
+
                             {/* Sliders */}
-                            <div className="flex flex-col gap-3 mt-6">
+                            <div className="flex flex-col gap-3 mt-10">
                                 <DealSlider title={"Related Products"} />
                             </div>
                         </div>

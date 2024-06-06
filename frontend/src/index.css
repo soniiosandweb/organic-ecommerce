@@ -37,3 +37,11 @@ body {
 .searchbar-header{
    max-width: 50%
 }
+
+/* Arrows position */
+.arrows-position-0 .slick-prev {
+  left: 0;
+}
+.arrows-position-0 .slick-next {
+  right: 0;
+}

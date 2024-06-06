@@ -115,13 +115,13 @@ exports.createProduct = asyncErrorHandler(async (req, res, next) => {
     req.body.images = imagesLink;
     req.body.user = req.user.id;
 
-    if(req.body.specifications){
-        let specs = [];
-        req.body.specifications.forEach((s) => {
-            specs.push(JSON.parse(s))
-        });
-        req.body.specifications = specs;
-    }
+    // if(req.body.specifications){
+    //     let specs = [];
+    //     req.body.specifications.forEach((s) => {
+    //         specs.push(JSON.parse(s))
+    //     });
+    //     req.body.specifications = specs;
+    // }
 
     const product = await Product.create(req.body);
 
@@ -182,13 +182,13 @@ exports.updateProduct = asyncErrorHandler(async (req, res, next) => {
     //     }
     // } 
     
-    if(req.body.specifications){
-        let specs = [];
-        req.body.specifications.forEach((s) => {
-            specs.push(JSON.parse(s))
-        });
-        req.body.specifications = specs;
-    }
+    // if(req.body.specifications){
+    //     let specs = [];
+    //     req.body.specifications.forEach((s) => {
+    //         specs.push(JSON.parse(s))
+    //     });
+    //     req.body.specifications = specs;
+    // }
 
     
     req.body.user = req.user.id;
