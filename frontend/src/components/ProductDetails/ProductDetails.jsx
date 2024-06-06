@@ -150,12 +150,12 @@ const ProductDetails = () => {
                                         <div className="w-full flex gap-3">
                                             {/* <!-- add to cart btn --> */}
                                             {product.stock > 0 && (
-                                                <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-1/2 flex items-center justify-center gap-2 text-white bg-primary-yellow rounded-sm shadow hover:shadow-lg">
+                                                <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-1/2 flex items-center justify-center gap-2 text-white bg-primary-green rounded-full shadow hover:shadow-lg hover:bg-black font-semibold">
                                                     <ShoppingCartIcon />
-                                                    {itemInCart ? "GO TO CART" : "ADD TO CART"}
+                                                    {itemInCart ? "ADD TO CART" : "ADD TO CART"}
                                                 </button>
                                             )}
-                                            <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-sm shadow hover:shadow-lg" : "p-4 w-1/2 flex items-center justify-center gap-2 text-white bg-primary-orange rounded-sm shadow hover:shadow-lg"}>
+                                            <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-full hover:shadow-lg" : "p-4 w-1/2 flex items-center justify-center gap-2 text-white bg-black rounded-full hover:shadow-lg hover:bg-primary-green font-semibold"}>
                                                 <FlashOnIcon />
                                                 {product.stock < 1 ? "OUT OF STOCK" : "BUY NOW"}
                                             </button>
@@ -171,9 +171,9 @@ const ProductDetails = () => {
                                 <div className="flex-1 py-2 px-3">
 
                                     {/* <!-- whole product description --> */}
-                                    <div className="flex flex-col gap-2 mb-4">
+                                    <div className="flex flex-col gap-4 mb-4">
 
-                                        <h1 className="text-xl">{product.name}</h1>
+                                        <h1 className="text-4xl font-semibold">{product.name}</h1>
                                         {/* <!-- rating badge --> */}
                                         <span className="text-sm text-gray-500 font-medium flex gap-2 items-center">
                                             <span className="text-md px-1.5 py-0.5 bg-primary-green rounded-sm text-white flex items-center gap-0.5">{product.ratings && product.ratings.toFixed(1)} <StarIcon sx={{ fontSize: "12px" }} /></span>
@@ -182,34 +182,26 @@ const ProductDetails = () => {
                                         {/* <!-- rating badge --> */}
 
                                         {/* <!-- price desc --> */}
-                                        <span className="text-primary-green text-sm font-medium">Special Price</span>
                                         <div className="flex items-baseline gap-2 text-3xl font-medium">
-                                            <span className="text-gray-800">₹{product.price?.toLocaleString()}</span>
-                                            <span className="text-base text-gray-500 line-through">₹{product.cuttedPrice?.toLocaleString()}</span>
-                                            <span className="text-base text-primary-green">{getDiscount(product.price, product.cuttedPrice)}%&nbsp;off</span>
+                                            <h2 className="text-black text-3xl font-medium">₹{product.price?.toLocaleString()}</h2>
+                                            <span className="text-base text-gray-500 line-through font-medium text-xl">₹{product.cuttedPrice?.toLocaleString()}</span>
+                                            <span className="text-base text-primary-green font-medium text-xl">{getDiscount(product.price, product.cuttedPrice)}%&nbsp;off</span>
                                         </div>
                                         {product.stock <= 10 && product.stock > 0 && (
                                             <span className="text-red-500 text-sm font-medium">Hurry, Only {product.stock} left!</span>
                                         )}
                                         {/* <!-- price desc --> */}
 
-                                        {/* <!-- delivery details --> */}
-                                        {/* <div className="flex gap-16 mt-4 items-center text-sm font-medium">
-                                            <p className="text-gray-500">Delivery</p>
-                                            <span>Delivery by {getDeliveryDate()}</span>
-                                        </div> */}
-                                        {/* <!-- delivery details --> */}
-
                                         {/* <!-- highlights & services details --> */}
                                         <div className="flex flex-col sm:flex-col justify-between">
                                             {/* <!-- highlights details --> */}
-                                            <div className="flex gap-16 mt-4 items-stretch text-sm">
-                                                <p className="text-gray-500 font-medium">Highlights</p>
+                                            <div className="flex gap-16 mt-4 items-stretch text-md">
+                                                <p className="text-black font-medium">Highlights</p>
 
                                                 <ul className="list-disc flex flex-col gap-2 w-64">
                                                     {product.highlights?.map((highlight, i) => (
                                                         <li key={i}>
-                                                            <p>{highlight}</p>
+                                                            <p className="text-black font-medium">{highlight}</p>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -217,17 +209,17 @@ const ProductDetails = () => {
                                             {/* <!-- highlights details --> */}
 
                                             {/* <!-- services details --> */}
-                                            <div className="flex gap-16 mt-4 mr-6 items-stretch text-sm">
-                                                <p className="text-gray-500 font-medium">Services</p>
+                                            <div className="flex gap-16 mt-4 mr-6 items-stretch text-md">
+                                                <p className="text-black font-medium">Services</p>
                                                 <ul className="flex flex-col gap-2">
                                                     <li>
-                                                        <p className="flex items-center gap-3"><span className="text-primary-green"><VerifiedUserIcon sx={{ fontSize: "18px" }} /></span> {product.warranty} Year</p>
+                                                        <p className="flex items-center gap-3 text-black font-medium"><span className="text-primary-green"><VerifiedUserIcon sx={{ fontSize: "18px" }} /></span> {product.warranty} Year</p>
                                                     </li>
                                                     <li>
-                                                        <p className="flex items-center gap-3"><span className="text-primary-green"><CachedIcon sx={{ fontSize: "18px" }} /></span> 7 Days Replacement Policy</p>
+                                                        <p className="flex items-center gap-3 text-black font-medium"><span className="text-primary-green"><CachedIcon sx={{ fontSize: "18px" }} /></span> 7 Days Replacement Policy</p>
                                                     </li>
                                                     <li>
-                                                        <p className="flex items-center gap-3"><span className="text-primary-green"><CurrencyRupeeIcon sx={{ fontSize: "18px" }} /></span> Cash on Delivery available</p>
+                                                        <p className="flex items-center gap-3 text-black font-medium"><span className="text-primary-green"><CurrencyRupeeIcon sx={{ fontSize: "18px" }} /></span> Cash on Delivery available</p>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -237,7 +229,7 @@ const ProductDetails = () => {
 
                                         {/* <!-- border box --> */}
                                         <div className="w-full mt-6 rounded-sm border flex flex-col">
-                                            <h2 className="px-6 py-4 border-b text-2xl font-medium">Product Description</h2>
+                                            <h3 className="px-6 py-4 border-b text-2xl font-medium">Product Description</h3>
                                             <div className="p-6">
                                                 <p className="text-sm">{product.description}</p>
                                             </div>
