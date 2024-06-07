@@ -1,21 +1,48 @@
 import PageBanner from "../Layouts/PageBanner";
 import TextField from '@mui/material/TextField';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
+import { useDispatch, useSelector } from "react-redux";
+import { contactFormData } from "../../actions/contactAction";
+import { useSnackbar } from 'notistack';
 
 const ContactUs = () => {
+
+    const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
 
     const [yourName, setYourName] = useState("");
     const [yourEmail, setYourEmail] = useState("");
     const [yourMessage, setYourMessage] = useState("");
 
+    const {contact, error} = useSelector((state) => state.contactForm)
+
     const contactSubmit = (e) => {
         e.preventDefault();
 
-        console.log(yourEmail, yourMessage, yourName)
+        const data = {
+            name: yourName,
+            email: yourEmail,
+            message: yourMessage,
+        }
+
+        dispatch(contactFormData(data));
+
     }
+
+    useEffect(() => {
+        if (error) {
+            enqueueSnackbar(error, { variant: "error" });
+        }
+        if(contact){
+            enqueueSnackbar(contact.message, { variant: "success" });
+            setYourEmail("");
+            setYourMessage("");
+            setYourName("");
+        }
+    }, [dispatch, contact, error, enqueueSnackbar])
 
     return(
         <main className="w-full sm:mt-0">
@@ -63,7 +90,7 @@ const ContactUs = () => {
                     />
 
                                 
-                    <button type="submit" className="bg-primary-green w-full sm:w-1/5 my-6 py-3.5 text-sm font-medium text-white shadow hover:shadow-lg rounded-full uppercase outline-none mx-auto hover:bg-black">Submit</button>
+                    <button type="submit" className="w-full sm:w-1/5 my-6 mx-auto bg-primary-green text-md font-medium text-white px-5 py-2.5 rounded-full shadow-lg capitalize hover:bg-black">Submit</button>
                 </form>
             </div>
 

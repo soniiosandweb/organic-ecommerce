@@ -37,13 +37,13 @@ const Header = () => {
     },
     {
       name: "Contact Us",
-      redirect: "/",
+      redirect: "/contact",
     },
   ]
 
   return (
 
-    <header className="bg-white sticky top-0 py-4 w-full z-50 shadow">
+    <header className="bg-white sticky top-0 py-4 w-full shadow" style={{zIndex: 99999}}>
 
       {/* <!-- navbar container --> */}
       <div className="w-full sm:w-11/12 px-4 m-auto flex justify-between items-center relative">

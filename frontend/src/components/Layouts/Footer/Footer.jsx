@@ -22,7 +22,7 @@ const footerLinks = [
       },
       {
         name: "Contact Us",
-        redirect: "/",
+        redirect: "/contact",
       },
     ]
   },

@@ -7,6 +7,7 @@ import { cartReducer } from './reducers/cartReducer';
 import { saveForLaterReducer } from './reducers/saveForLaterReducer';
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer, paymentStatusReducer } from './reducers/orderReducer';
 import { wishlistReducer } from './reducers/wishlistReducer';
+import { contactReducer } from './reducers/contactReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -30,6 +31,7 @@ const reducer = combineReducers({
     reviews: productReviewsReducer,
     review: reviewReducer,
     wishlist: wishlistReducer,
+    contactForm: contactReducer,
 });
 
 let initialState = {
