@@ -62,7 +62,7 @@ body {
 /* 404 page not found */
 .font-300 {
   font-size: 300px;
-  line-height: 1;
+  line-height: 1 !important;
 }
 
 @media (max-width: 767px) {
