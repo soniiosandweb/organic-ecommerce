@@ -10,7 +10,7 @@ const footerLinks = [
     links: [
       {
         name: "About Us",
-        redirect: "/",
+        redirect: "/about-us",
       },
       {
         name: "Shop",

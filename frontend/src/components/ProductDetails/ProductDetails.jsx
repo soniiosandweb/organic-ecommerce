@@ -131,7 +131,7 @@ const ProductDetails = () => {
                     <main className="w-full sm:mt-0">
                         <div className="py-16 sm:w-11/12 m-auto px-4 w-full relative z-10">
                             {/* <!-- product image & description container --> */}
-                            <div className="w-full flex flex-col sm:flex-row gap-5 bg-white relative pb-10">
+                            <div className="w-full flex flex-col sm:flex-row gap-8 bg-white relative pb-10">
 
                                 {/* <!-- image wrapper --> */}
                                 <div className="w-full md:w-2/5">
@@ -148,15 +148,15 @@ const ProductDetails = () => {
                                             </div>
                                         </div>
 
-                                        <div className="w-full flex gap-3">
+                                        <div className="w-full flex gap-3 flex-col sm:flex-row">
                                             {/* <!-- add to cart btn --> */}
                                             {product.stock > 0 && (
-                                                <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-1/2 flex items-center justify-center gap-2 text-white bg-primary-green rounded-full shadow hover:shadow-lg hover:bg-black font-semibold">
+                                                <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-full sm:w-1/2 flex items-center justify-center gap-2 text-white bg-primary-green rounded-full shadow hover:shadow-lg hover:bg-black font-semibold">
                                                     <ShoppingCartIcon />
                                                     {itemInCart ? "ADD TO CART" : "ADD TO CART"}
                                                 </button>
                                             )}
-                                            <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-full hover:shadow-lg" : "p-4 w-1/2 flex items-center justify-center gap-2 text-white bg-black rounded-full hover:shadow-lg hover:bg-primary-green font-semibold"}>
+                                            <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-full hover:shadow-lg" : "p-4 w-full sm:w-1/2 flex items-center justify-center gap-2 text-white bg-black rounded-full hover:shadow-lg hover:bg-primary-green font-semibold"}>
                                                 <FlashOnIcon />
                                                 {product.stock < 1 ? "OUT OF STOCK" : "BUY NOW"}
                                             </button>
@@ -169,7 +169,7 @@ const ProductDetails = () => {
                                 {/* <!-- image wrapper --> */}
 
                                 {/* <!-- product desc wrapper --> */}
-                                <div className="flex-1 py-2 px-3">
+                                <div className="flex-1 py-2">
 
                                     {/* <!-- whole product description --> */}
                                     <div className="flex flex-col gap-4">
@@ -247,8 +247,8 @@ const ProductDetails = () => {
                             {/* <!-- product image & description container --> */}
 
                             {/* <!-- reviews border box --> */}
-                            <div className="w-full mt-20 rounded-sm border flex flex-col">
-                                <div className="flex justify-between items-center border-b px-6 py-4">
+                            <div className="w-full mt-8 md:mt-20 rounded-sm border flex flex-col">
+                                <div className="flex justify-between items-center border-b px-6 py-4 flex-col sm:flex-row gap-5">
                                     <h2 className="text-2xl font-medium">Ratings & Reviews</h2>
                                     <button onClick={handleDialogClose} className="shadow bg-primary-green text-white px-4 py-2 rounded-full hover:bg-black hover:shadow-lg">Rate Product</button>
                                 </div>

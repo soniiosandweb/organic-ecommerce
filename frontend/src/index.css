@@ -8,9 +8,13 @@ body {
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
   font-family: 'Lora', sans-serif;
+  line-height: 1.4 !important;
 }
 .font-lora{
   font-family: 'Lora', sans-serif;
+}
+.font-barlow{
+  font-family: 'Barlow', sans-serif;
 }
 /* hover navbar dropdown arrow */
 .arrow_down {
@@ -22,9 +26,18 @@ body {
 
 /* login signup sidebar bg image */
 .loginSidebar {
-    background-image: url("https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png");
+    background-image: url("assets/images/login.jpg");
     background-position: center 85%;
     background-repeat: no-repeat;
+}
+.loginSidebar::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #0000009e;
+  left: 0;
+  top: 0;
 }
 /* login signup sidebar bg image */
 
@@ -44,4 +57,16 @@ body {
 }
 .arrows-position-0 .slick-next {
   right: 0;
+}
+
+/* 404 page not found */
+.font-300 {
+  font-size: 300px;
+  line-height: 1;
+}
+
+@media (max-width: 767px) {
+  .font-300 {
+    font-size: 100px;
+  }
 }

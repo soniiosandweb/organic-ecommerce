@@ -91,10 +91,10 @@ const Register = () => {
             <MetaData title="Register | Organic" />
 
             {loading && <BackdropLoader />}
-            <main className="w-full sm:pt-20 sm:mt-0">
+            <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}
-                <div className="flex sm:w-4/6 sm:mt-4 m-auto mb-7 bg-white shadow-lg">
+                <div className="flex sm:w-4/6 sm:mt-4 m-auto mb-7 bg-gray-100 shadow">
 
                     <FormSidebar
                         title="Looks like you're new here!"
@@ -122,6 +122,7 @@ const Register = () => {
                                         value={name}
                                         onChange={handleDataChange}
                                         required
+                                        className='flex-1'
                                     />
                                     <TextField
                                         fullWidth
@@ -132,6 +133,7 @@ const Register = () => {
                                         value={email}
                                         onChange={handleDataChange}
                                         required
+                                        className='flex-1'
                                     />
                                 </div>
                                 {/* <!-- input container column --> */}
@@ -162,6 +164,7 @@ const Register = () => {
                                         value={password}
                                         onChange={handleDataChange}
                                         required
+                                        className='flex-1'
                                     />
                                     <TextField
                                         id="confirm-password"
@@ -171,6 +174,7 @@ const Register = () => {
                                         value={cpassword}
                                         onChange={handleDataChange}
                                         required
+                                        className='flex-1'
                                     />
                                 </div>
                                 {/* <!-- input container column --> */}
@@ -192,8 +196,8 @@ const Register = () => {
                                         Choose File
                                     </label>
                                 </div>
-                                <button type="submit" className="text-white py-3 w-full bg-primary-orange shadow hover:shadow-lg rounded-sm font-medium">Signup</button>
-                                <Link to="/login" className="hover:bg-gray-50 text-primary-green text-center py-3 w-full shadow border rounded-sm font-medium">Existing User? Log in</Link>
+                                <button type="submit" className="block w-full bg-primary-green text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize hover:bg-black my-2">Signup</button>
+                                <Link to="/login" className="block w-full bg-black text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize hover:bg-primary-green text-center">Existing User? Log in</Link>
                             </div>
 
                         </form>

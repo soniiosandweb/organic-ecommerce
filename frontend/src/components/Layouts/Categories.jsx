@@ -32,14 +32,14 @@ const Categories = () => {
     return (
         <section className="block bg-white min-w-full py-16 overflow-hidden">
 
-            <div className="w-full sm:w-11/12 px-4 m-auto flex items-center justify-between flex-wrap">
+            <div className="w-full sm:w-11/12 px-4 m-auto flex items-center justify-center flex-wrap gap-4">
 
                 {catNav.map((item, i) => (
-                    <Link to={`/products?category=${item.name}`} className="flex flex-col gap-1 items-center p-2 group w-6/12 md:w-1/5" key={i}>
-                        <div className="h-20 w-20 md:h-24 md:w-24 xl:h-40 xl:w-40">
+                    <Link to={`/products?category=${item.name}`} className="flex-1 flex-col gap-1 items-center p-2 group w-1/3 md:w-1/5 text-center" key={i}>
+                        <div className="h-28 w-28 md:h-32 md:w-32 xl:h-40 xl:w-40 m-auto">
                             <img draggable="false" className="h-full w-full rounded-full object-contain border-4 border-gray" src={item.icon} alt={item.name} />
                         </div>
-                        <span className="text-xl text-black mt-5 font-semibold group-hover:text-primary-green font-lora">{item.name}</span>
+                        <p className="text-xl text-black mt-5 font-semibold group-hover:text-primary-green font-lora text-center">{item.name}</p>
                     </Link>
                 ))}
 

@@ -33,7 +33,7 @@ const Product = (props) => {
 
             <div className="flex flex-col items-center gap-2 p-4 relative border shadow-lg w-full h-full">
                 {/* <!-- image & product title --> */}
-                <Link to={`/product/${_id}`} className="flex flex-col items-center text-center group w-full">
+                <Link to={`/product/${_id}/`} className="flex flex-col items-center text-center group w-full">
                     <div className="w-full max-h-96 h-full bg-[#f4f4f4]">
                         <img draggable="false" className="w-full h-full object-contain" src={images[0].url} alt={name} />
                     </div>
@@ -62,7 +62,7 @@ const Product = (props) => {
                         <span onClick={addToWishlistHandler} className={`${itemInWishlist ? "text-red-500" : "hover:text-red-500 text-gray-300"} cursor-pointer`}><FavoriteIcon sx={{ fontSize: "24px" }} /></span>
                         {/* <!-- wishlist badge --> */}
 
-                        <Link to={`/product/${_id}`} className="flex flex-col items-center text-center group w-full hover:text-black text-gray-300">
+                        <Link to={`/product/${_id}/`} className="flex flex-col items-center text-center group w-full hover:text-black text-gray-300">
                             <VisibilityOutlinedIcon sx={{ fontSize: "24px" }}/>
                         </Link>
                     </div>

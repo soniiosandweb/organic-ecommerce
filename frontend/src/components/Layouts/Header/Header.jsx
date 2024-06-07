@@ -25,7 +25,7 @@ const Header = () => {
   const menuLinks = [
     {
       name: "About Us",
-      redirect: "/",
+      redirect: "/about-us",
     },
     {
       name: "Shop",

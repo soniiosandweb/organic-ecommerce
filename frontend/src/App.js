@@ -42,6 +42,7 @@ import {
   Elements
 } from '@stripe/react-stripe-js';
 import ContactUs from './components/ContactUs/ContactUs';
+import AboutUs from './components/AboutUs/AboutUs';
 
 function App() {
 
@@ -97,13 +98,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/product/:id/" element={<ProductDetails />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:keyword" element={<Products />} />
 
         <Route path="/cart" element={<Cart />} />
 
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/about-us" element={<AboutUs />} />
 
         {/* order process */}
         <Route path="/shipping" element={

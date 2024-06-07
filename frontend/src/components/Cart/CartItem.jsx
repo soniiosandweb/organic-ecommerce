@@ -39,7 +39,7 @@ const CartItem = ({ product, name, seller, price, cuttedPrice, image, stock, qua
     return (
         <div className="flex flex-col gap-3 py-5 pl-2 sm:pl-6 border-b overflow-hidden" key={product}>
 
-            <Link to={`/product/${product}`} className="flex flex-col sm:flex-row gap-5 items-stretch w-full group">
+            <Link to={`/product/${product}/`} className="flex flex-col sm:flex-row gap-5 items-stretch w-full group">
                 {/* <!-- product image --> */}
                 <div className="w-full sm:w-1/6 h-28 flex-shrink-0">
                     <img draggable="false" className="h-full w-full object-contain" src={image} alt={name} />

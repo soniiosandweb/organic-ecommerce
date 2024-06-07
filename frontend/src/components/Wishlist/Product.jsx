@@ -25,7 +25,7 @@ const Product = (props) => {
             <div className="flex flex-col gap-5 w-full p-1">
                 {/* <!-- product title --> */}
                 <div className="flex justify-between items-start sm:pr-5">
-                    <Link to={`/product/${product}`} className="flex flex-col gap-0.5">
+                    <Link to={`/product/${product}/`} className="flex flex-col gap-0.5">
                         <p className="group-hover:text-primary-green w-56 sm:w-full truncate">{name.length > 85 ? `${name.substring(0, 85)}...` : name}</p>
                         {/* <!-- rating badge --> */}
                         <span className="text-sm text-gray-500 font-medium flex gap-2 items-center">

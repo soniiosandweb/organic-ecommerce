@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import Categories from '../Layouts/Categories';
 import Banner from './Banner/Banner';
-// import DealSlider from './DealSlider/DealSlider';
 import ProductSlider from './ProductSlider/ProductSlider';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, getSliderProducts } from '../../actions/productAction';
@@ -9,6 +8,7 @@ import { useSnackbar } from 'notistack';
 import MetaData from '../Layouts/MetaData';
 import ProductServices from './ProductServices/ProductServices';
 import Testimonials from './Testimonials/Testimonials';
+import CategoriesBanner from './CategoriesBanner/CategoriesBanner';
 
 const Home = () => {
 
@@ -32,7 +32,9 @@ const Home = () => {
       <main className="flex flex-col gap-3">
         <Banner />
         <Categories />
-        {/* <DealSlider title={"Discounts for You"} /> */}
+
+        <CategoriesBanner />
+        
         {!loading && <ProductSlider title={"Trending Products"} tagline={"Latest Products"} />}
 
         <ProductServices />
