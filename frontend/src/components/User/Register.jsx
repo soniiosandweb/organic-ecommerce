@@ -94,7 +94,7 @@ const Register = () => {
             <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}
-                <div className="flex sm:w-4/6 sm:mt-4 m-auto mb-7 bg-gray-100 shadow">
+                <div className="flex md:w-6/6 lg:w-5/6 xl:w-4/6 sm:mt-4 m-auto mb-7 bg-gray-100 shadow">
 
                     <FormSidebar
                         title="Looks like you're new here!"
@@ -185,7 +185,7 @@ const Register = () => {
                                         src={avatarPreview}
                                         sx={{ width: 56, height: 56 }}
                                     />
-                                    <label className="rounded font-medium bg-gray-400 text-center cursor-pointer text-white w-full py-2 px-2.5 shadow hover:shadow-lg">
+                                    <label className="rounded-full font-medium bg-gray-400 text-center cursor-pointer text-white w-full py-2 px-2.5 shadow hover:shadow-lg">
                                         <input
                                             type="file"
                                             name="avatar"

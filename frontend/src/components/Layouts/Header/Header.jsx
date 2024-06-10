@@ -43,7 +43,7 @@ const Header = () => {
 
   return (
 
-    <header className="bg-white sticky top-0 py-4 w-full shadow" style={{zIndex: 99999}}>
+    <header className="bg-white sticky top-0 py-4 w-full shadow" style={{zIndex: 1500}}>
 
       {/* <!-- navbar container --> */}
       <div className="w-full sm:w-11/12 px-4 m-auto flex justify-between items-center relative">
@@ -56,7 +56,7 @@ const Header = () => {
               <MenuIcon />
             </button>
           </div>
-          <Link className="h-16 mr-3 md:mr-6" to="/">
+          <Link className="h-16 mr-3 md:mr-6 focus-visible:outline-0" to="/">
             <img draggable="false" className="h-full w-full object-contain" src={logo} alt="Organic Logo" />
           </Link>
 

@@ -43,10 +43,10 @@ const Shipping = () => {
     return (
         <>
             <MetaData title="Organic: Shipping Details" />
-            <main className="w-full ">
+            <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}
-                <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7 overflow-hidden">
+                <div className="flex flex-col md:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7">
 
                     {/* <!-- cart column --> */}
                     <div className="flex-1">
@@ -54,7 +54,7 @@ const Shipping = () => {
                         <Stepper activeStep={1}>
                             <div className="w-full bg-white">
 
-                                <form onSubmit={shippingSubmit} autoComplete="off" className="flex flex-col justify-start gap-3 w-full sm:w-3/4 mx-1 sm:mx-8 my-4">
+                                <form onSubmit={shippingSubmit} autoComplete="off" className="flex flex-col justify-start gap-5 w-full px-1 sm:px-8 py-4">
 
                                     <TextField
                                         value={address}
@@ -136,7 +136,7 @@ const Shipping = () => {
 
                                     </div>
 
-                                    <button type="submit" className="bg-primary-orange w-full sm:w-1/3 my-2 py-3.5 text-sm font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none">save and deliver here</button>
+                                    <button type="submit" className="bg-primary-green w-full sm:w-1/3 my-2 py-3.5 text-md font-semibold text-white shadow hover:bg-black rounded-full capitalize outline-none">save and deliver here</button>
                                 </form>
                             </div>
                         </Stepper>

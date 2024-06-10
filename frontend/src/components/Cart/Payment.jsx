@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PriceSidebar from './PriceSidebar';
 import Stepper from './Stepper';
@@ -12,11 +12,11 @@ import {
 } from '@stripe/react-stripe-js';
 import { clearErrors } from '../../actions/orderAction';
 import { useSnackbar } from 'notistack';
-import { post } from '../../utils/paytmForm';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
+// import { post } from '../../utils/paytmForm';
+// import FormControl from '@mui/material/FormControl';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import Radio from '@mui/material/Radio';
+// import RadioGroup from '@mui/material/RadioGroup';
 import MetaData from '../Layouts/MetaData';
 import { useNavigate } from "react-router-dom";
 import { newOrderData } from '../../actions/orderAction';
@@ -31,7 +31,7 @@ const Payment = () => {
     const elements = useElements();
     const paymentBtn = useRef(null);
 
-    const [payDisable, setPayDisable] = useState(false);
+    // const [payDisable, setPayDisable] = useState(false);
 
     const { shippingInfo, cartItems } = useSelector((state) => state.cart);
     const { user } = useSelector((state) => state.user);
@@ -51,11 +51,24 @@ const Payment = () => {
         totalPrice,
     }
 
+    const cardElementOptions = {
+        style: {
+          base: {
+            color: "#666",
+            fontSize: "18px",
+          },
+          invalid: {
+            color: "#fa755a",
+            fontSize: "18px",
+          }
+        }
+      }
+
     const submitHandler = async (e) => {
         e.preventDefault();
 
-        // paymentBtn.current.disabled = true;
-        setPayDisable(true);
+        paymentBtn.current.disabled = true;
+        // setPayDisable(true);
 
         try {
             const config = {
@@ -117,8 +130,8 @@ const Payment = () => {
             }
 
         } catch (error) {
-            // paymentBtn.current.disabled = false;
-            setPayDisable(false);
+            paymentBtn.current.disabled = false;
+            // setPayDisable(false);
             enqueueSnackbar(error, { variant: "error" });
         }
     };
@@ -135,7 +148,7 @@ const Payment = () => {
         <>
             <MetaData title="Organic: Secure Payment | Paytm" />
 
-            <main className="w-full ">
+            <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}
                 <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7">
@@ -171,18 +184,25 @@ const Payment = () => {
                                 </form> */}
 
                                 {/* stripe form */}
-                                <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start gap-3 w-full sm:w-3/4 mx-8 my-4">
-                                <div>
-                                    <CardNumberElement />
-                                </div>
-                                <div>
-                                    <CardExpiryElement />
-                                </div>
-                                <div>
-                                    <CardCvcElement />
-                                </div>
-                                <input ref={paymentBtn} type="submit" value="Pay" className="bg-primary-orange w-full sm:w-1/3 my-2 py-3.5 text-sm font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none cursor-pointer" />
-                            </form>
+                                <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start gap-3 w-full px-1 sm:px-8 py-4">
+
+                                    <div className="flex flex-col lg:flex-row w-full gap-4">
+                                        <div className='w-4/6  border border-gray-300 px-5 py-3 rounded-md'>
+                                            <CardNumberElement options={cardElementOptions} />
+                                        </div>
+                                        <div className='w-2/6 border border-gray-300 px-5 py-3 rounded-md'>
+                                            <CardExpiryElement options={cardElementOptions} />
+                                        </div>
+                                        <div className='w-2/6 border border-gray-300 px-5 py-3 rounded-md'>
+                                            <CardCvcElement options={cardElementOptions} />
+                                        </div>
+                                    </div>
+                                
+                                    <div className='flex-1 w-full'>
+                                        <input ref={paymentBtn} type="submit" value="Place Order" className="bg-primary-green w-full sm:w-1/4 my-2 py-3.5 text-sm font-medium text-white shadow hover:bg-black rounded-full capitalize outline-none cursor-pointer" />
+                                    </div>
+                                
+                                </form>
                                 {/* stripe form */}
 
                             </div>

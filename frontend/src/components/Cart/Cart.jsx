@@ -19,17 +19,17 @@ const Cart = () => {
     return (
         <>
             <MetaData title="Shopping Cart | Organic" />
-            <main className="w-full">
+            <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}
-                <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7">
+                <div className="flex flex-col md:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7">
 
                     {/* <!-- cart column --> */}
                     <div className="flex-1">
 
                         {/* <!-- cart items container --> */}
-                        <div className="flex flex-col shadow bg-white">
-                            <span className="font-medium text-lg px-2 sm:px-8 py-4 border-b">My Cart ({cartItems.length})</span>
+                        <div className="flex flex-col border border-gray-300 bg-white">
+                            <span className="font-semibold text-xl px-2 sm:px-8 py-4 border-b border-gray-300">My Cart ({cartItems.length})</span>
 
                             {cartItems && cartItems.length === 0 && (
                                 <EmptyCart />
@@ -42,7 +42,7 @@ const Cart = () => {
 
                             {/* <!-- place order btn --> */}
                             <div className="flex justify-end">
-                                <button onClick={placeOrderHandler} disabled={cartItems.length < 1 ? true : false} className={`${cartItems.length < 1 ? "bg-primary-grey cursor-not-allowed" : "bg-primary-orange"} w-full sm:w-1/3 mx-2 sm:mx-6 my-4 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm`}>PLACE ORDER</button>
+                                <button onClick={placeOrderHandler} disabled={cartItems.length < 1 ? true : false} className={`${cartItems.length < 1 ? "bg-primary-grey cursor-not-allowed" : "bg-primary-green"} w-full lg:w-1/4 mx-2 sm:mx-6 my-4 py-3 font-medium text-white shadow hover:shadow-lg rounded-full hover:bg-black`}>Checkout</button>
                             </div>
                             {/* <!-- place order btn --> */}
 
@@ -50,8 +50,8 @@ const Cart = () => {
                         {/* <!-- cart items container --> */}
 
                         {/* <!-- saved for later items container --> */}
-                        <div className="flex flex-col mt-5 shadow bg-white">
-                            <span className="font-medium text-lg px-2 sm:px-8 py-4 border-b">Saved For Later ({saveForLaterItems.length})</span>
+                        <div className="flex flex-col mt-10 border border-gray-300 bg-white">
+                            <span className="font-semibold text-xl px-2 sm:px-8 py-4 border-b border-gray-300">Saved For Later ({saveForLaterItems.length})</span>
                             {saveForLaterItems && saveForLaterItems.map((item) => (
                                 <SaveForLaterItem {...item} />
                             )

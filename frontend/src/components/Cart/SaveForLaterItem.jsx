@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { addItemsToCart } from '../../actions/cartAction';
 import { removeFromSaveForLater } from '../../actions/saveForLaterAction';
 import { getDiscount } from '../../utils/functions';
+import { Link } from 'react-router-dom';
 
 const SaveForLaterItem = ({ product, name, seller, price, cuttedPrice, image, stock, quantity }) => {
 
@@ -26,46 +27,47 @@ const SaveForLaterItem = ({ product, name, seller, price, cuttedPrice, image, st
             <div className="flex flex-col sm:flex-row gap-5 items-stretch w-full" href="#">
                 {/* <!-- product image --> */}
                 <div className="w-full sm:w-1/6 h-28 flex-shrink-0">
-                    <img draggable="false" className="h-full w-full object-contain" src={image} alt={name} />
+                    <Link to={`/product/${product}/`}><img draggable="false" className="h-full w-full object-contain" src={image} alt={name} /></Link>
                 </div>
                 {/* <!-- product image --> */}
 
                 {/* <!-- description --> */}
                 <div className="flex flex-col gap-1 sm:gap-5 w-full p-1 pr-6">
                     {/* <!-- product title --> */}
-                    <div className="flex justify-between items-start pr-5">
-                        <div className="flex flex-col gap-0.5 w-11/12 sm:w-full">
-                            <p>{name.length > 50 ? `${name.substring(0, 50)}...` : name}</p>
-                            <span className="text-sm text-gray-500">Seller: {seller}</span>
+                    <div className="flex flex-col lg:flex-row justify-between items-start pr-5 gap-3 lg:gap-0">
+                        <div className="flex flex-col gap-2 sm:w-3/5">
+                            <Link to={`/product/${product}/`}>
+                                <p className="text-xl font-semibold group-hover:text-primary-green">{name.length > 42 ? `${name.substring(0, 42)}...` : name}</p>
+                            </Link>
+
+                            {/* <!-- price desc --> */}
+                            <div className="flex gap-2 text-lg font-medium">
+                                <span>₹{(price * quantity).toLocaleString()}</span>
+                                <span className="text-gray-500 line-through font-normal">₹{(cuttedPrice * quantity).toLocaleString()}</span>
+                                <span className="text-primary-green">{getDiscount(price, cuttedPrice)}%&nbsp;off</span>
+                            </div>
+                            {/* <!-- price desc --> */}
+
+                            {/* <!-- quantity --> */}
+                            <div className="flex gap-1 items-center">
+                                <span className="w-7 h-7 text-xl font-medium bg-gray-100 rounded-full border flex items-center justify-center cursor-not-allowed border-gray-300"><p>-</p></span>
+                                <input className="w-11 border outline-none text-center rounded-sm py-0.5 text-black font-medium text-md qtyInput border-gray-300" value={quantity} disabled />
+                                <span className="w-7 h-7 text-xl font-medium bg-gray-100 rounded-full border flex items-center justify-center cursor-not-allowed border-gray-300">+</span>
+                            </div>
+                            {/* <!-- quantity --> */}
+
+                        </div>                                                      
+
+                        <div className="flex flex-col gap-3 my-auto">
+                            <button onClick={() => moveToCartHandler(product, quantity)} className="font-bold text-primary-green hover:text-black text-start lg:text-center">MOVE TO CART</button>
+                            <button onClick={() => removeFromSaveForLaterHandler(product)} className="text-red-600 font-bold hover:text-red-700 text-start lg:text-center">REMOVE</button>
                         </div>
                     </div>
                     {/* <!-- product title --> */}
 
-                    {/* <!-- price desc --> */}
-                    <div className="flex items-baseline gap-2 text-xl font-medium">
-                        <span>₹{(price * quantity).toLocaleString()}</span>
-                        <span className="text-sm text-gray-500 line-through font-normal">₹{(cuttedPrice * quantity).toLocaleString()}</span>
-                        <span className="text-sm text-primary-green">{getDiscount(price, cuttedPrice)}%&nbsp;off</span>
-                    </div>
-                    {/* <!-- price desc --> */}
-
                 </div>
                 {/* <!-- description --> */}
             </div>
-
-            {/* <!-- move to cart --> */}
-            <div className="flex justify-evenly sm:justify-start sm:gap-6">
-                {/* <!-- quantity --> */}
-                <div className="flex gap-1 items-center">
-                    <span className="w-7 h-7 text-3xl font-light bg-gray-50 rounded-full border flex items-center justify-center cursor-not-allowed"><p>-</p></span>
-                    <input className="w-11 border outline-none text-center rounded-sm py-0.5 text-gray-700 font-medium text-sm" value={quantity} disabled />
-                    <span className="w-7 h-7 text-xl font-light bg-gray-50 rounded-full border flex items-center justify-center cursor-not-allowed">+</span>
-                </div>
-                {/* <!-- quantity --> */}
-                <button onClick={() => moveToCartHandler(product, quantity)} className="sm:ml-4 font-medium hover:text-primary-green">MOVE TO CART</button>
-                <button onClick={() => removeFromSaveForLaterHandler(product)} className="font-medium hover:text-red-600">REMOVE</button>
-            </div>
-            {/* <!-- move to cart --> */}
 
         </div>
     );

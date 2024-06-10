@@ -11,16 +11,16 @@ const Wishlist = () => {
         <>
             <MetaData title="Wishlist | Organic" />
 
-            <main className="w-full">
+            <main className="w-full py-16 px-4">
 
                 <div className="flex gap-3.5 sm:w-11/12 sm:mt-4 m-auto mb-7">
 
                     <Sidebar activeTab={"wishlist"} />
 
-                    <div className="flex-1 shadow bg-white">
+                    <div className="flex-1 shadow border border-gray-300 bg-white">
                         {/* <!-- wishlist container --> */}
                         <div className="flex flex-col">
-                            <span className="font-medium text-lg px-4 sm:px-8 py-4 border-b">My Wishlist ({wishlistItems.length})</span>
+                            <span className="font-medium text-xl px-4 sm:px-8 py-4 border-b">My Wishlist ({wishlistItems.length})</span>
 
                             {wishlistItems.length === 0 && (
                                 <div className="flex items-center flex-col gap-2 m-6">

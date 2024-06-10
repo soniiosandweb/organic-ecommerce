@@ -54,10 +54,10 @@ const ResetPassword = () => {
       <MetaData title="Password Reset | Organic" />
 
       {loading && <BackdropLoader />}
-      <main class="w-full sm:pt-20 sm:mt-0">
+      <main class="w-full py-16 px-4">
 
         {/* <!-- row --> */}
-        <div class="flex sm:w-4/6 sm:mt-4 m-auto mb-7 bg-white shadow-lg">
+        <div class="flex md:w-6/6 lg:w-5/6 xl:w-4/6 sm:mt-4 m-auto mb-7 bg-gray-100 shadow">
 
           <FormSidebar
             title="Reset Password"
@@ -66,7 +66,7 @@ const ResetPassword = () => {
 
           {/* <!-- login column --> */}
           <div class="flex-1 overflow-hidden">
-            <h2 className="text-center text-2xl font-medium mt-6 text-gray-800">Reset Password</h2>
+            <h2 className="text-center text-2xl font-semibold mt-6 text-black">Reset Password</h2>
 
             {/* <!-- edit info container --> */}
             <div class="text-center py-10 px-4 sm:px-14">
@@ -96,9 +96,9 @@ const ResetPassword = () => {
                   />
 
                   {/* <!-- button container --> */}
-                  <div class="flex flex-col gap-2.5 mt-2 mb-32">
-                    <p class="text-md text-primary-grey text-left">By continuing, you agree to Organic's <a href="https://www.Organic.com/pages/terms" class="text-primary-green"> Terms of Use</a> and <a href="https://www.Organic.com/pages/privacypolicy" class="text-primary-green"> Privacy Policy.</a></p>
-                    <button type="submit" class="text-white py-3 w-full bg-primary-orange shadow hover:shadow-lg rounded-sm font-medium">Submit</button>
+                  <div class="flex flex-col gap-2.5 mt-2 mb-12">
+                    <p class="text-md text-black font-medium text-left">By continuing, you agree to Organic's <a href="/" class="text-primary-green"> Terms of Use</a> and <a href="/" class="text-primary-green"> Privacy Policy.</a></p>
+                    <button type="submit" class="block w-full bg-primary-green text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize hover:bg-black my-2">Submit</button>
                   </div>
                   {/* <!-- button container --> */}
 
@@ -106,7 +106,7 @@ const ResetPassword = () => {
               </form>
               {/* <!-- input container --> */}
 
-              <Link to="/register" class="font-medium text-sm text-primary-green">New to Organic? Create an account</Link>
+              <Link to="/register" className="font-semibold text-md text-primary-green">New to Green Organic? Create an account</Link>
             </div>
             {/* <!-- edit info container --> */}
 

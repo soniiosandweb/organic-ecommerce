@@ -1,5 +1,7 @@
 import { useSelector } from 'react-redux';
 import CheckIcon from '@mui/icons-material/Check';
+import EditIcon from '@mui/icons-material/Edit';
+import { Link } from 'react-router-dom';
 
 const Stepper = ({ activeStep, children }) => {
 
@@ -11,19 +13,23 @@ const Stepper = ({ activeStep, children }) => {
     const steps = [
         {
             label: "LOGIN",
-            desc: <p className="font-medium text-sm">{user.name} <span className="text-sm font-normal">{user.email}</span></p>
+            desc: <p className="font-medium text-sm">{user.name} <span className="text-sm font-normal">{user.email}</span></p>,
+            link: "",
         },
         {
             label: "DELIVERY ADDRESS",
-            desc: <p className="font-medium text-sm">{user.name} <span className="text-sm font-normal">{address}</span></p>
+            desc: <p className="font-medium text-sm">{user.name} <span className="text-sm font-normal">{address}</span></p>,
+            link: "/shipping",
         },
         {
             label: "ORDER SUMMARY",
-            desc: <p className="font-medium text-sm">{cartItems.length} Item</p>
+            desc: <p className="font-medium text-sm">{cartItems.length} Item</p>,
+            link: "/order/confirm",
         },
         {
             label: "PAYMENT OPTIONS",
-            desc: <p className="font-medium text-sm">Paytm</p>
+            desc: <p className="font-medium text-sm">Paytm</p>,
+            link: "",
         }
     ]
 
@@ -35,9 +41,9 @@ const Stepper = ({ activeStep, children }) => {
                 return (
                     <div key={index}>
                         {activeStep === index ? (
-                            <div className="flex flex-col shadow rounded-sm">
-                                <div className="flex items-center rounded-t-sm bg-primary-green px-6 py-2 gap-4">
-                                    <span className="h-5 w-5 flex items-center justify-center text-md font-medium bg-white rounded-sm text-primary-green">{index + 1}</span>
+                            <div className="flex flex-col border border-gray-300 shadow rounded-sm">
+                                <div className="flex items-center rounded-t-sm bg-black px-6 py-3 gap-4">
+                                    <span className="h-5 w-5 flex items-center justify-center text-md font-medium bg-white rounded-sm text-black">{index + 1}</span>
                                     <h2 className="font-medium text-white">{step.label}</h2>
                                 </div>
                                 {children}
@@ -45,9 +51,9 @@ const Stepper = ({ activeStep, children }) => {
                         ) : (
                             <>
                                 {activeStep > index ? (
-                                    <Step isDesc={true} {...step} index={index} />
+                                    <Step isDesc={true} {...step} index={index} isLink={true} />
                                 ) : (
-                                    <Step isDesc={false} {...step} index={index} />
+                                    <Step isDesc={false} {...step} index={index} isLink={false}/>
                                 )}
                             </>
                         )}
@@ -59,14 +65,19 @@ const Stepper = ({ activeStep, children }) => {
     );
 };
 
-const Step = ({ isDesc, label, desc, index }) => {
+const Step = ({ isDesc, label, desc, link, index, isLink}) => {
     return (
-        <div className="flex bg-white shadow px-4 py-3 pb-4 rounded-sm">
-            <span className="mt-2 ml-2 mr-4 h-5 w-5 flex items-center justify-center text-md font-medium bg-gray-100 rounded-sm text-primary-green">{index + 1}</span>
+        <div className="flex bg-white border border-gray-300 px-4 py-3 pb-4 rounded-sm">
+            <span className="mt-2 ml-2 mr-4 h-5 w-5 flex items-center justify-center text-md font-medium bg-primary-green rounded-sm text-white">{index + 1}</span>
             <div className="flex flex-col mt-1 gap-0.5">
-                <h2 className="font-medium text-gray-500 flex items-center gap-2">{label}
+                <h2 className="font-semibold text-black flex items-center gap-2">{label}
                     {isDesc && (
                         <span className="text-primary-green mb-1"><CheckIcon sx={{ fontSize: "20px" }} /></span>
+                            
+                    )}
+                    {isLink && link !== "" && (
+                        
+                        <Link to={link}><span className="text-primary-green mb-1"><EditIcon sx={{ fontSize: "20px" }} /></span> </Link>
                     )}
                 </h2>
                 {isDesc && desc}

@@ -28,7 +28,7 @@ const Account = () => {
 
             {loading ? <Loader /> :
                 <>
-                    <main className="w-full sm:mt-0">
+                    <main className="w-full py-16 px-4">
 
                         {/* <!-- row --> */}
                         <div className="flex gap-3.5 sm:w-11/12 sm:mt-4 m-auto mb-7">
@@ -36,7 +36,7 @@ const Account = () => {
                             <Sidebar activeTab={"profile"} />
 
                             {/* <!-- details column --> */}
-                            <div className="flex-1 overflow-hidden shadow bg-white">
+                            <div className="flex-1 overflow-hidden border border-gray-300 shadow bg-white">
                                 {/* <!-- edit info container --> */}
                                 <div className="flex flex-col gap-12 m-4 sm:mx-8 sm:my-6">
                                     {/* <!-- personal info --> */}
