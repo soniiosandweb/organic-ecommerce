@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField'
 import { useSnackbar } from 'notistack';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, loadUser, updatePassword } from '../../actions/userAction';
 import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants';
 import BackdropLoader from '../Layouts/BackdropLoader';
 import MetaData from '../Layouts/MetaData';
-import FormSidebar from './FormSidebar';
+import Sidebar from './Sidebar';
 
 const UpdatePassword = () => {
 
@@ -60,29 +60,27 @@ const UpdatePassword = () => {
             <MetaData title="Password Update | Organic" />
 
             {loading && <BackdropLoader />}
-            <main className="w-full sm:pt-20 sm:mt-0">
+            <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}
-                <div className="flex sm:w-4/6 sm:mt-4 m-auto mb-7 bg-white shadow-lg">
+                <div className="flex gap-3.5 sm:w-11/12 sm:mt-4 m-auto mb-7">
 
-                    <FormSidebar
-                        title="Looks like you want to update password!"
-                        tag="Enter your current and new password to update"
-                    />
+                    <Sidebar activeTab={"password"} />
 
                     {/* <!-- signup column --> */}
-                    <div className="flex-1 overflow-hidden">
+                    <div className="flex-1 overflow-hidden border border-gray-300 shadow bg-white">
 
-                        <h2 className="text-center text-2xl font-medium mt-6 text-gray-800">Update Password</h2>
+                        <h2 className="font-medium text-xl px-4 sm:px-8 py-4 border-b">Update Password</h2>
+
                         {/* <!-- personal info procedure container --> */}
                         <form
                             onSubmit={updatePasswordSubmitHandler}
-                            className="p-5 sm:p-14"
+                            className="w-full"
                         >
-                            <div className="flex flex-col gap-4 items-start">
+                            <div className="flex flex-col gap-8 m-4 sm:mx-8 sm:my-6">
 
                                 {/* <!-- input container column --> */}
-                                <div className="flex flex-col w-full justify-between sm:flex-col gap-3 items-center">
+                                <div className="flex flex-col w-full lg:w-1/2 justify-between gap-8 items-center">
 
                                     <TextField
                                         fullWidth
@@ -114,8 +112,7 @@ const UpdatePassword = () => {
 
                                 </div>
                                 {/* <!-- input container column --> */}
-                                <button type="submit" className="text-white py-3 w-full bg-primary-orange shadow hover:shadow-lg rounded-sm font-medium">Update</button>
-                                <Link className="hover:bg-gray-50 text-primary-green text-center py-3 w-full shadow border rounded-sm font-medium mb-8" to="/account">Cancel</Link>
+                                <button type="submit" className="block w-full lg:w-max text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize my-4 bg-primary-green hover:bg-black">Update</button>
                             </div>
 
                         </form>

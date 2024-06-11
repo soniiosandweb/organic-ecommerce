@@ -1,26 +1,82 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Sidebar from './Sidebar';
-import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Loader from '../Layouts/Loader';
 import MetaData from '../Layouts/MetaData';
+import { useSnackbar } from 'notistack';
+import { clearErrors, loadUser, updateProfile } from '../../actions/userAction';
+import { UPDATE_PROFILE_RESET } from '../../constants/userConstants';
+import TextField from '@mui/material/TextField';
+import { Avatar, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 
 const Account = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const {enqueueSnackbar} = useSnackbar();
 
-    const { user, loading, isAuthenticated } = useSelector(state => state.user)
+    const { user, loading, isAuthenticated } = useSelector(state => state.user);
+    const { error, isUpdated } = useSelector((state) => state.profile);
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [gender, setGender] = useState("");
+    const [avatar, setAvatar] = useState("");
+    const [avatarPreview, setAvatarPreview] = useState("");
+    const [editProfile, setEditProfile] = useState(true);
+
+    const updateProfileHandler = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.set("name", name);
+        formData.set("email", email);
+        formData.set("gender", gender);
+        formData.set("avatar", avatar);
+
+        dispatch(updateProfile(formData));
+    }
+
+    const handleUpdateDataChange = (e) => {
+        const reader = new FileReader();
+        setAvatar("");
+        reader.onload = () => {
+            if (reader.readyState === 2) {
+                setAvatarPreview(reader.result);
+                setAvatar(reader.result);
+            }
+        };
+
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
 
     useEffect(() => {
+
         if (isAuthenticated === false) {
             navigate("/login")
         }
-    }, [isAuthenticated, navigate]);
 
-    const getLastName = () => {
-        const nameArray = user.name.split(" ");
-        return nameArray[nameArray.length - 1];
-    }
+        if (user) {
+            setName(user.name);
+            setEmail(user.email);
+            setGender(user.gender);
+            setAvatarPreview(user.avatar.url);
+        }
+        if (error) {
+            enqueueSnackbar(error, { variant: "error" });
+            dispatch(clearErrors());
+        }
+        if (isUpdated) {
+            enqueueSnackbar("Profile Updated Successfully", { variant: "success" });
+            dispatch(loadUser());
+            //navigate('/account');
+            setEditProfile(false);
+
+            dispatch({ type: UPDATE_PROFILE_RESET });
+        }
+    }, [isAuthenticated, dispatch, error, user, isUpdated, navigate, enqueueSnackbar]);
 
     return (
         <>
@@ -35,82 +91,91 @@ const Account = () => {
 
                             <Sidebar activeTab={"profile"} />
 
-                            {/* <!-- details column --> */}
-                            <div className="flex-1 overflow-hidden border border-gray-300 shadow bg-white">
-                                {/* <!-- edit info container --> */}
-                                <div className="flex flex-col gap-12 m-4 sm:mx-8 sm:my-6">
-                                    {/* <!-- personal info --> */}
-                                    <div className="flex flex-col gap-5 items-start">
-                                        <span className="font-medium text-lg">Personal Information <Link to="/account/update" className="text-sm text-primary-green font-medium ml-8 cursor-pointer">Edit</Link></span>
+                                {/* <!-- details column --> */}
+                                <div className="flex-1 overflow-hidden border border-gray-300 shadow bg-white">
 
-                                        <div className="flex flex-col sm:flex-row items-center gap-3" id="personalInputs">
-                                            <div className="flex flex-col gap-0.5 w-64 px-3 py-1.5 rounded-sm border inputs cursor-not-allowed bg-gray-100 focus-within:border-primary-blue">
-                                                <label className="text-md text-gray-500">First Name</label>
-                                                <input type="text" value={user.name.split(" ", 1)} className="text-sm outline-none border-none cursor-not-allowed text-gray-500" disabled />
-                                            </div>
-                                            <div className="flex flex-col gap-0.5 w-64 px-3 py-1.5 rounded-sm border inputs cursor-not-allowed bg-gray-100 focus-within:border-primary-blue">
-                                                <label className="text-md text-gray-500">Last Name</label>
-                                                <input type="text" value={getLastName()} className="text-sm outline-none border-none cursor-not-allowed text-gray-500" disabled />
-                                            </div>
-                                        </div>
+                                    <form
+                                        onSubmit={updateProfileHandler}
+                                        encType="multipart/form-data"
+                                        className="w-full"
+                                    >
+                                        <h2 className="font-medium text-xl px-4 sm:px-8 py-4 border-b">Personal Information <button type="button" className="text-md font-semibold text-primary-green font-medium ml-8 cursor-pointer" onClick={() => setEditProfile(!editProfile)}>Edit</button></h2>
 
-                                        {/* <!-- gender --> */}
-                                        <div className="flex flex-col gap-2">
-                                            <h2 className="text-sm">Your Gender</h2>
-                                            <div className="flex items-center gap-8" id="radioInput">
-                                                <div className="flex items-center gap-4 inputs text-gray-500 cursor-not-allowed">
-                                                    <input type="radio" name="gender" checked={user.gender === "male"} id="male" className="h-4 w-4 cursor-not-allowed" disabled />
-                                                    <label htmlFor="male" className="cursor-not-allowed">Male</label>
+                                        {/* <!-- edit info container --> */}
+                                        <div className="flex flex-col gap-8 m-4 sm:mx-8 sm:my-6">
+
+                                            <div className="flex flex-col w-full lg:w-1/2 items-center">
+                                                <TextField
+                                                    fullWidth
+                                                    label="Full Name"
+                                                    name="name"
+                                                    value={name}
+                                                    onChange={(e) => setName(e.target.value)}
+                                                    required
+                                                    InputProps={{
+                                                        readOnly: editProfile,
+                                                    }}
+                                                    variant={editProfile ? "filled" : "outlined"}
+                                                />
+                                            </div>
+                                            <div className="flex flex-col w-full lg:w-1/2 items-center">
+                                                <TextField
+                                                    fullWidth
+                                                    label="Email"
+                                                    type="email"
+                                                    name="email"
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                    required
+                                                    InputProps={{
+                                                        readOnly: editProfile,
+                                                    }}
+                                                    variant={editProfile ? "filled" : "outlined"}
+                                                />
+                                            </div>
+                                            {/* <!-- input container column --> */}
+
+                                            {/* <!-- gender input --> */}
+                                            <div className="flex gap-4 items-center w-full lg:w-1/2">
+                                                <h2 className="text-md">Your Gender :</h2>
+                                                <div className="flex items-center gap-6" id="radioInput">
+                                                    <RadioGroup
+                                                        row
+                                                        aria-labelledby="radio-buttons-group-label"
+                                                        name="radio-buttons-group"
+                                                    >
+                                                        <FormControlLabel name="gender" value="male" checked={gender === "male"} onChange={(e) => setGender(e.target.value)} control={<Radio required />} label="Male" disabled={editProfile} />
+                                                        <FormControlLabel name="gender" value="female" checked={gender === "female"} onChange={(e) => setGender(e.target.value)} control={<Radio required />} label="Female" disabled={editProfile} />
+                                                    </RadioGroup>
                                                 </div>
-                                                <div className="flex items-center gap-4 inputs text-gray-500 cursor-not-allowed">
-                                                    <input type="radio" name="gender" checked={user.gender === "female"} id="female" className="h-4 w-4 cursor-not-allowed" disabled />
-                                                    <label htmlFor="female" className="cursor-not-allowed">Female</label>
-                                                </div>
                                             </div>
-                                        </div>
-                                        {/* <!-- gender --> */}
+                                            {/* <!-- gender input --> */}
 
-                                    </div>
-                                    {/* <!-- personal info --> */}
-
-                                    {/* <!-- email address info --> */}
-                                    <div className="flex flex-col gap-5 items-start">
-                                        <span className="font-medium text-lg">Email Address
-                                            <Link to="/account/update" className="text-sm text-primary-green font-medium ml-3 sm:ml-8 cursor-pointer">Edit</Link>
-                                            <Link to="/password/update" className="text-sm text-primary-green font-medium ml-3 sm:ml-8">Change Password</Link>
-                                        </span>
-
-                                        <div className="flex items-center gap-3">
-                                            <div className="flex flex-col gap-0.5 sm:w-64 px-3 py-1.5 rounded-sm border bg-gray-100 cursor-not-allowed focus-within:border-primary-blue">
-                                                <label className="text-md text-gray-500">Email Address</label>
-                                                <input type="email" value={user.email} className="text-sm outline-none border-none cursor-not-allowed text-gray-500" disabled />
+                                            <div className="flex flex-col w-full justify-start sm:flex-row gap-3 items-center">
+                                                <Avatar
+                                                    alt="Avatar Preview"
+                                                    src={avatarPreview}
+                                                    sx={{ width: 56, height: 56 }}
+                                                />
+                                                <label className="rounded font-medium bg-gray-400 text-center cursor-pointer text-white w-max py-2 px-5 shadow hover:shadow-lg">
+                                                    <input
+                                                        type="file"
+                                                        name="avatar"
+                                                        accept="image/*"
+                                                        onChange={handleUpdateDataChange}
+                                                        className="hidden"
+                                                        disabled={editProfile}
+                                                    />
+                                                    Choose File
+                                                </label>
                                             </div>
+                                            <button type="submit" className={`block w-full lg:w-max ${editProfile ? "bg-gray-500 cursor-not-allowed" : "bg-primary-green hover:bg-black"} text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize my-4`} disabled={editProfile}>Update Profile</button>
+
                                         </div>
-
-                                    </div>
-                                    {/* <!-- email address info --> */}
-
-                                    {/* <!-- mobile number info --> */}
-                                    <div className="flex flex-col gap-5 items-start">
-                                        <span className="font-medium text-lg">Mobile Number
-                                            <span className="text-sm text-primary-green font-medium ml-3 sm:ml-8 cursor-pointer" id="mobEditBtn">Edit</span>
-                                        </span>
-
-                                        <div className="flex items-center gap-3">
-                                            <div className="flex flex-col gap-0.5 sm:w-64 px-3 py-1.5 rounded-sm border bg-gray-100 cursor-not-allowed focus-within:border-primary-blue">
-                                                <label className="text-md text-gray-500">Mobile Number</label>
-                                                <input type="tel" value="+919876543210" className="text-sm outline-none border-none text-gray-500 cursor-not-allowed" disabled />
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    {/* <!-- mobile number info --> */}
-
+                                        {/* <!-- edit info container --> */}
+                                    </form>
                                 </div>
-                                {/* <!-- edit info container --> */}
-
-                            </div>
-                            {/* <!-- details column --> */}
+                                {/* <!-- details column --> */}
                         </div>
                     </main>
                 </>
