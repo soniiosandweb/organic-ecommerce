@@ -28,23 +28,24 @@ const OrderDetails = () => {
         <>
             <MetaData title="Order Details | Organic" />
 
-            <main className="w-full sm:mt-4">
+            <main className="w-full py-16 px-4">
+                <div className="sm:w-11/12 m-auto w-full">
                 {loading ? <Loader /> : (
                     <>
                         {order && order.user && order.shippingInfo && (
-                            <div className="flex flex-col gap-4 max-w-6xl mx-auto">
+                            <div className="flex flex-col gap-6 max-w-6xl mx-auto">
 
-                                <div className="flex bg-white shadow rounded-sm min-w-full">
-                                    <div className="sm:w-1/2 border-r">
+                                <div className="flex bg-white border border-gray-300 min-w-full">
+                                    <div className="w-full border-r">
                                         <div className="flex flex-col gap-3 my-8 mx-10">
-                                            <h3 className="font-medium text-lg">Delivery Address</h3>
-                                            <h4 className="font-medium">{order.user.name}</h4>
-                                            <p className="text-sm">{`${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state} - ${order.shippingInfo.pincode}`}</p>
-                                            <div className="flex gap-2 text-sm">
+                                            <h3 className="font-semibold text-xl">Delivery Address</h3>
+                                            <h4 className="font-medium text-lg">{order.user.name}</h4>
+                                            <p className="text-md">{`${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state} - ${order.shippingInfo.pincode}`}</p>
+                                            <div className="flex gap-2 text-md">
                                                 <p className="font-medium">Email</p>
                                                 <p>{order.user.email}</p>
                                             </div>
-                                            <div className="flex gap-2 text-sm">
+                                            <div className="flex gap-2 text-md">
                                                 <p className="font-medium">Phone Number</p>
                                                 <p>{order.shippingInfo.phoneNo}</p>
                                             </div>
@@ -57,17 +58,17 @@ const OrderDetails = () => {
                                     const { _id, image, name, price, quantity } = item;
 
                                     return (
-                                        <div className="flex flex-col sm:flex-row min-w-full shadow rounded-sm bg-white px-2 py-5" key={_id}>
+                                        <div className="flex flex-col sm:flex-row min-w-full border border-gray-300 bg-white px-2 py-5" key={_id}>
 
                                             <div className="flex flex-col sm:flex-row sm:w-1/2 gap-2">
                                                 <div className="w-full sm:w-32 h-20">
                                                     <img draggable="false" className="h-full w-full object-contain" src={image} alt={name} />
                                                 </div>
                                                 <div className="flex flex-col gap-1 overflow-hidden">
-                                                    <p className="text-sm">{name.length > 60 ? `${name.substring(0, 60)}...` : name}</p>
-                                                    <p className="text-md text-gray-600 mt-2">Quantity: {quantity}</p>
-                                                    <p className="text-md text-gray-600">Price: ₹{price.toLocaleString()}</p>
-                                                    <span className="font-medium">Total: ₹{(quantity * price).toLocaleString()}</span>
+                                                    <p className="text-lg font-semibold">{name.length > 60 ? `${name.substring(0, 60)}...` : name}</p>
+                                                    <p className="text-md mt-2">Quantity: {quantity}</p>
+                                                    <p className="text-md">Price: ₹{price.toLocaleString()}</p>
+                                                    <span className="font-semibold">Total: ₹{(quantity * price).toLocaleString()}</span>
                                                 </div>
                                             </div>
 
@@ -91,6 +92,7 @@ const OrderDetails = () => {
                         )}
                     </>
                 )}
+                </div>
             </main>
         </>
     );

@@ -43,6 +43,7 @@ import {
 } from '@stripe/react-stripe-js';
 import ContactUs from './components/ContactUs/ContactUs';
 import AboutUs from './components/AboutUs/AboutUs';
+import UpdateAddress from './components/User/UpdateAddress';
 
 function App() {
 
@@ -157,7 +158,7 @@ function App() {
             <Account />
           </ProtectedRoute>
         } ></Route>
-{/* 
+        {/* 
         <Route path="/account/update" element={
           <ProtectedRoute>
             <UpdateProfile />
@@ -167,6 +168,12 @@ function App() {
         <Route path="/password/update" element={
           <ProtectedRoute>
             <UpdatePassword />
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/address" element={
+          <ProtectedRoute>
+            <UpdateAddress />
           </ProtectedRoute>
         } ></Route>
 

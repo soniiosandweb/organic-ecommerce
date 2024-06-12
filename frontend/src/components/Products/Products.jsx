@@ -61,8 +61,8 @@ const Products = () => {
         <>
             <MetaData title="All Products | Organic" />
 
-            <main className="w-full sm:mt-0">
-                <div className="py-16 sm:w-11/12 m-auto px-4 w-full">
+            <main className="w-full py-16 px-4">
+                <div className="sm:w-11/12 m-auto w-full">
                     {/* <!-- row --> */}
                     <div className="flex gap-5">
 
@@ -70,10 +70,10 @@ const Products = () => {
                         <div className="hidden lg:flex flex-col w-1/5 px-1">
 
                             {/* <!-- nav tiles --> */}
-                            <div className="flex flex-col bg-white rounded-sm shadow">
+                            <div className="flex flex-col bg-white border border-gray-300">
 
                                 {/* <!-- filters header --> */}
-                                <div className="flex items-center justify-between gap-5 px-4 py-2 border-b flex-col xl:flex-row">
+                                <div className="flex items-center justify-between gap-5 px-4 py-2 border-b border-gray-300 flex-col xl:flex-row">
                                     <p className="text-lg font-bold uppercase">Filters</p>
                                     <span className="capitalize bg-primary-green text-white text-md cursor-pointer font-semibold px-5 py-2.5 rounded-full shadow-lg hover:bg-black" onClick={() => clearFilters()}>clear all</span>
                                 </div>
@@ -81,7 +81,7 @@ const Products = () => {
                                 <div className="flex flex-col gap-2 py-3 text-sm overflow-hidden">
 
                                     {/* price slider filter */}
-                                    <div className="flex flex-col gap-2 border-b px-4">
+                                    <div className="flex flex-col gap-2 border-b border-gray-300 px-4">
                                         <span className="text-lg font-semibold">Price</span>
 
                                         <Slider
@@ -103,7 +103,7 @@ const Products = () => {
                                     {/* price slider filter */}
 
                                     {/* category filter */}
-                                    <div className="flex flex-col border-b px-4">
+                                    <div className="flex flex-col border-b border-gray-300 px-4">
 
                                         <div className="flex justify-between cursor-pointer py-2 pb-4 items-center" onClick={() => setCategoryToggle(!categoryToggle)}>
                                             <p className="text-lg font-semibold">Category</p>

@@ -86,10 +86,10 @@ const MyOrders = () => {
 
     const searchOrders = (e) => {
         e.preventDefault();
-        if (!search.trim()) {
-            enqueueSnackbar("Empty Input", { variant: "warning" });
-            return;
-        }
+        // if (!search.trim()) {
+        //     enqueueSnackbar("Empty Input", { variant: "warning" });
+        //     return;
+        // }
         const arr = orders.map((el) => ({
             ...el,
             orderItems: el.orderItems.filter((order) =>
@@ -107,29 +107,29 @@ const MyOrders = () => {
         <>
             <MetaData title="My Orders | Organic" />
 
-            <main className="w-full sm:mt-0">
+            <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}
-                <div className="flex gap-3.5 mt-2 sm:mt-6 sm:mx-3 m-auto mb-7">
+                <div className="flex gap-3.5 sm:w-11/12 m-auto">
 
                     {/* <!-- sidebar column  --> */}
                     <div className="hidden sm:flex flex-col w-1/5 px-1">
 
                         {/* <!-- nav tiles --> */}
-                        <div className="flex flex-col bg-white rounded-sm shadow">
+                        <div className="flex flex-col bg-white border border-gray-300">
 
                             {/* <!-- filters header --> */}
-                            <div className="flex items-center justify-between gap-5 px-4 py-2 border-b">
-                                <p className="text-lg font-medium">Filters</p>
-                                <span onClick={clearFilters} className="text-blue-600 font-medium text-sm uppercase cursor-pointer hover:text-blue-700">clear all</span>
+                            <div className="flex items-center justify-between gap-5 px-4 py-2 border-b border-gray-300">
+                                <p className="text-lg font-bold uppercase">Filters</p>
+                                <span onClick={clearFilters} className="capitalize bg-primary-green text-white text-md cursor-pointer font-semibold px-5 py-2.5 rounded-full shadow-lg hover:bg-black">clear all</span>
                             </div>
 
                             {/* <!-- order status checkboxes --> */}
                             <div className="flex flex-col py-3 text-sm">
-                                <span className="font-medium px-4">ORDER STATUS</span>
+                                <span className="text-lg font-semibold px-4">Order Status</span>
 
                                 {/* <!-- checkboxes --> */}
-                                <div className="flex flex-col gap-3 px-4 mt-1 pb-3 border-b">
+                                <div className="flex flex-col gap-3 px-4 mt-1 pb-3 border-b border-gray-300">
                                     <FormControl>
                                         <RadioGroup
                                             aria-labelledby="orderstatus-radio-buttons-group"
@@ -150,7 +150,7 @@ const MyOrders = () => {
 
                             {/* <!-- order time checkboxes --> */}
                             <div className="flex flex-col pb-2 text-sm">
-                                <span className="font-medium px-4">ORDER TIME</span>
+                                <span className="text-lg font-semibold px-4">Order Time</span>
 
                                 {/* <!-- checkboxes --> */}
                                 <div className="flex flex-col gap-3 mt-1 px-4 pb-3">
@@ -185,9 +185,9 @@ const MyOrders = () => {
                             <div className="flex flex-col gap-3 sm:mr-4 overflow-hidden">
 
                                 {/* <!-- searchbar --> */}
-                                <form onSubmit={searchOrders} className="flex items-center justify-between mx-1 sm:mx-0 sm:w-10/12 bg-white border rounded hover:shadow">
-                                    <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" name="search" placeholder="Search your orders here" className="p-2 text-sm outline-none flex-1 rounded-l" />
-                                    <button type="submit" className="h-full text-sm px-1 sm:px-4 py-2.5 text-white bg-primary-green hover:bg-blue-600 rounded-r flex items-center gap-1">
+                                <form onSubmit={searchOrders} className="flex items-center justify-between mx-1 sm:mx-0 w-full bg-white border border-gray-300 rounded hover:shadow">
+                                    <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" name="search" placeholder="Search your orders here" className="py-2 px-5 text-md outline-none flex-1 rounded-l" />
+                                    <button type="submit" className="h-full text-md px-1 sm:px-4 py-2.5 text-white bg-primary-green hover:bg-blue-600 rounded-r flex items-center gap-1">
                                         <SearchIcon sx={{ fontSize: "22px" }} />
                                         Search Orders
                                     </button>
@@ -195,7 +195,7 @@ const MyOrders = () => {
                                 {/* <!-- searchbar --> */}
 
                                 {orders && filteredOrders.length === 0 && (
-                                    <div className="flex items-center flex-col gap-2 p-8 bg-white">
+                                    <div className="flex items-center flex-col gap-2 p-8 bg-white text-md">
                                         <img draggable="false" src="https://rukminim1.flixcart.com/www/100/100/promos/23/08/2020/c5f14d2a-2431-4a36-b6cb-8b5b5e283d4f.png" alt="Empty Orders" />
                                         <span className="text-lg font-medium">Sorry, no results found</span>
                                         <p>Edit search or clear all filters</p>

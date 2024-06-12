@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { logoutUser } from '../../../actions/userAction';
 
-const PrimaryDropDownMenu = ({ setTogglePrimaryDropDown, user }) => {
+const PrimaryDropDownMenu = ({ setAnchorEl, user }) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,8 +21,12 @@ const PrimaryDropDownMenu = ({ setTogglePrimaryDropDown, user }) => {
         dispatch(logoutUser());
         navigate("/login");
         enqueueSnackbar("Logout Successfully", { variant: "success" });
-        setTogglePrimaryDropDown(false);
+        setAnchorEl(null);
     }
+
+    const handleClose = () => {
+        setAnchorEl(null);
+      };
 
     const navs = [
         {
@@ -38,7 +42,7 @@ const PrimaryDropDownMenu = ({ setTogglePrimaryDropDown, user }) => {
     ]
 
     return (
-        <div className="absolute w-60 -left-24 ml-2 top-9 bg-white shadow-2xl rounded flex-col text-sm">
+        <div className=" w-60 bg-white shadow-2xl rounded flex-col text-sm">
 
             {user.role === "admin" &&
                 <Link className="pl-3 py-3.5 border-b flex gap-3 items-center hover:bg-gray-50 rounded-t" to="/admin/dashboard">
@@ -47,7 +51,7 @@ const PrimaryDropDownMenu = ({ setTogglePrimaryDropDown, user }) => {
                 </Link>
             }
 
-            <Link className="pl-3 py-3.5 border-b flex gap-3 items-center hover:bg-gray-50 rounded-t" to="/account">
+            <Link onClick={handleClose} className="pl-3 py-3.5 border-b flex gap-3 items-center hover:bg-gray-50 rounded-t" to="/account">
                 <span className="text-primary-green"><AccountCircleIcon sx={{ fontSize: "18px" }} /></span>
                 My Profile
             </Link>
@@ -80,9 +84,6 @@ const PrimaryDropDownMenu = ({ setTogglePrimaryDropDown, user }) => {
                 Logout
             </div>
 
-            <div className="absolute right-1/2 -top-2.5">
-                <div className="arrow_down"></div>
-            </div>
         </div>
     );
 };

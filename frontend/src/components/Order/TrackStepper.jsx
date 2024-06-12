@@ -20,7 +20,7 @@ const TrackStepper = ({ activeStep, orderOn, shippedAt, deliveredAt }) => {
     ];
 
     const completedIcon = <span className="text-primary-green animate-pulse"><CircleIcon sx={{ fontSize: "16px" }} /></span>;
-    const pendingIcon = <span className="text-gray-400"><CircleIcon sx={{ fontSize: "16px" }} /></span>;
+    const pendingIcon = <span className="text-black"><CircleIcon sx={{ fontSize: "16px" }} /></span>;
 
     return (
         <Stepper activeStep={activeStep} alternativeLabel>
@@ -36,14 +36,14 @@ const TrackStepper = ({ activeStep, orderOn, shippedAt, deliveredAt }) => {
                         }
                     >
                         {activeStep >= index ? (
-                            <div className="flex flex-col">
-                                <span className="text-primary-green font-medium">{item.status}</span>
+                            <div className="flex flex-col text-md">
+                                <span className="text-primary-green font-semibold">{item.status}</span>
                                 {item.dt !== "Invalid Date" && (
-                                    <span className="text-primary-green font-medium">{item.dt}</span>
+                                    <span className="text-primary-green font-semibold">{item.dt}</span>
                                 )}
                             </div>
                         ) : (
-                            <span className="text-gray-400 font-medium">{item.status}</span>
+                            <span className="font-semibold text-md">{item.status}</span>
                         )}
                     </StepLabel>
                 </Step>

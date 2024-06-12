@@ -30,7 +30,7 @@ const Product = ({ _id, name, images, ratings, numOfReviews, price, cuttedPrice 
 
         <div className="gap-2 relative w-full h-full">
 
-            <div className="flex flex-col items-center gap-2 p-4 relative border shadow-lg w-full h-full">
+            <div className="flex flex-col items-center gap-2 p-4 relative border border-gray-300 shadow-lg w-full h-full">
                 {/* <!-- image & product title --> */}
                 <Link to={`/product/${_id}/`} className="flex flex-col items-center text-center group w-full">
                     <div className="w-full max-h-96 h-full bg-[#f4f4f4]">

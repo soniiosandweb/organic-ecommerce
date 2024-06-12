@@ -9,6 +9,8 @@ import PrimaryDropDownMenu from './PrimaryDropDownMenu';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
 
 const Header = () => {
 
@@ -18,9 +20,18 @@ const Header = () => {
 
   const { wishlistItems } = useSelector((state) => state.wishlist);
 
-  const [togglePrimaryDropDown, setTogglePrimaryDropDown] = useState(false);
-
   const [mobileToggleClass, setMobileToggleClass ] = useState(true);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const menuLinks = [
     {
@@ -80,13 +91,43 @@ const Header = () => {
               <Link to="/login" className="text-black font-semibold cursor-pointer uppercase">Login</Link>
               :
               (
-                <span className="userDropDown flex items-center text-black font-semibold gap-1 cursor-pointer" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>{user.name && user.name.split(" ", 1)}
-                  <span>{togglePrimaryDropDown ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
-                </span>
+                // <span className="userDropDown flex items-center text-black font-semibold gap-1 cursor-pointer" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>{user.name && user.name.split(" ", 1)}
+                //   <span>{togglePrimaryDropDown ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
+                // </span>
+
+                <div>
+                  <Button
+                    id="userDropDown"
+                    aria-controls={open ? 'userDropDown-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                    className='flex items-center text-black font-semibold gap-1 cursor-pointer'
+                  >
+                    {user.name && user.name.split(" ", 1)}
+                    <span>{anchorEl ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
+                  </Button>
+                  <Menu
+                    id="userDropDown-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                      'aria-labelledby': 'userDropDown',
+                    }}
+                  >
+                    <PrimaryDropDownMenu setAnchorEl={setAnchorEl} user={user} />
+                  </Menu>
+                </div>
+                
               )
             }
 
-            {togglePrimaryDropDown && <PrimaryDropDownMenu setTogglePrimaryDropDown={setTogglePrimaryDropDown} user={user} />}
+            {/* {togglePrimaryDropDown && <PrimaryDropDownMenu setTogglePrimaryDropDown={setTogglePrimaryDropDown} user={user} />} */}
+          </div>
+
+          <div>
+            
           </div>
 
           <Link to="/wishlist" className="flex items-center text-black font-semibold gap-2 relative">
