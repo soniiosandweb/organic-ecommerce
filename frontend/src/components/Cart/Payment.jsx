@@ -10,7 +10,7 @@ import {
     useStripe,
     useElements,
 } from '@stripe/react-stripe-js';
-import { clearErrors } from '../../actions/orderAction';
+import { addPaymentData, clearErrors } from '../../actions/orderAction';
 import { useSnackbar } from 'notistack';
 // import { post } from '../../utils/paytmForm';
 // import FormControl from '@mui/material/FormControl';
@@ -115,6 +115,16 @@ const Payment = () => {
             } else {
                 if (result.paymentIntent.status === "succeeded") {
 
+                    const payment = {
+                        id: result.paymentIntent.id,
+                        client_secret: result.paymentIntent.client_secret,
+                        status: result.paymentIntent.status,
+                        amount: result.paymentIntent.amount,
+                        livemode: result.paymentIntent.livemode,
+                    }
+
+                    dispatch(addPaymentData(payment));
+
                     order.paymentInfo = {
                         id: result.paymentIntent.id,
                         status: result.paymentIntent.status,
@@ -123,7 +133,7 @@ const Payment = () => {
                     dispatch(newOrderData(order));
                     dispatch(emptyCart());
 
-                    navigate("/order/success");
+                    navigate("/orders/success");
                 } else {
                     enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
                 }

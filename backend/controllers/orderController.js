@@ -29,16 +29,30 @@ exports.newOrder = asyncErrorHandler(async (req, res, next) => {
         user: req.user._id,
     });
 
+    var message = `<p>Hi ${req.user.name},</p>
+            <p>Just to let you know — we've received your order ${order._id}, and it is now being processed</p>
+            <table style="border-collapse: collapse;" border="1">
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>`;
+                
+
+    orderItems.forEach((order) => {
+        message += `<tr><td>${order.name}</td><td>${order.quantity}</td><td>${order.price}</td></tr>`;
+    });
+
+    message += `<tr >
+                    <td colspan=2>Total Prices:</td>
+                    <td>${totalPrice}</td>
+                </tr>
+            </table>`;
+
     await sendEmail({
         email: req.user.email,
-        templateId: process.env.SENDGRID_ORDER_TEMPLATEID,
-        data: {
-            name: req.user.name,
-            shippingInfo,
-            orderItems,
-            totalPrice,
-            oid: order._id,
-        }
+        message: message,
+        subject: "Your order has been received!",
     });
 
     res.status(201).json({

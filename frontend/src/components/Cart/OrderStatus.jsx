@@ -29,7 +29,7 @@ const OrderStatus = () => {
     useEffect(() => {
         if (loading === false) {
             if(txn) {
-                if (txn.status === "TXN_SUCCESS") {
+                if (txn.status === "succeeded") {
                     orderData.paymentInfo = {
                         id: txn.id,
                         status: txn.status,
@@ -70,6 +70,7 @@ const OrderStatus = () => {
             enqueueSnackbar(orderError, { variant: "error" });
             dispatch(clearErrors());
         }
+        
         dispatch(getPaymentStatus(params.id));
     }, [dispatch, error, orderError, params.id, enqueueSnackbar]);
 

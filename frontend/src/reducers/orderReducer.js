@@ -1,4 +1,4 @@
-import { NEW_ORDER_REQUEST, NEW_ORDER_SUCCESS, NEW_ORDER_FAIL, CLEAR_ERRORS, MY_ORDERS_FAIL, MY_ORDERS_SUCCESS, MY_ORDERS_REQUEST, PAYMENT_STATUS_REQUEST, PAYMENT_STATUS_SUCCESS, PAYMENT_STATUS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ALL_ORDERS_REQUEST, ALL_ORDERS_SUCCESS, ALL_ORDERS_FAIL, UPDATE_ORDER_REQUEST, DELETE_ORDER_REQUEST, UPDATE_ORDER_SUCCESS, DELETE_ORDER_SUCCESS, UPDATE_ORDER_FAIL, DELETE_ORDER_FAIL, UPDATE_ORDER_RESET, DELETE_ORDER_RESET } from "../constants/orderConstants";
+import { NEW_ORDER_REQUEST, NEW_ORDER_SUCCESS, NEW_ORDER_FAIL, CLEAR_ERRORS, MY_ORDERS_FAIL, MY_ORDERS_SUCCESS, MY_ORDERS_REQUEST, PAYMENT_STATUS_REQUEST, PAYMENT_STATUS_SUCCESS, PAYMENT_STATUS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ALL_ORDERS_REQUEST, ALL_ORDERS_SUCCESS, ALL_ORDERS_FAIL, UPDATE_ORDER_REQUEST, DELETE_ORDER_REQUEST, UPDATE_ORDER_SUCCESS, DELETE_ORDER_SUCCESS, UPDATE_ORDER_FAIL, DELETE_ORDER_FAIL, UPDATE_ORDER_RESET, DELETE_ORDER_RESET, PAYMENT_ADD_REQUEST, PAYMENT_ADD_SUCCESS, PAYMENT_ADD_FAIL } from "../constants/orderConstants";
 
 export const newOrderReducer = (state = {}, { type, payload }) => {
     switch (type) {
@@ -73,6 +73,27 @@ export const paymentStatusReducer = (state = { txn: {} }, { type, payload }) => 
             return {
                 ...state,
                 error: null,
+            };
+        default:
+            return state;
+    }
+};
+
+export const paymentAddReducer = (state = { payment: {} }, { type, payload }) => {
+    switch (type) {
+        case PAYMENT_ADD_REQUEST:
+            return {
+                loading: true,
+            };
+        case PAYMENT_ADD_SUCCESS:
+            return {
+                loading: false,
+                payment: payload,
+            };
+        case PAYMENT_ADD_FAIL:
+            return {
+                loading: false,
+                error: payload,
             };
         default:
             return state;

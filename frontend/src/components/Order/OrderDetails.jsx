@@ -20,6 +20,7 @@ const OrderDetails = () => {
             enqueueSnackbar(error, { variant: "error" });
             dispatch(clearErrors());
         }
+       
         dispatch(getOrderDetails(params.id));
     }, [dispatch, error, params.id, enqueueSnackbar]);
 

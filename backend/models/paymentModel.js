@@ -1,63 +1,27 @@
 const mongoose = require('mongoose');
 
 const paymentSchema = new mongoose.Schema({
-    resultInfo: {
-        resultStatus: {
-            type: String,
-            required: true
-        },
-        resultCode: {
-            type: String,
-            required: true
-        },
-        resultMsg: {
-            type: String,
-            required: true
-        },
+    id: {
+        type: String,
+        required: false
     },
-    txnId: {
+    client_secret: {
+        type: String,
+        required: false
+    },
+    status: {
         type: String,
         required: true
     },
-    bankTxnId: {
-        type: String,
-        required: true
+    amount: {
+        type: Number,
+        required: true,
+        default: 0
     },
-    orderId: {
-        type: String,
-        required: true
-    },
-    txnAmount: {
-        type: String,
-        required: true
-    },
-    txnType: {
-        type: String,
-        required: true
-    },
-    gatewayName: {
-        type: String,
-        required: true
-    },
-    bankName: {
-        type: String,
-        required: true
-    },
-    mid: {
-        type: String,
-        required: true
-    },
-    paymentMode: {
-        type: String,
-        required: true
-    },
-    refundAmt: {
-        type: String,
-        required: true
-    },
-    txnDate: {
-        type: String,
-        required: true
+    livemode: {
+        type: Boolean,
+        required: true,
+        default: false
     },
     createdAt: {
         type: Date,

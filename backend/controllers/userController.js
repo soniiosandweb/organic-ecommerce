@@ -91,18 +91,20 @@ exports.forgotPassword = asyncErrorHandler(async (req, res, next) => {
 
     await user.save({ validateBeforeSave: false });
 
-    // const resetPasswordUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetToken}`;
-    const resetPasswordUrl = `https://${req.get("host")}/password/reset/${resetToken}`;
+    const resetPasswordUrl = `${process.env.URL_FRONTEND}/password/reset/${resetToken}`;
+    // const resetPasswordUrl = `https://${req.get("host")}/password/reset/${resetToken}`;
 
-    // const message = `Your password reset token is : \n\n ${resetPasswordUrl}`;
+    const message = `<p>Dear ${user.name},</p> 
+        <p>You have requested to reset your password. To proceed with the reset process, please click the following link: <a href="${resetPasswordUrl}">Reset Password</a></p>
+        <p>If you have any questions, please contact us.</p>
+        <p>Thank You</p>`;
+
 
     try {
         await sendEmail({
             email: user.email,
-            templateId: process.env.SENDGRID_RESET_TEMPLATEID,
-            data: {
-                reset_url: resetPasswordUrl
-            }
+            message: message,
+            subject: "Reset Password Request"
         });
 
         res.status(200).json({
@@ -263,15 +265,15 @@ exports.deleteUser = asyncErrorHandler(async (req, res, next) => {
 
 exports.contactEmail = asyncErrorHandler(async (req, res, next) => {
 
+    const message = `<p>From ${req.body.name},</p> 
+        <p>Email: ${req.body.email}</p>
+        <p>Message: ${req.body.message}</p>`;
+
     try {
         await sendEmail({
-            email: process.env.SENDGRID_MAIL,
-            templateId: process.env.SENDGRID_RESET_TEMPLATEID,
-            data: {
-                name: req.body.name,
-                email: req.body.email,
-                message: req.body.message,
-            }
+            email: process.env.ADMIN_EMAIL,
+            message: message,
+            subject: "Contact Us Enquiry",
         });
 
         res.status(200).json({

@@ -25,6 +25,23 @@ exports.sendStripeApiKey = asyncErrorHandler(async (req, res, next) => {
     res.status(200).json({ stripeApiKey: 'pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3'});
 });
 
+// payment add
+exports.addPayment = asyncErrorHandler(async (req, res, next) => {
+
+    const payment = await Payment.create({
+        id: req.body.id,
+        client_secret: req.body.client_secret,
+        status: req.body.status,
+        amount: req.body.amount,
+        livemode: req.body.livemode,
+    });
+
+    res.status(201).json({
+        success: true,
+        payment,
+    });
+});
+
 // Process Payment
 // exports.processPayment = asyncErrorHandler(async (req, res, next) => {
 
@@ -141,15 +158,15 @@ const addPayment = async (data) => {
 
 exports.getPaymentStatus = asyncErrorHandler(async (req, res, next) => {
 
-    const payment = await Payment.findOne({ orderId: req.params.id });
+    const payment = await Payment.findOne({ id: req.params.id });
 
     if (!payment) {
         return next(new ErrorHandler("Payment Details Not Found", 404));
     }
 
     const txn = {
-        id: payment.txnId,
-        status: payment.resultInfo.resultStatus,
+        id: payment.id,
+        status: payment.status,
     }
 
     res.status(200).json({
