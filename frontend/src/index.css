@@ -46,6 +46,19 @@ body {
   background-color: green;
 }
 
+/* Header */
+#userDropDown{
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: black;
+  letter-spacing: inherit;
+  font-size: inherit;
+}
+#userDropDown-menu{
+  padding: 0;
+}
+
 /* search bar */
 .searchbar-header{
    max-width: 50%

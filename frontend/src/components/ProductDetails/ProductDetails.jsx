@@ -289,18 +289,18 @@ const ProductDetails = () => {
 
                                 {viewAll ?
                                     product.reviews?.map((rev, i) => (
-                                        <div className="flex flex-col gap-2 py-4 px-6 border-b" key={i}>
+                                        <div className="flex flex-col gap-2 py-4 px-6 border-b text-md" key={i}>
                                             <Rating name="read-only" value={rev.rating} readOnly size="small" precision={0.5} />
                                             <p>{rev.comment}</p>
-                                            <span className="text-sm text-gray-500">by {rev.name}</span>
+                                            <span className="text-md">by {rev.name}</span>
                                         </div>
                                     )).reverse()
                                     :
                                     product.reviews?.slice(-3).map((rev, i) => (
-                                        <div className="flex flex-col gap-2 py-4 px-6 border-b" key={i}>
+                                        <div className="flex flex-col gap-2 py-4 px-6 border-b text-md" key={i}>
                                             <Rating name="read-only" value={rev.rating} readOnly size="small" precision={0.5} />
                                             <p>{rev.comment}</p>
-                                            <span className="text-sm text-gray-500">by {rev.name}</span>
+                                            <span className="text-md">by {rev.name}</span>
                                         </div>
                                     )).reverse()
                                 }

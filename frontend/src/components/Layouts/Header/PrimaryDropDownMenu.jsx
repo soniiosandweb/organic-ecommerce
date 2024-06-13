@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { logoutUser } from '../../../actions/userAction';
 
-const PrimaryDropDownMenu = ({ setAnchorEl, user }) => {
+const PrimaryDropDownMenu = ({ setOpen, user }) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,11 +21,11 @@ const PrimaryDropDownMenu = ({ setAnchorEl, user }) => {
         dispatch(logoutUser());
         navigate("/login");
         enqueueSnackbar("Logout Successfully", { variant: "success" });
-        setAnchorEl(null);
+        setOpen(false);
     }
 
     const handleClose = () => {
-        setAnchorEl(null);
+        setOpen(false);
       };
 
     const navs = [
@@ -42,16 +42,16 @@ const PrimaryDropDownMenu = ({ setAnchorEl, user }) => {
     ]
 
     return (
-        <div className=" w-60 bg-white shadow-2xl rounded flex-col text-sm">
+        <div className=" w-60 bg-white shadow-2xl rounded flex-col text-md">
 
             {user.role === "admin" &&
-                <Link className="pl-3 py-3.5 border-b flex gap-3 items-center hover:bg-gray-50 rounded-t" to="/admin/dashboard">
+                <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-50 rounded-t" to="/admin/dashboard">
                     <span className="text-primary-green"><DashboardIcon sx={{ fontSize: "18px" }} /></span>
                     Admin Dashboard
                 </Link>
             }
 
-            <Link onClick={handleClose} className="pl-3 py-3.5 border-b flex gap-3 items-center hover:bg-gray-50 rounded-t" to="/account">
+            <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-50 rounded-t" to="/account">
                 <span className="text-primary-green"><AccountCircleIcon sx={{ fontSize: "18px" }} /></span>
                 My Profile
             </Link>
@@ -62,15 +62,15 @@ const PrimaryDropDownMenu = ({ setAnchorEl, user }) => {
                 return (
                     <div key={i}>
                         {title === "Wishlist" ? (
-                            <Link className="pl-3 py-3.5 border-b flex gap-3 items-center hover:bg-gray-50" to={redirect} key={i}>
+                            <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-50" to={redirect} key={i}>
                                 <span className="text-primary-green">{icon}</span>
                                 {title}
-                                <span className="ml-auto mr-3 bg-gray-100 p-0.5 px-2 text-gray-600 rounded">
+                                <span className="ml-auto mr-3 bg-red-600 w-7 h-7 p-px text-white text-center rounded-full">
                                     {wishlistItems.length}
                                 </span>
                             </Link>
                         ) : (
-                            <Link className="pl-3 py-3.5 border-b flex gap-3 items-center hover:bg-gray-50" to={redirect} key={i}>
+                            <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-50" to={redirect} key={i}>
                                 <span className="text-primary-green">{icon}</span>
                                 {title}
                             </Link>
@@ -79,7 +79,7 @@ const PrimaryDropDownMenu = ({ setAnchorEl, user }) => {
                 )
             })}
 
-            <div className="pl-3 py-3.5 flex gap-3 items-center hover:bg-gray-50 rounded-b cursor-pointer" onClick={handleLogout} >
+            <div className="px-3 py-2.5 flex gap-3 items-center hover:bg-gray-50 rounded-b cursor-pointer" onClick={handleLogout} >
                 <span className="text-primary-green"><PowerSettingsNewIcon sx={{ fontSize: "18px" }} /></span>
                 Logout
             </div>

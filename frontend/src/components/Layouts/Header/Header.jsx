@@ -6,11 +6,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Searchbar from './Searchbar';
 import logo from '../../../assets/images/logo.png';
 import PrimaryDropDownMenu from './PrimaryDropDownMenu';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Grow from "@mui/material/Grow";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import MenuList from "@mui/material/MenuList";
+import { useRef } from 'react';
 
 const Header = () => {
 
@@ -21,17 +26,6 @@ const Header = () => {
   const { wishlistItems } = useSelector((state) => state.wishlist);
 
   const [mobileToggleClass, setMobileToggleClass ] = useState(true);
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const menuLinks = [
     {
@@ -51,6 +45,40 @@ const Header = () => {
       redirect: "/contact",
     },
   ]
+
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      setOpen(false);
+    } else if (event.key === "Escape") {
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = useRef(open);
+  useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
 
   return (
 
@@ -97,38 +125,57 @@ const Header = () => {
 
                 <div>
                   <Button
+                    ref={anchorRef}
                     id="userDropDown"
-                    aria-controls={open ? 'userDropDown-menu' : undefined}
+                    aria-controls={open ? "userDropDown-menu" : undefined}
+                    aria-expanded={open ? "true" : undefined}
                     aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClick}
-                    className='flex items-center text-black font-semibold gap-1 cursor-pointer'
+                    onClick={handleToggle}
                   >
                     {user.name && user.name.split(" ", 1)}
-                    <span>{anchorEl ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
+                    <span>{open ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
                   </Button>
-                  <Menu
-                    id="userDropDown-menu"
-                    anchorEl={anchorEl}
+                  <Popper
                     open={open}
-                    onClose={handleClose}
-                    MenuListProps={{
-                      'aria-labelledby': 'userDropDown',
-                    }}
+                    anchorEl={anchorRef.current}
+                    role={undefined}
+                    placement="bottom-start"
+                    transition
+                    disablePortal
                   >
-                    <PrimaryDropDownMenu setAnchorEl={setAnchorEl} user={user} />
-                  </Menu>
+                    {({ TransitionProps, placement }) => (
+                      <Grow
+                        {...TransitionProps}
+                        style={{
+                          boxShadow: "none",
+                          transformOrigin:
+                            placement === "bottom-start" ? "left top" : "left bottom",
+                        }}
+                      >
+                        <Paper>
+                          <ClickAwayListener onClickAway={handleClose}>
+                            <MenuList
+                              autoFocusItem={open}
+                              id="userDropDown-menu"
+                              aria-labelledby="userDropDown"
+                              onKeyDown={handleListKeyDown}
+                              className='p-0 border border0gray-300 -left-20'
+                            >
+                              <PrimaryDropDownMenu setOpen={setOpen} user={user} />
+
+                            </MenuList>
+                          </ClickAwayListener>
+                        </Paper>
+                      </Grow>
+                    )}
+                  </Popper>
                 </div>
                 
               )
             }
 
-            {/* {togglePrimaryDropDown && <PrimaryDropDownMenu setTogglePrimaryDropDown={setTogglePrimaryDropDown} user={user} />} */}
           </div>
 
-          <div>
-            
-          </div>
 
           <Link to="/wishlist" className="flex items-center text-black font-semibold gap-2 relative">
             <span><FavoriteBorderOutlinedIcon /></span>
