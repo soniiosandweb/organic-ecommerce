@@ -327,3 +327,29 @@ exports.deleteReview = asyncErrorHandler(async (req, res, next) => {
         success: true,
     });
 });
+
+// Get All Reviews of User
+exports.getUserReviews = asyncErrorHandler(async (req, res, next) => {
+
+    const products = await Product.find({ numOfReviews: { $gt: 0 } });
+
+    if (!products) {
+        return next(new ErrorHandler("Product Not Found", 404));
+    }
+
+    var reviews = [];
+
+    products.forEach((product) => {
+        const review = product.reviews.filter((rev) => rev.user.toString() === req.query.id.toString());
+        
+        if(review.length > 0){
+           reviews.push({"review" : review, "product" : product}); 
+        }
+        
+    });
+
+    res.status(200).json({
+        success: true,
+        reviews: reviews,
+    });
+});

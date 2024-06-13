@@ -97,7 +97,7 @@ const UpdateOrder = () => {
                                             {order.orderStatus === "Delivered" && (<MenuItem value={"Delivered"}>Delivered</MenuItem>)}
                                         </Select>
                                     </FormControl>
-                                    <button type="submit" className="bg-primary-orange p-2.5 text-white font-medium rounded shadow hover:shadow-lg">
+                                    <button type="submit" className="bg-primary-green p-2.5 text-white font-medium rounded shadow hover:shadow-lg">
                                         Update
                                     </button>
                                 </form>

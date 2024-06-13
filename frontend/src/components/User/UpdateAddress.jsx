@@ -42,7 +42,7 @@ const UpdateAddress = () => {
             <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}
-                <div className="flex gap-3.5 sm:w-11/12 sm:mt-4 m-auto mb-7">
+                <div className="flex gap-3.5 sm:w-11/12 flex-col lg:flex-row sm:mt-4 m-auto mb-7">
                     <Sidebar activeTab={"address"} />
 
                     {/* <!-- Address column --> */}

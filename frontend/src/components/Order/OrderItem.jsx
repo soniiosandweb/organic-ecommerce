@@ -8,7 +8,7 @@ const OrderItem = (props) => {
     const { orderId, name, image, price, quantity, createdAt, deliveredAt, orderStatus } = props;
 
     return (
-        <Link to={`/order_details/${orderId}`} className="flex p-4 items-start bg-white border border-gray-300 rounded gap-2 sm:gap-0 hover:shadow-lg">
+        <Link to={`/order_details/${orderId}`} className="flex flex-col sm:flex-row p-4 items-start bg-white border border-gray-300 rounded gap-2 sm:gap-0 hover:shadow-lg">
             {/* <!-- image container --> */}
             <div className="w-full sm:w-32 h-20">
                 <img draggable="false" className="h-full w-full object-contain" src={image} alt={name} />
@@ -31,7 +31,7 @@ const OrderItem = (props) => {
                         <p className="text-md font-medium flex items-center gap-1">
                             {orderStatus === "Shipped" ? (
                                 <>
-                                    <span className="text-primary-orange pb-0.5">
+                                    <span className="text-primary-green pb-0.5">
                                         <CircleIcon sx={{ fontSize: "16px" }} />
                                     </span>
                                     Shipped

@@ -26,7 +26,7 @@ const Product = (props) => {
                 {/* <!-- product title --> */}
                 <div className="flex justify-between items-start sm:pr-5">
                     <Link to={`/product/${product}/`} className="flex flex-col gap-0.5">
-                        <p className="text-xl font-semibold group-hover:text-primary-green w-56 sm:w-full truncate">{name.length > 85 ? `${name.substring(0, 85)}...` : name}</p>
+                        <p className="text-xl font-semibold group-hover:text-primary-green sm:w-full truncate">{name.length > 85 ? `${name.substring(0, 85)}...` : name}</p>
                         {/* <!-- rating badge --> */}
                         <span className="text-sm text-gray-500 font-medium flex gap-2 items-center">
                             <span className="text-md px-1.5 py-0.5 bg-primary-green rounded-sm text-white flex items-center gap-0.5">{ratings} <StarIcon sx={{ fontSize: "14px" }} /></span>

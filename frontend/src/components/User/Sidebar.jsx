@@ -23,7 +23,7 @@ const Sidebar = ({ activeTab }) => {
     }
 
     return (
-        <div className="hidden sm:flex flex-col gap-4 w-1/4">
+        <div className="sm:flex flex-col gap-4 w-full lg:w-1/4">
 
             {/* <!-- profile card --> */}
             <div className="flex items-center gap-4 p-3 bg-white border border-gray-300 shadow">
@@ -70,7 +70,7 @@ const Sidebar = ({ activeTab }) => {
                     <p className="flex w-full justify-between font-semibold capitalize text-black">My stuff</p>
                 </div>
                 <div className="flex flex-col pb-3 border-b text-md">
-                    <Link className="p-3 pl-14 hover:bg-blue-50 hover:text-primary-green" to="/">My Reviews & Ratings</Link>
+                    <Link className={`${activeTab === "rating" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-3 pl-14`} to="/rating">My Reviews & Ratings</Link>
                     <Link to="/wishlist" className={`${activeTab === "wishlist" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-3 pl-14`}>My Wishlist</Link>
                 </div>
                 {/* <!-- my stuff tab --> */}

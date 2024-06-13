@@ -72,7 +72,7 @@ const OrderDetails = () => {
                                                 </div>
                                             </div>
 
-                                            <div className="flex flex-col w-full sm:w-1/2">
+                                            <div className="flex flex-col w-full sm:w-1/2 mt-5 sm:mt-0">
                                                 <h3 className="font-medium sm:text-center">Order Status</h3>
                                                 <TrackStepper
                                                     orderOn={order.createdAt}

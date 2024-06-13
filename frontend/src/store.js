@@ -2,12 +2,13 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { forgotPasswordReducer, profileReducer, userReducer, allUsersReducer, userDetailsReducer } from './reducers/userReducer';
-import { newProductReducer, newReviewReducer, productDetailsReducer, productReducer, productsReducer, productReviewsReducer, reviewReducer } from './reducers/productReducer';
+import { newProductReducer, newReviewReducer, productDetailsReducer, productReducer, productsReducer, productReviewsReducer, reviewReducer, userReviewsReducer } from './reducers/productReducer';
 import { cartReducer } from './reducers/cartReducer';
 import { saveForLaterReducer } from './reducers/saveForLaterReducer';
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer, paymentAddReducer, paymentStatusReducer } from './reducers/orderReducer';
 import { wishlistReducer } from './reducers/wishlistReducer';
 import { contactReducer } from './reducers/contactReducer';
+import { newCategoryReducer } from './reducers/categoryReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -31,8 +32,10 @@ const reducer = combineReducers({
     userDetails: userDetailsReducer,
     reviews: productReviewsReducer,
     review: reviewReducer,
+    userReviews: userReviewsReducer,
     wishlist: wishlistReducer,
     contactForm: contactReducer,
+    newCategory: newCategoryReducer,
 });
 
 let initialState = {

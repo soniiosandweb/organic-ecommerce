@@ -38,7 +38,7 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
             title: "Wishlist",
             icon: <FavoriteIcon sx={{ fontSize: "18px" }} />,
             redirect: "/wishlist",
-        }
+        },
     ]
 
     return (
@@ -65,7 +65,7 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
                             <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-50" to={redirect} key={i}>
                                 <span className="text-primary-green">{icon}</span>
                                 {title}
-                                <span className="ml-auto mr-3 bg-red-600 w-7 h-7 p-px text-white text-center rounded-full">
+                                <span className="ml-auto mr-3 bg-red-600 w-6 h-6 text-white text-center rounded-full">
                                     {wishlistItems.length}
                                 </span>
                             </Link>

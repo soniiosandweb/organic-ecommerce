@@ -44,6 +44,8 @@ import {
 import ContactUs from './components/ContactUs/ContactUs';
 import AboutUs from './components/AboutUs/AboutUs';
 import UpdateAddress from './components/User/UpdateAddress';
+import Rating from './components/Rating/Rating';
+import NewCategory from './components/Admin/NewCategory';
 
 function App() {
 
@@ -187,6 +189,12 @@ function App() {
           </ProtectedRoute>
         } ></Route>
 
+        <Route path="/rating" element={
+          <ProtectedRoute>
+            <Rating />
+          </ProtectedRoute>
+        } ></Route>
+
         <Route path="/admin/dashboard" element={
           <ProtectedRoute isAdmin={true}>
             <Dashboard activeTab={0}>
@@ -255,6 +263,14 @@ function App() {
           <ProtectedRoute isAdmin={true}>
             <Dashboard activeTab={5}>
               <ReviewsTable />
+            </Dashboard>
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin/new_category" element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard activeTab={6}>
+              <NewCategory />
             </Dashboard>
           </ProtectedRoute>
         } ></Route>

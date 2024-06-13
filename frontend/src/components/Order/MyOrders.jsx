@@ -110,16 +110,16 @@ const MyOrders = () => {
             <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}
-                <div className="flex gap-3.5 sm:w-11/12 m-auto">
+                <div className="flex gap-3.5 flex-col lg:flex-row sm:w-11/12 m-auto">
 
                     {/* <!-- sidebar column  --> */}
-                    <div className="hidden sm:flex flex-col w-1/5 px-1">
+                    <div className="flex flex-col w-full lg:w-1/5 px-1">
 
                         {/* <!-- nav tiles --> */}
                         <div className="flex flex-col bg-white border border-gray-300">
 
                             {/* <!-- filters header --> */}
-                            <div className="flex items-center justify-between gap-5 px-4 py-2 border-b border-gray-300">
+                            <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center justify-between gap-5 px-4 py-2 border-b border-gray-300">
                                 <p className="text-lg font-bold uppercase">Filters</p>
                                 <span onClick={clearFilters} className="capitalize bg-primary-green text-white text-md cursor-pointer font-semibold px-5 py-2.5 rounded-full shadow-lg hover:bg-black">clear all</span>
                             </div>
@@ -182,12 +182,12 @@ const MyOrders = () => {
                     <div className="flex-1">
 
                         {loading ? <Loader /> : (
-                            <div className="flex flex-col gap-3 sm:mr-4 overflow-hidden">
+                            <div className="flex flex-col gap-3 overflow-hidden">
 
                                 {/* <!-- searchbar --> */}
-                                <form onSubmit={searchOrders} className="flex items-center justify-between mx-1 sm:mx-0 w-full bg-white border border-gray-300 rounded hover:shadow">
-                                    <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" name="search" placeholder="Search your orders here" className="py-2 px-5 text-md outline-none flex-1 rounded-l" />
-                                    <button type="submit" className="h-full text-md px-1 sm:px-4 py-2.5 text-white bg-primary-green hover:bg-blue-600 rounded-r flex items-center gap-1">
+                                <form onSubmit={searchOrders} className="flex items-center justify-between w-full bg-white border border-gray-300 rounded hover:shadow flex-col sm:flex-row">
+                                    <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" name="search" placeholder="Search your orders here" className="w-full py-2 px-3 sm:px-5 text-md outline-none flex-1 sm:rounded-l" />
+                                    <button type="submit" className="w-full sm:w-max h-full text-md px-2 sm:px-4 py-2.5 text-white bg-primary-green hover:bg-blue-600 sm:rounded-r flex items-center gap-1">
                                         <SearchIcon sx={{ fontSize: "22px" }} />
                                         Search Orders
                                     </button>

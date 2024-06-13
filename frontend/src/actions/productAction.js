@@ -31,6 +31,9 @@ import {
     SLIDER_PRODUCTS_REQUEST,
     SLIDER_PRODUCTS_SUCCESS,
     SLIDER_PRODUCTS_FAIL,
+    USER_REVIEWS_REQUEST,
+    USER_REVIEWS_SUCCESS,
+    USER_REVIEWS_FAIL,
 } from "../constants/productConstants";
 
 // Get All Products --- Filter/Search/Sort
@@ -208,6 +211,25 @@ export const deleteProduct = (id) => async (dispatch) => {
     }
 }
 
+// Get Product Reviews ---USER
+export const getUserReviews = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: USER_REVIEWS_REQUEST });
+        const { data } = await axios.get(`/api/v1/user/reviews/?id=${id}`);
+
+        dispatch({
+            type: USER_REVIEWS_SUCCESS,
+            payload: data.reviews,
+        });
+        
+    } catch (error) {
+        dispatch({
+            type: USER_REVIEWS_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+}
+
 // Get Product Reviews ---ADMIN
 export const getAllReviews = (id) => async (dispatch) => {
     try {
@@ -225,6 +247,7 @@ export const getAllReviews = (id) => async (dispatch) => {
         });
     }
 }
+
 
 // Delete Product Review ---ADMIN
 export const deleteReview = (reviewId, productId) => async (dispatch) => {

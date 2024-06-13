@@ -159,7 +159,7 @@ const Header = () => {
                               id="userDropDown-menu"
                               aria-labelledby="userDropDown"
                               onKeyDown={handleListKeyDown}
-                              className='p-0 border border0gray-300 -left-20'
+                              className='p-0 border border0gray-300'
                             >
                               <PrimaryDropDownMenu setOpen={setOpen} user={user} />
 
