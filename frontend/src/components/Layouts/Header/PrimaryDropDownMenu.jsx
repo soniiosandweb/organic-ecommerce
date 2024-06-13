@@ -2,6 +2,7 @@ import React from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import StarIcon from '@mui/icons-material/Star';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { Link, useNavigate } from 'react-router-dom';
@@ -38,6 +39,11 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
             title: "Wishlist",
             icon: <FavoriteIcon sx={{ fontSize: "18px" }} />,
             redirect: "/wishlist",
+        },
+        {
+            title: "Reviews & Ratings",
+            icon: <StarIcon sx={{ fontSize: "18px" }} />,
+            redirect: "/rating",
         },
     ]
 

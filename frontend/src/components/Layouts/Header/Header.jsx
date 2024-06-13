@@ -101,7 +101,7 @@ const Header = () => {
 
           <nav className={`${mobileToggleClass ? 'hidden' : 'flex'} xl:flex xl:flex-row flex-col navigation-menu items-start flex-1 gap-5 sm:gap-7 absolute w-full top-16 xl:relative xl:top-0 bg-white py-5 px-5`}>
             {menuLinks.map((item, i) => (
-              <Link to={item.redirect} className="text-black font-semibold cursor-pointer" key={i}>{item.name}</Link>
+              <Link to={item.redirect} className="text-black font-semibold cursor-pointer hover:text-primary-green" key={i}>{item.name}</Link>
             ))}
           </nav>
 
@@ -119,10 +119,6 @@ const Header = () => {
               <Link to="/login" className="text-black font-semibold cursor-pointer uppercase">Login</Link>
               :
               (
-                // <span className="userDropDown flex items-center text-black font-semibold gap-1 cursor-pointer" onClick={() => setTogglePrimaryDropDown(!togglePrimaryDropDown)}>{user.name && user.name.split(" ", 1)}
-                //   <span>{togglePrimaryDropDown ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
-                // </span>
-
                 <div>
                   <Button
                     ref={anchorRef}

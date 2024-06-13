@@ -113,7 +113,7 @@ const MyOrders = () => {
                 <div className="flex gap-3.5 flex-col lg:flex-row sm:w-11/12 m-auto">
 
                     {/* <!-- sidebar column  --> */}
-                    <div className="flex flex-col w-full lg:w-1/5 px-1">
+                    <div className="flex flex-col w-full lg:w-1/4 px-1">
 
                         {/* <!-- nav tiles --> */}
                         <div className="flex flex-col bg-white border border-gray-300">

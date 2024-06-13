@@ -83,3 +83,47 @@ body {
     font-size: 100px;
   }
 }
+
+/* Hover css */
+.banner-categories img{
+  transition: 0.3s;
+}
+.banner-categories:hover img {
+  transform: scale(1.1);
+}
+
+.product-category-home:hover img{
+  border-color: green;
+  animation-name: animation-wobble-horizontal;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}
+
+.product-services-section img:hover{
+  animation-name: animation-wobble-horizontal;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+}
+
+@keyframes animation-wobble-horizontal {
+  16.65% {
+    transform: translateX(8px);
+  }
+  33.3% {
+      transform: translateX(-6px);
+  }
+  49.95% {
+      transform: translateX(4px);
+  }
+  66.6% {
+      transform: translateX(-2px);
+  }
+  83.25% {
+      transform: translateX(1px);
+  }
+  100% {
+      transform: translateX(0);
+  }
+}

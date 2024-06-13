@@ -29,7 +29,7 @@ const ProductServices = () => {
             <div className="py-16 sm:w-11/12 m-auto px-4 w-full flex flex-col md:flex-row relative z-10">
                 {services.map((el, i) => (
                     <div className='w-full md:w-1/3 flex flex-col gap-2 text-center p-5' key={i}>
-                        <img draggable="false" className="w-max m-auto object-contain object-center mb-3" src={el.image} alt={el.title} />
+                        <img draggable="false" className="w-max m-auto object-contain object-center mb-3 cursor-pointer" src={el.image} alt={el.title} />
                         <h3 className='text-xl font-semibold'>{el.title}</h3>
                         <p className='text-md w-full lg:w-3/4 m-auto'>{el.subtitle}</p>
                     </div>

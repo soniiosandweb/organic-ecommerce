@@ -9,6 +9,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CloseIcon from '@mui/icons-material/Close';
 import Avatar from '@mui/material/Avatar';
+import CategoryIcon from '@mui/icons-material/Category';
 import { useDispatch, useSelector } from 'react-redux';
 import './Sidebar.css';
 import { useSnackbar } from 'notistack';
@@ -46,6 +47,11 @@ const navMenu = [
         ref: "/admin/reviews",
     },
     {
+        icon: <CategoryIcon />,
+        label: "Categories",
+        ref: "/admin/new_category",
+    },
+    {
         icon: <AccountBoxIcon />,
         label: "My Profile",
         ref: "/account",
@@ -70,6 +76,10 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
         navigate("/login");
     }
 
+    const handleClose = () => {
+        setToggleSidebar(false)
+    }
+
     return (
         <aside className="sidebar z-10 sm:z-0 block min-h-screen fixed left-0 pb-14 max-h-screen w-3/4 sm:w-1/5 bg-gray-800 text-white overflow-x-hidden border-r">
             <div className="flex items-center gap-3 bg-gray-700 p-2 rounded-lg shadow-lg my-4 mx-3.5">
@@ -81,7 +91,7 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
                     <span className="font-medium text-lg">{user.name}</span>
                     <span className="text-gray-300 text-sm">{user.email}</span>
                 </div>
-                <button onClick={()=>setToggleSidebar(false)} className="sm:hidden bg-gray-800 ml-auto rounded-full w-10 h-10 flex items-center justify-center">
+                <button onClick={handleClose} className="sm:hidden bg-gray-800 ml-auto rounded-full w-10 h-10 flex items-center justify-center">
                     <CloseIcon/>
                 </button>
             </div>

@@ -64,16 +64,16 @@ const Products = () => {
             <main className="w-full py-16 px-4">
                 <div className="sm:w-11/12 m-auto w-full">
                     {/* <!-- row --> */}
-                    <div className="flex gap-5">
+                    <div className="flex flex-col lg:flex-row gap-5">
 
                         {/* <!-- sidebar column  --> */}
-                        <div className="hidden lg:flex flex-col w-1/5 px-1">
+                        <div className="flex flex-col w-full lg:w-1/4 px-1">
 
                             {/* <!-- nav tiles --> */}
                             <div className="flex flex-col bg-white border border-gray-300">
 
                                 {/* <!-- filters header --> */}
-                                <div className="flex items-center justify-between gap-5 px-4 py-2 border-b border-gray-300 flex-col xl:flex-row">
+                                <div className="flex items-center justify-between gap-5 px-4 py-2 border-b border-gray-300 flex-col sm:flex-row lg:flex-col xl:flex-row">
                                     <p className="text-lg font-bold uppercase">Filters</p>
                                     <span className="capitalize bg-primary-green text-white text-md cursor-pointer font-semibold px-5 py-2.5 rounded-full shadow-lg hover:bg-black" onClick={() => clearFilters()}>clear all</span>
                                 </div>
@@ -94,7 +94,7 @@ const Products = () => {
                                             color='primary'
                                         />
 
-                                        <div className="flex gap-3 items-center justify-between mb-2 min-w-full flex-col xl:flex-row">
+                                        <div className="flex gap-3 items-center justify-between mb-2 min-w-full flex-col sm:flex-row lg:flex-col xl:flex-row">
                                             <span className="flex-1 border px-4 py-1 rounded-sm text-gray-800 bg-gray-50">₹{price[0].toLocaleString()}</span>
                                             <span className="font-medium text-gray-400">to</span>
                                             <span className="flex-1 border px-4 py-1 rounded-sm text-gray-800 bg-gray-50">₹{price[1].toLocaleString()}</span>
@@ -186,7 +186,7 @@ const Products = () => {
                             {loading ? <Loader /> : (
                                 <div className="flex flex-col gap-2 pb-4 justify-center items-center w-full overflow-hidden bg-white">
 
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 w-full place-content-start overflow-hidden gap-5 pb-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 w-full place-content-start overflow-hidden gap-5 pb-4">
                                         {products?.map((product) => (
                                                 <Product {...product} key={product._id} />
                                             ))
