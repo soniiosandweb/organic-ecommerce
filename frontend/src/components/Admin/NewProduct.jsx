@@ -8,9 +8,10 @@ import { useNavigate } from 'react-router-dom';
 import { NEW_PRODUCT_RESET } from '../../constants/productConstants';
 import { createProduct, clearErrors } from '../../actions/productAction';
 // import ImageIcon from '@mui/icons-material/Image';
-import { categories } from '../../utils/constants';
+// import { categories } from '../../utils/constants';
 import MetaData from '../Layouts/MetaData';
 import BackdropLoader from '../Layouts/BackdropLoader';
+import { getAllCategories } from '../../actions/categoryAction';
 
 const NewProduct = () => {
 
@@ -19,6 +20,8 @@ const NewProduct = () => {
     const navigate = useNavigate();
 
     const { loading, success, error } = useSelector((state) => state.newProduct);
+
+    const { categories } = useSelector((state) => state.allCategories);
 
     const [highlights, setHighlights] = useState([]);
     const [highlightInput, setHighlightInput] = useState("");
@@ -101,6 +104,8 @@ const NewProduct = () => {
             dispatch({ type: NEW_PRODUCT_RESET });
             navigate("/admin/products");
         }
+
+        dispatch(getAllCategories());
     }, [dispatch, error, success, navigate, enqueueSnackbar]);
 
     return (
@@ -173,9 +178,9 @@ const NewProduct = () => {
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
                         >
-                            {categories.map((el, i) => (
-                                <MenuItem value={el} key={i}>
-                                    {el}
+                            {categories && categories.map((el, i) => (
+                                <MenuItem value={el._id} key={i}>
+                                    {el.name}
                                 </MenuItem>
                             ))}
                         </TextField>

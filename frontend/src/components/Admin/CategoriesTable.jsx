@@ -2,13 +2,12 @@ import { useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
-import { deleteOrder } from '../../actions/orderAction';
-import { DELETE_ORDER_RESET } from '../../constants/orderConstants';
 import Actions from './Actions';
 import MetaData from '../Layouts/MetaData';
 import BackdropLoader from '../Layouts/BackdropLoader';
 import { Link } from 'react-router-dom';
-import { getAllCategories, clearErrors } from '../../actions/categoryAction';
+import { getAllCategories, clearErrors, deleteCategory } from '../../actions/categoryAction';
+import { DELETE_CATEGORY_RESET } from '../../constants/categoryConstants';
 
 const CategoriesTable = () => {
 
@@ -16,7 +15,7 @@ const CategoriesTable = () => {
     const { enqueueSnackbar } = useSnackbar();
 
     const { categories, error } = useSelector((state) => state.allCategories);
-    const { loading, isDeleted, error: deleteError } = useSelector((state) => state.order);
+    const { loading, isDeleted, error: deleteError } = useSelector((state) => state.category);
 
     useEffect(() => {
         if (error) {
@@ -29,13 +28,13 @@ const CategoriesTable = () => {
         }
         if (isDeleted) {
             enqueueSnackbar("Deleted Successfully", { variant: "success" });
-            dispatch({ type: DELETE_ORDER_RESET });
+            dispatch({ type: DELETE_CATEGORY_RESET });
         }
         dispatch(getAllCategories());
     }, [dispatch, error, deleteError, isDeleted, enqueueSnackbar]);
 
-    const deleteOrderHandler = (id) => {
-        dispatch(deleteOrder(id));
+    const deleteCategoryHandler = (id) => {
+        dispatch(deleteCategory(id));
     }
 
     const columns = [
@@ -76,7 +75,7 @@ const CategoriesTable = () => {
             sortable: false,
             renderCell: (params) => {
                 return (
-                    <Actions editRoute={"order"} deleteHandler={deleteOrderHandler} id={params.row.id} />
+                    <Actions editRoute={"category"} deleteHandler={deleteCategoryHandler} id={params.row.id} />
                 );
             },
         },
@@ -94,7 +93,7 @@ const CategoriesTable = () => {
 
     return (
         <>
-            <MetaData title="Admin Orders | Organic" />
+            <MetaData title="Admin Categories | Organic" />
 
             {loading && <BackdropLoader />}
 

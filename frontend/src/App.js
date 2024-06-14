@@ -47,6 +47,7 @@ import UpdateAddress from './components/User/UpdateAddress';
 import Rating from './components/Rating/Rating';
 import NewCategory from './components/Admin/NewCategory';
 import CategoriesTable from './components/Admin/CategoriesTable';
+import UpdateCategory from './components/Admin/UpdateCategory';
 
 function App() {
 
@@ -278,8 +279,16 @@ function App() {
 
         <Route path="/admin/new_category" element={
           <ProtectedRoute isAdmin={true}>
-            <Dashboard>
+            <Dashboard activeTab={6}>
               <NewCategory />
+            </Dashboard>
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin/category/:id" element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard activeTab={6}>
+              <UpdateCategory />
             </Dashboard>
           </ProtectedRoute>
         } ></Route>

@@ -39,18 +39,14 @@ exports.updateCategory = asyncErrorHandler(async (req, res, next) => {
         const result = await cloudinary.v2.uploader.upload(req.body.category, {
             folder: "category",
         });
-        const categoryImage = {
+
+        req.body.image = {
             public_id: result.public_id,
             url: result.secure_url,
         };
-
-        req.body.image = {
-            categoryImage
-        }
-
     }
 
-    await Categories.findByIdAndUpdate(req.params.id, req.body, {
+    categories= await Categories.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true,
         useFindAndModify: true,
@@ -58,6 +54,7 @@ exports.updateCategory = asyncErrorHandler(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+        categories
     });
 });
 

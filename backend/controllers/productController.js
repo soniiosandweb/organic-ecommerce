@@ -44,7 +44,7 @@ exports.getProducts = asyncErrorHandler(async (req, res, next) => {
 // Get Product Details
 exports.getProductDetails = asyncErrorHandler(async (req, res, next) => {
 
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).populate('category');
 
     if (!product) {
         return next(new ErrorHandler("Product Not Found", 404));
@@ -58,7 +58,7 @@ exports.getProductDetails = asyncErrorHandler(async (req, res, next) => {
 
 // Get All Products ---ADMIN
 exports.getAdminProducts = asyncErrorHandler(async (req, res, next) => {
-    const products = await Product.find();
+    const products = await Product.find().populate('category');
 
     if (!products) {
         return next(new ErrorHandler("Product Not Found", 404));

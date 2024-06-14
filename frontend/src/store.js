@@ -8,7 +8,7 @@ import { saveForLaterReducer } from './reducers/saveForLaterReducer';
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer, paymentAddReducer, paymentStatusReducer } from './reducers/orderReducer';
 import { wishlistReducer } from './reducers/wishlistReducer';
 import { contactReducer } from './reducers/contactReducer';
-import { allCategoriesReducer, newCategoryReducer } from './reducers/categoryReducer';
+import { allCategoriesReducer, categoryDetailsReducer, categoryReducer, newCategoryReducer } from './reducers/categoryReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -37,6 +37,8 @@ const reducer = combineReducers({
     contactForm: contactReducer,
     newCategory: newCategoryReducer,
     allCategories: allCategoriesReducer,
+    category: categoryReducer,
+    categoryDetails: categoryDetailsReducer,
 });
 
 let initialState = {

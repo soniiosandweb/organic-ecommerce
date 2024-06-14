@@ -8,8 +8,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { REMOVE_PRODUCT_DETAILS, UPDATE_PRODUCT_RESET } from '../../constants/productConstants';
 import { clearErrors, getProductDetails, updateProduct } from '../../actions/productAction';
 import BackdropLoader from '../Layouts/BackdropLoader';
-import { categories } from '../../utils/constants';
+// import { categories } from '../../utils/constants';
 import MetaData from '../Layouts/MetaData';
+import { getAllCategories } from '../../actions/categoryAction';
 
 const UpdateProduct = () => {
 
@@ -20,6 +21,8 @@ const UpdateProduct = () => {
 
     const { loading, product, error } = useSelector((state) => state.productDetails);
     const { loading: updateLoading, isUpdated, error: updateError } = useSelector((state) => state.product);
+
+    const { categories } = useSelector((state) => state.allCategories);
 
     const [highlights, setHighlights] = useState([]);
     const [highlightInput, setHighlightInput] = useState("");
@@ -100,12 +103,11 @@ const UpdateProduct = () => {
             setDescription(product.description);
             setPrice(product.price);
             setCuttedPrice(product.cuttedPrice);
-            setCategory(product.category);
+            setCategory(product.category !== undefined ? product.category._id : "");
             setStock(product.stock);
             setWarranty(product.warranty);
             setHighlights(product.highlights);
             setOldImages(product.images);
-            
         }
         if (error) {
             enqueueSnackbar(error, { variant: "error" });
@@ -121,6 +123,9 @@ const UpdateProduct = () => {
             dispatch({ type: REMOVE_PRODUCT_DETAILS });
             navigate('/admin/products');
         }
+
+        dispatch(getAllCategories());
+
     }, [dispatch, error, updateError, isUpdated, productId, product, navigate, enqueueSnackbar]);
 
     return (
@@ -191,9 +196,9 @@ const UpdateProduct = () => {
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
                         >
-                            {categories.map((el, i) => (
-                                <MenuItem value={el} key={i}>
-                                    {el}
+                            {categories &&  categories.map((el, i) => (
+                                <MenuItem value={el._id} key={i}>
+                                    {el.name}
                                 </MenuItem>
                             ))}
                         </TextField>
