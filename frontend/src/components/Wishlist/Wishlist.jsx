@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import MetaData from '../Layouts/MetaData';
 import Sidebar from '../User/Sidebar';
 import Product from './Product';
+import wishlistEmpty from '../../assets/images/mywishlist-empty.png';
 
 const Wishlist = () => {
 
@@ -24,7 +25,7 @@ const Wishlist = () => {
 
                             {wishlistItems.length === 0 && (
                                 <div className="flex items-center flex-col gap-2 m-6">
-                                    <img draggable="false" className="object-contain" src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/mywishlist-empty_39f7a5.png" alt="Empty Wishlist" />
+                                    <img draggable="false" className="object-contain" src={wishlistEmpty} alt="Empty Wishlist" />
                                     <span className="text-lg font-medium mt-6">Empty Wishlist</span>
                                     <p>You have no items in your wishlist. Start adding!</p>
                                 </div>

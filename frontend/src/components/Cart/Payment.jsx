@@ -17,6 +17,7 @@ import { useSnackbar } from 'notistack';
 // import FormControlLabel from '@mui/material/FormControlLabel';
 // import Radio from '@mui/material/Radio';
 // import RadioGroup from '@mui/material/RadioGroup';
+// import paytm from '../../assets/images/paytm.webp';
 import MetaData from '../Layouts/MetaData';
 import { useNavigate } from "react-router-dom";
 import { newOrderData } from '../../actions/orderAction';
@@ -181,7 +182,7 @@ const Payment = () => {
                                                 control={<Radio />}
                                                 label={
                                                     <div className="flex items-center gap-4">
-                                                        <img draggable="false" className="h-6 w-6 object-contain" src="https://rukminim1.flixcart.com/www/96/96/promos/01/09/2020/a07396d4-0543-4b19-8406-b9fcbf5fd735.png" alt="Paytm Logo" />
+                                                        <img draggable="false" className="h-6 w-6 object-contain" src={paytm} alt="Paytm Logo" />
                                                         <span>Paytm</span>
                                                     </div>
                                                 }

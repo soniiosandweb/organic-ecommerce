@@ -4,7 +4,7 @@ import Sidebar from "../User/Sidebar";
 import { useEffect } from "react";
 import { getUserReviews } from "../../actions/productAction";
 import ReviewItem from "./ReviewItem";
-
+import empty from '../../assets/images/mywishlist-empty.png';
 
 const Rating = () => {
 
@@ -35,7 +35,7 @@ const Rating = () => {
 
                             {userReviews.length === 0 && (
                                 <div className="flex items-center flex-col gap-2 m-6">
-                                    <img draggable="false" className="object-contain" src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/mywishlist-empty_39f7a5.png" alt="Empty Wishlist" />
+                                    <img draggable="false" className="object-contain" src={empty} alt="Empty Wishlist" />
                                     <span className="text-lg font-medium mt-6">Empty Reviews & Ratings</span>
                                     <p>You have no items in your reviews. Start adding!</p>
                                 </div>

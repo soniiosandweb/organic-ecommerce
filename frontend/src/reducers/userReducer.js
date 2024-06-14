@@ -80,7 +80,7 @@ export const userReducer = (state = { user: {} }, { type, payload }) => {
                 loading: false,
                 isAuthenticated: false,
                 user: null,
-                error: payload,
+                userError: payload,
             }
         case LOGOUT_USER_FAIL:
             return {
