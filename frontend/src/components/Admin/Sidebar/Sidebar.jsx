@@ -49,7 +49,7 @@ const navMenu = [
     {
         icon: <CategoryIcon />,
         label: "Categories",
-        ref: "/admin/new_category",
+        ref: "/admin/categories",
     },
     {
         icon: <AccountBoxIcon />,

@@ -2,19 +2,20 @@ import { useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
-import { clearErrors, deleteOrder, getAllOrders } from '../../actions/orderAction';
+import { deleteOrder } from '../../actions/orderAction';
 import { DELETE_ORDER_RESET } from '../../constants/orderConstants';
 import Actions from './Actions';
-import { formatDate } from '../../utils/functions';
 import MetaData from '../Layouts/MetaData';
 import BackdropLoader from '../Layouts/BackdropLoader';
+import { Link } from 'react-router-dom';
+import { getAllCategories, clearErrors } from '../../actions/categoryAction';
 
-const OrderTable = () => {
+const CategoriesTable = () => {
 
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
 
-    const { orders, error } = useSelector((state) => state.allOrders);
+    const { categories, error } = useSelector((state) => state.allCategories);
     const { loading, isDeleted, error: deleteError } = useSelector((state) => state.order);
 
     useEffect(() => {
@@ -30,7 +31,7 @@ const OrderTable = () => {
             enqueueSnackbar("Deleted Successfully", { variant: "success" });
             dispatch({ type: DELETE_ORDER_RESET });
         }
-        dispatch(getAllOrders());
+        dispatch(getAllCategories());
     }, [dispatch, error, deleteError, isDeleted, enqueueSnackbar]);
 
     const deleteOrderHandler = (id) => {
@@ -40,61 +41,36 @@ const OrderTable = () => {
     const columns = [
         {
             field: "id",
-            headerName: "Order ID",
-            minWidth: 200,
+            headerName: "Category ID",
+            minWidth: 100,
             flex: 1,
         },
         {
-            field: "status",
-            headerName: "Status",
-            minWidth: 150,
-            flex: 0.2,
+            field: "category",
+            headerName: "Category Image",
+            minWidth: 200,
+            flex: 1,
             renderCell: (params) => {
                 return (
-                    <>
-                        {
-                            params.row.status === "Delivered" ? (
-                                <span className="text-sm bg-green-100 p-1 px-2 font-medium rounded-full text-green-800">{params.row.status}</span>
-                            ) : params.row.status === "Shipped" ? (
-                                <span className="text-sm bg-yellow-100 p-1 px-2 font-medium rounded-full text-yellow-800">{params.row.status}</span>
-                            ) : (
-                                <span className="text-sm bg-purple-100 p-1 px-2 font-medium rounded-full text-purple-800">{params.row.status}</span>
-                            )
-                        }
-                    </>
+                    <div className="flex items-center gap-2">
+                        <div className="w-12 h-12 rounded-full">
+                            <img draggable="false" src={params.row.image} alt={params.row.name} className="w-full h-full rounded-full object-cover" />
+                            {params.row.name}
+                        </div>
+                    </div>
                 )
             },
         },
         {
-            field: "itemsQty",
-            headerName: "Items Qty",
-            type: "number",
-            minWidth: 100,
-            flex: 0.1,
-        },
-        {
-            field: "amount",
-            headerName: "Amount",
-            type: "number",
+            field: "name",
+            headerName: "Category Name",
             minWidth: 200,
-            flex: 0.2,
-            renderCell: (params) => {
-                return (
-                    <span>₹{params.row.amount.toLocaleString()}</span>
-                );
-            },
-        },
-        {
-            field: "orderOn",
-            headerName: "Order On",
-            type: "date",
-            minWidth: 200,
-            flex: 0.5,
+            flex: 1,
         },
         {
             field: "actions",
             headerName: "Actions",
-            minWidth: 100,
+            minWidth: 200,
             flex: 0.3,
             type: "number",
             sortable: false,
@@ -108,13 +84,11 @@ const OrderTable = () => {
 
     const rows = [];
 
-    orders && orders.forEach((order) => {
+    categories && categories.forEach((category) => {
         rows.unshift({
-            id: order._id,
-            itemsQty: order.orderItems.length,
-            amount: order.totalPrice,
-            orderOn: formatDate(order.createdAt),
-            status: order.orderStatus,
+            id: category._id,
+            name: category.name,
+            image: category.image.url,
         });
     });
 
@@ -124,7 +98,11 @@ const OrderTable = () => {
 
             {loading && <BackdropLoader />}
 
-            <h1 className="text-lg font-medium uppercase border-b pb-5 border-gray-300">orders</h1>
+            <div className="flex justify-between items-center border-b pb-5 border-gray-300">
+                <h1 className="text-xl font-semibold capitalize">Categories</h1>
+                <Link to="/admin/new_category" className="py-2 px-4 rounded-full shadow font-medium text-white bg-primary-green hover:bg-black">Add Category</Link>
+            </div>
+
             <div className="bg-white rounded-sm border border-gray-300 shadow-lg w-full" style={{ height: 470 }}>
 
                 <DataGrid
@@ -142,4 +120,4 @@ const OrderTable = () => {
     );
 };
 
-export default OrderTable;
+export default CategoriesTable;

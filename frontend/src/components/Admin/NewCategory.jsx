@@ -8,6 +8,8 @@ import MetaData from '../Layouts/MetaData';
 import BackdropLoader from '../Layouts/BackdropLoader';
 import { NEW_CATEGORY_RESET } from '../../constants/categoryConstants';
 import { createCategory, clearErrors } from '../../actions/categoryAction';
+import { Link } from 'react-router-dom';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const NewCategory = () => {
 
@@ -60,7 +62,7 @@ const NewCategory = () => {
         if (success) {
             enqueueSnackbar("Category Created successfully", { variant: "success" });
             dispatch({ type: NEW_CATEGORY_RESET });
-            navigate("/admin/products");
+            navigate("/admin/categories");
         }
     }, [dispatch, error, success, navigate, enqueueSnackbar]);
 
@@ -69,9 +71,12 @@ const NewCategory = () => {
             <MetaData title="Admin: New Category | Organic" />
 
             {loading && <BackdropLoader />}
-            <form onSubmit={newProductSubmitHandler} encType="multipart/form-data" className="flex flex-col bg-white rounded-lg shadow p-4" id="categoryform">
 
-                <div className="flex flex-col gap-3 m-2 w-full">
+            <Link to="/admin/categories" className="ml-1 flex items-center gap-0 font-semibold text-primary-green uppercase hover:text-black"><ArrowBackIosIcon sx={{ fontSize: "18px" }} />Go Back</Link>
+
+            <form onSubmit={newProductSubmitHandler} encType="multipart/form-data" className="flex flex-col bg-white border border-gray-300 gap-5 shadow p-3 lg:p-5" id="categoryform">
+
+                <div className="flex flex-col gap-3 w-full">
                     <TextField
                         label="Category Name"
                         variant="outlined"
@@ -84,7 +89,7 @@ const NewCategory = () => {
                     
                 </div>
 
-                <div className="flex flex-col gap-2 m-2 w-full">
+                <div className="flex flex-col gap-2 w-full">
                 
                     <h2 className="font-medium">Category Image</h2>
                     <div className="w-full sm:w-1/4 flex gap-2 justify-center items-center overflow-x-auto h-32 border rounded">
@@ -105,8 +110,8 @@ const NewCategory = () => {
 
                 </div>
 
-                <div className="flex flex-col gap-2 m-2 w-full">
-                    <input form="categoryform" type="submit" className="bg-primary-green uppercase w-1/3 p-3 text-white font-medium rounded shadow hover:shadow-lg cursor-pointer" value="Submit" />
+                <div className="flex flex-col gap-2 w-full">
+                    <input form="categoryform" type="submit" className="bg-primary-green uppercase w-1/4 p-3 text-white font-medium rounded-full shadow hover:bg-black cursor-pointer" value="Submit" />
                 </div>
 
             </form>

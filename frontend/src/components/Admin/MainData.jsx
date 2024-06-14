@@ -119,22 +119,22 @@ const MainData = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-8 min-w-full">
-                <div className="bg-white rounded-xl h-auto w-full shadow-lg p-2">
+                <div className="bg-white rounded-xl border border-gray-300 h-auto w-full shadow-lg p-2">
                     <Line data={lineState} />
                 </div>
 
-                <div className="bg-white rounded-xl shadow-lg p-4 text-center">
+                <div className="bg-white rounded-xl border border-gray-300 shadow-lg p-4 text-center">
                     <span className="font-medium uppercase text-gray-800">Order Status</span>
                     <Pie data={pieState} />
                 </div>
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-8 min-w-full mb-6">
-                <div className="bg-white rounded-xl h-auto w-full shadow-lg p-2">
+                <div className="bg-white rounded-xl border border-gray-300 h-auto w-full shadow-lg p-2">
                     <Bar data={barState} />
                 </div>
 
-                <div className="bg-white rounded-xl shadow-lg p-4 text-center">
+                <div className="bg-white rounded-xl border border-gray-300 shadow-lg p-4 text-center">
                     <span className="font-medium uppercase text-gray-800">Stock Status</span>
                     <Doughnut data={doughnutState} />
                 </div>
