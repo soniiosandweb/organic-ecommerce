@@ -5,8 +5,9 @@ import { getAdminProducts } from '../../actions/productAction';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllOrders } from '../../actions/orderAction';
 import { getAllUsers } from '../../actions/userAction';
-import { categories } from '../../utils/constants';
+// import { categories } from '../../utils/constants';
 import MetaData from '../Layouts/MetaData';
+import { getAllCategories } from '../../actions/categoryAction';
 
 const MainData = () => {
 
@@ -15,6 +16,7 @@ const MainData = () => {
     const { products } = useSelector((state) => state.products);
     const { orders } = useSelector((state) => state.allOrders);
     const { users } = useSelector((state) => state.users);
+    const { categories } = useSelector((state) => state.allCategories);
 
     let outOfStock = 0;
 
@@ -28,6 +30,7 @@ const MainData = () => {
         dispatch(getAdminProducts());
         dispatch(getAllOrders());
         dispatch(getAllUsers());
+        dispatch(getAllCategories());
     }, [dispatch]);
 
     let totalAmount = orders?.reduce((total, order) => total + order.totalPrice, 0);
@@ -83,18 +86,19 @@ const MainData = () => {
     };
 
     const barState = {
-        labels: categories,
+        labels: categories && categories.map((cat) => cat.name),
         datasets: [
             {
                 label: "Products",
                 borderColor: '#9333ea',
                 backgroundColor: '#9333ea',
                 hoverBackgroundColor: '#6b21a8',
-                data: categories.map((cat) => products?.filter((item) => item.category === cat).length),
+                data: categories && categories.map((cat) => products?.filter((item) => item.category._id === cat._id).length),
             },
         ],
     };
 
+    
     return (
         <>
             <MetaData title="Admin Dashboard | Organic" />

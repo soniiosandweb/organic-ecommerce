@@ -14,10 +14,11 @@ import Product from './Product';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import StarIcon from '@mui/icons-material/Star';
-import { categories } from '../../utils/constants';
+// import { categories } from '../../utils/constants';
 import MetaData from '../Layouts/MetaData';
 import { useLocation } from 'react-router-dom';
 import noResult from '../../assets/images/no-search-results.png';
+import { getAllCategories } from '../../actions/categoryAction';
 
 const Products = () => {
 
@@ -38,6 +39,9 @@ const Products = () => {
     const [ratingsToggle, setRatingsToggle] = useState(true);
 
     const { products, loading, error, resultPerPage, filteredProductsCount } = useSelector((state) => state.products);
+
+    const { categories } = useSelector((state) => state.allCategories);
+
     const keyword = params.keyword;
 
     const priceHandler = (e, newPrice) => {
@@ -55,6 +59,7 @@ const Products = () => {
             enqueueSnackbar(error, { variant: "error" });
             dispatch(clearErrors());
         }
+        dispatch(getAllCategories());
         dispatch(getProducts(keyword, category, price, ratings, currentPage));
     }, [dispatch, keyword, category, price, ratings, currentPage, error, enqueueSnackbar]);
 
@@ -123,8 +128,8 @@ const Products = () => {
                                                         name="category-radio-buttons"
                                                         value={category}
                                                     >
-                                                        {categories.map((el, i) => (
-                                                            <FormControlLabel  key={i} value={el} control={<Radio size="small" />} label={<span className="text-sm">{el}</span>} />
+                                                        {categories && categories.map((el, i) => (
+                                                            <FormControlLabel  key={i} value={el._id} control={<Radio size="small" />} label={<span className="text-sm">{el.name}</span>} />
                                                         ))}
                                                     </RadioGroup>
                                                 </FormControl>
