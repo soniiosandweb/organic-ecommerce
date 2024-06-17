@@ -99,7 +99,7 @@ const CategoriesTable = () => {
 
             <div className="flex justify-between items-center border-b pb-5 border-gray-300">
                 <h1 className="text-xl font-semibold capitalize">Categories</h1>
-                <Link to="/admin/new_category" className="py-2 px-4 rounded-full shadow font-medium text-white bg-primary-green hover:bg-black">Add Category</Link>
+                <Link to="/admin/new_category" className="py-2 px-5 rounded-full shadow font-medium text-white bg-primary-green hover:bg-black">Add Category</Link>
             </div>
 
             <div className="bg-white rounded-sm border border-gray-300 shadow-lg w-full" style={{ height: 470 }}>
@@ -113,6 +113,7 @@ const CategoriesTable = () => {
                         boxShadow: 0,
                         border: 0,
                     }}
+                    disableSelectionOnClick 
                 />
             </div>
         </>

@@ -124,7 +124,7 @@ const OrderTable = () => {
 
             {loading && <BackdropLoader />}
 
-            <h1 className="text-lg font-medium uppercase border-b pb-5 border-gray-300">orders</h1>
+            <h1 className="text-xl font-semibold capitalize border-b pb-5 border-gray-300">orders</h1>
             <div className="bg-white rounded-sm border border-gray-300 shadow-lg w-full" style={{ height: 470 }}>
 
                 <DataGrid
@@ -136,6 +136,7 @@ const OrderTable = () => {
                         boxShadow: 0,
                         border: 0,
                     }}
+                    disableSelectionOnClick 
                 />
             </div>
         </>

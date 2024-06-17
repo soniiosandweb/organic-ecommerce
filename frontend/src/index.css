@@ -45,6 +45,9 @@ body {
 .bg-primary-green{
   background-color: green;
 }
+.min-h-40{
+  min-height: 10rem;
+}
 
 /* Header */
 #userDropDown{

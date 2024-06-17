@@ -172,7 +172,7 @@ const ProductTable = () => {
 
             <div className="flex justify-between items-center border-b pb-5 border-gray-300">
                 <h1 className="text-xl font-semibold capitalize">products</h1>
-                <Link to="/admin/new_product" className="py-2 px-4 rounded shadow font-medium text-white bg-primary-green hover:shadow-lg">New Product</Link>
+                <Link to="/admin/new_product" className="py-2 px-5 rounded-full shadow font-medium text-white bg-primary-green hover:bg-black">New Product</Link>
             </div>
             <div className="bg-white rounded-sm border border-gray-300 w-full" style={{ height: 470 }}>
 
@@ -185,6 +185,7 @@ const ProductTable = () => {
                         boxShadow: 0,
                         border: 0,
                     }}
+                    disableSelectionOnClick 
                 />
             </div>
         </>

@@ -54,8 +54,8 @@ const MainData = () => {
             },
             {
                 label: `Sales in ${date.getFullYear()}`,
-                borderColor: '#4ade80',
-                backgroundColor: '#4ade80',
+                borderColor: '#008000',
+                backgroundColor: '#008000',
                 data: months.map((m, i) => orders?.filter((od) => new Date(od.createdAt).getMonth() === i && new Date(od.createdAt).getFullYear() === date.getFullYear()).reduce((total, od) => total + od.totalPrice, 0)),
             },
         ],
@@ -67,7 +67,7 @@ const MainData = () => {
         labels: statuses,
         datasets: [
             {
-                backgroundColor: ['#9333ea', '#facc15', '#4ade80'],
+                backgroundColor: ['#9333ea', '#facc15', '#008000'],
                 hoverBackgroundColor: ['#a855f7', '#fde047', '#86efac'],
                 data: statuses.map((status) => orders?.filter((item) => item.orderStatus === status).length),
             },
@@ -78,7 +78,7 @@ const MainData = () => {
         labels: ['Out of Stock', 'In Stock'],
         datasets: [
             {
-                backgroundColor: ['#ef4444', '#22c55e'],
+                backgroundColor: ['#ef4444', '#008000'],
                 hoverBackgroundColor: ['#dc2626', '#16a34a'],
                 data: [outOfStock, (products.length ? products.length : 0) - outOfStock],
             },
@@ -90,9 +90,9 @@ const MainData = () => {
         datasets: [
             {
                 label: "Products",
-                borderColor: '#9333ea',
-                backgroundColor: '#9333ea',
-                hoverBackgroundColor: '#6b21a8',
+                borderColor: '#008000',
+                backgroundColor: '#008000',
+                hoverBackgroundColor: 'orange',
                 data: categories && categories.map((cat) => products?.filter((item) => item.category._id === cat._id).length),
             },
         ],
@@ -116,7 +116,7 @@ const MainData = () => {
                     <h4 className="text-gray-100 font-medium">Total Products</h4>
                     <h2 className="text-2xl font-bold">{products?.length}</h2>
                 </div>
-                <div className="flex flex-col bg-green-500 text-white gap-2 rounded-xl shadow-lg hover:shadow-xl p-6">
+                <div className="flex flex-col bg-primary-green text-white gap-2 rounded-xl shadow-lg hover:shadow-xl p-6">
                     <h4 className="text-gray-100 font-medium">Total Users</h4>
                     <h2 className="text-2xl font-bold">{users?.length}</h2>
                 </div>

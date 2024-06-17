@@ -13,6 +13,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import TextField from '@mui/material/TextField';
 import MetaData from '../Layouts/MetaData';
 import BackdropLoader from '../Layouts/BackdropLoader';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const UpdateUser = () => {
 
@@ -78,80 +79,74 @@ const UpdateUser = () => {
 
             {loading ? <Loading /> : (
                 <>
-                    <div className="flex flex-col bg-white shadow-lg rounded-lg mx-auto w-lg max-w-xl">
-                        <h2 className="text-center text-2xl font-medium mt-6 text-gray-800">Update Profile</h2>
+                    <Link to="/admin/users" className="ml-1 w-max flex items-center gap-0 font-semibold text-primary-green uppercase hover:text-black"><ArrowBackIosIcon sx={{ fontSize: "18px" }} />Go Back</Link>
 
-                        <form
-                            onSubmit={updateUserSubmitHandler}
-                            className="p-5 sm:p-10"
-                        >
-                            <div className="flex flex-col gap-3 items-start">
+                    <form onSubmit={updateUserSubmitHandler} className="flex flex-col bg-white rounded-sm border border-gray-300 shadow gap-5 p-3 lg:p-5">
 
-                                {/* <!-- input container column --> */}
-                                <div className="flex flex-col w-full justify-between sm:flex-col gap-3 items-center">
-                                    <TextField
-                                        fullWidth
-                                        label="Full Name"
-                                        name="name"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        required
-                                    />
-                                    <TextField
-                                        fullWidth
-                                        label="Email"
-                                        type="email"
-                                        name="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                    />
-                                </div>
-                                {/* <!-- input container column --> */}
+                        <div className="flex flex-col gap-3 w-full lg:w-2/3">
+                            <TextField
+                                fullWidth
+                                label="Full Name"
+                                name="name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                        </div>
 
-                                {/* <!-- gender input --> */}
-                                <div className="flex gap-4 items-center">
-                                    <h2 className="text-md">Your Gender :</h2>
-                                    <div className="flex items-center gap-6" id="radioInput">
-                                        <RadioGroup
-                                            row
-                                            aria-labelledby="radio-buttons-group-label"
-                                            name="radio-buttons-group"
-                                        >
-                                            <FormControlLabel name="gender" value="male" checked={gender === "male"} onChange={(e) => setGender(e.target.value)} control={<Radio required />} label="Male" />
-                                            <FormControlLabel name="gender" value="female" checked={gender === "female"} onChange={(e) => setGender(e.target.value)} control={<Radio required />} label="Female" />
-                                        </RadioGroup>
-                                    </div>
-                                </div>
-                                {/* <!-- gender input --> */}
-
-                                <div className="flex flex-col w-full justify-between sm:flex-row gap-3 items-center">
-                                    <Avatar
-                                        alt="Avatar Preview"
-                                        src={avatarPreview}
-                                        sx={{ width: 56, height: 56 }}
-                                    />
-                                    <TextField
-                                        label="Role"
-                                        select
-                                        fullWidth
-                                        variant="outlined"
-                                        required
-                                        value={role}
-                                        onChange={(e) => setRole(e.target.value)}
-                                    >
-                                        <MenuItem value={"user"}>User</MenuItem>
-                                        <MenuItem value={"admin"}>Admin</MenuItem>
-                                    </TextField>
-                                </div>
-                                
-                                <button type="submit" className="text-white py-3 w-full bg-primary-green shadow hover:shadow-lg rounded-sm font-medium">Update</button>
-                                <Link className="hover:bg-gray-100 text-primary-green text-center py-3 w-full shadow border rounded-sm font-medium" to="/admin/users">Cancel</Link>
+                        <div className="flex flex-col gap-3 w-full lg:w-2/3">
+                            <TextField
+                                fullWidth
+                                label="Email"
+                                type="email"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                            
+                        {/* <!-- gender input --> */}
+                        <div className="flex gap-4 items-center w-full lg:w-2/3">
+                            <h2 className="text-md">Your Gender :</h2>
+                            <div className="flex items-center gap-6" id="radioInput">
+                                <RadioGroup
+                                    row
+                                    aria-labelledby="radio-buttons-group-label"
+                                    name="radio-buttons-group"
+                                >
+                                    <FormControlLabel name="gender" value="male" checked={gender === "male"} onChange={(e) => setGender(e.target.value)} control={<Radio required />} label="Male" />
+                                    <FormControlLabel name="gender" value="female" checked={gender === "female"} onChange={(e) => setGender(e.target.value)} control={<Radio required />} label="Female" />
+                                </RadioGroup>
                             </div>
+                        </div>
+                        {/* <!-- gender input --> */}
 
-                        </form>
+                        <div className="flex flex-col w-full lg:w-2/3 justify-between sm:flex-row gap-3 items-center">
+                            <Avatar
+                                alt="Avatar Preview"
+                                src={avatarPreview}
+                                sx={{ width: 56, height: 56 }}
+                            />
+                            <TextField
+                                label="Role"
+                                select
+                                fullWidth
+                                variant="outlined"
+                                required
+                                value={role}
+                                onChange={(e) => setRole(e.target.value)}
+                            >
+                                <MenuItem value={"user"}>User</MenuItem>
+                                <MenuItem value={"admin"}>Admin</MenuItem>
+                            </TextField>
+                        </div>
+                                
+                        <div className="flex flex-col gap-2  lg:w-1/3">
+                            <input form="mainform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-full shadow hover:bg-black cursor-pointer" value="Update" name="updateProduct"/>
+                        </div>
+                    </form>
 
-                    </div>
                 </>
             )}
         </>

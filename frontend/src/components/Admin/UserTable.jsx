@@ -40,7 +40,7 @@ const UserTable = () => {
         {
             field: "name",
             headerName: "Name",
-            minWidth: 200,
+            minWidth: 250,
             flex: 1,
             renderCell: (params) => {
                 return (
@@ -56,19 +56,19 @@ const UserTable = () => {
         {
             field: "email",
             headerName: "Email",
-            minWidth: 200,
+            minWidth: 250,
             flex: 0.2,
         },
         {
             field: "gender",
             headerName: "Gender",
-            minWidth: 100,
+            minWidth: 150,
             flex: 0.1,
         },
         {
             field: "role",
             headerName: "Role",
-            minWidth: 100,
+            minWidth: 150,
             flex: 0.2,
             renderCell: (params) => {
                 return (
@@ -94,7 +94,7 @@ const UserTable = () => {
         {
             field: "actions",
             headerName: "Actions",
-            minWidth: 200,
+            minWidth: 150,
             flex: 0.3,
             type: "number",
             sortable: false,
@@ -126,7 +126,7 @@ const UserTable = () => {
 
             {loading && <BackdropLoader />}
 
-            <h1 className="text-lg font-medium border-b pb-5 border-gray-300 uppercase">users</h1>
+            <h1 className="text-xl font-semibold capitalize border-b pb-5 border-gray-300">users</h1>
             <div className="bg-white rounded-sm border border-gray-300 w-full" style={{ height: 470 }}>
 
                 <DataGrid
@@ -138,6 +138,7 @@ const UserTable = () => {
                         boxShadow: 0,
                         border: 0,
                     }}
+                    disableSelectionOnClick 
                 />
             </div>
         </>

@@ -39,6 +39,7 @@ import {
     USER_REVIEWS_REQUEST,
     USER_REVIEWS_SUCCESS,
     USER_REVIEWS_FAIL,
+    REMOVE_REVIEWS_DETAILS,
 } from "../constants/productConstants";
 
 export const productsReducer = (state = { products: [] }, { type, payload }) => {
@@ -250,6 +251,11 @@ export const productReviewsReducer = (state = { reviews: [] }, { type, payload }
                 ...state,
                 loading: false,
                 error: payload,
+            };
+        case REMOVE_REVIEWS_DETAILS:
+            return {
+                ...state,
+                reviews: [],
             };
         case CLEAR_ERRORS:
             return {

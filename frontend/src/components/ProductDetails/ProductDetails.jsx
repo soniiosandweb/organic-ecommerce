@@ -120,8 +120,8 @@ const ProductDetails = () => {
     }, [dispatch, productId, error, reviewError, success, enqueueSnackbar]);
 
     useEffect(() => {
-        dispatch(getSimilarProducts(product?.category));
-    }, [dispatch, product, product.category]);
+        dispatch(getSimilarProducts(product.category ? product.category._id : null));
+    }, [dispatch, product]);
 
     return (
         <>

@@ -142,6 +142,7 @@ exports.updateProduct = asyncErrorHandler(async (req, res, next) => {
 
     if (req.body.images !== undefined) {
         let images = [];
+        
         if (typeof req.body.images === "string") {
             images.push(req.body.images);
         } else {
@@ -154,6 +155,8 @@ exports.updateProduct = asyncErrorHandler(async (req, res, next) => {
         const imagesLink = [];
 
         for (let i = 0; i < images.length; i++) {
+
+            
             const result = await cloudinary.v2.uploader.upload(images[i], {
                 folder: "products",
             });
@@ -190,6 +193,11 @@ exports.updateProduct = asyncErrorHandler(async (req, res, next) => {
     //     req.body.specifications = specs;
     // }
 
+    if(req.body.highlights){
+        req.body.highlights = req.body.highlights;
+    } else {
+        req.body.highlights = [];
+    }
     
     req.body.user = req.user.id;
 
