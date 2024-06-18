@@ -140,13 +140,32 @@ exports.updateProduct = asyncErrorHandler(async (req, res, next) => {
         return next(new ErrorHandler("Product Not Found", 404));
     }
 
-    if (req.body.images !== undefined) {
+    let productImages = [];
+ 
+    if(req.body.oldImages !== undefined){
+
+        // let images = [];
+
+        if(typeof req.body.oldImages === "string"){
+            productImages.push(JSON.parse(req.body.oldImages))
+        } else  {
+            req.body.oldImages.forEach((s) => {
+                productImages.push(JSON.parse(s))
+            });
+        }
+
+        // req.body.images = images; 
+      
+    }
+
+
+    if (req.body.newImages !== undefined) {
         let images = [];
         
-        if (typeof req.body.images === "string") {
-            images.push(req.body.images);
+        if (typeof req.body.newImages === "string") {
+            images.push(req.body.newImages);
         } else {
-            images = req.body.images;
+            images = req.body.newImages;
         }
         for (let i = 0; i < product.images.length; i++) {
             await cloudinary.v2.uploader.destroy(product.images[i].public_id);
@@ -161,13 +180,15 @@ exports.updateProduct = asyncErrorHandler(async (req, res, next) => {
                 folder: "products",
             });
 
-            imagesLink.push({
+            productImages.push({
                 public_id: result.public_id,
                 url: result.secure_url,
             });
         }
-        req.body.images = imagesLink;
+        
     }
+
+    req.body.images = productImages;
 
     // if (req.body.logo.length > 0) {
     //     await cloudinary.v2.uploader.destroy(product.brand.logo.public_id);
@@ -206,6 +227,7 @@ exports.updateProduct = asyncErrorHandler(async (req, res, next) => {
         runValidators: true,
         useFindAndModify: false,
     });
+
 
     res.status(201).json({
         success: true,

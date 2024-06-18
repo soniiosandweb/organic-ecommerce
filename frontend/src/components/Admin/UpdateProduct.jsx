@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { REMOVE_PRODUCT_DETAILS, UPDATE_PRODUCT_RESET } from '../../constants/productConstants';
 import { clearErrors, getProductDetails, updateProduct } from '../../actions/productAction';
 import BackdropLoader from '../Layouts/BackdropLoader';
-// import { categories } from '../../utils/constants';
+import CancelIcon from '@mui/icons-material/Cancel';
 import MetaData from '../Layouts/MetaData';
 import { getAllCategories } from '../../actions/categoryAction';
 import { Link } from 'react-router-dom';
@@ -53,9 +53,9 @@ const UpdateProduct = () => {
     const handleProductImageChange = (e) => {
         const files = Array.from(e.target.files);
 
-        setImages([]);
-        setImagesPreview([]);
-        setOldImages([]);
+        // setImages([]);
+        // setImagesPreview([]);
+        // setOldImages([]);
 
         files.forEach((file) => {
             const reader = new FileReader();
@@ -70,8 +70,22 @@ const UpdateProduct = () => {
         });
     }
 
+    const deleteOldImage = (index) => {
+        setOldImages(oldImages.filter((h, i) => i !== index));
+    }
+
+    const deleteImage = (index) => {
+        setImagesPreview(images.filter((h, i) => i !== index));
+        setImages(images.filter((h, i) => i !== index))
+    }
+
     const newProductSubmitHandler = (e) => {
         e.preventDefault();
+
+        if (images.length <= 0 && oldImages.length <= 0) {
+            enqueueSnackbar("Add Product Images", { variant: "warning" });
+            return;
+        }
 
         const formData = new FormData();
 
@@ -83,8 +97,15 @@ const UpdateProduct = () => {
         formData.set("stock", stock);
         formData.set("warranty", warranty);
 
+        if(oldImages && oldImages.length){
+
+            oldImages.forEach((image) => {
+                formData.append("oldImages", JSON.stringify(image));
+            });
+        }
+
         images.forEach((image) => {
-            formData.append("images", image);
+            formData.append("newImages", image);
         });
         
 
@@ -281,10 +302,20 @@ const UpdateProduct = () => {
                     <h2 className="font-medium">Product Images</h2>
                     <div className="flex flex-wrap gap-3 justify-center items-center overflow-x-auto h-full min-h-40 border rounded border-gray-300">
                         {oldImages && oldImages.map((image, i) => (
-                            <img draggable="false" src={image.url} alt="Product" key={i} className="w-max h-32 object-contain" />
+                            <span className='relative' key={i}>
+                                <img draggable="false" src={image.url} alt="Product" key={i} className="h-32 w-full object-contain" />
+                                <span onClick={() => deleteOldImage(i)} className="text-red-600 hover:bg-red-100 p-1 rounded-full cursor-pointer absolute right-0 top-0">
+                                    <CancelIcon />
+                                </span>
+                            </span>
                         ))}
                         {imagesPreview.map((image, i) => (
-                            <img draggable="false" src={image} alt="Product" key={i} className="w-max h-32 object-contain" />
+                            <span className='relative' key={i}>
+                                <img draggable="false" src={image} alt="Product" key={i} className="h-32 w-full object-contain" />
+                                <span onClick={() => deleteImage(i)} className="text-red-600 hover:bg-red-100 p-1 rounded-full cursor-pointer absolute right-0 top-0">
+                                    <CancelIcon />
+                                </span>
+                            </span>
                         ))}
                     </div>
                     <label className="rounded font-medium bg-gray-400 text-center cursor-pointer text-white p-2 shadow hover:shadow-lg my-2" htmlFor="images">

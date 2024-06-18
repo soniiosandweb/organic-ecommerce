@@ -102,7 +102,7 @@ const CategoriesTable = () => {
                 <Link to="/admin/new_category" className="py-2 px-5 rounded-full shadow font-medium text-white bg-primary-green hover:bg-black">Add Category</Link>
             </div>
 
-            <div className="bg-white rounded-sm border border-gray-300 shadow-lg w-full" style={{ height: 470 }}>
+            <div className="bg-white rounded-sm border border-gray-300 shadow-lg w-full" style={{ height: "78vh" }}>
 
                 <DataGrid
                     rows={rows}

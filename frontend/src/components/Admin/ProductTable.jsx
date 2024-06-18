@@ -96,9 +96,9 @@ const ProductTable = () => {
         },
         {
             field: "price",
-            headerName: "Price",
+            headerName: "Selling Price",
             type: "number",
-            minWidth: 100,
+            minWidth: 150,
             headerAlign: "left",
             align: "left",
             flex: 0.2,
@@ -110,7 +110,7 @@ const ProductTable = () => {
         },
         {
             field: "cprice",
-            headerName: "Cutted Price",
+            headerName: "Price",
             type: "number",
             minWidth: 100,
             headerAlign: "left",
@@ -174,7 +174,7 @@ const ProductTable = () => {
                 <h1 className="text-xl font-semibold capitalize">products</h1>
                 <Link to="/admin/new_product" className="py-2 px-5 rounded-full shadow font-medium text-white bg-primary-green hover:bg-black">New Product</Link>
             </div>
-            <div className="bg-white rounded-sm border border-gray-300 w-full" style={{ height: 470 }}>
+            <div className="bg-white rounded-sm border border-gray-300 w-full" style={{ height: "78vh" }}>
 
                 <DataGrid
                     rows={rows}

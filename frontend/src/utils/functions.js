@@ -15,3 +15,8 @@ export const formatDate = (dt) => {
 export const getRandomProducts = (prodsArray, n) => {
     return prodsArray.sort(() => 0.5 - Math.random()).slice(0, n)
 }
+
+export const getRelatedProducts = (prodsArray, n, id) => {
+    prodsArray = prodsArray.filter((product, i) => product._id !== id)
+    return prodsArray.sort(() => 0.5 - Math.random()).slice(0, n)
+}

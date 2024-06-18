@@ -130,3 +130,14 @@ body {
       transform: translateX(0);
   }
 }
+
+/* related products */
+.related-product-slider .slick-track {
+  margin-left:0;
+}
+.related-product-slider .slick-prev {
+  left: 0;
+}
+.related-product-slider .slick-next {
+  right: 0;
+}

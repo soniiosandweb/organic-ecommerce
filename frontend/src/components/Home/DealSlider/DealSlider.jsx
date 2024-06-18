@@ -1,10 +1,10 @@
 import Product from './Product';
 import Slider from 'react-slick';
 import { NextBtn, PreviousBtn } from '../Banner/Banner';
-import { getRandomProducts } from '../../../utils/functions';
+import { getRelatedProducts } from '../../../utils/functions';
 import { useSelector } from 'react-redux';
 
-const DealSlider = ({ title }) => {
+const DealSlider = ({ title, id }) => {
 
     const { loading, products } = useSelector((state) => state.products);
 
@@ -17,7 +17,6 @@ const DealSlider = ({ title }) => {
         slidesToScroll: 1,
         swipe: false,
         pauseOnHover: true,
-        arrows: false,
         prevArrow: <PreviousBtn />,
         nextArrow: <NextBtn />,
         responsive: [
@@ -48,16 +47,19 @@ const DealSlider = ({ title }) => {
     return (
         <section className="bg-white w-full overflow-hidden py-16">
             {/* <!-- header --> */}
-            <div className="flex px-6 pb-10 justify-center items-center">
+            <div className="flex px-6 pb-10 justify-start items-center">
                 <h2 className="text-3xl font-semibold">{title}</h2>
             </div>
             {/* <!-- header --> */}
             {loading ? null :
-                <Slider {...settings} >
-                    {products && getRandomProducts(products, 9).map((item, i) => (
-                        <Product {...item} key={i} />
-                    ))}
-                </Slider>
+                products && getRelatedProducts(products, 9, id).length ? 
+                    <Slider {...settings} className='related-product-slider' >
+                        {products && getRelatedProducts(products, 9, id).map((item, i) => (
+                            <Product {...item} key={i} />
+                        ))}
+                    </Slider>
+                : 
+                <p className='px-6 text-md'>No Product Found</p>
             }
         </section>
     );

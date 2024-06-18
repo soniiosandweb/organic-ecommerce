@@ -127,7 +127,7 @@ const ReviewsTable = () => {
                     ))}
                 </select>
             </div>
-            <div className="bg-white rounded-sm border border-gray-300 w-full" style={{ height: 450 }}>
+            <div className="bg-white rounded-sm border border-gray-300 w-full" style={{ height: "78vh" }}>
 
                 <DataGrid
                     rows={rows}

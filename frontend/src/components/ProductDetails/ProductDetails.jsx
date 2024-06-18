@@ -322,7 +322,7 @@ const ProductDetails = () => {
 
                             {/* Sliders */}
                             <div className="flex flex-col gap-3 mt-10">
-                                <DealSlider title={"Related Products"} />
+                                <DealSlider title={"Related Products"} id={product._id} />
                             </div>
                         </div>
                     </main>
