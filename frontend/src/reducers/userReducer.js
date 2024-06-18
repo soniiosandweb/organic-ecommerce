@@ -40,6 +40,9 @@ import {
     DELETE_USER_RESET,
     DELETE_USER_FAIL,
     REMOVE_USER_DETAILS,
+    LOGIN_ADMIN_REQUEST,
+    LOGIN_ADMIN_SUCCESS,
+    LOGIN_ADMIN_FAIL,
 } from '../constants/userConstants';
 
 export const userReducer = (state = { user: {} }, { type, payload }) => {
@@ -47,6 +50,7 @@ export const userReducer = (state = { user: {} }, { type, payload }) => {
         case LOGIN_USER_REQUEST:
         case REGISTER_USER_REQUEST:
         case LOAD_USER_REQUEST:
+        case LOGIN_ADMIN_REQUEST:
             return {
                 loading: true,
                 isAuthenticated: false,
@@ -54,6 +58,7 @@ export const userReducer = (state = { user: {} }, { type, payload }) => {
         case LOGIN_USER_SUCCESS:
         case REGISTER_USER_SUCCESS:
         case LOAD_USER_SUCCESS:
+        case LOGIN_ADMIN_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -68,6 +73,7 @@ export const userReducer = (state = { user: {} }, { type, payload }) => {
             };
         case LOGIN_USER_FAIL:
         case REGISTER_USER_FAIL:
+        case LOGIN_ADMIN_FAIL:
             return {
                 ...state,
                 loading: false,

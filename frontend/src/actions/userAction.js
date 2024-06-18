@@ -35,6 +35,9 @@ import {
     ALL_USERS_FAIL,
     ALL_USERS_SUCCESS,
     ALL_USERS_REQUEST,
+    LOGIN_ADMIN_REQUEST,
+    LOGIN_ADMIN_SUCCESS,
+    LOGIN_ADMIN_FAIL,
 } from '../constants/userConstants';
 import axios from 'axios';
 
@@ -64,6 +67,37 @@ export const loginUser = (email, password) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: LOGIN_USER_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+// Login Admin
+export const loginAdmin = (email, password) => async (dispatch) => {
+    try {
+
+        dispatch({ type: LOGIN_ADMIN_REQUEST });
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+
+        const { data } = await axios.post(
+            '/api/v1/admin/login',
+            { email, password },
+            config
+        );
+
+        dispatch({
+            type: LOGIN_ADMIN_SUCCESS,
+            payload: data.user,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: LOGIN_ADMIN_FAIL,
             payload: error.response.data.message,
         });
     }

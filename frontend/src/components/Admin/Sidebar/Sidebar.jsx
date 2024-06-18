@@ -73,7 +73,7 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
     const handleLogout = () => {
         dispatch(logoutUser());
         enqueueSnackbar("Logout Successfully", { variant: "success" });
-        navigate("/login");
+        navigate("/admin");
     }
 
     const handleClose = () => {

@@ -4,7 +4,7 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import StarIcon from '@mui/icons-material/Star';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import DashboardIcon from '@mui/icons-material/Dashboard';
+// import DashboardIcon from '@mui/icons-material/Dashboard';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
@@ -20,7 +20,11 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
 
     const handleLogout = () => {
         dispatch(logoutUser());
-        navigate("/login");
+        if(user.role === "admin"){
+            navigate("/admin");
+        } else {
+            navigate("/login");
+        }
         enqueueSnackbar("Logout Successfully", { variant: "success" });
         setOpen(false);
     }
@@ -50,12 +54,12 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
     return (
         <div className=" w-60 bg-white shadow-2xl rounded flex-col text-md">
 
-            {user.role === "admin" &&
+            {/* {user.role === "admin" &&
                 <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-50 rounded-t" to="/admin/dashboard">
                     <span className="text-primary-green"><DashboardIcon sx={{ fontSize: "18px" }} /></span>
                     Admin Dashboard
                 </Link>
-            }
+            } */}
 
             <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-50 rounded-t" to="/account">
                 <span className="text-primary-green"><AccountCircleIcon sx={{ fontSize: "18px" }} /></span>

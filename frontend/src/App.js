@@ -48,6 +48,7 @@ import Rating from './components/Rating/Rating';
 import NewCategory from './components/Admin/NewCategory';
 import CategoriesTable from './components/Admin/CategoriesTable';
 import UpdateCategory from './components/Admin/UpdateCategory';
+import AdminLogin from './components/Admin/AdminLogin';
 
 function App() {
 
@@ -195,6 +196,10 @@ function App() {
           <ProtectedRoute>
             <Rating />
           </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin" element={
+          <AdminLogin />
         } ></Route>
 
         <Route path="/admin/dashboard" element={

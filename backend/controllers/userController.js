@@ -51,6 +51,37 @@ exports.loginUser = asyncErrorHandler(async (req, res, next) => {
         return next(new ErrorHandler("Invalid Email or Password", 401));
     }
 
+    if(user.role === 'admin') {
+        return next(new ErrorHandler("Invalid User Role", 401));
+    }
+
+    sendToken(user, 201, res);
+});
+
+// Login Admin
+exports.loginAdmin = asyncErrorHandler(async (req, res, next) => {
+    const { email, password } = req.body;
+
+    if(!email || !password) {
+        return next(new ErrorHandler("Please Enter Email And Password", 400));
+    }
+
+    const user = await User.findOne({ email}).select("+password");
+
+    if(!user) {
+        return next(new ErrorHandler("Invalid Email or Password", 401));
+    }
+
+    const isPasswordMatched = await user.comparePassword(password);
+
+    if(!isPasswordMatched) {
+        return next(new ErrorHandler("Invalid Email or Password", 401));
+    }
+
+    if(user.role !== 'admin') {
+        return next(new ErrorHandler("Invalid User Role", 401));
+    }
+
     sendToken(user, 201, res);
 });
 
