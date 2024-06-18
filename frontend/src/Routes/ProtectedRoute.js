@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children, isAdmin }) => {
     return (
         <>
             {loading === false && (
-                isAuthenticated === false ? <Navigate to="/login" /> : isAdmin ? user.role !== "admin" ? <Navigate to="/login" /> : children : children
+                isAuthenticated === false ? isAdmin ? <Navigate to="/admin" /> : <Navigate to="/login" /> : isAdmin ? user.role !== "admin" ? <Navigate to="/login" /> : children : children
             )}
         </>
     );

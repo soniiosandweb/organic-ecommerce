@@ -196,6 +196,16 @@ const ProductDetails = () => {
 
                                         {/* <!-- highlights & services details --> */}
                                         <div className="flex flex-col sm:flex-col justify-between">
+                                            {/* <!-- category details --> */}
+                                            <div className="flex gap-16 mt-4 items-stretch text-md">
+                                                <p className="text-black font-medium">Category</p>
+
+                                                <p className="flex flex-col gap-2 w-64 text-black font-medium">
+                                                    {product.category ? product.category.name : null}
+                                                </p>
+                                            </div>
+                                            {/* <!-- category details --> */}
+
                                             {/* <!-- highlights details --> */}
                                             <div className="flex gap-16 mt-4 items-stretch text-md">
                                                 <p className="text-black font-medium">Highlights</p>

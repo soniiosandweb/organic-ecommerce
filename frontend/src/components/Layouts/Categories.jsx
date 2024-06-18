@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAllCategories } from '../../actions/categoryAction';
+import { getCategories } from '../../actions/categoryAction';
 
 const Categories = () => {
 
@@ -9,7 +9,7 @@ const Categories = () => {
     const { categories } = useSelector((state) => state.allCategories);
 
     useEffect(()=>{
-        dispatch(getAllCategories());
+        dispatch(getCategories());
     },[dispatch]);
 
     return (

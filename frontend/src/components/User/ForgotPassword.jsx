@@ -66,9 +66,11 @@ const ForgotPassword = () => {
                                         fullWidth
                                         label="Email"
                                         type="email"
+                                        id='email'
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         required
+                                        autoComplete='email'
                                     />
 
                                     {/* <!-- button container --> */}

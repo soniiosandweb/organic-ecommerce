@@ -80,7 +80,7 @@ const MainData = () => {
             {
                 backgroundColor: ['#ef4444', '#008000'],
                 hoverBackgroundColor: ['#dc2626', '#16a34a'],
-                data: [outOfStock, (products.length ? products.length : 0) - outOfStock],
+                data: [outOfStock, (products && products.length ? products.length : 0) - outOfStock],
             },
         ],
     };
@@ -103,7 +103,7 @@ const MainData = () => {
         <>
             <MetaData title="Admin Dashboard | Organic" />
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-6">
                 <div className="flex flex-col bg-purple-600 text-white gap-2 rounded-xl shadow-lg hover:shadow-xl p-6">
                     <h4 className="text-gray-100 font-medium">Total Sales Amount</h4>
                     <h2 className="text-2xl font-bold">₹{totalAmount?.toLocaleString()}</h2>
@@ -122,23 +122,23 @@ const MainData = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-8 min-w-full">
-                <div className="bg-white rounded-xl border border-gray-300 h-auto w-full shadow-lg p-2">
+            <div className="flex flex-col md:flex-row justify-between gap-3 lg:gap-8 w-full">
+                <div className="w-full md:w-2/3 bg-white rounded-xl border border-gray-300 h-auto shadow-lg p-2">
                     <Line data={lineState} />
                 </div>
 
-                <div className="bg-white rounded-xl border border-gray-300 shadow-lg p-4 text-center">
+                <div className="w-full md:w-1/3 bg-white rounded-xl border border-gray-300 shadow-lg py-4 text-center">
                     <span className="font-medium uppercase text-gray-800">Order Status</span>
                     <Pie data={pieState} />
                 </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-8 min-w-full mb-6">
-                <div className="bg-white rounded-xl border border-gray-300 h-auto w-full shadow-lg p-2">
+            <div className="flex flex-col md:flex-row justify-between gap-3 lg:gap-8 w-full mb-6">
+                <div className="w-full md:w-2/3 bg-white rounded-xl border border-gray-300 h-auto shadow-lg p-2">
                     <Bar data={barState} />
                 </div>
 
-                <div className="bg-white rounded-xl border border-gray-300 shadow-lg p-4 text-center">
+                <div className="w-full md:w-1/3 bg-white rounded-xl border border-gray-300 shadow-lg py-4 text-center">
                     <span className="font-medium uppercase text-gray-800">Stock Status</span>
                     <Doughnut data={doughnutState} />
                 </div>

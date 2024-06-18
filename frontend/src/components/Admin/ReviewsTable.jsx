@@ -116,7 +116,7 @@ const ReviewsTable = () => {
             <MetaData title="Admin Reviews | Organic" />
 
             {loading && <BackdropLoader />}
-            <div className="flex justify-between items-center gap-2 sm:gap-12 pb-5 border-b border-gray-300">
+            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-12 pb-5 border-b border-gray-300">
                 <h1 className="text-xl font-semibold capitalize">reviews</h1>
                 <select value={productId} onChange={(e) => productListChange(e)} className="outline-none rounded px-5 py-3 w-full border border-gray-300">
                     <option value="">Select Product</option>

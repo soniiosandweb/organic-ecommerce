@@ -56,9 +56,9 @@ const UpdateOrder = () => {
                         <div className="flex flex-col gap-4">
                             <Link to="/admin/orders" className="ml-1 flex items-center gap-0 font-medium text-primary-green uppercase"><ArrowBackIosIcon sx={{ fontSize: "18px" }} />Go Back</Link>
 
-                            <div className="flex flex-col sm:flex-row bg-white shadow-lg rounded-sm border border-gray-300 min-w-full">
-                                <div className="sm:w-1/2 border-r border-gray-300">
-                                    <div className="flex flex-col gap-3 my-8 mx-10">
+                            <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-sm border border-gray-300 min-w-full">
+                                <div className="flex-1 w-full md:w-1/2 border-b md:border-b-0 md:border-r border-gray-300">
+                                    <div className="flex flex-col gap-3 p-4 sm:p-8">
                                         <h3 className="font-semibold text-lg">Delivery Address</h3>
                                         <h4 className="font-medium">{order.user.name}</h4>
                                         <p className="text-md">{`${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state} - ${order.shippingInfo.pincode}`}</p>
@@ -73,7 +73,7 @@ const UpdateOrder = () => {
                                     </div>
                                 </div>
 
-                                <form onSubmit={updateOrderSubmitHandler} className="flex flex-col gap-3 p-8">
+                                <form onSubmit={updateOrderSubmitHandler} className="flex flex-col gap-3 p-4 sm:p-8 flex-1">
                                     <h3 className="font-semibold text-lg">Update Status</h3>
                                     <div className="flex gap-2">
                                         <p className="text-md font-medium">Current Status:</p>
@@ -108,9 +108,9 @@ const UpdateOrder = () => {
                                 const { _id, image, name, price, quantity } = item;
 
                                 return (
-                                    <div className="flex flex-col sm:flex-row min-w-full shadow-lg rounded-sm border border-gray-300 bg-white px-2 py-5" key={_id}>
+                                    <div className="flex flex-col md:flex-row min-w-full shadow-lg rounded-sm border border-gray-300 bg-white px-2 py-5" key={_id}>
 
-                                        <div className="flex flex-col sm:flex-row sm:w-1/2 gap-1">
+                                        <div className="flex flex-col sm:flex-row md:w-1/2 gap-1 mb-10 md:mb-0">
                                             <div className="w-full sm:w-32 h-24">
                                                 <img draggable="false" className="h-full w-full object-contain" src={image} alt={name} />
                                             </div>
@@ -122,7 +122,7 @@ const UpdateOrder = () => {
                                             </div>
                                         </div>
 
-                                        <div className="flex flex-col w-full sm:w-1/2">
+                                        <div className="flex flex-col w-full md:w-1/2">
                                             <h3 className="font-semibold text-lg sm:text-center">Order Status</h3>
                                             <TrackStepper
                                                 orderOn={order.createdAt}

@@ -31,7 +31,7 @@ const Register = () => {
     const { name, email, gender, password, cpassword } = user;
 
     const [avatar, setAvatar] = useState();
-    const [avatarPreview, setAvatarPreview] = useState("preview.png");
+    const [avatarPreview, setAvatarPreview] = useState("");
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -123,6 +123,7 @@ const Register = () => {
                                         onChange={handleDataChange}
                                         required
                                         className='flex-1'
+                                        autoComplete='name'
                                     />
                                     <TextField
                                         fullWidth
@@ -134,6 +135,7 @@ const Register = () => {
                                         onChange={handleDataChange}
                                         required
                                         className='flex-1'
+                                        autoComplete='email'
                                     />
                                 </div>
                                 {/* <!-- input container column --> */}

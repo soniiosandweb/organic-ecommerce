@@ -1,10 +1,12 @@
 const express = require('express');
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
-const { getAllCategories, updateCategory, deleteCategory, getSingleCategory, addCategory } = require('../controllers/categoryController');
+const { getAllCategories, updateCategory, deleteCategory, getSingleCategory, addCategory, getCategories } = require('../controllers/categoryController');
 
 const router = express.Router();
 
 router.route('/categories').get(getAllCategories);
+
+router.route('/limitcat').get(getCategories);
 
 router.route('/admin/category/add').post(isAuthenticatedUser, authorizeRoles("admin"), addCategory);
 

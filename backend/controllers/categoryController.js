@@ -69,6 +69,17 @@ exports.getAllCategories = asyncErrorHandler(async (req, res, next) => {
     });
 });
 
+// Get Limited Categories 
+exports.getCategories = asyncErrorHandler(async (req, res, next) => {
+
+    const categories = await Categories.find().limit(6);
+
+    res.status(200).json({
+        success: true,
+        categories,
+    });
+});
+
 // Get Single Category Details
 exports.getSingleCategory = asyncErrorHandler(async (req, res, next) => {
 

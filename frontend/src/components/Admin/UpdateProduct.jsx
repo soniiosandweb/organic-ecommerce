@@ -142,7 +142,7 @@ const UpdateProduct = () => {
 
             <form onSubmit={newProductSubmitHandler} encType="multipart/form-data" className="flex flex-col bg-white rounded-sm border border-gray-300 shadow gap-5 p-3 lg:p-5" id="mainform">
 
-                <div className="flex flex-col gap-3 w-full lg:w-2/3">
+                <div className="flex flex-col gap-3 w-full xl:w-2/3">
                     <TextField
                         label="Name"
                         variant="outlined"
@@ -153,7 +153,7 @@ const UpdateProduct = () => {
                     />
                 </div>
 
-                <div className="flex flex-col gap-3 w-full lg:w-2/3">
+                <div className="flex flex-col gap-3 w-full xl:w-2/3">
                     <TextField
                         label="Description"
                         multiline
@@ -166,7 +166,7 @@ const UpdateProduct = () => {
                     />
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-3 w-full lg:w-2/3">
+                <div className="flex flex-col md:flex-row gap-3 w-full xl:w-2/3">
                     <TextField
                         label="Price"
                         type="number"
@@ -199,7 +199,7 @@ const UpdateProduct = () => {
                     />
                 </div>
 
-                <div className="flex justify-between gap-4  lg:w-2/3">
+                <div className="flex justify-between gap-4 flex-col md:flex-row xl:w-2/3">
                     <TextField   
                         label="Category" 
                         select
@@ -249,7 +249,7 @@ const UpdateProduct = () => {
                     />
                 </div>
 
-                <div className="flex flex-col gap-2  lg:w-2/3">
+                <div className="flex flex-col gap-2 xl:w-2/3">
 
                     <div className="flex justify-between items-center relative">
                         <TextField
@@ -276,7 +276,7 @@ const UpdateProduct = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-2  lg:w-2/3">
+                <div className="flex flex-col gap-2 xl:w-2/3">
 
                     <h2 className="font-medium">Product Images</h2>
                     <div className="flex flex-wrap gap-3 justify-center items-center overflow-x-auto h-full min-h-40 border rounded border-gray-300">
@@ -301,7 +301,7 @@ const UpdateProduct = () => {
                     </label>
                 </div>
 
-                <div className="flex flex-col gap-2  lg:w-1/3">
+                <div className="flex flex-col gap-2 sm:w-1/3">
                     <input form="mainform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-full shadow hover:bg-black cursor-pointer" value="Update" name="updateProduct"/>
                 </div>
 

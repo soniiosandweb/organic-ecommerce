@@ -87,7 +87,7 @@ const NewCategory = () => {
                     
                 </div>
 
-                <div className="flex flex-col gap-2 w-full lg:w-2/3">
+                <div className="flex flex-col gap-2 w-full lg:w-2/3 xl:w-1/3">
                 
                     <h2 className="font-medium">Category Image</h2>
                     <div className="w-full flex gap-2 justify-center items-center overflow-x-auto h-32 border border-gray-300 rounded">
@@ -108,7 +108,7 @@ const NewCategory = () => {
 
                 </div>
 
-                <div className="flex flex-col gap-2 w-full lg:w-1/3">
+                <div className="flex flex-col gap-2 w-full sm:w-1/3">
                     <input form="categoryform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-full shadow hover:bg-black cursor-pointer" value="Submit" />
                 </div>
 

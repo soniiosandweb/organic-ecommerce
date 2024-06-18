@@ -142,7 +142,7 @@ const UpdateUser = () => {
                             </TextField>
                         </div>
                                 
-                        <div className="flex flex-col gap-2  lg:w-1/3">
+                        <div className="flex flex-col gap-2 sm:w-1/3">
                             <input form="mainform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-full shadow hover:bg-black cursor-pointer" value="Update" name="updateProduct"/>
                         </div>
                     </form>

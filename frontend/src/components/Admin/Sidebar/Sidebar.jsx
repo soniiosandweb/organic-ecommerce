@@ -6,7 +6,6 @@ import GroupIcon from '@mui/icons-material/Group';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import LogoutIcon from '@mui/icons-material/Logout';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CloseIcon from '@mui/icons-material/Close';
 import Avatar from '@mui/material/Avatar';
 import CategoryIcon from '@mui/icons-material/Category';
@@ -14,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './Sidebar.css';
 import { useSnackbar } from 'notistack';
 import { logoutUser } from '../../../actions/userAction';
+import logo from '../../../assets/images/logo-white.png';
 
 const navMenu = [
     {
@@ -52,11 +52,6 @@ const navMenu = [
         ref: "/admin/categories",
     },
     {
-        icon: <AccountBoxIcon />,
-        label: "My Profile",
-        ref: "/account",
-    },
-    {
         icon: <LogoutIcon />,
         label: "Logout",
     },
@@ -80,8 +75,21 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
         setToggleSidebar(false)
     }
 
+    const menuClick = () => {
+        if (window.innerWidth < 1024 ) {
+            setToggleSidebar(false);
+        }
+    }
+
     return (
-        <aside className="sidebar z-10 lg:z-0 block min-h-screen fixed left-0 pb-14 max-h-screen w-3/4 lg:w-1/4 xl:w-1/5 bg-gray-800 text-white overflow-x-hidden border-r">
+        <aside className="sidebar z-10 lg:z-0 block min-h-screen fixed left-0 pb-14 max-h-screen w-full sm:w-3/4 lg:w-1/4 xl:w-1/5 bg-gray-800 text-white overflow-x-hidden border-r">
+
+            <div className="flex items-center p-2 my-4 mx-3.5">
+                <Link className="h-16 flex w-max mx-auto" to="/">
+                    <img draggable="false" className="h-full w-full object-contain" src={logo} alt="Organic Logo" />
+                </Link>
+            </div>
+
             <div className="flex items-center gap-3 bg-gray-700 p-2 rounded-lg shadow-lg my-4 mx-3.5">
                 <Avatar
                     alt="Avatar"
@@ -107,7 +115,7 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
                                     <span>{label}</span>
                                 </button>
                             ) : (
-                                <Link to={ref} className={`${activeTab === index ? "bg-gray-700" : "hover:bg-gray-700"} flex gap-3 items-center py-3 px-4 font-medium`}>
+                                <Link to={ref} onClick={menuClick} className={`${activeTab === index ? "bg-gray-700" : "hover:bg-gray-700"} flex gap-3 items-center py-3 px-4 font-medium`}>
                                     <span>{icon}</span>
                                     <span>{label}</span>
                                 </Link>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALL_CATEGORY_FAIL, ALL_CATEGORY_REQUEST, ALL_CATEGORY_SUCCESS, CATEGORY_DETAILS_FAIL, CATEGORY_DETAILS_REQUEST, CATEGORY_DETAILS_SUCCESS, CLEAR_ERRORS, DELETE_CATEGORY_FAIL, DELETE_CATEGORY_REQUEST, DELETE_CATEGORY_SUCCESS, NEW_CATEGORY_FAIL, NEW_CATEGORY_REQUEST, NEW_CATEGORY_SUCCESS, UPDATE_CATEGORY_FAIL, UPDATE_CATEGORY_REQUEST, UPDATE_CATEGORY_SUCCESS } from "../constants/categoryConstants";
+import { ALL_CATEGORY_FAIL, ALL_CATEGORY_REQUEST, ALL_CATEGORY_SUCCESS, CATEGORY_DETAILS_FAIL, CATEGORY_DETAILS_REQUEST, CATEGORY_DETAILS_SUCCESS, CLEAR_ERRORS, DELETE_CATEGORY_FAIL, DELETE_CATEGORY_REQUEST, DELETE_CATEGORY_SUCCESS, LIMIT_CATEGORY_FAIL, LIMIT_CATEGORY_REQUEST, LIMIT_CATEGORY_SUCCESS, NEW_CATEGORY_FAIL, NEW_CATEGORY_REQUEST, NEW_CATEGORY_SUCCESS, UPDATE_CATEGORY_FAIL, UPDATE_CATEGORY_REQUEST, UPDATE_CATEGORY_SUCCESS } from "../constants/categoryConstants";
 
 
 // New Category ---ADMIN
@@ -36,6 +36,26 @@ export const getAllCategories = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ALL_CATEGORY_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+// Get Limited Categories
+export const getCategories = () => async (dispatch) => {
+    try {
+        dispatch({ type: LIMIT_CATEGORY_REQUEST });
+
+        const { data } = await axios.get('/api/v1/limitcat');
+
+        dispatch({
+            type: LIMIT_CATEGORY_SUCCESS,
+            payload: data.categories,
+        })
+
+    } catch (error) {
+        dispatch({
+            type: LIMIT_CATEGORY_FAIL,
             payload: error.response.data.message,
         });
     }
