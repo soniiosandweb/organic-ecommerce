@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.272ba696.css",
+    "main.js": "/static/js/main.06825d91.js",
+    "static/media/banner3.jpg": "/static/media/banner3.520cdee8cb78009d01e7.jpg",
+    "static/media/banner2.jpg": "/static/media/banner2.edb6b43829c2f2029fa5.jpg",
+    "static/media/banner1.jpg": "/static/media/banner1.76fd73a69694186a96af.jpg",
+    "static/media/about-img.png": "/static/media/about-img.87eaf3f82abb5d85cbd9.png",
+    "static/media/bg-11.jpg": "/static/media/bg-11.fee6b8fb6e52ea6eddf7.jpg",
+    "static/media/login.jpg": "/static/media/login.dbdb46ecfca4ec05d008.jpg",
+    "static/media/about-img2.jpg": "/static/media/about-img2.bc520de526592efa64fb.jpg",
+    "static/media/excellence.png": "/static/media/excellence.5ed1d28de8392019b9cc.png",
+    "static/media/bg-2.jpg": "/static/media/bg-2.83f9eb2e8a356527e91a.jpg",
+    "static/media/banner-1.jpg": "/static/media/banner-1.f4a06696ccd1b33d5622.jpg",
+    "static/media/banner-3.jpg": "/static/media/banner-3.ee368d78ea5bae164d31.jpg",
+    "static/media/trending.jpg": "/static/media/trending.c044ea81e27d716fc3f7.jpg",
+    "static/media/success.png": "/static/media/success.a6e71fb67ec0538ff2ee.png",
+    "static/media/failed.png": "/static/media/failed.25f9a5080785b1e6642c.png",
+    "static/media/banner-2.jpg": "/static/media/banner-2.399c5914d0ebe3bc2131.jpg",
+    "static/media/payment-methods.svg": "/static/media/payment-methods.0f0c82a507af21fad4920fa75a48a0d2.svg",
+    "static/media/empty-cart.webp": "/static/media/empty-cart.c1b29ed47e2361efe393.webp",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/no-result.webp": "/static/media/no-result.e9befe8d0935315dd8d4.webp",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.272ba696.css",
+    "static/js/main.06825d91.js"
+  ]
+}
