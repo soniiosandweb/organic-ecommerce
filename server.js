@@ -34,19 +34,19 @@ if (process.env.NODE_ENV === 'production') {
         res.send('Server is Running! 🚀');
     });
 }
-const server = http.createServer((req, res) => {
-    // Set the response header
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    // Write some text to the response
-    res.end('Welcome to my simple Node.js app!');
-});
-// const server = app.listen(PORT, () => {
-//     console.log(`Server running on http://localhost:${PORT}`)
+// const server = http.createServer((req, res) => {
+//     // Set the response header
+//     res.writeHead(200, {'Content-Type': 'text/plain'});
+//     // Write some text to the response
+//     res.end('Welcome to my simple Node.js app!');
 // });
-const port = 3000;
-server.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+const server = app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`)
 });
+// const port = 3000;
+// server.listen(port, () => {
+//     console.log(`Server is running on http://localhost:${port}`);
+// });
 
 // Unhandled Promise Rejection
 process.on('unhandledRejection', (err) => {
