@@ -40,7 +40,7 @@ const Products = () => {
 
     const { products, loading, error, resultPerPage, filteredProductsCount } = useSelector((state) => state.products);
 
-    const { categories } = useSelector((state) => state.allCategories);
+    const { categories, loading: categoriesLoading } = useSelector((state) => state.allCategories);
 
     const keyword = params.keyword;
 
@@ -59,9 +59,12 @@ const Products = () => {
             enqueueSnackbar(error, { variant: "error" });
             dispatch(clearErrors());
         }
-        dispatch(getAllCategories());
+        if(categoriesLoading === undefined){
+            dispatch(getAllCategories());
+        }
+        
         dispatch(getProducts(keyword, category, price, ratings, currentPage));
-    }, [dispatch, keyword, category, price, ratings, currentPage, error, enqueueSnackbar]);
+    }, [dispatch, keyword, category, price, ratings, currentPage, error, enqueueSnackbar, categoriesLoading]);
 
     return (
         <>

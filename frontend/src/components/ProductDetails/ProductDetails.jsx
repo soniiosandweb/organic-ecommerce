@@ -99,7 +99,7 @@ const ProductDetails = () => {
 
     const buyNow = () => {
         addToCartHandler();
-        navigate('/shipping');
+        navigate('/userdetails');
     }
 
     useEffect(() => {

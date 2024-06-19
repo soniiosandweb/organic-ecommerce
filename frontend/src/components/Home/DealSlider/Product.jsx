@@ -29,7 +29,7 @@ const Product = (props) => {
     }
 
     return (
-        <div className="gap-2 px-4 relative w-full h-full">
+        <div className="gap-2 relative w-full h-full">
 
             <div className="flex flex-col items-center gap-2 p-4 relative border shadow-lg w-full h-full">
                 {/* <!-- image & product title --> */}

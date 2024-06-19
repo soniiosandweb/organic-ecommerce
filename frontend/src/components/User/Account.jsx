@@ -62,7 +62,7 @@ const Account = () => {
             setName(user.name);
             setEmail(user.email);
             setGender(user.gender);
-            setAvatarPreview(user.avatar.url);
+            setAvatarPreview(user.avatar && user.avatar.url);
         }
         if (error) {
             enqueueSnackbar(error, { variant: "error" });

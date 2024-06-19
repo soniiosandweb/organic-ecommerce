@@ -5,7 +5,7 @@ import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import TextField from '@mui/material/TextField';
 import BackdropLoader from "../Layouts/BackdropLoader";
-import { clearErrors, loginAdmin } from "../../actions/userAction";
+import { clearErrors, loadPaymentKey, loginAdmin } from "../../actions/userAction";
 import logo from '../../assets/images/logo.png';
 
 const AdminLogin = () => {
@@ -30,6 +30,7 @@ const AdminLogin = () => {
             dispatch(clearErrors());
         }
         if (isAuthenticated) {
+            dispatch(loadPaymentKey())
             navigate("/admin/dashboard")
         }
     }, [dispatch, error, isAuthenticated, navigate, enqueueSnackbar]);

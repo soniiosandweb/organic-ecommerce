@@ -43,6 +43,9 @@ import {
     LOGIN_ADMIN_REQUEST,
     LOGIN_ADMIN_SUCCESS,
     LOGIN_ADMIN_FAIL,
+    LOAD_PAYMENT_REQUEST,
+    LOAD_PAYMENT_SUCCESS,
+    LOAD_PAYMENT_FAIL,
 } from '../constants/userConstants';
 
 export const userReducer = (state = { user: {} }, { type, payload }) => {
@@ -253,6 +256,30 @@ export const userDetailsReducer = (state = { user: {} }, { type, payload }) => {
             return {
                 ...state,
                 error: null,
+            };
+        default:
+            return state;
+    }
+};
+
+export const PaymentKeysReducer = (state = { paymentKey: {} }, { type, payload }) => {
+    switch (type) {
+        case LOAD_PAYMENT_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            };
+        case LOAD_PAYMENT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                paymentKey: payload,
+            };
+        case LOAD_PAYMENT_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: payload,
             };
         default:
             return state;

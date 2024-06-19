@@ -47,7 +47,7 @@ const DealSlider = ({ title, id }) => {
     return (
         <section className="bg-white w-full overflow-hidden py-16">
             {/* <!-- header --> */}
-            <div className="flex px-6 pb-10 justify-start items-center">
+            <div className="flex pb-10 justify-start items-center">
                 <h2 className="text-3xl font-semibold">{title}</h2>
             </div>
             {/* <!-- header --> */}
@@ -59,7 +59,7 @@ const DealSlider = ({ title, id }) => {
                         ))}
                     </Slider>
                 : 
-                <p className='px-6 text-md'>No Product Found</p>
+                <p className='text-md'>No Product Found</p>
             }
         </section>
     );

@@ -53,7 +53,7 @@ const ProductSlider = ({ title, tagline }) => {
         <>
         {loading ? null : 
 
-         products.length ? 
+         products && products.length ? 
             <section className="bg-white w-full overflow-hidden">
                 <div className="py-16 sm:w-11/12 m-auto px-4 w-full flex flex-col">
                     {/* <!-- header --> */}

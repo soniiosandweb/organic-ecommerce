@@ -134,6 +134,11 @@ body {
 /* related products */
 .related-product-slider .slick-track {
   margin-left:0;
+  display: flex;
+  gap: 20px;
+}
+.related-product-slider .slick-slide{
+  display: flex;
 }
 .related-product-slider .slick-prev {
   left: 0;

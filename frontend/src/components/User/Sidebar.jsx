@@ -7,6 +7,7 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { logoutUser } from '../../actions/userAction';
+import { Avatar } from '@mui/material';
 
 const Sidebar = ({ activeTab }) => {
 
@@ -29,7 +30,11 @@ const Sidebar = ({ activeTab }) => {
             <div className="flex items-center gap-4 p-3 bg-white border border-gray-300 shadow">
                 {/* <!-- user icon --> */}
                 <div className="w-12 h-12 rounded-full">
-                    <img draggable="false" className="h-full w-full object-cover rounded-full" src={user.avatar.url} alt="Avatar" />
+                    <Avatar
+                        alt="Avatar Preview"
+                        src={user.avatar && user.avatar.url}
+                        sx={{ width: 48, height: 48 }}
+                    />
                 </div>
                 {/* <!-- user icon --> */}
                 <div className="flex flex-col gap-1">

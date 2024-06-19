@@ -7,6 +7,7 @@ import { DELETE_USER_RESET } from '../../constants/userConstants';
 import Actions from './Actions';
 import MetaData from '../Layouts/MetaData';
 import BackdropLoader from '../Layouts/BackdropLoader';
+import { Avatar } from '@mui/material';
 
 const UserTable = () => {
 
@@ -46,7 +47,11 @@ const UserTable = () => {
                 return (
                     <div className="flex items-center gap-2">
                         <div className="w-10 h-10 rounded-full">
-                            <img draggable="false" src={params.row.avatar} alt={params.row.name} className="w-full h-full rounded-full object-cover" />
+                            <Avatar
+                                alt={params.row.name}
+                                src={params.row.avatar}
+                                sx={{ width: 40, height: 40 }}
+                            />
                         </div>
                         {params.row.name}
                     </div>
@@ -112,9 +117,9 @@ const UserTable = () => {
         rows.unshift({
             id: item._id,
             name: item.name,
-            avatar: item.avatar.url,
+            avatar: item.avatar && item.avatar.url,
             email: item.email,
-            gender: item.gender.toUpperCase(),
+            gender: item.gender && item.gender.toUpperCase(),
             role: item.role,
             registeredOn: new Date(item.createdAt).toISOString().substring(0, 10),
         });

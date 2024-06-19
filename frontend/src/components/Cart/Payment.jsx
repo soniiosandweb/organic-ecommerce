@@ -22,6 +22,7 @@ import MetaData from '../Layouts/MetaData';
 import { useNavigate } from "react-router-dom";
 import { newOrderData } from '../../actions/orderAction';
 import { emptyCart } from '../../actions/cartAction';
+import Loader from '../Layouts/Loader';
 
 const Payment = () => {
 
@@ -33,6 +34,8 @@ const Payment = () => {
     const paymentBtn = useRef(null);
 
     // const [payDisable, setPayDisable] = useState(false);
+
+    const { loading } = useSelector((state) => state.paymentKey);
 
     const { shippingInfo, cartItems } = useSelector((state) => state.cart);
     const { user } = useSelector((state) => state.user);
@@ -159,70 +162,74 @@ const Payment = () => {
         <>
             <MetaData title="Organic: Secure Payment | Paytm" />
 
-            <main className="w-full py-16 px-4">
+            {loading ? <Loader /> : 
 
-                {/* <!-- row --> */}
-                <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7">
+                <main className="w-full py-16 px-4">
 
-                    {/* <!-- cart column --> */}
-                    <div className="flex-1">
+                    {/* <!-- row --> */}
+                    <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7">
 
-                        <Stepper activeStep={3}>
-                            <div className="w-full bg-white">
+                        {/* <!-- cart column --> */}
+                        <div className="flex-1">
 
-                               {/* <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start gap-2 w-full mx-8 my-4 overflow-hidden">
-                                    <FormControl>
-                                        <RadioGroup
-                                            aria-labelledby="payment-radio-group"
-                                            defaultValue="paytm"
-                                            name="payment-radio-button"
-                                        >
-                                            <FormControlLabel
-                                                value="paytm"
-                                                control={<Radio />}
-                                                label={
-                                                    <div className="flex items-center gap-4">
-                                                        <img draggable="false" className="h-6 w-6 object-contain" src={paytm} alt="Paytm Logo" />
-                                                        <span>Paytm</span>
-                                                    </div>
-                                                }
-                                            />
-                                        </RadioGroup>
-                                    </FormControl>
+                            <Stepper activeStep={3}>
+                                <div className="w-full bg-white">
 
-                                    <input type="submit" value={`Pay ₹${totalPrice.toLocaleString()}`} disabled={payDisable ? true : false} className={`${payDisable ? "bg-primary-grey cursor-not-allowed" : "bg-primary-green cursor-pointer"} w-1/2 sm:w-1/4 my-2 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none`} />
+                                {/* <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start gap-2 w-full mx-8 my-4 overflow-hidden">
+                                        <FormControl>
+                                            <RadioGroup
+                                                aria-labelledby="payment-radio-group"
+                                                defaultValue="paytm"
+                                                name="payment-radio-button"
+                                            >
+                                                <FormControlLabel
+                                                    value="paytm"
+                                                    control={<Radio />}
+                                                    label={
+                                                        <div className="flex items-center gap-4">
+                                                            <img draggable="false" className="h-6 w-6 object-contain" src={paytm} alt="Paytm Logo" />
+                                                            <span>Paytm</span>
+                                                        </div>
+                                                    }
+                                                />
+                                            </RadioGroup>
+                                        </FormControl>
 
-                                </form> */}
+                                        <input type="submit" value={`Pay ₹${totalPrice.toLocaleString()}`} disabled={payDisable ? true : false} className={`${payDisable ? "bg-primary-grey cursor-not-allowed" : "bg-primary-green cursor-pointer"} w-1/2 sm:w-1/4 my-2 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none`} />
 
-                                {/* stripe form */}
-                                <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start gap-3 w-full px-1 sm:px-8 py-4">
+                                    </form> */}
 
-                                    <div className="flex flex-col lg:flex-row w-full gap-4">
-                                        <div className='w-4/6  border border-gray-300 px-5 py-3 rounded-md'>
-                                            <CardNumberElement options={cardElementOptions} />
+                                    {/* stripe form */}
+                                    <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start gap-3 w-full px-1 sm:px-8 py-4">
+
+                                        <div className="flex flex-col lg:flex-row w-full gap-4">
+                                            <div className='w-4/6  border border-gray-300 px-5 py-3 rounded-md'>
+                                                <CardNumberElement options={cardElementOptions} />
+                                            </div>
+                                            <div className='w-2/6 border border-gray-300 px-5 py-3 rounded-md'>
+                                                <CardExpiryElement options={cardElementOptions} />
+                                            </div>
+                                            <div className='w-2/6 border border-gray-300 px-5 py-3 rounded-md'>
+                                                <CardCvcElement options={cardElementOptions} />
+                                            </div>
                                         </div>
-                                        <div className='w-2/6 border border-gray-300 px-5 py-3 rounded-md'>
-                                            <CardExpiryElement options={cardElementOptions} />
+                                    
+                                        <div className='flex-1 w-full'>
+                                            <input ref={paymentBtn} type="submit" value="Place Order" className="bg-primary-green w-full sm:w-1/4 my-2 py-3.5 text-sm font-medium text-white shadow hover:bg-black rounded-full capitalize outline-none cursor-pointer" />
                                         </div>
-                                        <div className='w-2/6 border border-gray-300 px-5 py-3 rounded-md'>
-                                            <CardCvcElement options={cardElementOptions} />
-                                        </div>
-                                    </div>
-                                
-                                    <div className='flex-1 w-full'>
-                                        <input ref={paymentBtn} type="submit" value="Place Order" className="bg-primary-green w-full sm:w-1/4 my-2 py-3.5 text-sm font-medium text-white shadow hover:bg-black rounded-full capitalize outline-none cursor-pointer" />
-                                    </div>
-                                
-                                </form>
-                                {/* stripe form */}
+                                    
+                                    </form>
+                                    {/* stripe form */}
 
-                            </div>
-                        </Stepper>
+                                </div>
+                            </Stepper>
+                        </div>
+
+                        <PriceSidebar cartItems={cartItems} />
                     </div>
+                </main>
 
-                    <PriceSidebar cartItems={cartItems} />
-                </div>
-            </main>
+            }
         </>
     );
 };

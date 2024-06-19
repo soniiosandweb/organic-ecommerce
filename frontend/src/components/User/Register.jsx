@@ -7,7 +7,7 @@ import RadioGroup from '@mui/material/RadioGroup'
 import { useSnackbar } from 'notistack';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearErrors, registerUser } from '../../actions/userAction';
+import { clearErrors, loadPaymentKey, registerUser } from '../../actions/userAction';
 import BackdropLoader from '../Layouts/BackdropLoader';
 import MetaData from '../Layouts/MetaData';
 import FormSidebar from './FormSidebar';
@@ -82,6 +82,7 @@ const Register = () => {
             dispatch(clearErrors());
         }
         if (isAuthenticated) {
+            dispatch(loadPaymentKey())
             navigate('/')
         }
     }, [dispatch, error, isAuthenticated, navigate, enqueueSnackbar]);

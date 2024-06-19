@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     },
     gender: {
         type: String,
-        required: [true, "Please Enter Gender"]
+        required: [false, "Please Enter Gender"]
     },
     password: {
         type: String,
@@ -27,9 +27,11 @@ const userSchema = new mongoose.Schema({
     avatar: {
         public_id: {
             type: String,
+            required: false,
         },
         url: {
             type: String,
+            required: false,
         }
     },
     role: {

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Stepper = ({ activeStep, children }) => {
 
-    const { user } = useSelector((state) => state.user);
+    const { user, isAuthenticated } = useSelector((state) => state.user);
     const { shippingInfo, cartItems } = useSelector((state) => state.cart);
 
     const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state} - ${shippingInfo.pincode}`;
@@ -13,12 +13,12 @@ const Stepper = ({ activeStep, children }) => {
     const steps = [
         {
             label: "LOGIN",
-            desc: <p className="font-medium text-sm">{user.name} <span className="text-sm font-normal">{user.email}</span></p>,
+            desc: <p className="font-medium text-sm">{isAuthenticated !== false ? user.name : null} <span className="text-sm font-normal">{isAuthenticated !== false ? user.email : null}</span></p>,
             link: "",
         },
         {
             label: "DELIVERY ADDRESS",
-            desc: <p className="font-medium text-sm">{user.name} <span className="text-sm font-normal">{address}</span></p>,
+            desc: <p className="font-medium text-sm">{isAuthenticated !== false ? user.name : null} <span className="text-sm font-normal">{address}</span></p>,
             link: "/shipping",
         },
         {

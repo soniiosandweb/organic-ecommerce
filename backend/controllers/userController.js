@@ -31,6 +31,20 @@ exports.registerUser = asyncErrorHandler(async (req, res, next) => {
     sendToken(user, 201, res);
 });
 
+// Checkout Register User
+exports.registerCheckoutUser = asyncErrorHandler(async (req, res, next) => {
+
+    const { name, email, password } = req.body;
+
+    const user = await User.create({
+        name, 
+        email,
+        password,
+    });
+
+    sendToken(user, 201, res);
+});
+
 // Login User
 exports.loginUser = asyncErrorHandler(async (req, res, next) => {
     const { email, password } = req.body;

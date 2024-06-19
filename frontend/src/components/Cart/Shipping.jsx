@@ -54,7 +54,7 @@ const Shipping = () => {
                         <Stepper activeStep={1}>
                             <div className="w-full bg-white">
 
-                                <form onSubmit={shippingSubmit} autoComplete="off" className="flex flex-col justify-start gap-5 w-full px-1 sm:px-8 py-4">
+                                <form onSubmit={shippingSubmit} autoComplete="off" className="flex flex-col justify-start gap-5 w-full px-1 sm:px-8 py-8">
 
                                     <TextField
                                         value={address}

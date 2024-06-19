@@ -38,6 +38,9 @@ import {
     LOGIN_ADMIN_REQUEST,
     LOGIN_ADMIN_SUCCESS,
     LOGIN_ADMIN_FAIL,
+    LOAD_PAYMENT_REQUEST,
+    LOAD_PAYMENT_SUCCESS,
+    LOAD_PAYMENT_FAIL,
 } from '../constants/userConstants';
 import axios from 'axios';
 
@@ -119,6 +122,30 @@ export const registerUser = (userData) => async (dispatch) => {
             '/api/v1/register',
             userData,
             config
+        );
+
+        dispatch({
+            type: REGISTER_USER_SUCCESS,
+            payload: data.user,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: REGISTER_USER_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+// Checkout Register User
+export const registercheckoutUser = (userData) => async (dispatch) => {
+    try {
+
+        dispatch({ type: REGISTER_USER_REQUEST });
+
+        const { data } = await axios.post(
+            '/api/v1/checkout/register',
+            userData
         );
 
         dispatch({
@@ -386,4 +413,25 @@ export const deleteUser = (id) => async (dispatch) => {
 // Clear All Errors
 export const clearErrors = () => async (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
+};
+
+// Load Stripe payment key
+export const loadPaymentKey = () => async (dispatch) => {
+    try {
+
+        dispatch({ type: LOAD_PAYMENT_REQUEST });
+
+        const { data } = await axios.get('/api/v1/stripeapikey');
+
+        dispatch({
+            type: LOAD_PAYMENT_SUCCESS,
+            payload: data.stripeApiKey,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: LOAD_PAYMENT_FAIL,
+            payload: error.response.data.message,
+        });
+    }
 };
