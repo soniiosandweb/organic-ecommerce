@@ -9,6 +9,7 @@ import brand3 from '../../assets/images/About/brand-3.png';
 import brand4 from '../../assets/images/About/brand-4.png';
 import brand5 from '../../assets/images/About/brand-5.png';
 import excellence from '../../assets/images/About/excellence.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const AboutUs = () => {
 
@@ -92,7 +93,11 @@ const AboutUs = () => {
                     </div>
 
                     <div className="w-full md:w-1/2 lg:w-3/5 flex items-center">
-                        <img draggable="false" className="w-full m-auto object-contain object-center" src={aboutImg} alt="About Us" />
+                        <LazyLoadImage 
+                            src={aboutImg}
+                            alt="About Us"
+                            className="w-full m-auto object-contain object-center"
+                        />
                     </div>
                 </div>
             </div>
@@ -109,7 +114,11 @@ const AboutUs = () => {
                     </div>
 
                     <div className="w-full md:w-1/2 flex items-center">
-                        <img draggable="false" className="w-full m-auto object-contain object-center" src={aboutImg2} alt="About Us" />
+                        <LazyLoadImage 
+                            src={aboutImg2}
+                            alt="About Us"
+                            className="w-full m-auto object-contain object-center"
+                        />
                     </div>
                 </div>
             </div>
@@ -120,7 +129,11 @@ const AboutUs = () => {
                     <Slider {...settings} className="product-slider-home">
                         {brands.map((item, i) => (
                             <div key={i} className="w-full flex items-center justify-center h-full brand-slider-image">
-                                <img draggable="false" className="size-40 m-auto object-contain object-center" src={item.image} alt="Brand" />
+                                <LazyLoadImage 
+                                    src={item.image}
+                                    alt="Brand"
+                                    className="size-40 m-auto object-contain object-center"
+                                />
                             </div>
                         ))}
                     </Slider>
@@ -147,7 +160,11 @@ const AboutUs = () => {
                             </div>
                         </div>
                         <div className="flex flex-col w-full w-1/3">
-                            <img draggable="false" className="w-full m-auto object-contain object-center" src={excellence} alt="Excellence" />
+                            <LazyLoadImage 
+                                src={excellence}
+                                alt="Excellence"
+                                className="w-full m-auto object-contain object-center"
+                            />
                         </div>
                         <div className="flex flex-col w-full w-1/3 gap-16 justify-evenly">
                             <div className="flex flex-col gap-3">

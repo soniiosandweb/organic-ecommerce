@@ -8,6 +8,7 @@ import BackdropLoader from '../Layouts/BackdropLoader';
 import { Link } from 'react-router-dom';
 import { getAllCategories, clearErrors, deleteCategory } from '../../actions/categoryAction';
 import { DELETE_CATEGORY_RESET } from '../../constants/categoryConstants';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const CategoriesTable = () => {
 
@@ -53,7 +54,11 @@ const CategoriesTable = () => {
                 return (
                     <div className="flex items-center gap-2">
                         <div className="w-12 h-12 rounded-full">
-                            <img draggable="false" src={params.row.image} alt={params.row.name} className="w-full h-full rounded-full object-cover" />
+                            <LazyLoadImage 
+                                src={params.row.image}
+                                alt={params.row.name}
+                                className="w-full h-full rounded-full object-cover"
+                            />
                             {params.row.name}
                         </div>
                     </div>

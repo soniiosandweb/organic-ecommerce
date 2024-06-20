@@ -6,6 +6,7 @@ import { clearErrors, getOrderDetails } from '../../actions/orderAction';
 import Loader from '../Layouts/Loader';
 import TrackStepper from './TrackStepper';
 import MetaData from '../Layouts/MetaData';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const OrderDetails = () => {
 
@@ -62,7 +63,9 @@ const OrderDetails = () => {
 
                                             <div className="flex flex-col sm:flex-row sm:w-1/2 gap-2">
                                                 <div className="w-full sm:w-32 h-20">
-                                                    <img draggable="false" className="h-full w-full object-contain" src={image} alt={name} />
+                                                    <LazyLoadImage 
+                                                        className="h-full w-full object-contain" src={image} alt={name}
+                                                    />
                                                 </div>
                                                 <div className="flex flex-col gap-1 overflow-hidden">
                                                     <p className="text-lg font-semibold">{name.length > 60 ? `${name.substring(0, 60)}...` : name}</p>

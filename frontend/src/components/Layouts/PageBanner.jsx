@@ -1,3 +1,4 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import pageBannerBg from '../../assets/images/ProductSlider/bg-11.jpg';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
@@ -12,7 +13,10 @@ const PageBanner = ({title}) => {
                     {title}
                 </p>
             </div>
-            <img draggable="false" className="w-full object-cover object-center absolute top-0 h-full" src={pageBannerBg} alt="banner" />
+           
+            <LazyLoadImage 
+                className="w-full object-cover object-center absolute top-0 h-full" src={pageBannerBg} alt="banner"
+            />
         </section>
     )
 }

@@ -19,6 +19,7 @@ import MetaData from '../Layouts/MetaData';
 import { useLocation } from 'react-router-dom';
 import noResult from '../../assets/images/no-search-results.png';
 import { getAllCategories } from '../../actions/categoryAction';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Products = () => {
 
@@ -186,7 +187,10 @@ const Products = () => {
 
                             {!loading && products?.length === 0 && (
                                 <div className="flex flex-col items-center justify-center gap-3 bg-white shadow-sm rounded-sm p-6 sm:p-16">
-                                    <img draggable="false" className="w-1/2 h-44 object-contain" src={noResult} alt="Search Not Found" />
+                                   
+                                    <LazyLoadImage 
+                                    className="w-1/2 h-44 object-contain" src={noResult} alt="Search Not Found"
+                                    />
                                     <h1 className="text-2xl font-medium text-gray-900">Sorry, no results found!</h1>
                                     <p className="text-xl text-center text-primary-grey">Please check the spelling or try searching for something else</p>
                                 </div>

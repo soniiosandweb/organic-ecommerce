@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import StarIcon from '@mui/icons-material/Star';
 import { removeFromWishlist } from '../../actions/wishlistAction';
 import { useDispatch } from 'react-redux';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Product = (props) => {
 
@@ -18,7 +19,9 @@ const Product = (props) => {
     return (
         <div className="flex gap-4 border-b p-4 sm:pb-8 w-full group overflow-hidden">
             <div className="w-1/6 h-28 flex-shrink-0">
-                <img draggable="false" className="h-full w-full object-contain" src={image} alt={name} />
+                <LazyLoadImage 
+                    className="h-full w-full object-contain" src={image} alt={name}
+                />
             </div>
 
             {/* <!-- description --> */}

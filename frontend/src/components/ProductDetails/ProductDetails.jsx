@@ -25,6 +25,7 @@ import { getDiscount } from '../../utils/functions';
 import { addToWishlist, removeFromWishlist } from '../../actions/wishlistAction';
 import MetaData from '../Layouts/MetaData';
 import DealSlider from '../Home/DealSlider/DealSlider';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ProductDetails = () => {
 
@@ -140,7 +141,9 @@ const ProductDetails = () => {
                                         <div className="w-full h-full p-5 border relative">
                                             <Slider {...settings} className='arrows-position-0'>
                                                 {product.images && product.images.map((item, i) => (
-                                                    <img draggable="false" className="w-full object-contain" src={item.url} alt={product.name} key={i} />
+                                                    <LazyLoadImage 
+                                                        className="w-full object-contain" src={item.url} alt={product.name} key={i}
+                                                    />
                                                 ))}
                                             </Slider>
                                             <div className="absolute top-4 right-4 shadow-lg bg-white w-9 h-9 border flex items-center justify-center rounded-full">

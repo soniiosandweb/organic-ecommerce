@@ -14,6 +14,7 @@ import BackdropLoader from '../Layouts/BackdropLoader';
 import { getAllCategories } from '../../actions/categoryAction';
 import { Link } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const NewProduct = () => {
 
@@ -263,7 +264,12 @@ const NewProduct = () => {
                         {!imagesPreview.length ? <ImageIcon /> : 
                         imagesPreview.map((image, i) => (
                             <span className='relative' key={i}>
-                                <img draggable="false" src={image} alt="Product" key={i} className="h-32 w-full object-contain" />
+                                <LazyLoadImage 
+                                    src={image}
+                                    alt="Product"
+                                    key={i} 
+                                    className="h-32 w-full object-contain"
+                                />
                                 <span onClick={() => deleteImage(i)} className="text-red-600 hover:bg-red-100 p-1 rounded-full cursor-pointer absolute right-0 top-0">
                                     <CancelIcon />
                                 </span>

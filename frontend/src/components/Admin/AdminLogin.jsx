@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import BackdropLoader from "../Layouts/BackdropLoader";
 import { clearErrors, loadPaymentKey, loginAdmin } from "../../actions/userAction";
 import logo from '../../assets/images/logo.png';
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const AdminLogin = () => {
 
@@ -53,7 +54,11 @@ const AdminLogin = () => {
                         <div className="text-center py-10 px-4 sm:px-14">
 
                             <Link className="h-20 mb-6 mx-auto w-max flex focus-visible:outline-0" to="/">
-                                <img draggable="false" className="h-full w-full object-contain" src={logo} alt="Organic Logo" />
+                                <LazyLoadImage 
+                                    src={logo}
+                                    alt="Organic Logo"
+                                    className="h-full w-full object-contain"
+                                />
                             </Link>
 
                             {/* <!-- input container --> */}

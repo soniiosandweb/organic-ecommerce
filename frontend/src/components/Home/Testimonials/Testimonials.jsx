@@ -5,6 +5,7 @@ import annSmith from '../../../assets/images/Testimonials/ann-smith.png';
 import olivia from '../../../assets/images/Testimonials/olivia.png';
 import './Testimonial.css';
 import Rating from '@mui/material/Rating';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Testimonials = () => {
 
@@ -51,7 +52,11 @@ const Testimonials = () => {
                 <Slider {...settings} className="flex justify-between w-full testimonial-slider px-5 sm:px-10">
                     {testimonials.map((el, i) => (
                         <div className='w-full flex flex-col gap-2 text-center p-5' key={i}>
-                            <img draggable="false" className="w-max m-auto object-contain object-center mb-5 rounded-full p-3 border-2 border-dashed border-primary-green" src={el.image} alt={el.title} />
+                            <LazyLoadImage 
+                                src={el.image} 
+                                alt={el.title}
+                                className="w-max m-auto object-contain object-center mb-5 rounded-full p-3 border-2 border-dashed border-primary-green"
+                            />
 
                             <Rating name="read-only" value={el.rating} readOnly size="medium" precision={0.5} />
                             

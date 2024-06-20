@@ -10,6 +10,7 @@ import { NEW_CATEGORY_RESET } from '../../constants/categoryConstants';
 import { createCategory, clearErrors } from '../../actions/categoryAction';
 import { Link } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const NewCategory = () => {
 
@@ -92,7 +93,11 @@ const NewCategory = () => {
                     <h2 className="font-medium">Category Image</h2>
                     <div className="w-full flex gap-2 justify-center items-center overflow-x-auto h-32 border border-gray-300 rounded">
                         {!categoryPreview ? <ImageIcon /> :
-                            <img draggable="false" src={categoryPreview} alt="Brand Logo" className="w-full h-full object-contain" />
+                            <LazyLoadImage 
+                                src={categoryPreview}
+                                alt="Category"
+                                className="w-full h-full object-contain"
+                            />
                         }
                     </div>
                     <label className="w-full rounded bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow hover:shadow-lg">

@@ -11,6 +11,7 @@ import Loading from './Loading';
 import { Link } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import MetaData from '../Layouts/MetaData';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const UpdateOrder = () => {
 
@@ -112,7 +113,11 @@ const UpdateOrder = () => {
 
                                         <div className="flex flex-col sm:flex-row md:w-1/2 gap-1 mb-10 md:mb-0">
                                             <div className="w-full sm:w-32 h-24">
-                                                <img draggable="false" className="h-full w-full object-contain" src={image} alt={name} />
+                                                <LazyLoadImage 
+                                                    src={image}
+                                                    alt={name}
+                                                    className="h-full w-full object-contain"
+                                                />
                                             </div>
                                             <div className="flex flex-col gap-1 overflow-hidden">
                                                 <p className="text-lg font-semibold">{name.length > 45 ? `${name.substring(0, 45)}...` : name}</p>

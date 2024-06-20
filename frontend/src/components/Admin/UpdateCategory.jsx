@@ -8,6 +8,7 @@ import MetaData from "../Layouts/MetaData";
 import BackdropLoader from "../Layouts/BackdropLoader";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import TextField from '@mui/material/TextField';
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const UpdateCategory = () => {
 
@@ -110,11 +111,19 @@ const UpdateCategory = () => {
                     <h2 className="font-medium">Category Image</h2>
                     <div className="w-full flex gap-2 justify-center items-center overflow-x-auto h-32 border rounded">
                         {oldImage && (
-                            <img draggable="false" src={oldImage.url} alt="Product" className="w-full h-full object-contain" />
+                            <LazyLoadImage 
+                                src={oldImage.url}
+                                alt="Product Category"
+                                className="w-full h-full object-contain"
+                            />
                         )}
                         
                         {!categoryPreview ? null :
-                            <img draggable="false" src={categoryPreview} alt="Brand Logo" className="w-full h-full object-contain" />
+                            <LazyLoadImage 
+                                src={categoryPreview}
+                                alt="Product Category"
+                                className="w-full h-full object-contain"
+                            />
                         }
                     </div>
                     <label className="w-full rounded bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow hover:shadow-lg">

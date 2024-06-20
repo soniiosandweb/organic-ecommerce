@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToWishlist, removeFromWishlist } from '../../../actions/wishlistAction';
 import { useSnackbar } from 'notistack';
 import Rating from '@mui/material/Rating';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Product = (props) => {
 
@@ -35,7 +36,11 @@ const Product = (props) => {
                 {/* <!-- image & product title --> */}
                 <Link to={`/product/${_id}/`} className="flex flex-col items-center text-center group w-full">
                     <div className="w-full max-h-96 h-full bg-[#f4f4f4]">
-                        <img draggable="false" className="w-full h-full object-contain" src={images[0].url} alt={name} />
+                        <LazyLoadImage 
+                            src={images[0].url}
+                            alt={name}
+                            className="w-full h-full object-contain"
+                        />
                     </div>
                     <h2 className="text-xl mt-4 font-semibold group-hover:text-primary-green">{name.length > 50 ? `${name.substring(0, 50)}...` : name}</h2>
                 </Link>

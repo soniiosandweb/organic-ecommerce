@@ -18,6 +18,7 @@ import { useSnackbar } from 'notistack';
 // import Radio from '@mui/material/Radio';
 // import RadioGroup from '@mui/material/RadioGroup';
 // import paytm from '../../assets/images/paytm.webp';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
 import MetaData from '../Layouts/MetaData';
 import { useNavigate } from "react-router-dom";
 import { newOrderData } from '../../actions/orderAction';
@@ -187,7 +188,9 @@ const Payment = () => {
                                                     control={<Radio />}
                                                     label={
                                                         <div className="flex items-center gap-4">
-                                                            <img draggable="false" className="h-6 w-6 object-contain" src={paytm} alt="Paytm Logo" />
+                                                            <LazyLoadImage 
+                                                                className="h-6 w-6 object-contain" src={paytm} alt="Paytm Logo" 
+                                                            />
                                                             <span>Paytm</span>
                                                         </div>
                                                     }

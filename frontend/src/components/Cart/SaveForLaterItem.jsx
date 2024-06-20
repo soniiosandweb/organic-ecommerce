@@ -4,6 +4,7 @@ import { addItemsToCart } from '../../actions/cartAction';
 import { removeFromSaveForLater } from '../../actions/saveForLaterAction';
 import { getDiscount } from '../../utils/functions';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const SaveForLaterItem = ({ product, name, seller, price, cuttedPrice, image, stock, quantity }) => {
 
@@ -27,7 +28,13 @@ const SaveForLaterItem = ({ product, name, seller, price, cuttedPrice, image, st
             <div className="flex flex-col sm:flex-row gap-5 items-stretch w-full" href="#">
                 {/* <!-- product image --> */}
                 <div className="w-full sm:w-1/6 h-28 flex-shrink-0">
-                    <Link to={`/product/${product}/`}><img draggable="false" className="h-full w-full object-contain" src={image} alt={name} /></Link>
+                    <Link to={`/product/${product}/`}>
+                        <LazyLoadImage 
+                            src={image}
+                            alt={name}
+                            className="h-full w-full object-contain"
+                        />
+                    </Link>
                 </div>
                 {/* <!-- product image --> */}
 

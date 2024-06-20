@@ -3,6 +3,7 @@ import paymentMethods from '../../../assets/images/payment-methods.svg';
 import { useLocation } from 'react-router-dom';
 import logo from '../../../assets/images/logo-white.png';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const footerLinks = [
   {
@@ -99,7 +100,11 @@ const Footer = () => {
                 <div className="w-full sm:w-1/1 text-center md:text-left">
 
                   <Link className="h-20 mb-6 flex w-max mx-auto md:mx-0" to="/">
-                    <img draggable="false" className="h-full w-full object-contain" src={logo} alt="Organic Logo" />
+                    <LazyLoadImage 
+                      src={logo} 
+                      alt="Organic Logo"
+                      className="h-full w-full object-contain"
+                    />
                   </Link>
 
                   <p className="mt-2 leading-5">Zirakpur, 140603,<br />Punjab, India</p>
@@ -129,7 +134,11 @@ const Footer = () => {
             </div>
             <div className="py-6 sm:w-11/12 m-auto px-4 w-full flex justify-between items-center text-sm text-white flex-col md:flex-row">
               <span>&copy; {new Date().getFullYear()} Organic.com. All Rights Reserved.</span>
-              <img draggable="false" src={paymentMethods} alt="Card Payment" className='pt-3 md:pt-0' />
+              <LazyLoadImage 
+                src={paymentMethods} 
+                alt="Card Payment" 
+                className='pt-3 md:pt-0'
+              />
             </div>
           </footer>
           {/* <!-- footer ends --> */}

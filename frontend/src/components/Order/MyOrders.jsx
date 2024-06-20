@@ -11,6 +11,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import SearchIcon from '@mui/icons-material/Search';
 import MetaData from '../Layouts/MetaData';
 import noResult from '../../assets/images/no-result.webp';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const orderStatus = ["Processing", "Shipped", "Delivered"];
 const dt = new Date();
@@ -197,7 +198,9 @@ const MyOrders = () => {
 
                                 {orders && filteredOrders.length === 0 && (
                                     <div className="flex items-center flex-col gap-2 p-8 bg-white text-md">
-                                        <img draggable="false" src={noResult} alt="Empty Orders" />
+                                        <LazyLoadImage 
+                                            src={noResult} alt="Empty Orders"
+                                        />
                                         <span className="text-lg font-medium">Sorry, no results found</span>
                                         <p>Edit search or clear all filters</p>
                                     </div>

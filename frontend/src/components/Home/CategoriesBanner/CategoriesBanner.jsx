@@ -1,3 +1,4 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import banner1 from '../../../assets/images/Categories/banner-1.jpg';
 import banner2 from '../../../assets/images/Categories/banner-2.jpg';
 import banner3 from '../../../assets/images/Categories/banner-3.jpg';
@@ -29,7 +30,11 @@ const CategoriesBanner = () => {
                             <h3 className='text-xl lg:text-3xl text-start font-semibold capitalize mt-8 mb-8 xl:mb-16 lg:w-3/5'>{el.title}</h3>
                             <Link to="/products" className="inline-block w-max bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-full shadow-lg capitalize hover:bg-black">See More</Link>
                         </div>
-                        <img draggable="false" className="w-full rounded-md object-cover object-center absolute top-0 left-0 h-full" src={el.image} alt="banner" />
+                        <LazyLoadImage 
+                            src={el.image}
+                            alt={el.title}
+                            className="w-full rounded-md object-cover object-center absolute top-0 left-0 h-full"
+                        />
                     </div> 
                     
                 ))}

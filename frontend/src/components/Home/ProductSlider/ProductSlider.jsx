@@ -6,6 +6,7 @@ import Product from './Product';
 import trendingImg from '../../../assets/images/ProductSlider/trending.jpg';
 import './Product.css';
 import { NextBtn, PreviousBtn } from '../Banner/Banner';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ProductSlider = ({ title, tagline }) => {
 
@@ -73,7 +74,12 @@ const ProductSlider = ({ title, tagline }) => {
                                     <h3 className='text-3xl font-semibold text-center mt-0 lg:mt-10 mb-5'>Deal Of The Day 25% off</h3>
                                     <Link to="/products" className="bg-primary-green text-md font-medium text-white px-5 py-2.5 rounded-full shadow-lg capitalize hover:bg-black">Shop now</Link>
                                 </div>
-                                <img draggable="false" className="w-full object-cover object-center absolute top-0 h-full rounded-md" src={trendingImg} alt="trending banner" />
+                                
+                                <LazyLoadImage 
+                                    src={trendingImg}
+                                    alt="trending banner"
+                                    className="w-full object-cover object-center absolute top-0 h-full rounded-md"
+                                />
                             </div>
                         </div>
                         <div className='w-full md:w-3/4 flex-1'>

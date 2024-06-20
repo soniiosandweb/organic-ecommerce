@@ -14,6 +14,7 @@ import './Sidebar.css';
 import { useSnackbar } from 'notistack';
 import { logoutUser } from '../../../actions/userAction';
 import logo from '../../../assets/images/logo-white.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const navMenu = [
     {
@@ -86,7 +87,11 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
 
             <div className="flex items-center p-2 my-4 mx-3.5">
                 <Link className="h-16 flex w-max mx-auto" to="/">
-                    <img draggable="false" className="h-full w-full object-contain" src={logo} alt="Organic Logo" />
+                    <LazyLoadImage 
+                        src={logo}
+                        alt="Organic Logo"
+                        className="h-full w-full object-contain"
+                    />
                 </Link>
             </div>
 

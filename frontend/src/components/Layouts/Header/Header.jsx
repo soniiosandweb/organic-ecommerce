@@ -16,6 +16,7 @@ import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import MenuList from "@mui/material/MenuList";
 import { useRef } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Header = () => {
 
@@ -104,7 +105,9 @@ const Header = () => {
                 </button>
               </div>
               <Link className="h-16 mr-3 md:mr-6 focus-visible:outline-0" to="/">
-                <img draggable="false" className="h-full w-full object-contain" src={logo} alt="Organic Logo" />
+                <LazyLoadImage 
+                  className="h-full w-full object-contain" src={logo} alt="Organic Logo"
+                />
               </Link>
 
               <nav className={`${mobileToggleClass ? 'hidden' : 'flex'} xl:flex xl:flex-row flex-col navigation-menu items-start flex-1 gap-5 sm:gap-7 absolute w-full top-16 xl:relative xl:top-0 bg-white py-5 px-5`}>

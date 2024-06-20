@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { getUserReviews } from "../../actions/productAction";
 import ReviewItem from "./ReviewItem";
 import empty from '../../assets/images/mywishlist-empty.png';
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Rating = () => {
 
@@ -35,7 +36,9 @@ const Rating = () => {
 
                             {userReviews.length === 0 && (
                                 <div className="flex items-center flex-col gap-2 m-6">
-                                    <img draggable="false" className="object-contain" src={empty} alt="Empty Wishlist" />
+                                    <LazyLoadImage 
+                                     className="object-contain" src={empty} alt="Empty Wishlist"
+                                    />
                                     <span className="text-lg font-medium mt-6">Empty Reviews & Ratings</span>
                                     <p>You have no items in your reviews. Start adding!</p>
                                 </div>

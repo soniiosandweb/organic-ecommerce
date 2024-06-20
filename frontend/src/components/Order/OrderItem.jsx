@@ -2,6 +2,7 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import CircleIcon from '@mui/icons-material/Circle';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../utils/functions';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const OrderItem = (props) => {
 
@@ -11,7 +12,9 @@ const OrderItem = (props) => {
         <Link to={`/order_details/${orderId}`} className="flex flex-col sm:flex-row p-4 items-start bg-white border border-gray-300 rounded gap-2 sm:gap-0 hover:shadow-lg">
             {/* <!-- image container --> */}
             <div className="w-full sm:w-32 h-20">
-                <img draggable="false" className="h-full w-full object-contain" src={image} alt={name} />
+                <LazyLoadImage 
+                    className="h-full w-full object-contain" src={image} alt={name}
+                />
             </div>
             {/* <!-- image container --> */}
 

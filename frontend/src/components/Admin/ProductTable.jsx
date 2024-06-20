@@ -9,6 +9,7 @@ import { DELETE_PRODUCT_RESET } from '../../constants/productConstants';
 import Actions from './Actions';
 import MetaData from '../Layouts/MetaData';
 import BackdropLoader from '../Layouts/BackdropLoader';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ProductTable = () => {
 
@@ -54,7 +55,11 @@ const ProductTable = () => {
                 return (
                     <div className="flex items-center gap-2">
                         <div className="w-10 h-10 rounded-full">
-                            <img draggable="false" src={params.row.image} alt={params.row.name} className="w-full h-full rounded-full object-cover" />
+                            <LazyLoadImage 
+                                src={params.row.image}
+                                alt={params.row.name}
+                                className="w-full h-full rounded-full object-cover"
+                            />
                         </div>
                         {params.row.name}
                     </div>

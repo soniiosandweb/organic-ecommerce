@@ -8,6 +8,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import banner1 from '../../../assets/images/Banners/banner1.jpg';
 import banner2 from '../../../assets/images/Banners/banner2.jpg';
 import banner3 from '../../../assets/images/Banners/banner3.jpg';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const PreviousBtn = ({ className, onClick }) => {
   return (
@@ -68,7 +69,12 @@ const Banner = () => {
                 <h1 className='text-white text-5xl font-semibold'>{el.title}</h1>
                 <Link to="/products" className="bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-full shadow-lg capitalize hover:bg-white hover:text-black">view all</Link>
               </div>
-              <img draggable="false" className="w-full object-cover object-center absolute top-0 h-full" src={el.image} alt="banner" style={{zIndex: "-1"}} />
+              <LazyLoadImage 
+                src={el.image}
+                alt={el.subtitle}
+                className="w-full object-cover object-center absolute top-0 h-full"
+                style={{zIndex: "-1"}}
+              />
             </div>
           ))}
         </Slider>

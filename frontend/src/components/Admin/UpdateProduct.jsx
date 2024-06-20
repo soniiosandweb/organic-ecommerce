@@ -13,6 +13,7 @@ import MetaData from '../Layouts/MetaData';
 import { getAllCategories } from '../../actions/categoryAction';
 import { Link } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const UpdateProduct = () => {
 
@@ -303,7 +304,11 @@ const UpdateProduct = () => {
                     <div className="flex flex-wrap gap-3 justify-center items-center overflow-x-auto h-full min-h-40 border rounded border-gray-300">
                         {oldImages && oldImages.map((image, i) => (
                             <span className='relative' key={i}>
-                                <img draggable="false" src={image.url} alt="Product" key={i} className="h-32 w-full object-contain" />
+                                <LazyLoadImage 
+                                    src={image.url}
+                                    alt="Product"
+                                    className="h-32 w-full object-contain"
+                                />
                                 <span onClick={() => deleteOldImage(i)} className="text-red-600 hover:bg-red-100 p-1 rounded-full cursor-pointer absolute right-0 top-0">
                                     <CancelIcon />
                                 </span>
@@ -311,7 +316,11 @@ const UpdateProduct = () => {
                         ))}
                         {imagesPreview.map((image, i) => (
                             <span className='relative' key={i}>
-                                <img draggable="false" src={image} alt="Product" key={i} className="h-32 w-full object-contain" />
+                                <LazyLoadImage 
+                                    src={image}
+                                    alt="Product"
+                                    className="h-32 w-full object-contain"
+                                />
                                 <span onClick={() => deleteImage(i)} className="text-red-600 hover:bg-red-100 p-1 rounded-full cursor-pointer absolute right-0 top-0">
                                     <CancelIcon />
                                 </span>
