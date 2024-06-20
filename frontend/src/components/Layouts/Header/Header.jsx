@@ -17,6 +17,7 @@ import Popper from "@mui/material/Popper";
 import MenuList from "@mui/material/MenuList";
 import { useRef } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Avatar from '@mui/material/Avatar';
 
 const Header = () => {
 
@@ -139,7 +140,11 @@ const Header = () => {
                         aria-haspopup="true"
                         onClick={handleToggle}
                       >
-                        {user.name && user.name.split(" ", 1)}
+                        {/* {user.name && user.name.split(" ", 1)} */}
+                        <Avatar
+                            alt="Avatar"
+                            src={user.avatar && user.avatar.url}
+                        />
                         <span>{open ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
                       </Button>
                       <Popper

@@ -49,6 +49,7 @@ import CategoriesTable from './components/Admin/CategoriesTable';
 import UpdateCategory from './components/Admin/UpdateCategory';
 import AdminLogin from './components/Admin/AdminLogin';
 import UserDetails from './components/Cart/UserDetails';
+import CouponsTable from './components/Admin/CouponsTable';
 
 function App() {
 
@@ -239,7 +240,7 @@ function App() {
 
         <Route path="/admin/new_product" element={
           <ProtectedRoute isAdmin={true}>
-            <Dashboard activeTab={3}>
+            <Dashboard activeTab={2}>
               <NewProduct />
             </Dashboard>
           </ProtectedRoute>
@@ -279,7 +280,7 @@ function App() {
 
         <Route path="/admin/categories" element={
           <ProtectedRoute isAdmin={true}>
-            <Dashboard activeTab={6}>
+            <Dashboard activeTab={3}>
               <CategoriesTable />
             </Dashboard>
           </ProtectedRoute>
@@ -287,7 +288,7 @@ function App() {
 
         <Route path="/admin/new_category" element={
           <ProtectedRoute isAdmin={true}>
-            <Dashboard activeTab={6}>
+            <Dashboard activeTab={3}>
               <NewCategory />
             </Dashboard>
           </ProtectedRoute>
@@ -295,8 +296,16 @@ function App() {
 
         <Route path="/admin/category/:id" element={
           <ProtectedRoute isAdmin={true}>
-            <Dashboard activeTab={6}>
+            <Dashboard activeTab={3}>
               <UpdateCategory />
+            </Dashboard>
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin/coupons" element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard activeTab={6}>
+              <CouponsTable />
             </Dashboard>
           </ProtectedRoute>
         } ></Route>

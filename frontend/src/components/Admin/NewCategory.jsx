@@ -114,7 +114,7 @@ const NewCategory = () => {
                 </div>
 
                 <div className="flex flex-col gap-2 w-full sm:w-1/3">
-                    <input form="categoryform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-full shadow hover:bg-black cursor-pointer" value="Submit" />
+                    <input form="categoryform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-sm shadow hover:bg-black cursor-pointer" value="Submit" />
                 </div>
 
             </form>

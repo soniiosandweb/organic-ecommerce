@@ -10,7 +10,7 @@ const NotFound = () => {
 
             <p className='text-md text-gray-400 w-full md:w-1/4 mx-auto'>We're really sorry but we can't seem to find the page you were looking for.</p>
             
-            <Link to="/" className="my-10 inline-block bg-primary-green text-md font-medium text-white px-8 py-2.5 rounded-full shadow-lg capitalize hover:bg-black">Back to home</Link>
+            <Link to="/" className="my-10 inline-block bg-primary-green text-md font-medium text-white px-8 py-2.5 rounded-sm shadow-lg capitalize hover:bg-black">Back to home</Link>
         </div>
     );
 };

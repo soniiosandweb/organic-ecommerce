@@ -89,7 +89,7 @@ const AdminLogin = () => {
 
                                     {/* <!-- button container --> */}
                                     <div className="flex flex-col gap-2.5 my-3">
-                                        <button type="submit" className="block w-full bg-primary-green text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize hover:bg-black mt-4">Login</button>
+                                        <button type="submit" className="block w-full bg-primary-green text-md font-medium text-white px-10 py-3 rounded-sm shadow-lg capitalize hover:bg-black mt-4">Login</button>
                                     </div>
                                     {/* <!-- button container --> */}
 

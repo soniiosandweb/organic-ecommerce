@@ -89,7 +89,7 @@ const AboutUs = () => {
                         <h2 className="text-5xl font-semibold">Organic Whole Grain Breakfast Mixes</h2>
                         <p className="text-md text-black">Organic cereals are an extremely popular breakfast food, very good for health: oat cereal, organic cereal, brown rice cereal, sorghum… It is especially convenient…</p>
 
-                        <Link to="/products" className="inline-block w-max bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-full shadow-lg capitalize hover:bg-black">See more</Link>
+                        <Link to="/products" className="inline-block w-max bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-sm shadow-lg capitalize hover:bg-black">See more</Link>
                     </div>
 
                     <div className="w-full md:w-1/2 lg:w-3/5 flex items-center">
@@ -110,7 +110,7 @@ const AboutUs = () => {
                         <h2 className="text-5xl font-semibold">Exploring the World of Organic Foods</h2>
                         <p className="text-md text-black">Organic food is a concept that refers to foods that are raised or grown using the methods and standards of organic agriculture, which do not use: Artificial chemicals pesticides…</p>
 
-                        <Link to="/products" className="inline-block w-max bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-full shadow-lg capitalize hover:bg-black">See More</Link>
+                        <Link to="/products" className="inline-block w-max bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-sm shadow-lg capitalize hover:bg-black">See More</Link>
                     </div>
 
                     <div className="w-full md:w-1/2 flex items-center">

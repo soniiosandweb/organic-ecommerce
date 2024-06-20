@@ -169,7 +169,7 @@ const Account = () => {
                                                     Choose File
                                                 </label>
                                             </div>
-                                            <button type="submit" className={`block w-full lg:w-max ${editProfile ? "bg-gray-500 cursor-not-allowed" : "bg-primary-green hover:bg-black"} text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize my-4`} disabled={editProfile}>Update Profile</button>
+                                            <button type="submit" className={`block w-full lg:w-max ${editProfile ? "bg-gray-500 cursor-not-allowed" : "bg-primary-green hover:bg-black"} text-md font-medium text-white px-10 py-3 rounded-sm shadow-lg capitalize my-4`} disabled={editProfile}>Update Profile</button>
 
                                         </div>
                                         {/* <!-- edit info container --> */}

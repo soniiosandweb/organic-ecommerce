@@ -38,17 +38,40 @@ export const newCategoryReducer = (state = { category: {} }, { type, payload }) 
 export const allCategoriesReducer = (state = { categories: [] }, { type, payload }) => {
     switch (type) {
         case ALL_CATEGORY_REQUEST:
-        case LIMIT_CATEGORY_REQUEST:
             return {
                 loading: true,
             };
         case ALL_CATEGORY_SUCCESS:
-        case LIMIT_CATEGORY_SUCCESS:
             return {
                 loading: false,
                 categories: payload,
             };
         case ALL_CATEGORY_FAIL:
+            return {
+                loading: false,
+                error: payload,
+            };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            };
+        default:
+            return state;
+    }
+};
+
+export const limitCategoriesReducer = (state = { limitCategories: [] }, { type, payload }) => {
+    switch (type) {
+        case LIMIT_CATEGORY_REQUEST:
+            return {
+                loading: true,
+            };
+        case LIMIT_CATEGORY_SUCCESS:
+            return {
+                loading: false,
+                limitCategories: payload,
+            };
         case LIMIT_CATEGORY_FAIL:
             return {
                 loading: false,

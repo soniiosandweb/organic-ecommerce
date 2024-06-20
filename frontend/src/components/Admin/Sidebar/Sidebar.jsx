@@ -4,11 +4,12 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import GroupIcon from '@mui/icons-material/Group';
 import ReviewsIcon from '@mui/icons-material/Reviews';
-import AddBoxIcon from '@mui/icons-material/AddBox';
+// import AddBoxIcon from '@mui/icons-material/AddBox';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CloseIcon from '@mui/icons-material/Close';
 import Avatar from '@mui/material/Avatar';
 import CategoryIcon from '@mui/icons-material/Category';
+import DiscountIcon from '@mui/icons-material/Discount';
 import { useDispatch, useSelector } from 'react-redux';
 import './Sidebar.css';
 import { useSnackbar } from 'notistack';
@@ -33,10 +34,15 @@ const navMenu = [
         ref: "/admin/products",
     },
     {
-        icon: <AddBoxIcon />,
-        label: "Add Product",
-        ref: "/admin/new_product",
+        icon: <CategoryIcon />,
+        label: "Categories",
+        ref: "/admin/categories",
     },
+    // {
+    //     icon: <AddBoxIcon />,
+    //     label: "Add Product",
+    //     ref: "/admin/new_product",
+    // },
     {
         icon: <GroupIcon />,
         label: "Users",
@@ -48,9 +54,9 @@ const navMenu = [
         ref: "/admin/reviews",
     },
     {
-        icon: <CategoryIcon />,
-        label: "Categories",
-        ref: "/admin/categories",
+        icon: <DiscountIcon />,
+        label: "Coupons",
+        ref: "/admin/coupons",
     },
     {
         icon: <LogoutIcon />,
@@ -95,7 +101,7 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
                 </Link>
             </div>
 
-            <div className="flex items-center gap-3 bg-gray-700 p-2 rounded-lg shadow-lg my-4 mx-3.5">
+            <div className="flex items-center gap-3 bg-gray-700 p-2 rounded-md shadow-lg my-4 mx-3.5">
                 <Avatar
                     alt="Avatar"
                     src={user.avatar && user.avatar.url}

@@ -81,7 +81,7 @@ const UpdateUser = () => {
                 <>
                     <Link to="/admin/users" className="ml-1 w-max flex items-center gap-0 font-semibold text-primary-green uppercase hover:text-black"><ArrowBackIosIcon sx={{ fontSize: "18px" }} />Go Back</Link>
 
-                    <form onSubmit={updateUserSubmitHandler} className="flex flex-col bg-white rounded-sm border border-gray-300 shadow gap-5 p-3 lg:p-5">
+                    <form onSubmit={updateUserSubmitHandler} className="flex flex-col bg-white rounded-sm border border-gray-300 shadow gap-5 p-3 lg:p-5" id="userform">
 
                         <div className="flex flex-col gap-3 w-full lg:w-2/3">
                             <TextField
@@ -143,7 +143,7 @@ const UpdateUser = () => {
                         </div>
                                 
                         <div className="flex flex-col gap-2 sm:w-1/3">
-                            <input form="mainform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-full shadow hover:bg-black cursor-pointer" value="Update" name="updateProduct"/>
+                            <input form="userform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-sm shadow hover:bg-black cursor-pointer" value="Update" name="updateProduct"/>
                         </div>
                     </form>
 

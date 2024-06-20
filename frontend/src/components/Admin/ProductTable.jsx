@@ -42,9 +42,10 @@ const ProductTable = () => {
     const columns = [
         {
             field: "id",
-            headerName: "Product ID",
+            headerName: "S.No.",
             minWidth: 100,
-            flex: 0.5,
+            flex: 0.2,
+            renderCell: (params) => params.api.getAllRowIds().indexOf(params.id)+1
         },
         {
             field: "name",
@@ -70,7 +71,7 @@ const ProductTable = () => {
             field: "category",
             headerName: "Category",
             minWidth: 100,
-            flex: 0.1,
+            flex: 0.5,
             renderCell: (params) => {
                 return (
                     <span>{params.row.category !== undefined ? params.row.category.name : null}</span>
@@ -84,7 +85,7 @@ const ProductTable = () => {
             headerAlign: "left",
             align: "left",
             minWidth: 70,
-            flex: 0.1,
+            flex: 0.5,
             renderCell: (params) => {
                 return (
                     <>
@@ -177,7 +178,7 @@ const ProductTable = () => {
 
             <div className="flex justify-between items-center border-b pb-5 border-gray-300">
                 <h1 className="text-xl font-semibold capitalize">products</h1>
-                <Link to="/admin/new_product" className="py-2 px-5 rounded-full shadow font-medium text-white bg-primary-green hover:bg-black">New Product</Link>
+                <Link to="/admin/new_product" className="py-2 px-5 rounded-sm shadow font-medium text-white bg-primary-green hover:bg-black">Add Product</Link>
             </div>
             <div className="bg-white rounded-sm border border-gray-300 w-full" style={{ height: "78vh" }}>
 

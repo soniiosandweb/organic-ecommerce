@@ -30,7 +30,7 @@ const Banner = () => {
 
   const settings = {
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 5000,
     dots: false,
     infinite: true,
     speed: 500,
@@ -67,7 +67,7 @@ const Banner = () => {
               <div className='flex items-center justify-center p-12 h-full flex-col gap-5 text-center'>
                 <p className='text-xl text-white'>{el.subtitle}</p>
                 <h1 className='text-white text-5xl font-semibold'>{el.title}</h1>
-                <Link to="/products" className="bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-full shadow-lg capitalize hover:bg-white hover:text-black">view all</Link>
+                <Link to="/products" className="bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-sm shadow-lg capitalize hover:bg-white hover:text-black">view all</Link>
               </div>
               <LazyLoadImage 
                 src={el.image}

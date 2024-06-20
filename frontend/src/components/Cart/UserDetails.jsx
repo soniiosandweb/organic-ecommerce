@@ -117,7 +117,7 @@ const UserDetails = () => {
                                                 autoComplete='password'
                                             />
                                             
-                                            <button type="submit" className="bg-primary-green w-full sm:w-1/3 my-2 py-3.5 text-md font-semibold text-white shadow hover:bg-black rounded-full capitalize outline-none">save and continue</button>
+                                            <button type="submit" className="bg-primary-green w-full sm:w-1/3 my-2 py-3.5 text-md font-semibold text-white shadow hover:bg-black rounded-sm capitalize outline-none">save and continue</button>
 
                                         </form>
 

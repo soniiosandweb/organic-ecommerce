@@ -57,9 +57,10 @@ const ReviewsTable = () => {
     const columns = [
         {
             field: "id",
-            headerName: "Review ID",
+            headerName: "S.No.",
             minWidth: 200,
             flex: 0.5,
+            renderCell: (params) => params.api.getAllRowIds().indexOf(params.id)+1
         },
         {
             field: "user",

@@ -63,7 +63,7 @@ const ProductSlider = ({ title, tagline }) => {
                             <p className="text-md text-primary-green font-semibold uppercase">~ {tagline} ~</p>
                             <h2 className="text-3xl font-semibold">{title}</h2>
                         </div>
-                        <Link to="/products" className="bg-primary-green text-md font-medium text-white px-5 py-2.5 rounded-full shadow-lg capitalize hover:bg-black">view all</Link>
+                        <Link to="/products" className="bg-primary-green text-md font-medium text-white px-5 py-2.5 rounded-sm shadow-lg capitalize hover:bg-black">view all</Link>
                     </div>
 
                     <div className="flex py-10 justify-between ">
@@ -71,8 +71,8 @@ const ProductSlider = ({ title, tagline }) => {
                         <div className='hidden md:block w-1/4 flex-1'>
                             <div className='trending-banner h-full w-full relative'>
                                 <div className='trending-text h-full w-full flex items-center flex-col z-10 relative p-5 lg:p-10'>
-                                    <h3 className='text-3xl font-semibold text-center mt-0 lg:mt-10 mb-5'>Deal Of The Day 25% off</h3>
-                                    <Link to="/products" className="bg-primary-green text-md font-medium text-white px-5 py-2.5 rounded-full shadow-lg capitalize hover:bg-black">Shop now</Link>
+                                    <h3 className='text-3xl font-semibold text-center mt-0 lg:mt-10 mb-5'>Shop From Categories</h3>
+                                    <button className="bg-primary-green text-md font-medium text-white px-5 py-2.5 rounded-sm shadow-lg capitalize hover:bg-black" onClick={() => document.getElementById('product_categories')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}>Shop now</button>
                                 </div>
                                 
                                 <LazyLoadImage 

@@ -146,3 +146,7 @@ body {
 .related-product-slider .slick-next {
   right: 0;
 }
+
+/* #product_categories{
+  scroll-margin-top: 100px;
+} */

@@ -40,25 +40,26 @@ const OrderTable = () => {
     const columns = [
         {
             field: "id",
-            headerName: "Order ID",
-            minWidth: 200,
-            flex: 1,
+            headerName: "S.No.",
+            minWidth: 50,
+            flex: 0.2,
+            renderCell: (params) => params.api.getAllRowIds().indexOf(params.id)+1
         },
         {
             field: "status",
             headerName: "Status",
             minWidth: 150,
-            flex: 0.2,
+            flex: 1,
             renderCell: (params) => {
                 return (
                     <>
                         {
                             params.row.status === "Delivered" ? (
-                                <span className="text-sm bg-green-100 p-1 px-2 font-medium rounded-full text-green-800">{params.row.status}</span>
+                                <span className="text-sm bg-green-100 p-1 px-2 font-medium rounded-sm text-green-800">{params.row.status}</span>
                             ) : params.row.status === "Shipped" ? (
-                                <span className="text-sm bg-yellow-100 p-1 px-2 font-medium rounded-full text-yellow-800">{params.row.status}</span>
+                                <span className="text-sm bg-yellow-100 p-1 px-2 font-medium rounded-sm text-yellow-800">{params.row.status}</span>
                             ) : (
-                                <span className="text-sm bg-purple-100 p-1 px-2 font-medium rounded-full text-purple-800">{params.row.status}</span>
+                                <span className="text-sm bg-purple-100 p-1 px-2 font-medium rounded-sm text-purple-800">{params.row.status}</span>
                             )
                         }
                     </>
@@ -70,14 +71,18 @@ const OrderTable = () => {
             headerName: "Items Qty",
             type: "number",
             minWidth: 100,
-            flex: 0.1,
+            headerAlign: "left",
+            align: "left",
+            flex: 0.5,
         },
         {
             field: "amount",
             headerName: "Amount",
             type: "number",
+            headerAlign: "left",
+            align: "left",
             minWidth: 200,
-            flex: 0.2,
+            flex: 1,
             renderCell: (params) => {
                 return (
                     <span>₹{params.row.amount.toLocaleString()}</span>
@@ -89,7 +94,7 @@ const OrderTable = () => {
             headerName: "Order On",
             type: "date",
             minWidth: 200,
-            flex: 0.5,
+            flex: 1,
         },
         {
             field: "actions",

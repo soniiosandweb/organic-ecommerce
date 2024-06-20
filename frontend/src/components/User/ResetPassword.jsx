@@ -98,7 +98,7 @@ const ResetPassword = () => {
                   {/* <!-- button container --> */}
                   <div class="flex flex-col gap-2.5 mt-2 mb-12">
                     <p class="text-md text-black font-medium text-left">By continuing, you agree to Organic's <a href="/" class="text-primary-green"> Terms of Use</a> and <a href="/" class="text-primary-green"> Privacy Policy.</a></p>
-                    <button type="submit" class="block w-full bg-primary-green text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize hover:bg-black my-2">Submit</button>
+                    <button type="submit" class="block w-full bg-primary-green text-md font-medium text-white px-10 py-3 rounded-sm shadow-lg capitalize hover:bg-black my-2">Submit</button>
                   </div>
                   {/* <!-- button container --> */}
 

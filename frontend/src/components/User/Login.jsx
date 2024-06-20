@@ -90,8 +90,8 @@ const Login = () => {
                                     {/* <!-- button container --> */}
                                     <div className="flex flex-col gap-2.5 my-3">
                                         <p className="text-md text-black font-medium text-left">By continuing, you agree to Green Organic's <a href="/" className="text-primary-green"> Terms of Use</a> and <a href="/" className="text-primary-green"> Privacy Policy.</a></p>
-                                        <button type="submit" className="block w-full bg-primary-green text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize hover:bg-black my-4">Login</button>
-                                        <Link to="/password/forgot" className="block w-full bg-black text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize hover:bg-primary-green">Forgot Password?</Link>
+                                        <button type="submit" className="block w-full bg-primary-green text-md font-medium text-white px-10 py-3 rounded-sm shadow-lg capitalize hover:bg-black my-4">Login</button>
+                                        <Link to="/password/forgot" className="block w-full bg-black text-md font-medium text-white px-10 py-3 rounded-sm shadow-lg capitalize hover:bg-primary-green">Forgot Password?</Link>
                                     </div>
                                     {/* <!-- button container --> */}
 

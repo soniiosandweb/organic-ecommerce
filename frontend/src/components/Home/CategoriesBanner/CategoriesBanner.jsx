@@ -28,7 +28,7 @@ const CategoriesBanner = () => {
                     <div className='w-full md:w-1/3 flex flex-col gap-2 text-center p-8 md:p-6 lg:p-8 relative overflow-hidden cursor-pointer banner-categories rounded-md' key={i}>
                         <div className='flex flex-col items-start justify-between relative z-10 w-full '>
                             <h3 className='text-xl lg:text-3xl text-start font-semibold capitalize mt-8 mb-8 xl:mb-16 lg:w-3/5'>{el.title}</h3>
-                            <Link to="/products" className="inline-block w-max bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-full shadow-lg capitalize hover:bg-black">See More</Link>
+                            <Link to="/products" className="inline-block w-max bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-sm shadow-lg capitalize hover:bg-black">Shop Now</Link>
                         </div>
                         <LazyLoadImage 
                             src={el.image}

@@ -154,12 +154,12 @@ const ProductDetails = () => {
                                         <div className="w-full flex gap-3 flex-col sm:flex-row">
                                             {/* <!-- add to cart btn --> */}
                                             {product.stock > 0 && (
-                                                <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-full sm:w-1/2 flex items-center justify-center gap-2 text-white bg-primary-green rounded-full shadow hover:shadow-lg hover:bg-black font-semibold">
+                                                <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-full sm:w-1/2 flex items-center justify-center gap-2 text-white bg-primary-green rounded-sm shadow hover:shadow-lg hover:bg-black font-semibold">
                                                     <ShoppingCartIcon />
                                                     {itemInCart ? "ADD TO CART" : "ADD TO CART"}
                                                 </button>
                                             )}
-                                            <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-full hover:shadow-lg" : "p-4 w-full sm:w-1/2 flex items-center justify-center gap-2 text-white bg-black rounded-full hover:shadow-lg hover:bg-primary-green font-semibold"}>
+                                            <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-sm hover:shadow-lg" : "p-4 w-full sm:w-1/2 flex items-center justify-center gap-2 text-white bg-black rounded-sm hover:shadow-lg hover:bg-primary-green font-semibold"}>
                                                 <FlashOnIcon />
                                                 {product.stock < 1 ? "OUT OF STOCK" : "BUY NOW"}
                                             </button>
@@ -263,7 +263,7 @@ const ProductDetails = () => {
                             <div className="w-full mt-8 md:mt-20 rounded-sm border flex flex-col">
                                 <div className="flex justify-between items-center border-b px-6 py-4 flex-col sm:flex-row gap-5">
                                     <h2 className="text-2xl font-medium">Ratings & Reviews</h2>
-                                    <button onClick={handleDialogClose} className="shadow bg-primary-green text-white px-4 py-2 rounded-full hover:bg-black hover:shadow-lg">Rate Product</button>
+                                    <button onClick={handleDialogClose} className="shadow bg-primary-green text-white px-4 py-2 rounded-sm hover:bg-black hover:shadow-lg">Rate Product</button>
                                 </div>
 
                                 <Dialog aria-labelledby='review-dialog'  open={open} onClose={handleDialogClose}>
@@ -290,8 +290,8 @@ const ProductDetails = () => {
                                     </DialogContent>
                                 
                                     <DialogActions>
-                                        <button onClick={handleDialogClose} className="py-2 px-6 rounded-full shadow bg-red-700 hover:bg-black text-white uppercase">Cancel</button>
-                                        <button onClick={reviewSubmitHandler} className="py-2 px-6 rounded-full bg-primary-green hover:bg-black text-white shadow uppercase">Submit</button>
+                                        <button onClick={handleDialogClose} className="py-2 px-6 rounded-sm shadow bg-red-700 hover:bg-black text-white uppercase">Cancel</button>
+                                        <button onClick={reviewSubmitHandler} className="py-2 px-6 rounded-sm bg-primary-green hover:bg-black text-white shadow uppercase">Submit</button>
                                     </DialogActions>
                                 </Dialog>
 

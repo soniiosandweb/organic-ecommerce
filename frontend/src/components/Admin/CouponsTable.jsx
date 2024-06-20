@@ -6,17 +6,16 @@ import Actions from './Actions';
 import MetaData from '../Layouts/MetaData';
 import BackdropLoader from '../Layouts/BackdropLoader';
 import { Link } from 'react-router-dom';
-import { getAllCategories, clearErrors, deleteCategory } from '../../actions/categoryAction';
-import { DELETE_CATEGORY_RESET } from '../../constants/categoryConstants';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { DELETE_COUPON_RESET } from '../../constants/couponConstants';
+import { deleteCoupon, getAllCoupons, clearErrors } from '../../actions/couponAction';
 
-const CategoriesTable = () => {
+const CouponsTable = () => {
 
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
 
-    const { categories, error } = useSelector((state) => state.allCategories);
-    const { loading, isDeleted, error: deleteError } = useSelector((state) => state.category);
+    const { coupons, error } = useSelector((state) => state.allCoupons);
+    const { loading, isDeleted, error: deleteError } = useSelector((state) => state.coupon);
 
     useEffect(() => {
         if (error) {
@@ -28,14 +27,14 @@ const CategoriesTable = () => {
             dispatch(clearErrors());
         }
         if (isDeleted) {
-            enqueueSnackbar("Deleted Successfully", { variant: "success" });
-            dispatch({ type: DELETE_CATEGORY_RESET });
+            enqueueSnackbar("Coupon Deleted Successfully", { variant: "success" });
+            dispatch({ type: DELETE_COUPON_RESET });
         }
-        dispatch(getAllCategories());
+        dispatch(getAllCoupons());
     }, [dispatch, error, deleteError, isDeleted, enqueueSnackbar]);
 
-    const deleteCategoryHandler = (id) => {
-        dispatch(deleteCategory(id));
+    const deleteCouponHandler = (id) => {
+        dispatch(deleteCoupon(id));
     }
 
     const columns = [
@@ -47,28 +46,20 @@ const CategoriesTable = () => {
             renderCell: (params) => params.api.getAllRowIds().indexOf(params.id)+1
         },
         {
-            field: "category",
-            headerName: "Category Image",
+            field: "name",
+            headerName: "Coupon Code",
             minWidth: 200,
             flex: 1,
-            renderCell: (params) => {
-                return (
-                    <div className="flex items-center gap-2">
-                        <div className="w-12 h-12 rounded-full">
-                            <LazyLoadImage 
-                                src={params.row.image}
-                                alt={params.row.name}
-                                className="w-full h-full rounded-full object-cover"
-                            />
-                            {params.row.name}
-                        </div>
-                    </div>
-                )
-            },
         },
         {
-            field: "name",
-            headerName: "Category Name",
+            field: "discount",
+            headerName: "Coupon Discount",
+            minWidth: 200,
+            flex: 1,
+        },
+        {
+            field: "percentage",
+            headerName: "Percentage",
             minWidth: 200,
             flex: 1,
         },
@@ -81,7 +72,7 @@ const CategoriesTable = () => {
             sortable: false,
             renderCell: (params) => {
                 return (
-                    <Actions editRoute={"category"} deleteHandler={deleteCategoryHandler} id={params.row.id} />
+                    <Actions editRoute={"coupon"} deleteHandler={deleteCouponHandler} id={params.row.id} />
                 );
             },
         },
@@ -89,23 +80,24 @@ const CategoriesTable = () => {
 
     const rows = [];
 
-    categories && categories.forEach((category) => {
+    coupons && coupons.forEach((coupon, index) => {
         rows.unshift({
-            id: category._id,
-            name: category.name,
-            image: category.image.url,
+            id: index+1,
+            name: coupon.name,
+            discount: coupon.discount,
+            percentage: coupon.percentage,
         });
     });
 
     return (
         <>
-            <MetaData title="Admin Categories | Organic" />
+            <MetaData title="Admin Coupons | Organic" />
 
             {loading && <BackdropLoader />}
 
             <div className="flex justify-between items-center border-b pb-5 border-gray-300">
-                <h1 className="text-xl font-semibold capitalize">Categories</h1>
-                <Link to="/admin/new_category" className="py-2 px-5 rounded-sm shadow font-medium text-white bg-primary-green hover:bg-black">Add Category</Link>
+                <h1 className="text-xl font-semibold capitalize">Coupons</h1>
+                <Link to="/admin/new_category" className="py-2 px-5 rounded-sm shadow font-medium text-white bg-primary-green hover:bg-black">Add Coupon</Link>
             </div>
 
             <div className="bg-white rounded-sm border border-gray-300 shadow-lg w-full" style={{ height: "78vh" }}>
@@ -126,4 +118,4 @@ const CategoriesTable = () => {
     );
 };
 
-export default CategoriesTable;
+export default CouponsTable;

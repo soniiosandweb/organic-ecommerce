@@ -80,9 +80,9 @@ const UserTable = () => {
                     <>
                         {
                             params.row.role === "admin" ? (
-                                <span className="text-sm bg-green-100 p-1 px-2 font-medium rounded-full text-green-800 capitalize">{params.row.role}</span>
+                                <span className="text-sm bg-green-100 p-1 px-2 font-medium rounded-sm text-green-800 capitalize">{params.row.role}</span>
                             ) : (
-                                <span className="text-sm bg-purple-100 p-1 px-2 font-medium rounded-full text-purple-800 capitalize">{params.row.role}</span>
+                                <span className="text-sm bg-purple-100 p-1 px-2 font-medium rounded-sm text-purple-800 capitalize">{params.row.role}</span>
                             )
                         }
                     </>

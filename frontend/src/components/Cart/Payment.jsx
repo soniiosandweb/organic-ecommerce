@@ -218,7 +218,7 @@ const Payment = () => {
                                         </div>
                                     
                                         <div className='flex-1 w-full'>
-                                            <input ref={paymentBtn} type="submit" value="Place Order" className="bg-primary-green w-full sm:w-1/4 my-2 py-3.5 text-sm font-medium text-white shadow hover:bg-black rounded-full capitalize outline-none cursor-pointer" />
+                                            <input ref={paymentBtn} type="submit" value="Place Order" className="bg-primary-green w-full sm:w-1/4 my-2 py-3.5 text-sm font-medium text-white shadow hover:bg-black rounded-sm capitalize outline-none cursor-pointer" />
                                         </div>
                                     
                                     </form>

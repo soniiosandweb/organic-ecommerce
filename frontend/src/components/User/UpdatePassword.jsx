@@ -112,7 +112,7 @@ const UpdatePassword = () => {
 
                                 </div>
                                 {/* <!-- input container column --> */}
-                                <button type="submit" className="block w-full lg:w-max text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize my-4 bg-primary-green hover:bg-black">Update</button>
+                                <button type="submit" className="block w-full lg:w-max text-md font-medium text-white px-10 py-3 rounded-sm shadow-lg capitalize my-4 bg-primary-green hover:bg-black">Update</button>
                             </div>
 
                         </form>

@@ -2,7 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { clearErrors, getOrderDetails, updateOrder } from '../../actions/orderAction';
 import { UPDATE_ORDER_RESET } from '../../constants/orderConstants';
 import { formatDate } from '../../utils/functions';
@@ -18,6 +18,7 @@ const UpdateOrder = () => {
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const params = useParams();
+    const navigate = useNavigate();
 
     const [status, setStatus] = useState("");
 
@@ -36,6 +37,7 @@ const UpdateOrder = () => {
         if (isUpdated) {
             enqueueSnackbar("Order Updates Successfully", { variant: "success" });
             dispatch({ type: UPDATE_ORDER_RESET });
+            navigate("/admin/orders");
         }
         dispatch(getOrderDetails(params.id));
     }, [dispatch, error, params.id, isUpdated, updateError, enqueueSnackbar]);
@@ -91,6 +93,7 @@ const UpdateOrder = () => {
                                             id="order-status-select"
                                             value={status}
                                             label="Status"
+                                            required
                                             onChange={(e) => setStatus(e.target.value)}
                                         >
                                             {order.orderStatus === "Shipped" && (<MenuItem value={"Delivered"}>Delivered</MenuItem>)}

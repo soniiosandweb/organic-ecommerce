@@ -188,7 +188,7 @@ const Register = () => {
                                         src={avatarPreview}
                                         sx={{ width: 56, height: 56 }}
                                     />
-                                    <label className="rounded-full font-medium bg-gray-400 text-center cursor-pointer text-white w-full py-2 px-2.5 shadow hover:shadow-lg">
+                                    <label className="rounded-sm font-medium bg-gray-400 text-center cursor-pointer text-white w-full py-2 px-2.5 shadow hover:shadow-lg">
                                         <input
                                             type="file"
                                             name="avatar"
@@ -199,8 +199,8 @@ const Register = () => {
                                         Choose File
                                     </label>
                                 </div>
-                                <button type="submit" className="block w-full bg-primary-green text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize hover:bg-black my-2">Signup</button>
-                                <Link to="/login" className="block w-full bg-black text-md font-medium text-white px-10 py-3 rounded-full shadow-lg capitalize hover:bg-primary-green text-center">Existing User? Log in</Link>
+                                <button type="submit" className="block w-full bg-primary-green text-md font-medium text-white px-10 py-3 rounded-sm shadow-lg capitalize hover:bg-black my-2">Signup</button>
+                                <Link to="/login" className="block w-full bg-black text-md font-medium text-white px-10 py-3 rounded-sm shadow-lg capitalize hover:bg-primary-green text-center">Existing User? Log in</Link>
                             </div>
 
                         </form>

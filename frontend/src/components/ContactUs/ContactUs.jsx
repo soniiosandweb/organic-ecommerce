@@ -90,7 +90,7 @@ const ContactUs = () => {
                     />
 
                                 
-                    <button type="submit" className="w-full sm:w-1/5 my-6 mx-auto bg-primary-green text-md font-medium text-white px-5 py-2.5 rounded-full shadow-lg capitalize hover:bg-black">Submit</button>
+                    <button type="submit" className="w-full sm:w-1/5 my-6 mx-auto bg-primary-green text-md font-medium text-white px-5 py-2.5 rounded-sm shadow-lg capitalize hover:bg-black">Submit</button>
                 </form>
             </div>
 

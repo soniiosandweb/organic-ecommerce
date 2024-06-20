@@ -8,7 +8,8 @@ import { saveForLaterReducer } from './reducers/saveForLaterReducer';
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer, paymentAddReducer, paymentStatusReducer } from './reducers/orderReducer';
 import { wishlistReducer } from './reducers/wishlistReducer';
 import { contactReducer } from './reducers/contactReducer';
-import { allCategoriesReducer, categoryDetailsReducer, categoryReducer, newCategoryReducer } from './reducers/categoryReducer';
+import { allCategoriesReducer, categoryDetailsReducer, categoryReducer, limitCategoriesReducer, newCategoryReducer } from './reducers/categoryReducer';
+import { allCouponsReducer, couponDetailsReducer, couponReducer, newCouponReducer } from './reducers/couponReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -37,9 +38,14 @@ const reducer = combineReducers({
     contactForm: contactReducer,
     newCategory: newCategoryReducer,
     allCategories: allCategoriesReducer,
+    limitCategories: limitCategoriesReducer,
     category: categoryReducer,
     categoryDetails: categoryDetailsReducer,
     paymentKey: PaymentKeysReducer,
+    newCoupon: newCouponReducer,
+    allCoupons: allCouponsReducer,
+    coupon: couponReducer,
+    couponDetails: couponDetailsReducer,
 });
 
 let initialState = {

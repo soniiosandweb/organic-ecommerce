@@ -277,7 +277,7 @@ const NewProduct = () => {
                         ))}
                     </div>
 
-                    <label className="rounded font-medium bg-gray-400 text-center cursor-pointer text-white p-2 shadow hover:shadow-lg my-2">
+                    <label className="rounded-sm font-medium bg-gray-400 text-center cursor-pointer text-white p-2 shadow hover:shadow-lg my-2">
                         <input
                             type="file"
                             name="images"
@@ -292,7 +292,7 @@ const NewProduct = () => {
                 </div>
                 
                 <div className="flex flex-col gap-2 sm:w-1/3">
-                    <input form="mainform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-full shadow hover:bg-black cursor-pointer" value="Submit" />
+                    <input form="mainform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-sm shadow hover:bg-black cursor-pointer" value="Submit" />
                 </div>
 
             </form>

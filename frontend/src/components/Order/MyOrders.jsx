@@ -123,7 +123,7 @@ const MyOrders = () => {
                             {/* <!-- filters header --> */}
                             <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center justify-between gap-5 px-4 py-2 border-b border-gray-300">
                                 <p className="text-lg font-bold uppercase">Filters</p>
-                                <span onClick={clearFilters} className="capitalize bg-primary-green text-white text-md cursor-pointer font-semibold px-5 py-2.5 rounded-full shadow-lg hover:bg-black">clear all</span>
+                                <span onClick={clearFilters} className="capitalize bg-primary-green text-white text-md cursor-pointer font-semibold px-5 py-2.5 rounded-sm shadow-lg hover:bg-black">clear all</span>
                             </div>
 
                             {/* <!-- order status checkboxes --> */}

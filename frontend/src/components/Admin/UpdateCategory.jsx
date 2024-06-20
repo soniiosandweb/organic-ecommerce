@@ -126,7 +126,7 @@ const UpdateCategory = () => {
                             />
                         }
                     </div>
-                    <label className="w-full rounded bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow hover:shadow-lg">
+                    <label className="w-full rounded-sm bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow hover:shadow-lg">
                         <input
                             type="file"
                             name="category"
@@ -140,7 +140,7 @@ const UpdateCategory = () => {
                 </div>
 
                 <div className="flex flex-col gap-2 w-full sm:w-1/3">
-                    <input form="categoryform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-full shadow hover:bg-black cursor-pointer" value="Update" />
+                    <input form="categoryform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-sm shadow hover:bg-black cursor-pointer" value="Update" />
                 </div>
 
             </form>
