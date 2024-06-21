@@ -31,7 +31,7 @@ const NewProduct = () => {
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [price, setPrice] = useState();
+    const [price, setPrice] = useState(0);
     const [cuttedPrice, setCuttedPrice] = useState(0);
     const [category, setCategory] = useState("");
     const [stock, setStock] = useState();
@@ -195,6 +195,7 @@ const NewProduct = () => {
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                     >
+                        <MenuItem value="">Select Category</MenuItem>
                         {categories && categories.map((el, i) => (
                             <MenuItem value={el._id} key={i}>
                                 {el.name}

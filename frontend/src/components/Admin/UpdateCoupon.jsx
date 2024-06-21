@@ -1,0 +1,138 @@
+import { useDispatch, useSelector } from "react-redux";
+import MetaData from "../Layouts/MetaData"
+import { useSnackbar } from "notistack";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { useState } from "react";
+import { useEffect } from "react";
+import { clearErrors, getCouponDetails, updateCoupon } from "../../actions/couponAction";
+import BackdropLoader from "../Layouts/BackdropLoader";
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
+import { REMOVE_COUPON_DETAILS, UPDATE_COUPON_RESET } from "../../constants/couponConstants";
+
+const UpdateCoupon = () => {
+
+    const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
+    const navigate = useNavigate();
+    const params = useParams();
+
+    const couponId = params.id;
+
+    const { loading, coupon, error } = useSelector((state) => state.couponDetails);
+    const { loading: updateLoading, isUpdated, error: updateError } = useSelector((state) => state.coupon);
+
+    const [name, setName] = useState("");
+    const [discount, setDiscount] = useState(0);
+    const [percentage, setPercentage] = useState(false);
+
+    const newCouponSubmitHandler = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+
+        formData.set("name", name);
+        formData.set("discount", discount);
+        formData.set("percentage", percentage);
+       
+        dispatch(updateCoupon(params.id, formData));
+    }
+
+    useEffect(() => {
+       
+        if (coupon && coupon._id !== couponId) {
+            dispatch(getCouponDetails(couponId));
+        } else {
+            setName(coupon.name);
+            setDiscount(coupon.discount)
+            setPercentage(coupon.percentage)
+        }
+        
+        if (error) {
+            enqueueSnackbar(error, { variant: "error" });
+            dispatch(clearErrors());
+        }
+        if (updateError) {
+            enqueueSnackbar(updateError, { variant: "error" });
+            dispatch(clearErrors());
+        }
+        if (isUpdated) {
+            enqueueSnackbar("Coupon Updated Successfully", { variant: "success" });
+            dispatch({ type: UPDATE_COUPON_RESET });
+            dispatch({ type: REMOVE_COUPON_DETAILS});
+            navigate('/admin/coupons');
+        }
+    }, [dispatch, error, updateError, isUpdated, couponId, coupon, navigate, enqueueSnackbar]);
+
+    return(
+        <>
+            <MetaData title="Admin: Update Coupon | Organic" />
+
+            {loading && <BackdropLoader />}
+            {updateLoading && <BackdropLoader />}
+
+            <Link to="/admin/coupons" className="ml-1 flex w-max items-center gap-0 font-semibold text-primary-green uppercase hover:text-black"><ArrowBackIosIcon sx={{ fontSize: "18px" }} />Go Back</Link>
+
+            <form onSubmit={newCouponSubmitHandler} encType="multipart/form-data" className="flex flex-col bg-white border border-gray-300 gap-5 shadow p-3 lg:p-5" id="couponform">
+
+                <div className="flex flex-col gap-3 w-full lg:w-2/3">
+                    <TextField
+                        label="Coupon Name"
+                        variant="outlined"
+                        size="medium"
+                        required
+                        value={name}
+                        name='coupon_name'
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    
+                </div>
+
+                <div className="flex flex-col gap-3 w-full lg:w-2/3">
+                    <TextField
+                        label="Discount"
+                        type="number"
+                        variant="outlined"
+                        size="medium"
+                        name="discount"
+                        InputProps={{
+                            inputProps: {
+                                min: 0
+                            }
+                        }}
+                        required
+                        value={discount}
+                        onChange={(e) => setDiscount(e.target.value)}
+                        className='flex-1'
+                    />
+                    
+                </div>
+
+                <div className="flex flex-col gap-3 w-full lg:w-2/3">
+                    <TextField
+                        label="Discount Type"
+                        select
+                        fullWidth
+                        variant="outlined"
+                        size="medium"
+                        required
+                        value={percentage}
+                        onChange={(e) => setPercentage(e.target.value)}
+                    >
+                        <MenuItem value={false}>Flat</MenuItem>
+                        <MenuItem value={true}>% Percentage</MenuItem>
+                    </TextField>
+                    
+                </div>
+
+                <div className="flex flex-col gap-2 w-full sm:w-1/3">
+                    <input form="couponform" type="submit" className="bg-primary-green uppercase p-3 text-white font-medium rounded-sm shadow hover:bg-black cursor-pointer" value="Submit" />
+                </div>
+
+            </form>
+        </>
+    )
+}
+
+export default UpdateCoupon

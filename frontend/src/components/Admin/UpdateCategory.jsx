@@ -56,8 +56,6 @@ const UpdateCategory = () => {
     }
 
     useEffect(() => {
-
-        console.log(category)
        
         if (category && category._id !== categoryId) {
             dispatch(getCategoryDetails(categoryId));

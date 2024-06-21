@@ -234,6 +234,7 @@ const UpdateProduct = () => {
                             multiple: false,
                         }}
                     >
+                        <MenuItem value="">Select Category</MenuItem>
                         {categories &&  categories.map((el, i) => (
                             <MenuItem value={el._id} key={i}>
                                 {el.name}

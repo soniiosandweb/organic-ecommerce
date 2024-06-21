@@ -42,7 +42,7 @@ const CouponsTable = () => {
             field: "id",
             headerName: "S.No.",
             minWidth: 50,
-            flex: 0.2,
+            flex: 0.4,
             renderCell: (params) => params.api.getAllRowIds().indexOf(params.id)+1
         },
         {
@@ -59,9 +59,14 @@ const CouponsTable = () => {
         },
         {
             field: "percentage",
-            headerName: "Percentage",
+            headerName: "Discount Type",
             minWidth: 200,
             flex: 1,
+            renderCell: (params) => {
+                return (
+                    <span>{params.row.percentage ? "% Percentage" : "Flat" }</span>
+                );
+            },
         },
         {
             field: "actions",
@@ -82,7 +87,7 @@ const CouponsTable = () => {
 
     coupons && coupons.forEach((coupon, index) => {
         rows.unshift({
-            id: index+1,
+            id: coupon._id,
             name: coupon.name,
             discount: coupon.discount,
             percentage: coupon.percentage,
@@ -97,7 +102,7 @@ const CouponsTable = () => {
 
             <div className="flex justify-between items-center border-b pb-5 border-gray-300">
                 <h1 className="text-xl font-semibold capitalize">Coupons</h1>
-                <Link to="/admin/new_category" className="py-2 px-5 rounded-sm shadow font-medium text-white bg-primary-green hover:bg-black">Add Coupon</Link>
+                <Link to="/admin/new_coupon" className="py-2 px-5 rounded-sm shadow font-medium text-white bg-primary-green hover:bg-black">Add Coupon</Link>
             </div>
 
             <div className="bg-white rounded-sm border border-gray-300 shadow-lg w-full" style={{ height: "78vh" }}>

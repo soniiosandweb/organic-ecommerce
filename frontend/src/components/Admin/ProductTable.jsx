@@ -44,7 +44,7 @@ const ProductTable = () => {
             field: "id",
             headerName: "S.No.",
             minWidth: 100,
-            flex: 0.2,
+            flex: 0.4,
             renderCell: (params) => params.api.getAllRowIds().indexOf(params.id)+1
         },
         {

@@ -132,7 +132,7 @@ const AboutUs = () => {
                                 <LazyLoadImage 
                                     src={item.image}
                                     alt="Brand"
-                                    className="size-40 m-auto object-contain object-center"
+                                    className="size-40 m-auto object-contain object-center cursor-pointer"
                                 />
                             </div>
                         ))}

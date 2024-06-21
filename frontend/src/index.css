@@ -105,7 +105,8 @@ body {
   animation-iteration-count: 1;
 }
 
-.product-services-section img:hover{
+.product-services-section img:hover,
+.brand-slider-image img:hover{
   animation-name: animation-wobble-horizontal;
   animation-duration: 1s;
   animation-timing-function: ease-in-out;

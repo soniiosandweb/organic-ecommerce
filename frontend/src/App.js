@@ -50,6 +50,8 @@ import UpdateCategory from './components/Admin/UpdateCategory';
 import AdminLogin from './components/Admin/AdminLogin';
 import UserDetails from './components/Cart/UserDetails';
 import CouponsTable from './components/Admin/CouponsTable';
+import NewCoupon from './components/Admin/NewCoupon';
+import UpdateCoupon from './components/Admin/UpdateCoupon';
 
 function App() {
 
@@ -305,6 +307,22 @@ function App() {
           <ProtectedRoute isAdmin={true}>
             <Dashboard activeTab={6}>
               <CouponsTable />
+            </Dashboard>
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin/new_coupon" element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard activeTab={6}>
+              <NewCoupon />
+            </Dashboard>
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin/coupon/:id" element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard activeTab={6}>
+              <UpdateCoupon />
             </Dashboard>
           </ProtectedRoute>
         } ></Route>
