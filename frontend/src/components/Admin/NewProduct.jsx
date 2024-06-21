@@ -32,7 +32,7 @@ const NewProduct = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState();
-    const [cuttedPrice, setCuttedPrice] = useState();
+    const [cuttedPrice, setCuttedPrice] = useState(0);
     const [category, setCategory] = useState("");
     const [stock, setStock] = useState();
     const [warranty, setWarranty] = useState(0);
@@ -142,7 +142,7 @@ const NewProduct = () => {
                     <TextField
                         label="Description"
                         multiline
-                        rows={3}
+                        rows={5}
                         required
                         variant="outlined"
                         size="medium"
@@ -161,7 +161,7 @@ const NewProduct = () => {
                         name="price"
                         InputProps={{
                             inputProps: {
-                                min: 0
+                                min: 50
                             }
                         }}
                         required
@@ -179,7 +179,6 @@ const NewProduct = () => {
                                 min: 0
                             }
                         }}
-                        required
                         value={cuttedPrice}
                         onChange={(e) => setCuttedPrice(e.target.value)}
                         className='flex-1'

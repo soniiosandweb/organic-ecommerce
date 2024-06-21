@@ -262,7 +262,7 @@ export const userDetailsReducer = (state = { user: {} }, { type, payload }) => {
     }
 };
 
-export const PaymentKeysReducer = (state = { paymentKey: {} }, { type, payload }) => {
+export const PaymentKeysReducer = (state = { paymentKey: null }, { type, payload }) => {
     switch (type) {
         case LOAD_PAYMENT_REQUEST:
             return {

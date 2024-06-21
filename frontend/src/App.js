@@ -76,7 +76,6 @@ function App() {
     dispatch(loadPaymentKey());
   }, [dispatch]);
 
-
   // always scroll to top on route/path change
   useEffect(() => {
     window.scrollTo({

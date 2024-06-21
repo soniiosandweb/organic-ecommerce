@@ -7,18 +7,26 @@ const ErrorHandler = require('../utils/errorHandler');
 const { v4: uuidv4 } = require('uuid');
 
 exports.processPayment = asyncErrorHandler(async (req, res, next) => {
-    const myPayment = await stripe.paymentIntents.create({
-        amount: req.body.amount,
-        currency: "inr",
-        metadata: {
-            company: "Organic",
-        },
-    });
+    
 
-    res.status(200).json({
-        success: true,
-        client_secret: myPayment.client_secret, 
-    });
+    try {
+        const myPayment = await stripe.paymentIntents.create({
+            amount: req.body.amount,
+            currency: "inr",
+            metadata: {
+                company: "Organic",
+            },
+        });
+
+        res.status(200).json({
+            success: true,
+            client_secret: myPayment.client_secret, 
+        });
+        
+    } catch (err) {
+        return next(new ErrorHandler(err, 400));
+    }
+
 });
 
 exports.sendStripeApiKey = asyncErrorHandler(async (req, res, next) => {

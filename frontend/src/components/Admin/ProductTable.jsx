@@ -124,7 +124,7 @@ const ProductTable = () => {
             flex: 0.2,
             renderCell: (params) => {
                 return (
-                    <span>₹{params.row.cprice.toLocaleString()}</span>
+                    <span>₹{params.row.cprice && params.row.cprice.toLocaleString()}</span>
                 );
             },
         },

@@ -156,7 +156,7 @@ const ProductDetails = () => {
                                             {product.stock > 0 && (
                                                 <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-full sm:w-1/2 flex items-center justify-center gap-2 text-white bg-primary-green rounded-sm shadow hover:shadow-lg hover:bg-black font-semibold">
                                                     <ShoppingCartIcon />
-                                                    {itemInCart ? "ADD TO CART" : "ADD TO CART"}
+                                                    {itemInCart ? "GO TO CART" : "ADD TO CART"}
                                                 </button>
                                             )}
                                             <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-sm hover:shadow-lg" : "p-4 w-full sm:w-1/2 flex items-center justify-center gap-2 text-white bg-black rounded-sm hover:shadow-lg hover:bg-primary-green font-semibold"}>
@@ -188,8 +188,14 @@ const ProductDetails = () => {
                                         {/* <!-- price desc --> */}
                                         <h2 className="flex items-baseline gap-2 text-3xl font-medium">
                                             <span className="text-black text-3xl font-medium">₹{product.price?.toLocaleString()}</span>
-                                            <span className="text-base text-gray-500 line-through font-medium text-xl">₹{product.cuttedPrice?.toLocaleString()}</span>
-                                            <span className="text-base text-primary-green font-medium text-xl">{getDiscount(product.price, product.cuttedPrice)}%&nbsp;off</span>
+                                            {product.cuttedPrice !== 0 ?
+                                                <>
+                                                   <span className="text-base text-gray-500 line-through font-medium text-xl">₹{product.cuttedPrice?.toLocaleString()}</span>
+                                                   <span className="text-base text-primary-green font-medium text-xl">{getDiscount(product.price, product.cuttedPrice)}%&nbsp;off</span>
+                                                </>
+                                            : null  
+                                            }
+                                            
                                         </h2>
 
                                         {product.stock <= 10 && product.stock > 0 && (

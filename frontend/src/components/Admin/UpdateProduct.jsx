@@ -93,10 +93,10 @@ const UpdateProduct = () => {
         formData.set("name", name);
         formData.set("description", description);
         formData.set("price", price);
-        formData.set("cuttedPrice", cuttedPrice);
+        formData.set("cuttedPrice", cuttedPrice ? cuttedPrice : 0);
         formData.set("category", category);
         formData.set("stock", stock);
-        formData.set("warranty", warranty);
+        formData.set("warranty", warranty ? warranty : 0);
 
         if(oldImages && oldImages.length){
 
@@ -179,7 +179,7 @@ const UpdateProduct = () => {
                     <TextField
                         label="Description"
                         multiline
-                        rows={3}
+                        rows={5}
                         required
                         variant="outlined"
                         size="medium"
@@ -196,7 +196,7 @@ const UpdateProduct = () => {
                         size="medium"
                         InputProps={{
                             inputProps: {
-                                min: 0
+                                min: 50
                             }
                         }}
                         required
@@ -214,7 +214,6 @@ const UpdateProduct = () => {
                                 min: 0
                             }
                         }}
-                        required
                         value={cuttedPrice}
                         onChange={(e) => setCuttedPrice(e.target.value)}
                         className='flex-1'
@@ -265,7 +264,6 @@ const UpdateProduct = () => {
                                 min: 0
                             }
                         }}
-                        required
                         value={warranty}
                         onChange={(e) => setWarranty(e.target.value)}
                     />

@@ -30,11 +30,11 @@ const productSchema = new mongoose.Schema({
     ],
     price: {
         type: Number,
-        required: [true, "Please enter product price"]
+        required: [true, "Please enter product selling price"]
     },
     cuttedPrice: {
         type: Number,
-        required: [false, "Please enter cutted price"]
+        required: [false, "Please enter product price"]
     },
     images: [
         {

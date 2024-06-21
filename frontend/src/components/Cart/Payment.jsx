@@ -82,72 +82,73 @@ const Payment = () => {
                 },
             };
 
-            const { data } = await axios.post(
+            const {data} = await axios.post(
                 '/api/v1/payment/process',
                 paymentData,
                 config,
             );
 
-            // let info = {
-            //     action: "https://securegw-stage.paytm.in/order/process",
-            //     params: data.paytmParams
-            // }
+                // let info = {
+                //     action: "https://securegw-stage.paytm.in/order/process",
+                //     params: data.paytmParams
+                // }
 
-            // post(info)
+                // post(info)
 
-            if (!stripe || !elements) return;
+                if (!stripe || !elements) return;
 
-            const result = await stripe.confirmCardPayment(data.client_secret, {
-                payment_method: {
-                    card: elements.getElement(CardNumberElement),
-                    billing_details: {
-                        name: user.name,
-                        email: user.email,
-                        address: {
-                            line1: shippingInfo.address,
-                            city: shippingInfo.city,
-                            country: shippingInfo.country,
-                            state: shippingInfo.state,
-                            postal_code: shippingInfo.pincode,
+                const result = await stripe.confirmCardPayment(data.client_secret, {
+                    payment_method: {
+                        card: elements.getElement(CardNumberElement),
+                        billing_details: {
+                            name: user.name,
+                            email: user.email,
+                            address: {
+                                line1: shippingInfo.address,
+                                city: shippingInfo.city,
+                                country: shippingInfo.country,
+                                state: shippingInfo.state,
+                                postal_code: shippingInfo.pincode,
+                            },
                         },
                     },
-                },
-            });
+                });
 
-            if (result.error) {
-                paymentBtn.current.disabled = false;
-                enqueueSnackbar(result.error.message, { variant: "error" });
-            } else {
-                if (result.paymentIntent.status === "succeeded") {
-
-                    const payment = {
-                        id: result.paymentIntent.id,
-                        client_secret: result.paymentIntent.client_secret,
-                        status: result.paymentIntent.status,
-                        amount: result.paymentIntent.amount,
-                        livemode: result.paymentIntent.livemode,
-                    }
-
-                    dispatch(addPaymentData(payment));
-
-                    order.paymentInfo = {
-                        id: result.paymentIntent.id,
-                        status: result.paymentIntent.status,
-                    };
-
-                    dispatch(newOrderData(order));
-                    dispatch(emptyCart());
-
-                    navigate("/orders/success");
+                if (result.error) {
+                    paymentBtn.current.disabled = false;
+                    enqueueSnackbar(result.error.message, { variant: "error" });
                 } else {
-                    enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
+                    if (result.paymentIntent.status === "succeeded") {
+
+                        const payment = {
+                            id: result.paymentIntent.id,
+                            client_secret: result.paymentIntent.client_secret,
+                            status: result.paymentIntent.status,
+                            amount: result.paymentIntent.amount,
+                            livemode: result.paymentIntent.livemode,
+                        }
+
+                        dispatch(addPaymentData(payment));
+
+                        order.paymentInfo = {
+                            id: result.paymentIntent.id,
+                            status: result.paymentIntent.status,
+                        };
+
+                        dispatch(newOrderData(order));
+                        dispatch(emptyCart());
+
+                        navigate("/orders/success");
+                    } else {
+                        enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
+                    }
                 }
-            }
 
         } catch (error) {
             paymentBtn.current.disabled = false;
             // setPayDisable(false);
-            enqueueSnackbar(error, { variant: "error" });
+            enqueueSnackbar(error.message, { variant: "error" });
+
         }
     };
 
