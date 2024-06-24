@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { emptyCart } from '../../actions/cartAction';
 import { clearErrors, getPaymentStatus, newOrderData } from '../../actions/orderAction';
 import Loader from '../Layouts/Loader';
+import { emptyCouponCode } from '../../actions/couponAction';
 
 const OrderStatus = () => {
 
@@ -53,6 +54,7 @@ const OrderStatus = () => {
             if (order) {
                 enqueueSnackbar("Order Placed", { variant: "success" });
                 dispatch(emptyCart());
+                dispatch(emptyCouponCode());
                 navigate("/orders/success");
             } else {
                 navigate("/orders");

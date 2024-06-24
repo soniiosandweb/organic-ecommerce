@@ -149,3 +149,23 @@ body {
 .related-product-slider .slick-next {
   right: 0;
 }
+.reviews-dialog,
+.coupon_popup{
+  z-index: 1800 !important;
+  overflow-y: scroll;
+}
+.reviews-dialog .MuiDialogActions-spacing,
+.coupon_popup .MuiDialogActions-spacing{
+  padding: 15px 24px;
+}
+
+.reviews-dialog .MuiDialogContent-root,
+.coupon_popup .MuiDialogContent-root{
+  padding: 24px !important;
+}
+.coupon_popup .MuiPaper-root{
+  width: 100%;
+}
+.SnackbarContainer-root{
+  z-index: 2000 !important;
+}

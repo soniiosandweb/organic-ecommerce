@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALL_COUPON_FAIL, ALL_COUPON_REQUEST, ALL_COUPON_SUCCESS, CLEAR_ERRORS, COUPON_DETAILS_FAIL, COUPON_DETAILS_REQUEST, COUPON_DETAILS_SUCCESS, DELETE_COUPON_FAIL, DELETE_COUPON_REQUEST, DELETE_COUPON_SUCCESS, NEW_COUPON_FAIL, NEW_COUPON_REQUEST, NEW_COUPON_SUCCESS, UPDATE_COUPON_FAIL, UPDATE_COUPON_REQUEST, UPDATE_COUPON_SUCCESS } from "../constants/couponConstants";
+import { ALL_COUPON_FAIL, ALL_COUPON_REQUEST, ALL_COUPON_SUCCESS, CLEAR_ERRORS, COUPON_CODE, COUPON_DETAILS_FAIL, COUPON_DETAILS_REQUEST, COUPON_DETAILS_SUCCESS, DELETE_COUPON_FAIL, DELETE_COUPON_REQUEST, DELETE_COUPON_SUCCESS, EMPTY_COUPON_CODE, NEW_COUPON_FAIL, NEW_COUPON_REQUEST, NEW_COUPON_SUCCESS, UPDATE_COUPON_FAIL, UPDATE_COUPON_REQUEST, UPDATE_COUPON_SUCCESS } from "../constants/couponConstants";
 
 
 // New Coupon ---ADMIN
@@ -106,6 +106,24 @@ export const deleteCoupon = (id) => async (dispatch) => {
         });
     }
 };
+
+// Set coupon code
+export const setCouponCode = (coupon) => (dispatch, getState) => {
+    dispatch({ 
+        type: COUPON_CODE,
+        payload: coupon,
+    });
+
+    localStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon));
+}
+
+// Remove coupon code
+export const emptyCouponCode = () => async (dispatch, getState) => {
+
+    dispatch({ type: EMPTY_COUPON_CODE });
+
+    localStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon))
+}
 
 // Clear All Errors
 export const clearErrors = () => (dispatch) => {

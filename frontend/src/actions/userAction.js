@@ -1,3 +1,4 @@
+import { EMPTY_COUPON_CODE } from '../constants/couponConstants';
 import {
     LOGIN_USER_REQUEST,
     LOGIN_USER_SUCCESS,
@@ -183,10 +184,15 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // Logout User
-export const logoutUser = () => async (dispatch) => {
+export const logoutUser = () => async (dispatch,getState) => {
     try {
         await axios.get('/api/v1/logout');
         dispatch({ type: LOGOUT_USER_SUCCESS });
+
+        dispatch({ type: EMPTY_COUPON_CODE });
+
+        localStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon))
+
     } catch (error) {
         dispatch({
             type: LOGOUT_USER_FAIL,

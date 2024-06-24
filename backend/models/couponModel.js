@@ -13,7 +13,8 @@ const couponSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: [true, "Please enter category name"]
+        required: [true, "Please enter category name"],
+        unique: true,
     },
     createdAt: {
         type: Date,

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAllCategories, getCategories } from '../../actions/categoryAction';
+import { getAllCategories } from '../../actions/categoryAction';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { NextBtn, PreviousBtn } from '../Home/Banner/Banner';
 import Slider from 'react-slick';

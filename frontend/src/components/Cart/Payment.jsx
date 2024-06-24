@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import { newOrderData } from '../../actions/orderAction';
 import { emptyCart } from '../../actions/cartAction';
 import Loader from '../Layouts/Loader';
+import { emptyCouponCode } from '../../actions/couponAction';
 
 const Payment = () => {
 
@@ -41,11 +42,12 @@ const Payment = () => {
     const { shippingInfo, cartItems } = useSelector((state) => state.cart);
     const { user } = useSelector((state) => state.user);
     const { error } = useSelector((state) => state.newOrder);
+    const { totalAmount } = useSelector((state) => state.cart);
 
-    const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const totalPrice = totalAmount;
 
     const paymentData = {
-        amount: Math.round(totalPrice),
+        amount: Math.round(totalAmount),
         email: user.email,
         phoneNo: shippingInfo.phoneNo,
     };
@@ -137,6 +139,7 @@ const Payment = () => {
 
                         dispatch(newOrderData(order));
                         dispatch(emptyCart());
+                        dispatch(emptyCouponCode());
 
                         navigate("/orders/success");
                     } else {
@@ -199,7 +202,7 @@ const Payment = () => {
                                             </RadioGroup>
                                         </FormControl>
 
-                                        <input type="submit" value={`Pay ₹${totalPrice.toLocaleString()}`} disabled={payDisable ? true : false} className={`${payDisable ? "bg-primary-grey cursor-not-allowed" : "bg-primary-green cursor-pointer"} w-1/2 sm:w-1/4 my-2 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none`} />
+                                        <input type="submit" value={`Pay ₹${totalAmount.toLocaleString()}`} disabled={payDisable ? true : false} className={`${payDisable ? "bg-primary-grey cursor-not-allowed" : "bg-primary-green cursor-pointer"} w-1/2 sm:w-1/4 my-2 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none`} />
 
                                     </form> */}
 

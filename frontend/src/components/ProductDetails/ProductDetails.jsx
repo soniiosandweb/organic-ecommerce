@@ -272,7 +272,7 @@ const ProductDetails = () => {
                                     <button onClick={handleDialogClose} className="shadow bg-primary-green text-white px-4 py-2 rounded-sm hover:bg-black hover:shadow-lg">Rate Product</button>
                                 </div>
 
-                                <Dialog aria-labelledby='review-dialog'  open={open} onClose={handleDialogClose}>
+                                <Dialog aria-labelledby='review-dialog' className='reviews-dialog' open={open} onClose={handleDialogClose}>
 
                                     <DialogTitle className="border-b">Submit Review</DialogTitle>
                                     
@@ -295,7 +295,7 @@ const ProductDetails = () => {
                                         />
                                     </DialogContent>
                                 
-                                    <DialogActions>
+                                    <DialogActions className='p-5'>
                                         <button onClick={handleDialogClose} className="py-2 px-6 rounded-sm shadow bg-red-700 hover:bg-black text-white uppercase">Cancel</button>
                                         <button onClick={reviewSubmitHandler} className="py-2 px-6 rounded-sm bg-primary-green hover:bg-black text-white shadow uppercase">Submit</button>
                                     </DialogActions>

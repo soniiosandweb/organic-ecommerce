@@ -40,7 +40,7 @@ const UpdateOrder = () => {
             navigate("/admin/orders");
         }
         dispatch(getOrderDetails(params.id));
-    }, [dispatch, error, params.id, isUpdated, updateError, enqueueSnackbar]);
+    }, [dispatch, error, params.id, isUpdated, updateError, enqueueSnackbar, navigate]);
 
     const updateOrderSubmitHandler = (e) => {
         e.preventDefault();

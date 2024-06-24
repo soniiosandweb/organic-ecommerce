@@ -9,7 +9,7 @@ import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer
 import { wishlistReducer } from './reducers/wishlistReducer';
 import { contactReducer } from './reducers/contactReducer';
 import { allCategoriesReducer, categoryDetailsReducer, categoryReducer, limitCategoriesReducer, newCategoryReducer } from './reducers/categoryReducer';
-import { allCouponsReducer, couponDetailsReducer, couponReducer, newCouponReducer } from './reducers/couponReducer';
+import { allCouponsReducer, couponDetailsReducer, couponReducer, newCouponReducer, setCouponCode } from './reducers/couponReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -46,6 +46,7 @@ const reducer = combineReducers({
     allCoupons: allCouponsReducer,
     coupon: couponReducer,
     couponDetails: couponDetailsReducer,
+    appliedCode: setCouponCode,
 });
 
 let initialState = {
@@ -55,6 +56,9 @@ let initialState = {
             : [],
         shippingInfo: localStorage.getItem("shippingInfo")
             ? JSON.parse(localStorage.getItem("shippingInfo"))
+            : {},
+        totalAmount: localStorage.getItem("totalAmount")
+            ? JSON.parse(localStorage.getItem('totalAmount'))
             : {},
     },
     saveForLater: {
@@ -66,6 +70,11 @@ let initialState = {
         wishlistItems: localStorage.getItem('wishlistItems')
             ? JSON.parse(localStorage.getItem('wishlistItems'))
             : [],
+    },
+    appliedCode: {
+        appliedCoupon: localStorage.getItem('appliedCoupon')
+            ? JSON.parse(localStorage.getItem('appliedCoupon'))
+            : {},
     },
 };
 
