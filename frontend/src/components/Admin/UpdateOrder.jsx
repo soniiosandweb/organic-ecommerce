@@ -59,24 +59,21 @@ const UpdateOrder = () => {
                         <div className="flex flex-col gap-4">
                             <Link to="/admin/orders" className="ml-1 flex items-center gap-0 font-medium text-primary-green uppercase"><ArrowBackIosIcon sx={{ fontSize: "18px" }} />Go Back</Link>
 
-                            <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-sm border border-gray-300 min-w-full">
-                                <div className="flex-1 w-full md:w-1/2 border-b md:border-b-0 md:border-r border-gray-300">
-                                    <div className="flex flex-col gap-3 p-4 sm:p-8">
-                                        <h3 className="font-semibold text-lg">Delivery Address</h3>
-                                        <h4 className="font-medium">{order.user.name}</h4>
-                                        <p className="text-md">{`${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state} - ${order.shippingInfo.pincode}`}</p>
-                                        <div className="flex gap-2 text-md">
-                                            <p className="font-medium">Email</p>
-                                            <p>{order.user.email}</p>
-                                        </div>
-                                        <div className="flex gap-2 text-md">
-                                            <p className="font-medium">Phone Number</p>
-                                            <p>{order.shippingInfo.phoneNo}</p>
-                                        </div>
-                                    </div>
+                            <div className="flex flex-col bg-white w-full py-4 sm:py-8 gap-10">
+
+                                <div className="flex flex-col w-full">
+                                    <h3 className="font-semibold text-xl text-center">Order Status</h3>
+                                    <TrackStepper
+                                        orderOn={order.createdAt}
+                                        shippedAt={order.shippedAt}
+                                        deliveredAt={order.deliveredAt}
+                                        activeStep={
+                                            order.orderStatus === "Delivered" ? 2 : order.orderStatus === "Shipped" ? 1 : 0
+                                        }
+                                    />
                                 </div>
 
-                                <form onSubmit={updateOrderSubmitHandler} className="flex flex-col gap-3 p-4 sm:p-8 flex-1">
+                                <form onSubmit={updateOrderSubmitHandler} className="flex flex-col gap-3 flex-1 w-full xl:w-2/3">
                                     <h3 className="font-semibold text-lg">Update Status</h3>
                                     <div className="flex gap-2">
                                         <p className="text-md font-medium">Current Status:</p>
@@ -107,45 +104,52 @@ const UpdateOrder = () => {
                                 </form>
                             </div>
 
-                            {order.orderItems && order.orderItems.map((item) => {
+                            <div className="flex flex-wrap flex-col lg:flex-row min-w-full gap-5">
 
-                                const { _id, image, name, price, quantity } = item;
+                                <div className='flex flex-col gap-3 flex-1 border border-gray-300 bg-white p-4 md:p-8'>
 
-                                return (
-                                    <div className="flex flex-col md:flex-row min-w-full shadow-lg rounded-sm border border-gray-300 bg-white px-2 py-5" key={_id}>
+                                    <p className="w-full text-xl font-semibold">Order Total: ₹{order.totalPrice.toLocaleString()}</p>
+                                    <p className="w-full text-xl font-semibold">Order Items: </p>
 
-                                        <div className="flex flex-col sm:flex-row md:w-1/2 gap-1 mb-10 md:mb-0">
-                                            <div className="w-full sm:w-32 h-24">
-                                                <LazyLoadImage 
-                                                    src={image}
-                                                    alt={name}
-                                                    className="h-full w-full object-contain"
-                                                />
+                                    {order.orderItems && order.orderItems.map((item,index) => {
+
+                                        const { image, name, price, quantity } = item;
+
+                                        return (
+                                            <div className="flex flex-row w-full gap-2 py-3" key={index}>
+                                                    <div className="w-18 sm:w-32 h-20">
+                                                        <LazyLoadImage 
+                                                            className="h-full w-full object-contain" src={image} alt={name}
+                                                        />
+                                                    </div>
+                                                    <div className="flex flex-col gap-1 overflow-hidden">
+                                                        <p className="text-lg font-semibold">{name.length > 60 ? `${name.substring(0, 60)}...` : name}</p>
+                                                        <p className="text-md mt-2">Quantity: {quantity}</p>
+                                                        <p className="text-md">Price: ₹{price.toLocaleString()}</p>
+                                                        
+                                                    </div>
                                             </div>
-                                            <div className="flex flex-col gap-1 overflow-hidden">
-                                                <p className="text-lg font-semibold">{name.length > 45 ? `${name.substring(0, 45)}...` : name}</p>
-                                                <p className="text-md mt-2">Quantity: {quantity}</p>
-                                                <p className="text-md">Price: ₹{price.toLocaleString()}</p>
-                                                <span className="font-medium">Total: ₹{(quantity * price).toLocaleString()}</span>
-                                            </div>
-                                        </div>
+                                        )
+                                        })
+                                    }
+                                </div>
 
-                                        <div className="flex flex-col w-full md:w-1/2">
-                                            <h3 className="font-semibold text-lg sm:text-center">Order Status</h3>
-                                            <TrackStepper
-                                                orderOn={order.createdAt}
-                                                shippedAt={order.shippedAt}
-                                                deliveredAt={order.deliveredAt}
-                                                activeStep={
-                                                    order.orderStatus === "Delivered" ? 2 : order.orderStatus === "Shipped" ? 1 : 0
-                                                }
-                                            />
-                                        </div>
+                                <div className="w-full flex flex-col gap-3 flex-1 border border-gray-300 bg-white p-4 md:p-8">
 
+                                        <h3 className="font-semibold text-xl">Delivery Address</h3>
+                                        <h4 className="font-medium text-lg">{order.user.name}</h4>
+                                        <p className="text-md">{`${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state} - ${order.shippingInfo.pincode}`}</p>
+                                        <div className="flex gap-2 text-md">
+                                            <p className="font-medium">Email</p>
+                                            <p>{order.user.email}</p>
+                                        </div>
+                                        <div className="flex gap-2 text-md">
+                                            <p className="font-medium">Phone Number</p>
+                                            <p>{order.shippingInfo.phoneNo}</p>
+                                        </div>
                                     </div>
-                                )
-                            })
-                            }
+                                
+                            </div>
                         </div>
                     )}
                 </>

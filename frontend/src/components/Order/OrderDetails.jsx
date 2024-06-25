@@ -34,36 +34,34 @@ const OrderDetails = () => {
                 {loading ? <Loader /> : (
                     <>
                         {order && order.user && order.shippingInfo && (
-                            <div className="flex flex-col gap-6 max-w-6xl mx-auto">
+                            <div className="flex flex-col gap-10 max-w-6xl mx-auto">
 
-                                <div className="flex bg-white border border-gray-300 min-w-full">
-                                    <div className="w-full border-r">
-                                        <div className="flex flex-col gap-3 my-8 mx-10">
-                                            <h3 className="font-semibold text-xl">Delivery Address</h3>
-                                            <h4 className="font-medium text-lg">{order.user.name}</h4>
-                                            <p className="text-md">{`${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state} - ${order.shippingInfo.pincode}`}</p>
-                                            <div className="flex gap-2 text-md">
-                                                <p className="font-medium">Email</p>
-                                                <p>{order.user.email}</p>
-                                            </div>
-                                            <div className="flex gap-2 text-md">
-                                                <p className="font-medium">Phone Number</p>
-                                                <p>{order.shippingInfo.phoneNo}</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div className="flex flex-col w-full gap-3">
+                                    <h3 className="font-semibold text-xl text-center">Order Status</h3>
+                                    <TrackStepper
+                                        orderOn={order.createdAt}
+                                        shippedAt={order.shippedAt}
+                                        deliveredAt={order.deliveredAt}
+                                        activeStep={
+                                            order.orderStatus === "Delivered" ? 2 : order.orderStatus === "Shipped" ? 1 : 0
+                                        }
+                                    />
                                 </div>
 
-                                <div className="flex flex-wrap flex-col sm:flex-row min-w-full border border-gray-300 bg-white px-2 py-5">
+                                <div className="flex flex-wrap flex-col lg:flex-row min-w-full gap-5">
 
-                                    <div className='flex flex-col w-full sm:w-1/2'>
+                                    <div className='flex flex-col gap-3 flex-1 border border-gray-300 bg-white p-4 md:p-8'>
+
+                                        <p className="w-full text-xl font-semibold">Order Total: ₹{order.totalPrice.toLocaleString()}</p>
+                                        <p className="w-full text-xl font-semibold">Order Items: </p>
+
                                         {order.orderItems && order.orderItems.map((item,index) => {
 
                                             const { image, name, price, quantity } = item;
 
                                             return (
-                                                <div className="flex flex-col sm:flex-row w-full gap-2 py-3" key={index}>
-                                                        <div className="w-full sm:w-32 h-20">
+                                                <div className="flex flex-row w-full gap-2 py-3" key={index}>
+                                                        <div className="w-18 sm:w-32 h-20">
                                                             <LazyLoadImage 
                                                                 className="h-full w-full object-contain" src={image} alt={name}
                                                             />
@@ -82,19 +80,21 @@ const OrderDetails = () => {
                                         
                                     </div>
 
-                                    <div className="flex flex-col w-full sm:w-1/2 mt-5 sm:mt-0">
-                                        <h3 className="font-medium sm:text-center">Order Status</h3>
-                                        <TrackStepper
-                                            orderOn={order.createdAt}
-                                            shippedAt={order.shippedAt}
-                                            deliveredAt={order.deliveredAt}
-                                            activeStep={
-                                                order.orderStatus === "Delivered" ? 2 : order.orderStatus === "Shipped" ? 1 : 0
-                                            }
-                                        />
+                                    <div className="w-full flex flex-col gap-3 flex-1 border border-gray-300 bg-white p-4 md:p-8">
+
+                                        <h3 className="font-semibold text-xl">Delivery Address</h3>
+                                        <h4 className="font-medium text-lg">{order.user.name}</h4>
+                                        <p className="text-md">{`${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state} - ${order.shippingInfo.pincode}`}</p>
+                                        <div className="flex gap-2 text-md">
+                                            <p className="font-medium">Email</p>
+                                            <p>{order.user.email}</p>
+                                        </div>
+                                        <div className="flex gap-2 text-md">
+                                            <p className="font-medium">Phone Number</p>
+                                            <p>{order.shippingInfo.phoneNo}</p>
+                                        </div>
                                     </div>
 
-                                    <p className="flex-1 pt-5 mt-5 text-xl font-semibold text-center border-t">Order Total: ₹{order.totalPrice.toLocaleString()}</p>
                                 </div>
 
                             </div>
