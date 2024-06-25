@@ -59,7 +59,7 @@ let initialState = {
             : {},
         totalAmount: localStorage.getItem("totalAmount")
             ? JSON.parse(localStorage.getItem('totalAmount'))
-            : {},
+            : null,
     },
     saveForLater: {
         saveForLaterItems: localStorage.getItem('saveForLaterItems')

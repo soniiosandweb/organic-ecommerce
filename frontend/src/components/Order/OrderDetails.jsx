@@ -59,7 +59,7 @@ const OrderDetails = () => {
                                     <div className='flex flex-col w-full sm:w-1/2'>
                                         {order.orderItems && order.orderItems.map((item,index) => {
 
-                                            const { _id, image, name, price, quantity } = item;
+                                            const { image, name, price, quantity } = item;
 
                                             return (
                                                 <div className="flex flex-col sm:flex-row w-full gap-2 py-3" key={index}>
