@@ -1,7 +1,7 @@
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { clearErrors, getOrderDetails } from '../../actions/orderAction';
 import Loader from '../Layouts/Loader';
 import TrackStepper from './TrackStepper';
@@ -52,8 +52,9 @@ const OrderDetails = () => {
 
                                     <div className='flex flex-col gap-3 flex-1 border border-gray-300 bg-white p-4 md:p-8'>
 
-                                        <p className="w-full text-xl font-semibold">Order Total: ₹{order.totalPrice.toLocaleString()}</p>
-                                        <p className="w-full text-xl font-semibold">Order Items: </p>
+                                        <p className="w-full text-lg"><span className='font-semibold'>Total:</span> ₹{order.totalPrice.toLocaleString()}</p>
+                                        <p className="w-full text-lg"><span className='font-semibold'>Payment Method:</span> {order.paymentInfo.method === "stripe" ? "Stripe" : "Cash on delivery"}</p>
+                                        <p className="w-full text-lg font-semibold">Order Items: </p>
 
                                         {order.orderItems && order.orderItems.map((item,index) => {
 
@@ -95,6 +96,10 @@ const OrderDetails = () => {
                                         </div>
                                     </div>
 
+                                </div>
+
+                                <div className="flex flex-col w-full">
+                                    <Link to={`/orders`} className='inline mx-auto text-primary-green text-lg font-semibold'>~ View all orders ~</Link>
                                 </div>
 
                             </div>

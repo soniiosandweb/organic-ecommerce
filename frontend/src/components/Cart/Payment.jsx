@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PriceSidebar from './PriceSidebar';
 import Stepper from './Stepper';
@@ -13,12 +13,12 @@ import {
 import { addPaymentData, clearErrors } from '../../actions/orderAction';
 import { useSnackbar } from 'notistack';
 // import { post } from '../../utils/paytmForm';
-// import FormControl from '@mui/material/FormControl';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Radio from '@mui/material/Radio';
-// import RadioGroup from '@mui/material/RadioGroup';
-// import paytm from '../../assets/images/paytm.webp';
-// import { LazyLoadImage } from 'react-lazy-load-image-component';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import stripeImg from '../../assets/images/stripe.webp';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import MetaData from '../Layouts/MetaData';
 import { useNavigate } from "react-router-dom";
 import { newOrderData } from '../../actions/orderAction';
@@ -36,6 +36,8 @@ const Payment = () => {
     const paymentBtn = useRef(null);
 
     // const [payDisable, setPayDisable] = useState(false);
+
+    const [method, setMethod] = useState('cash');
 
     const { loading } = useSelector((state) => state.paymentKey);
 
@@ -77,82 +79,97 @@ const Payment = () => {
         paymentBtn.current.disabled = true;
         // setPayDisable(true);
 
-        try {
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            };
+        if(method === 'stripe'){
+            try {
+                const config = {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                };
 
-            const {data} = await axios.post(
-                '/api/v1/payment/process',
-                paymentData,
-                config,
-            );
+                const {data} = await axios.post(
+                    '/api/v1/payment/process',
+                    paymentData,
+                    config,
+                );
 
-                // let info = {
-                //     action: "https://securegw-stage.paytm.in/order/process",
-                //     params: data.paytmParams
-                // }
+                    // let info = {
+                    //     action: "https://securegw-stage.paytm.in/order/process",
+                    //     params: data.paytmParams
+                    // }
 
-                // post(info)
+                    // post(info)
 
-                if (!stripe || !elements) return;
+                    if (!stripe || !elements) return;
 
-                const result = await stripe.confirmCardPayment(data.client_secret, {
-                    payment_method: {
-                        card: elements.getElement(CardNumberElement),
-                        billing_details: {
-                            name: user.name,
-                            email: user.email,
-                            address: {
-                                line1: shippingInfo.address,
-                                city: shippingInfo.city,
-                                country: shippingInfo.country,
-                                state: shippingInfo.state,
-                                postal_code: shippingInfo.pincode,
+                    const result = await stripe.confirmCardPayment(data.client_secret, {
+                        payment_method: {
+                            card: elements.getElement(CardNumberElement),
+                            billing_details: {
+                                name: user.name,
+                                email: user.email,
+                                address: {
+                                    line1: shippingInfo.address,
+                                    city: shippingInfo.city,
+                                    country: shippingInfo.country,
+                                    state: shippingInfo.state,
+                                    postal_code: shippingInfo.pincode,
+                                },
                             },
                         },
-                    },
-                });
+                    });
 
-                if (result.error) {
-                    paymentBtn.current.disabled = false;
-                    enqueueSnackbar(result.error.message, { variant: "error" });
-                } else {
-                    if (result.paymentIntent.status === "succeeded") {
-
-                        const payment = {
-                            id: result.paymentIntent.id,
-                            client_secret: result.paymentIntent.client_secret,
-                            status: result.paymentIntent.status,
-                            amount: result.paymentIntent.amount,
-                            livemode: result.paymentIntent.livemode,
-                        }
-
-                        dispatch(addPaymentData(payment));
-
-                        order.paymentInfo = {
-                            id: result.paymentIntent.id,
-                            status: result.paymentIntent.status,
-                        };
-
-                        dispatch(newOrderData(order));
-                        dispatch(emptyCart());
-                        dispatch(emptyCouponCode());
-
-                        navigate("/orders/success");
+                    if (result.error) {
+                        paymentBtn.current.disabled = false;
+                        enqueueSnackbar(result.error.message, { variant: "error" });
                     } else {
-                        enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
+                        if (result.paymentIntent.status === "succeeded") {
+
+                            const payment = {
+                                id: result.paymentIntent.id,
+                                client_secret: result.paymentIntent.client_secret,
+                                status: result.paymentIntent.status,
+                                amount: result.paymentIntent.amount,
+                                livemode: result.paymentIntent.livemode,
+                            }
+
+                            dispatch(addPaymentData(payment));
+
+                            order.paymentInfo = {
+                                id: result.paymentIntent.id,
+                                status: result.paymentIntent.status,
+                                method: method,
+                            };
+
+                            dispatch(newOrderData(order));
+                            dispatch(emptyCart());
+                            dispatch(emptyCouponCode());
+
+                            navigate("/orders/success");
+                        } else {
+                            enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
+                        }
                     }
-                }
 
-        } catch (error) {
-            paymentBtn.current.disabled = false;
-            // setPayDisable(false);
-            enqueueSnackbar(error.message, { variant: "error" });
+            } catch (error) {
+                paymentBtn.current.disabled = false;
+                // setPayDisable(false);
+                enqueueSnackbar(error.message, { variant: "error" });
 
+            }
+        } else {
+            order.paymentInfo = {
+                status: "succeeded",
+                method: method,
+            };
+
+            dispatch(newOrderData(order));
+            dispatch(emptyCart());
+            dispatch(emptyCouponCode());
+
+            navigate("/orders/success");
         }
+        
     };
 
     useEffect(() => {
@@ -209,18 +226,54 @@ const Payment = () => {
                                     {/* stripe form */}
                                     <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start gap-3 w-full px-1 sm:px-8 py-4">
 
-                                        <div className="flex flex-col lg:flex-row w-full gap-4">
-                                            <div className='w-4/6  border border-gray-300 px-5 py-3 rounded-md'>
-                                                <CardNumberElement options={cardElementOptions} />
+                                        <FormControl>
+                                            <RadioGroup
+                                                aria-labelledby="payment-radio-group"
+                                                defaultValue="cash"
+                                                name="payment-radio-button"
+                                                onChange={(e) => setMethod(e.target.value)}
+                                            >
+                                                <FormControlLabel
+                                                    value="cash"
+                                                    control={<Radio />}
+                                                    label={
+                                                        <div className="flex items-center gap-4">
+                                                            <span>Cash on delivery</span>
+                                                        </div>
+                                                    }
+                                                />
+
+                                                <FormControlLabel
+                                                    value="stripe"
+                                                    control={<Radio />}
+                                                    label={
+                                                        <div className="flex items-center gap-4">
+                                                            <span>Stripe</span>
+                                                            <LazyLoadImage 
+                                                                className="h-10 object-contain" src={stripeImg} alt="Stripe Logo" 
+                                                            />
+                                                        </div>
+                                                    }
+                                                />
+
+                                            </RadioGroup>
+                                        </FormControl>
+
+                                        {method === 'stripe' &&
+
+                                            <div className="flex flex-col lg:flex-row w-full gap-4">
+                                                <div className='w-4/6  border border-gray-300 px-5 py-3 rounded-md'>
+                                                    <CardNumberElement options={cardElementOptions} />
+                                                </div>
+                                                <div className='w-2/6 border border-gray-300 px-5 py-3 rounded-md'>
+                                                    <CardExpiryElement options={cardElementOptions} />
+                                                </div>
+                                                <div className='w-2/6 border border-gray-300 px-5 py-3 rounded-md'>
+                                                    <CardCvcElement options={cardElementOptions} />
+                                                </div>
                                             </div>
-                                            <div className='w-2/6 border border-gray-300 px-5 py-3 rounded-md'>
-                                                <CardExpiryElement options={cardElementOptions} />
-                                            </div>
-                                            <div className='w-2/6 border border-gray-300 px-5 py-3 rounded-md'>
-                                                <CardCvcElement options={cardElementOptions} />
-                                            </div>
-                                        </div>
-                                    
+                                        }
+
                                         <div className='flex-1 w-full'>
                                             <input ref={paymentBtn} type="submit" value="Place Order" className="bg-primary-green w-full sm:w-1/4 my-2 py-3.5 text-sm font-medium text-white shadow hover:bg-black rounded-sm capitalize outline-none cursor-pointer" />
                                         </div>

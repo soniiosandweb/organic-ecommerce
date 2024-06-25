@@ -108,8 +108,9 @@ const UpdateOrder = () => {
 
                                 <div className='flex flex-col gap-3 flex-1 border border-gray-300 bg-white p-4 md:p-8'>
 
-                                    <p className="w-full text-xl font-semibold">Order Total: ₹{order.totalPrice.toLocaleString()}</p>
-                                    <p className="w-full text-xl font-semibold">Order Items: </p>
+                                    <p className="w-full text-lg"><span className='font-semibold'>Total:</span> ₹{order.totalPrice.toLocaleString()}</p>
+                                    <p className="w-full text-lg"><span className='font-semibold'>Payment Method:</span> {order.paymentInfo.method === "stripe" ? "Stripe" : "Cash on delivery"}</p>
+                                    <p className="w-full text-lg font-semibold">Order Items: </p>
 
                                     {order.orderItems && order.orderItems.map((item,index) => {
 

@@ -90,6 +90,17 @@ const OrderTable = () => {
             },
         },
         {
+            field: "method",
+            headerName: "Payment Method",
+            minWidth: 200,
+            flex: 1,
+            renderCell: (params) => {
+                return (
+                    <span>{params.row.method === "stripe" ? "Stripe" : "Cash on delivery"}</span>
+                );
+            },
+        },
+        {
             field: "orderOn",
             headerName: "Order On",
             type: "date",
@@ -118,6 +129,7 @@ const OrderTable = () => {
             id: order._id,
             itemsQty: order.orderItems.length,
             amount: order.totalPrice,
+            method: order.paymentInfo.method,
             orderOn: formatDate(order.createdAt),
             status: order.orderStatus,
         });

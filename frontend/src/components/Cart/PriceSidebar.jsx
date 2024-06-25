@@ -118,7 +118,7 @@ const PriceSidebar = ({ cartItems }) => {
                         <p className="flex justify-between"><span>Coupon Applied (<span className="text-primary-green font-semibold">{appliedCoupon.name}</span>)</span> <span className="text-primary-green">-{appliedCoupon.discount}{appliedCoupon.percentage && '%'}</span></p>
                     }
 
-                    {isAuthenticated && 
+                    {isAuthenticated && cartItems.length > 0 &&
                     (
                         <button className="bg-primary-green w-full my-2 px-4 py-3 text-md font-semibold text-white shadow hover:bg-black rounded-sm capitalize outline-none flex justify-between items-center" onClick={handlePopupOpen}>
                             <span>

@@ -212,7 +212,7 @@ const MyOrders = () => {
 
                                 {orders && filteredOrders.map((order, index) => {
 
-                                    const { _id, orderStatus, orderItems, createdAt, deliveredAt, totalPrice } = order;
+                                    const { _id, orderStatus, orderItems, createdAt, deliveredAt, totalPrice, paymentInfo } = order;
 
                                     return (
                                         <Link to={`/order_details/${_id}`} className="w-full flex flex-col sm:flex-row p-4 items-start bg-white border border-gray-300 rounded gap-2 sm:gap-0 hover:shadow-lg" key={index}>
@@ -225,7 +225,7 @@ const MyOrders = () => {
                                             </div>
 
                                             <div className="flex flex-col sm:flex-row mt-1 sm:mt-0 gap-2 sm:gap-20 sm:w-1/2">
-                                                <p className="text-md font-medium">Order Total: ₹{totalPrice.toLocaleString()}</p>
+                                                
 
                                                 <div className="flex flex-col gap-1.5">
                                                     <p className="text-md font-medium flex items-center gap-1">
@@ -258,6 +258,9 @@ const MyOrders = () => {
                                                             <p className="text-md ml-1">Your item has been {orderStatus}</p> :
                                                             <p className="text-md ml-1">Seller has processed your order</p>
                                                     }
+
+                                                    <p className="text-md"><span className='font-medium'>Total:</span> ₹{totalPrice.toLocaleString()}</p>
+                                                    <p className="text-md"><span className='font-medium'>Payment Method:</span> {paymentInfo.method === "stripe" ? "Stripe" : "Cash on delivery"}</p>
                                                 </div>
                                             </div>
                                         </Link>
