@@ -103,12 +103,12 @@ const PriceSidebar = ({ cartItems }) => {
 
                 <div className="flex flex-col gap-4 p-6 pb-3 font-medium">
                     <p className="flex justify-between">Price ({cartItems.length} item)
-                        <p>
+                        <span>
                             <span>₹{cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toLocaleString()}</span>
                             {cartItems.cuttedPrice !== 0 &&
                                 <span className="pl-2 text-gray-500 line-through font-normal">₹{cartItems.reduce((sum, item) => sum + (item.cuttedPrice * item.quantity), 0).toLocaleString()}</span>
                             }
-                        </p>
+                        </span>
                     </p>
                     <p className="flex justify-between">Discount <span className="text-primary-green">₹{cartItems.reduce((sum, item) => sum + (((item.cuttedPrice !== 0 ? item.cuttedPrice : item.price) * item.quantity) - (item.price * item.quantity)), 0).toLocaleString()}</span></p>
                     

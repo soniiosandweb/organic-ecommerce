@@ -57,12 +57,12 @@ const OrderDetails = () => {
                                 <div className="flex flex-wrap flex-col sm:flex-row min-w-full border border-gray-300 bg-white px-2 py-5">
 
                                     <div className='flex flex-col w-full sm:w-1/2'>
-                                        {order.orderItems && order.orderItems.map((item) => {
+                                        {order.orderItems && order.orderItems.map((item,index) => {
 
                                             const { _id, image, name, price, quantity } = item;
 
                                             return (
-                                                <div className="flex flex-col sm:flex-row w-full gap-2 py-3">
+                                                <div className="flex flex-col sm:flex-row w-full gap-2 py-3" key={index}>
                                                         <div className="w-full sm:w-32 h-20">
                                                             <LazyLoadImage 
                                                                 className="h-full w-full object-contain" src={image} alt={name}
