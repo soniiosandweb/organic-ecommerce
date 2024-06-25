@@ -7,10 +7,11 @@ Full-Stack Organic website with Admin Dashboard & Payment Gateway.
 - Update Profile/Password: 🔐 Users can update their profile information and change their passwords.
   
 **Password Management**
-- Reset Password Mail: 📧 Utilizing Sendgrid, users can reset their passwords via email.
+- Reset Password Mail: 📧 Users can reset their passwords via email.
   
 **Shopping Cart**
 - Add/Remove Items: 🛒 Users can add items to their shopping cart or remove them as needed.
+- Coupon Code: Users can apply coupon code.
 - Update Quantities: 🔢 Quantities of items in the cart can be adjusted.
   
 **Saved Items**
@@ -26,7 +27,7 @@ Full-Stack Organic website with Admin Dashboard & Payment Gateway.
   
 **Checkout Process**
 - Shipping Info: 🚚 Shipping information is stored in session storage for ease of checkout.
-- Payment Options: 💳 Users can pay through Paytm payment gateway for checkout.
+- Payment Options: 💳 Users can pay through Stripe payment gateway and Cash on delivery for checkout.
   
 **Order Management**
 - My Orders: 📦 Users can view their order history with various filters.
@@ -37,9 +38,12 @@ Full-Stack Organic website with Admin Dashboard & Payment Gateway.
 - Review Products: 🌟 Users can review products.
   
 **Admin Features**
+- Admin Login: Seperate login for admin users.
 - Dashboard: 🖥️ Admins have access to a dedicated dashboard.
 - Order Management: 📊 Admins can update order statuses and delete orders.
-- Product Management: 📝 Admins can add/update products.
+- Product Management: 📝 Admins can add/update/delete products.
+- Product Category Management: 📝 Admins can add/update/delete product Categories.
 - User Management: 👥 Admins can update user data and delete users.
 - Review Management: 📜 Admins can view and delete product reviews.
+- Coupon Code Management: 📝 Admins can add/update/delete Coupon Code.
 - Stock Management: 📉 Product stock is automatically decreased upon shipment.
