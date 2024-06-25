@@ -1,14 +1,14 @@
 import PageBanner from "../Layouts/PageBanner";
-import aboutImg from "../../assets/images/About/about-img.png";
-import aboutImg2 from "../../assets/images/About/about-img2.jpg";
+import aboutImg from "../../assets/images/About/about-img.webp";
+import aboutImg2 from "../../assets/images/About/about-img2.webp";
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
-import brand1 from '../../assets/images/About/brand-1.png';
-import brand2 from '../../assets/images/About/brand-2.png';
-import brand3 from '../../assets/images/About/brand-3.png';
-import brand4 from '../../assets/images/About/brand-4.png';
-import brand5 from '../../assets/images/About/brand-5.png';
-import excellence from '../../assets/images/About/excellence.png';
+import brand1 from '../../assets/images/About/brand-1.webp';
+import brand2 from '../../assets/images/About/brand-2.webp';
+import brand3 from '../../assets/images/About/brand-3.webp';
+import brand4 from '../../assets/images/About/brand-4.webp';
+import brand5 from '../../assets/images/About/brand-5.webp';
+import excellence from '../../assets/images/About/excellence.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const AboutUs = () => {

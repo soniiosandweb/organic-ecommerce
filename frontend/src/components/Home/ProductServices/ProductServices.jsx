@@ -1,4 +1,4 @@
-import serviceBg from '../../../assets/images/ProductSlider/bg-2.jpg';
+import serviceBg from '../../../assets/images/ProductSlider/bg-2.webp';
 import fruit from '../../../assets/images/ProductSlider/fruit.png';
 import shovel from '../../../assets/images/ProductSlider/shovel.png';
 import organic from '../../../assets/images/ProductSlider/organic.png';

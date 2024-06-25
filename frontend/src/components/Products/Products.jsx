@@ -17,7 +17,7 @@ import StarIcon from '@mui/icons-material/Star';
 // import { categories } from '../../utils/constants';
 import MetaData from '../Layouts/MetaData';
 import { useLocation } from 'react-router-dom';
-import noResult from '../../assets/images/no-search-results.png';
+import noResult from '../../assets/images/no-search-results.webp';
 import { getAllCategories } from '../../actions/categoryAction';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 

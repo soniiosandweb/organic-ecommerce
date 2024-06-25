@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { getRandomProducts } from '../../../utils/functions';
 import Product from './Product';
-import trendingImg from '../../../assets/images/ProductSlider/trending.jpg';
+import trendingImg from '../../../assets/images/ProductSlider/trending.webp';
 import './Product.css';
 import { NextBtn, PreviousBtn } from '../Banner/Banner';
 import { LazyLoadImage } from 'react-lazy-load-image-component';

@@ -1,5 +1,5 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import pageBannerBg from '../../assets/images/ProductSlider/bg-11.jpg';
+import pageBannerBg from '../../assets/images/ProductSlider/bg-11.webp';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const PageBanner = ({title}) => {

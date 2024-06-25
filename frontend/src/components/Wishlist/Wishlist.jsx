@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import MetaData from '../Layouts/MetaData';
 import Sidebar from '../User/Sidebar';
 import Product from './Product';
-import wishlistEmpty from '../../assets/images/mywishlist-empty.png';
+import wishlistEmpty from '../../assets/images/mywishlist-empty.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Wishlist = () => {

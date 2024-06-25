@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import MetaData from '../Layouts/MetaData';
-import successfull from '../../assets/images/Transaction/success.png';
-import failed from '../../assets/images/Transaction/failed.png';
+import successfull from '../../assets/images/Transaction/success.webp';
+import failed from '../../assets/images/Transaction/failed.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const OrderSuccess = ({ success }) => {

@@ -1,7 +1,7 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import banner1 from '../../../assets/images/Categories/banner-1.jpg';
-import banner2 from '../../../assets/images/Categories/banner-2.jpg';
-import banner3 from '../../../assets/images/Categories/banner-3.jpg';
+import banner1 from '../../../assets/images/Categories/banner-1.webp';
+import banner2 from '../../../assets/images/Categories/banner-2.webp';
+import banner3 from '../../../assets/images/Categories/banner-3.webp';
 import { Link } from 'react-router-dom';
 
 const CategoriesBanner = () => {

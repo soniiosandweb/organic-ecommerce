@@ -26,7 +26,7 @@ body {
 
 /* login signup sidebar bg image */
 .loginSidebar {
-    background-image: url("assets/images/login.jpg");
+    background-image: url("assets/images/login.webp");
     background-position: center 85%;
     background-repeat: no-repeat;
 }

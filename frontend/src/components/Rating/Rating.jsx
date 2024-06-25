@@ -4,7 +4,7 @@ import Sidebar from "../User/Sidebar";
 import { useEffect } from "react";
 import { getUserReviews } from "../../actions/productAction";
 import ReviewItem from "./ReviewItem";
-import empty from '../../assets/images/mywishlist-empty.png';
+import empty from '../../assets/images/mywishlist-empty.webp';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Rating = () => {

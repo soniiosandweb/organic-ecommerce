@@ -5,9 +5,9 @@ import './Banner.css';
 import { Link } from 'react-router-dom';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import banner1 from '../../../assets/images/Banners/banner1.jpg';
-import banner2 from '../../../assets/images/Banners/banner2.jpg';
-import banner3 from '../../../assets/images/Banners/banner3.jpg';
+import banner1 from '../../../assets/images/Banners/banner1.webp';
+import banner2 from '../../../assets/images/Banners/banner2.webp';
+import banner3 from '../../../assets/images/Banners/banner3.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const PreviousBtn = ({ className, onClick }) => {
