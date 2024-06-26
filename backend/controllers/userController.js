@@ -136,8 +136,10 @@ exports.forgotPassword = asyncErrorHandler(async (req, res, next) => {
 
     await user.save({ validateBeforeSave: false });
 
-    const resetPasswordUrl = `${process.env.URL_FRONTEND}/password/reset/${resetToken}`;
-    // const resetPasswordUrl = `https://${req.get("host")}/password/reset/${resetToken}`;
+    // const resetPasswordUrl = `${process.env.URL_FRONTEND}/password/reset/${resetToken}`;
+    const resetPasswordUrl = `https://${req.get("host")}/password/reset/${resetToken}`;
+
+    // console.log(resetPasswordUrlNew)
 
     const message = `<p>Dear ${user.name},</p> 
         <p>You have requested to reset your password. To proceed with the reset process, please click the following link: <a href="${resetPasswordUrl}">Reset Password</a></p>
