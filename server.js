@@ -4,6 +4,7 @@ const cloudinary = require('cloudinary');
 const app = require('./backend/app');
 const connectDatabase = require('./backend/config/database');
 const PORT = process.env.PORT || 8080;
+const http = require('http');
 
 // UncaughtException Error
 process.on('uncaughtException', (err) => {
@@ -34,10 +35,11 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-const server = app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`)
-});
+// const server = app.listen(PORT, () => {
+//     console.log(`Server running on http://localhost:${PORT}`)
+// });
 
+const server = http.createServer(app).listen(PORT);
 
 // Unhandled Promise Rejection
 process.on('unhandledRejection', (err) => {
