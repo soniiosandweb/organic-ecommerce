@@ -169,3 +169,7 @@ body {
 .SnackbarContainer-root{
   z-index: 2000 !important;
 }
+
+.Mui-selected {
+  background-color: rgb(25 118 210 / 20%) !important;
+}

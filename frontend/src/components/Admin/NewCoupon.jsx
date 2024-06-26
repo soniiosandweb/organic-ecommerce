@@ -10,6 +10,14 @@ import { useState } from "react";
 import TextField from '@mui/material/TextField';
 import { NEW_COUPON_RESET } from "../../constants/couponConstants";
 import MenuItem from '@mui/material/MenuItem';
+import { getAllUsersOnly } from "../../actions/userAction";
+import Checkbox from '@mui/material/Checkbox';
+import Autocomplete from '@mui/material/Autocomplete';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const NewCoupon = () => {
 
@@ -19,9 +27,12 @@ const NewCoupon = () => {
 
     const { loading, success, error } = useSelector((state) => state.newCoupon);
 
+    const { usersall } = useSelector((state) => state.usersOnly);
+
     const [name, setName] = useState("");
     const [discount, setDiscount] = useState(0);
     const [percentage, setPercentage] = useState(false);
+    const [selectedUsers, setSelectedUsers] = useState([]);
 
     const newCouponSubmitHandler = (e) => {
         e.preventDefault();
@@ -31,6 +42,10 @@ const NewCoupon = () => {
         formData.set("name", name);
         formData.set("discount", discount);
         formData.set("percentage", percentage);
+
+        selectedUsers.forEach((h) => {
+            formData.append("usersId", JSON.stringify(h));
+        });
        
         dispatch(createCoupon(formData));
     }
@@ -45,6 +60,8 @@ const NewCoupon = () => {
             dispatch({ type: NEW_COUPON_RESET });
             navigate("/admin/coupons");
         }
+
+        dispatch(getAllUsersOnly());
     }, [dispatch, error, success, navigate, enqueueSnackbar]);
 
     return(
@@ -98,12 +115,56 @@ const NewCoupon = () => {
                         variant="outlined"
                         size="medium"
                         required
+                        name="percentage"
                         value={percentage}
                         onChange={(e) => setPercentage(e.target.value)}
                     >
                         <MenuItem value={false}>Flat</MenuItem>
                         <MenuItem value={true}>% Percentage</MenuItem>
                     </TextField>
+                    
+                </div>
+
+                <div className="flex flex-col gap-3 w-full lg:w-2/3">
+
+                    <Autocomplete
+                        multiple
+                        id="users"
+                        options={usersall}
+                        disableCloseOnSelect
+                        value={selectedUsers}
+                        isOptionEqualToValue={(option, value) => option._id === value._id}
+                        getOptionLabel={(option) => option.name}
+                        onChange={(e, valueTags) => {
+                            e.preventDefault();
+                            const valuesArray = [];
+                            valueTags.forEach(valueTag => {
+                              valuesArray.push({
+                                _id: usersall.filter(tag => valueTag._id === tag._id).shift()
+                                  ._id,
+                                name: usersall.filter(tag => valueTag._id === tag._id).shift()
+                                .name
+                              });
+                            });
+                            setSelectedUsers(valuesArray)
+                          }}
+                        renderOption={(props, option, { selected }) => (
+                            <li {...props}>
+                            <Checkbox
+                                icon={icon}
+                                checkedIcon={checkedIcon}
+                                style={{ marginRight: 8 }}
+                                checked={selected}
+                                value={option._id}
+                            />
+                            {option.name}
+                            </li>
+                        )}
+                        size="medium"
+                        renderInput={(params) => (
+                            <TextField {...params} label="Users" placeholder="Select User" />
+                        )}
+                    />
                     
                 </div>
 

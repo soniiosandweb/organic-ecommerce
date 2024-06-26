@@ -16,7 +16,7 @@ const PriceSidebar = ({ cartItems }) => {
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
 
-    const { isAuthenticated } = useSelector((state) => state.user);
+    const { isAuthenticated, user } = useSelector((state) => state.user);
     const { coupons, error } = useSelector((state) => state.allCoupons);
     const { appliedCoupon } = useSelector((state) => state.appliedCode);
     const { totalAmount } = useSelector((state) => state.cart);
@@ -46,9 +46,25 @@ const PriceSidebar = ({ cartItems }) => {
             enqueueSnackbar("Coupon is not applicable", { variant: "error" });
             return;
         } else{
-            dispatch(setCouponCode(couponVal));
-            enqueueSnackbar("Coupon added successfully", { variant: "success" });
-            handlePopupClose();
+            if(couponVal.usersId.length){
+               
+                let couponUserId = couponVal.usersId.find((obj) => obj._id === user._id); 
+
+                if(couponUserId === undefined){
+                    enqueueSnackbar("Coupon is not applicable", { variant: "error" });
+                    return;
+                } else {
+                    dispatch(setCouponCode(couponVal));
+                    enqueueSnackbar("Coupon added successfully", { variant: "success" });
+                    handlePopupClose();
+                }
+
+            } else {
+                dispatch(setCouponCode(couponVal));
+                enqueueSnackbar("Coupon added successfully", { variant: "success" });
+                handlePopupClose(); 
+            }
+            
         }
     }
 
@@ -90,9 +106,12 @@ const PriceSidebar = ({ cartItems }) => {
             }
             
         }
+
+        if(user && user._id){
+            dispatch(getAllCoupons(user._id));
+        }
         
-        dispatch(getAllCoupons());
-    }, [dispatch, error, enqueueSnackbar, cartItems, appliedCoupon, isAuthenticated]);
+    }, [dispatch, error, enqueueSnackbar, cartItems, appliedCoupon, isAuthenticated, user]);
 
     return (
         <div className="flex flex-col md:w-4/12 md:px-1">
@@ -149,13 +168,14 @@ const PriceSidebar = ({ cartItems }) => {
                 <DialogTitle className="border-b flex justify-between items-center">Coupon Code <CloseIcon onClick={handlePopupClose} className="cursor-pointer" /></DialogTitle>
                 <DialogContent className="flex flex-col m-1 gap-4">
                     
-                    <div className="justify-between items-center shadow bg-white rounded-sm overflow-hidden flex">
+                    <div className="justify-between items-center shadow bg-white rounded-sm flex">
                         <input name="coupon_code" value={coupon} onChange={(e) => setCoupon(e.target.value)} className="py-4 px-6 text-md flex-1 outline-none border-none placeholder-gray-500" type="text" placeholder="Coupon Code" />
                         
                         <button onClick={applyCouponHandler} className="py-4 px-6 rounded-sm bg-primary-green hover:bg-black text-white shadow uppercase">Submit</button>
                     </div>
                     <div className="flex flex-col mt-4">
                         {coupons && coupons.map((coupon, index) => (
+                            
                             <div className="w-full py-3 flex justify-between items-center gap-3 border-b" key={index}>
                                 <div className="flex flex-col gap-2">
                                     <p className="font-semibold text-md">{coupon.name}</p>

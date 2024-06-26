@@ -258,6 +258,17 @@ exports.getAllUsers = asyncErrorHandler(async (req, res, next) => {
     });
 });
 
+// Get All Users Only --ADMIN
+exports.getAllUsersOnly = asyncErrorHandler(async (req, res, next) => {
+
+    const users = await User.find({ role: 'user' });
+
+    res.status(200).json({
+        success: true,
+        users,
+    });
+});
+
 // Get Single User Details --ADMIN
 exports.getSingleUser = asyncErrorHandler(async (req, res, next) => {
 

@@ -22,11 +22,11 @@ export const createCoupon = (couponData) => async (dispatch) => {
 }
 
 // Get All Coupons
-export const getAllCoupons = () => async (dispatch) => {
+export const getAllCoupons = (userID) => async (dispatch) => {
     try {
         dispatch({ type: ALL_COUPON_REQUEST });
 
-        const { data } = await axios.get('/api/v1/coupons');
+        const { data } = await axios.get(`/api/v1/coupons/${userID}`);
 
         dispatch({
             type: ALL_COUPON_SUCCESS,

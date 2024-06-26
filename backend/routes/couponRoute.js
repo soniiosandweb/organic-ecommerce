@@ -4,7 +4,7 @@ const { getAllCoupons, addCoupon, updateCoupon, deleteCoupon, getCouponDetails }
 
 const router = express.Router();
 
-router.route('/coupons').get(getAllCoupons);
+router.route('/coupons/:id').get(getAllCoupons);
 
 router.route('/admin/coupon/add').post(isAuthenticatedUser, authorizeRoles("admin"), addCoupon);
 

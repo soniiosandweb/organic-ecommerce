@@ -7,13 +7,15 @@ const ErrorHandler = require('../utils/errorHandler');
 // Add Coupon
 exports.addCoupon = asyncErrorHandler(async (req, res, next) => {
 
-    const { name, discount, percentage } = req.body;
+    if(req.body.usersId){
+        let specs = [];
+        req.body.usersId.forEach((s) => {
+            specs.push(JSON.parse(s))
+        });
+        req.body.usersId = specs;
+    }
 
-    const coupons = await Coupons.create({
-        name, 
-        discount,
-        percentage,
-    });
+    const coupons = await Coupons.create(req.body);
 
     res.status(201).json({
         success: true,
@@ -25,6 +27,16 @@ exports.addCoupon = asyncErrorHandler(async (req, res, next) => {
 exports.updateCoupon = asyncErrorHandler(async (req, res, next) => {
 
     let coupons = await Coupons.findById(req.params.id);
+
+    if(req.body.usersId){
+        let specs = [];
+        req.body.usersId.forEach((s) => {
+            specs.push(JSON.parse(s))
+        });
+        req.body.usersId = specs;
+    } else {
+        req.body.usersId = [];
+    }
 
     coupons= await Coupons.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
@@ -41,6 +53,16 @@ exports.updateCoupon = asyncErrorHandler(async (req, res, next) => {
 // Get All Coupons 
 exports.getAllCoupons = asyncErrorHandler(async (req, res, next) => {
 
+    // const coupons = await Coupons.find({
+    //     $or: [
+    //         {
+    //             usersId: { $size: 0 }
+    //         },
+    //         {
+    //             usersId: {_id : req.params.id}
+    //         }
+    //      ]
+    // });
     const coupons = await Coupons.find();
 
     res.status(200).json({

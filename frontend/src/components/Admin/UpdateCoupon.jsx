@@ -10,6 +10,14 @@ import BackdropLoader from "../Layouts/BackdropLoader";
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { REMOVE_COUPON_DETAILS, UPDATE_COUPON_RESET } from "../../constants/couponConstants";
+import { getAllUsersOnly } from "../../actions/userAction";
+import Checkbox from '@mui/material/Checkbox';
+import Autocomplete from '@mui/material/Autocomplete';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const UpdateCoupon = () => {
 
@@ -23,9 +31,12 @@ const UpdateCoupon = () => {
     const { loading, coupon, error } = useSelector((state) => state.couponDetails);
     const { loading: updateLoading, isUpdated, error: updateError } = useSelector((state) => state.coupon);
 
+    const { usersall } = useSelector((state) => state.usersOnly);
+
     const [name, setName] = useState("");
     const [discount, setDiscount] = useState(0);
     const [percentage, setPercentage] = useState(false);
+    const [selectedUsers, setSelectedUsers] = useState([]);
 
     const newCouponSubmitHandler = (e) => {
         e.preventDefault();
@@ -35,6 +46,10 @@ const UpdateCoupon = () => {
         formData.set("name", name);
         formData.set("discount", discount);
         formData.set("percentage", percentage);
+
+        selectedUsers.forEach((h) => {
+            formData.append("usersId", JSON.stringify(h));
+        });
        
         dispatch(updateCoupon(params.id, formData));
     }
@@ -47,6 +62,7 @@ const UpdateCoupon = () => {
             setName(coupon.name);
             setDiscount(coupon.discount)
             setPercentage(coupon.percentage)
+            setSelectedUsers(coupon.usersId)
         }
         
         if (error) {
@@ -63,6 +79,8 @@ const UpdateCoupon = () => {
             dispatch({ type: REMOVE_COUPON_DETAILS});
             navigate('/admin/coupons');
         }
+
+        dispatch(getAllUsersOnly());
     }, [dispatch, error, updateError, isUpdated, couponId, coupon, navigate, enqueueSnackbar]);
 
     return(
@@ -123,6 +141,48 @@ const UpdateCoupon = () => {
                         <MenuItem value={false}>Flat</MenuItem>
                         <MenuItem value={true}>% Percentage</MenuItem>
                     </TextField>
+                    
+                </div>
+
+                <div className="flex flex-col gap-3 w-full lg:w-2/3">
+                <Autocomplete
+                        multiple
+                        id="users"
+                        options={usersall}
+                        disableCloseOnSelect
+                        getOptionLabel={(option) => option.name}
+                        value={selectedUsers}
+                        isOptionEqualToValue={(option, value) => option._id === value._id}
+                        onChange={(e, valueTags) => {
+                            e.preventDefault();
+                            const valuesArray = [];
+                            valueTags.forEach(valueTag => {
+                              valuesArray.push({
+                                _id: usersall.filter(tag => valueTag._id === tag._id).shift()
+                                  ._id,
+                                name: usersall.filter(tag => valueTag._id === tag._id).shift()
+                                .name
+                              });
+                            });
+                            setSelectedUsers(valuesArray)
+                          }}
+                        renderOption={(props, option, { selected }) => (
+                            <li {...props}>
+                            <Checkbox
+                                icon={icon}
+                                checkedIcon={checkedIcon}
+                                style={{ marginRight: 8 }}
+                                checked={selected}
+                                value={option._id}
+                            />
+                            {option.name}
+                            </li>
+                        )}
+                        size="medium"
+                        renderInput={(params) => (
+                            <TextField {...params} label="Users" placeholder="Select User" />
+                        )}
+                    />
                     
                 </div>
 

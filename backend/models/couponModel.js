@@ -16,6 +16,17 @@ const couponSchema = new mongoose.Schema({
         required: [true, "Please enter category name"],
         unique: true,
     },
+    usersId: [{
+        name: {
+            type: String,
+            required: false
+        },
+        id: {
+            type: mongoose.Schema.ObjectId,
+            ref: "User",
+            required: false
+        },
+    }],
     createdAt: {
         type: Date,
         default: Date.now

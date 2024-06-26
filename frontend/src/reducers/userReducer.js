@@ -46,6 +46,9 @@ import {
     LOAD_PAYMENT_REQUEST,
     LOAD_PAYMENT_SUCCESS,
     LOAD_PAYMENT_FAIL,
+    GET_USERS_REQUEST,
+    GET_USERS_SUCCESS,
+    GET_USERS_FAIL,
 } from '../constants/userConstants';
 
 export const userReducer = (state = { user: {} }, { type, payload }) => {
@@ -280,6 +283,35 @@ export const PaymentKeysReducer = (state = { paymentKey: null }, { type, payload
                 ...state,
                 loading: false,
                 error: payload,
+            };
+        default:
+            return state;
+    }
+};
+
+export const allUsersOnlyReducer = (state = { usersall: [] }, { type, payload }) => {
+    switch (type) {
+        case GET_USERS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            };
+        case GET_USERS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                usersall: payload,
+            };
+        case GET_USERS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: payload,
+            };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
             };
         default:
             return state;
