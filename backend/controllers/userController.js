@@ -136,8 +136,8 @@ exports.forgotPassword = asyncErrorHandler(async (req, res, next) => {
 
     await user.save({ validateBeforeSave: false });
 
-    // const resetPasswordUrl = `${process.env.URL_FRONTEND}/password/reset/${resetToken}`;
-    const resetPasswordUrl = `https://${req.get("host")}/password/reset/${resetToken}`;
+    const resetPasswordUrl = `${process.env.URL_FRONTEND}/password/reset/${resetToken}`;
+    // const resetPasswordUrl = `https://${req.get("host")}/password/reset/${resetToken}`;
 
     // console.log(resetPasswordUrlNew)
 
