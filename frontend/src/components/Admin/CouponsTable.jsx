@@ -7,14 +7,14 @@ import MetaData from '../Layouts/MetaData';
 import BackdropLoader from '../Layouts/BackdropLoader';
 import { Link } from 'react-router-dom';
 import { DELETE_COUPON_RESET } from '../../constants/couponConstants';
-import { deleteCoupon, getAllCoupons, clearErrors } from '../../actions/couponAction';
+import { deleteCoupon, clearErrors, getAllCouponsAdmin } from '../../actions/couponAction';
 
 const CouponsTable = () => {
 
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
 
-    const { coupons, error } = useSelector((state) => state.allCoupons);
+    const { allcoupons, error } = useSelector((state) => state.allAdminCoupons);
     const { loading, isDeleted, error: deleteError } = useSelector((state) => state.coupon);
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const CouponsTable = () => {
             enqueueSnackbar("Coupon Deleted Successfully", { variant: "success" });
             dispatch({ type: DELETE_COUPON_RESET });
         }
-        dispatch(getAllCoupons());
+        dispatch(getAllCouponsAdmin());
     }, [dispatch, error, deleteError, isDeleted, enqueueSnackbar]);
 
     const deleteCouponHandler = (id) => {
@@ -85,7 +85,7 @@ const CouponsTable = () => {
 
     const rows = [];
 
-    coupons && coupons.forEach((coupon, index) => {
+    allcoupons && allcoupons.forEach((coupon, index) => {
         rows.unshift({
             id: coupon._id,
             name: coupon.name,

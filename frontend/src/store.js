@@ -9,7 +9,7 @@ import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer
 import { wishlistReducer } from './reducers/wishlistReducer';
 import { contactReducer } from './reducers/contactReducer';
 import { allCategoriesReducer, categoryDetailsReducer, categoryReducer, limitCategoriesReducer, newCategoryReducer } from './reducers/categoryReducer';
-import { allCouponsReducer, couponDetailsReducer, couponReducer, newCouponReducer, setCouponCode } from './reducers/couponReducer';
+import { allAdminCouponsReducer, allCouponsReducer, couponDetailsReducer, couponReducer, newCouponReducer, setCouponCode } from './reducers/couponReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -44,6 +44,7 @@ const reducer = combineReducers({
     paymentKey: PaymentKeysReducer,
     newCoupon: newCouponReducer,
     allCoupons: allCouponsReducer,
+    allAdminCoupons: allAdminCouponsReducer,
     coupon: couponReducer,
     couponDetails: couponDetailsReducer,
     appliedCode: setCouponCode,

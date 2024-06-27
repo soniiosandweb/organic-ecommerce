@@ -1,4 +1,4 @@
-import { ALL_COUPON_FAIL, ALL_COUPON_REQUEST, ALL_COUPON_SUCCESS, CLEAR_ERRORS, COUPON_CODE, COUPON_DETAILS_FAIL, COUPON_DETAILS_REQUEST, COUPON_DETAILS_SUCCESS, DELETE_COUPON_FAIL, DELETE_COUPON_REQUEST, DELETE_COUPON_RESET, DELETE_COUPON_SUCCESS, EMPTY_COUPON_CODE, NEW_COUPON_FAIL, NEW_COUPON_REQUEST, NEW_COUPON_RESET, NEW_COUPON_SUCCESS, REMOVE_COUPON_DETAILS, UPDATE_COUPON_FAIL, UPDATE_COUPON_REQUEST, UPDATE_COUPON_RESET, UPDATE_COUPON_SUCCESS } from "../constants/couponConstants";
+import { ADMIN_COUPON_FAIL, ADMIN_COUPON_REQUEST, ADMIN_COUPON_SUCCESS, ALL_COUPON_FAIL, ALL_COUPON_REQUEST, ALL_COUPON_SUCCESS, CLEAR_ERRORS, COUPON_CODE, COUPON_DETAILS_FAIL, COUPON_DETAILS_REQUEST, COUPON_DETAILS_SUCCESS, DELETE_COUPON_FAIL, DELETE_COUPON_REQUEST, DELETE_COUPON_RESET, DELETE_COUPON_SUCCESS, EMPTY_COUPON_CODE, NEW_COUPON_FAIL, NEW_COUPON_REQUEST, NEW_COUPON_RESET, NEW_COUPON_SUCCESS, REMOVE_COUPON_DETAILS, UPDATE_COUPON_FAIL, UPDATE_COUPON_REQUEST, UPDATE_COUPON_RESET, UPDATE_COUPON_SUCCESS } from "../constants/couponConstants";
 
 // New Coupon Reducer
 export const newCouponReducer = (state = { coupon: {} }, { type, payload }) => {
@@ -47,6 +47,32 @@ export const allCouponsReducer = (state = { coupons: [] }, { type, payload }) =>
                 coupons: payload,
             };
         case ALL_COUPON_FAIL:
+            return {
+                loading: false,
+                error: payload,
+            };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            };
+        default:
+            return state;
+    }
+};
+
+export const allAdminCouponsReducer = (state = { allcoupons: [] }, { type, payload }) => {
+    switch (type) {
+        case ADMIN_COUPON_REQUEST:
+            return {
+                loading: true,
+            };
+        case ADMIN_COUPON_SUCCESS:
+            return {
+                loading: false,
+                allcoupons: payload,
+            };
+        case ADMIN_COUPON_FAIL:
             return {
                 loading: false,
                 error: payload,

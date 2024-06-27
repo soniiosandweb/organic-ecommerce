@@ -19,12 +19,12 @@ const couponSchema = new mongoose.Schema({
     usersId: [{
         name: {
             type: String,
-            required: false
+            required: true
         },
-        id: {
+        _id: {
             type: mongoose.Schema.ObjectId,
             ref: "User",
-            required: false
+            required: true
         },
     }],
     createdAt: {

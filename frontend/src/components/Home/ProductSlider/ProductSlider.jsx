@@ -68,7 +68,7 @@ const ProductSlider = ({ title, tagline }) => {
 
                     <div className="flex py-10 justify-between ">
 
-                        <div className='hidden md:block w-1/4 flex-1'>
+                        <div className='hidden md:block w-1/4'>
                             <div className='trending-banner h-full w-full relative'>
                                 <div className='trending-text h-full w-full flex items-center flex-col z-10 relative p-5 lg:p-10'>
                                     <h3 className='text-3xl font-semibold text-center mt-0 lg:mt-10 mb-5'>Shop From Categories</h3>

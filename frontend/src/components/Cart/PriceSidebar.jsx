@@ -46,25 +46,9 @@ const PriceSidebar = ({ cartItems }) => {
             enqueueSnackbar("Coupon is not applicable", { variant: "error" });
             return;
         } else{
-            if(couponVal.usersId.length){
-               
-                let couponUserId = couponVal.usersId.find((obj) => obj._id === user._id); 
-
-                if(couponUserId === undefined){
-                    enqueueSnackbar("Coupon is not applicable", { variant: "error" });
-                    return;
-                } else {
-                    dispatch(setCouponCode(couponVal));
-                    enqueueSnackbar("Coupon added successfully", { variant: "success" });
-                    handlePopupClose();
-                }
-
-            } else {
-                dispatch(setCouponCode(couponVal));
-                enqueueSnackbar("Coupon added successfully", { variant: "success" });
-                handlePopupClose(); 
-            }
-            
+            dispatch(setCouponCode(couponVal));
+            enqueueSnackbar("Coupon added successfully", { variant: "success" });
+            handlePopupClose(); 
         }
     }
 

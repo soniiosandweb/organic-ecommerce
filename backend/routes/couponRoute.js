@@ -1,8 +1,10 @@
 const express = require('express');
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
-const { getAllCoupons, addCoupon, updateCoupon, deleteCoupon, getCouponDetails } = require('../controllers/couponController');
+const { getAllCoupons, addCoupon, updateCoupon, deleteCoupon, getCouponDetails, getAllCouponsAdmin } = require('../controllers/couponController');
 
 const router = express.Router();
+
+router.route('/allcoupons').get(getAllCouponsAdmin);
 
 router.route('/coupons/:id').get(getAllCoupons);
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ALL_COUPON_FAIL, ALL_COUPON_REQUEST, ALL_COUPON_SUCCESS, CLEAR_ERRORS, COUPON_CODE, COUPON_DETAILS_FAIL, COUPON_DETAILS_REQUEST, COUPON_DETAILS_SUCCESS, DELETE_COUPON_FAIL, DELETE_COUPON_REQUEST, DELETE_COUPON_SUCCESS, EMPTY_COUPON_CODE, NEW_COUPON_FAIL, NEW_COUPON_REQUEST, NEW_COUPON_SUCCESS, UPDATE_COUPON_FAIL, UPDATE_COUPON_REQUEST, UPDATE_COUPON_SUCCESS } from "../constants/couponConstants";
+import { ADMIN_COUPON_FAIL, ADMIN_COUPON_REQUEST, ADMIN_COUPON_SUCCESS, ALL_COUPON_FAIL, ALL_COUPON_REQUEST, ALL_COUPON_SUCCESS, CLEAR_ERRORS, COUPON_CODE, COUPON_DETAILS_FAIL, COUPON_DETAILS_REQUEST, COUPON_DETAILS_SUCCESS, DELETE_COUPON_FAIL, DELETE_COUPON_REQUEST, DELETE_COUPON_SUCCESS, EMPTY_COUPON_CODE, NEW_COUPON_FAIL, NEW_COUPON_REQUEST, NEW_COUPON_SUCCESS, UPDATE_COUPON_FAIL, UPDATE_COUPON_REQUEST, UPDATE_COUPON_SUCCESS } from "../constants/couponConstants";
 
 
 // New Coupon ---ADMIN
@@ -20,6 +20,26 @@ export const createCoupon = (couponData) => async (dispatch) => {
         });
     }
 }
+
+// Get All Coupons
+export const getAllCouponsAdmin = () => async (dispatch) => {
+    try {
+        dispatch({ type: ADMIN_COUPON_REQUEST });
+
+        const { data } = await axios.get("/api/v1/allcoupons");
+
+        dispatch({
+            type: ADMIN_COUPON_SUCCESS,
+            payload: data.coupons,
+        })
+
+    } catch (error) {
+        dispatch({
+            type: ADMIN_COUPON_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
 
 // Get All Coupons
 export const getAllCoupons = (userID) => async (dispatch) => {

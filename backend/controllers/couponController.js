@@ -51,19 +51,25 @@ exports.updateCoupon = asyncErrorHandler(async (req, res, next) => {
 });
 
 // Get All Coupons 
+exports.getAllCouponsAdmin = asyncErrorHandler(async (req, res, next) => {
+
+    const coupons = await Coupons.find();
+
+    res.status(200).json({
+        success: true,
+        coupons,
+    });
+});
+
+
+// Get All Coupons 
 exports.getAllCoupons = asyncErrorHandler(async (req, res, next) => {
 
-    // const coupons = await Coupons.find({
-    //     $or: [
-    //         {
-    //             usersId: { $size: 0 }
-    //         },
-    //         {
-    //             usersId: {_id : req.params.id}
-    //         }
-    //      ]
-    // });
-    const coupons = await Coupons.find();
+    const coupons = await Coupons.find({ 
+        usersId: { 
+           $elemMatch: { _id: req.params.id } 
+        }
+    });
 
     res.status(200).json({
         success: true,

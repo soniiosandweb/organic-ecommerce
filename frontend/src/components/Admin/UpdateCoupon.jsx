@@ -15,6 +15,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Autocomplete from '@mui/material/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import { createFilterOptions } from "@mui/material";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -41,6 +42,11 @@ const UpdateCoupon = () => {
     const newCouponSubmitHandler = (e) => {
         e.preventDefault();
 
+        if (selectedUsers.length <= 0) {
+            enqueueSnackbar("Select Users", { variant: "warning" });
+            return;
+        }
+
         const formData = new FormData();
 
         formData.set("name", name);
@@ -52,6 +58,17 @@ const UpdateCoupon = () => {
         });
        
         dispatch(updateCoupon(params.id, formData));
+    }
+
+    const couponUsersChange = (selected) => {
+        const valuesArray = [];
+        selected.forEach(valueTag => {
+            valuesArray.push({
+                _id: usersall.filter(tag => valueTag._id === tag._id).shift()._id,
+                name: usersall.filter(tag => valueTag._id === tag._id).shift().name
+            });
+        });
+        setSelectedUsers(valuesArray)
     }
 
     useEffect(() => {
@@ -145,39 +162,47 @@ const UpdateCoupon = () => {
                 </div>
 
                 <div className="flex flex-col gap-3 w-full lg:w-2/3">
-                <Autocomplete
+                    <Autocomplete
                         multiple
                         id="users"
                         options={usersall}
                         disableCloseOnSelect
-                        getOptionLabel={(option) => option.name}
                         value={selectedUsers}
+                        getOptionLabel={(option) => option.name}
+                        onChange={(event, newValue) => {
+
+                            // Check if 'All' option is clicked
+                            if (newValue.find((option) => option._id === "0")) {
+                              // Check if all options are selected
+                              if (usersall.length === selectedUsers.length) {
+                                setSelectedUsers([]);
+                              } else {
+                                couponUsersChange(usersall)
+                              }
+                            } else {
+                                couponUsersChange(newValue)
+                            }
+                        }}
+
                         isOptionEqualToValue={(option, value) => option._id === value._id}
-                        onChange={(e, valueTags) => {
-                            e.preventDefault();
-                            const valuesArray = [];
-                            valueTags.forEach(valueTag => {
-                              valuesArray.push({
-                                _id: usersall.filter(tag => valueTag._id === tag._id).shift()
-                                  ._id,
-                                name: usersall.filter(tag => valueTag._id === tag._id).shift()
-                                .name
-                              });
-                            });
-                            setSelectedUsers(valuesArray)
-                          }}
+                        filterOptions={(options, params) => {
+                            const filtered = createFilterOptions()(options, params);
+                            let optionName =
+                            usersall.length === selectedUsers.length ? "Remove All" : "All";
+                            return [{ _id: "0", name: optionName }, ...filtered];
+                        }}
                         renderOption={(props, option, { selected }) => (
                             <li {...props}>
-                            <Checkbox
+                              <Checkbox
                                 icon={icon}
                                 checkedIcon={checkedIcon}
                                 style={{ marginRight: 8 }}
-                                checked={selected}
+                                checked={option.name === "Remove All" ? true : selected}
                                 value={option._id}
-                            />
-                            {option.name}
+                              />
+                              {option.name}
                             </li>
-                        )}
+                          )}
                         size="medium"
                         renderInput={(params) => (
                             <TextField {...params} label="Users" placeholder="Select User" />
