@@ -28,6 +28,22 @@ exports.registerUser = asyncErrorHandler(async (req, res, next) => {
         },
     });
 
+    var message = `<p>Hi ${name},</p>
+            <p>We're excited to welcome you to Fresh Organic Grocery!</p>
+            <p>As a new member, you’re now part of a community that enjoys exclusive perks, the latest product launches, and unbeatable deals.</p>
+            <p></p>
+            <p>If you have any questions or need help, our customer support team is always here for you. Contact us at <a href="mailto:info@freshorganicgrocery.com">info@freshorganicgrocery.com</a> or <a href="tel:+91 9915841204">+91 9915841204</a>.</p>
+            <p>Thank you for joining us. We can’t wait to see you explore and find your favorites!</p>
+            <p>Warm regards,</p>
+            <p>Team Fresh Organic Grocery</p>
+            <p><a href="http://freshorganicgrocery.com/">http://freshorganicgrocery.com/</a>`;
+
+    await sendEmail({
+        email: email,
+        message: message,
+        subject: "Welcome to Fresh Organic Grocery Family!",
+    });
+
     sendToken(user, 201, res);
 });
 
