@@ -1,4 +1,4 @@
-Full-Stack Organic website with Admin Dashboard & Payment Gateway.
+Full-Stack Fresh Organic Grocery website with Admin Dashboard & Payment Gateway.
 
 ## 🚀 Features
 

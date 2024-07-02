@@ -69,7 +69,7 @@ const Products = () => {
 
     return (
         <>
-            <MetaData title="All Products | Organic" />
+            <MetaData title="All Products | Fresh Organic Grocery" />
 
             <main className="w-full py-16 px-4">
                 <div className="sm:w-11/12 m-auto w-full">

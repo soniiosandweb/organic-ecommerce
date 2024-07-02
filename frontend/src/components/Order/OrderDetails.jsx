@@ -27,7 +27,7 @@ const OrderDetails = () => {
 
     return (
         <>
-            <MetaData title="Order Details | Organic" />
+            <MetaData title="Order Details | Fresh Organic Grocery" />
 
             <main className="w-full py-16 px-4">
                 <div className="sm:w-11/12 m-auto w-full">

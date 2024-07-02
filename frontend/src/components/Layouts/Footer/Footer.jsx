@@ -57,7 +57,7 @@ const footerLinks = [
       },
       {
         name: "Privacy",
-        redirect: "/",
+        redirect: "/privacy-policy",
       },
     ]
   },
@@ -99,21 +99,21 @@ const Footer = () => {
                 
                 <div className="w-full sm:w-1/1 text-center md:text-left">
 
-                  <Link className="h-20 mb-6 flex w-max mx-auto md:mx-0" to="/">
+                  <Link className="h-20 md:h-24 mb-4 flex w-max mx-auto md:mx-0" to="/">
                     <LazyLoadImage 
                       src={logo} 
-                      alt="Organic Logo"
+                      alt="Fresh Organic Grocery"
                       className="h-full w-full object-contain"
                     />
                   </Link>
 
-                  <p className="mt-2 leading-5">Zirakpur, 140603,<br />Punjab, India</p>
+                  <p className="mt-2 leading-5">SCO 30, First Floor, Near Devaji Plaza, <br/>VIP Road, Zirakpur, PB (India).</p>
 
                   <p className="mt-2 leading-5">
-                    Phone: <a className="text-primary-green" href="tel:18002029898">1800 202 9898</a>
+                    Phone: <a className="text-primary-green" href="tel:+919988223680">+91-99882 23680</a>
                   </p>
                   <p className="mt-2 leading-5">
-                    Email: <a className="text-primary-green" href="mailto:test@gmail.com">test@gmail.com</a>
+                    Email: <a className="text-primary-green" href="mailto:info@iosandweb.net">info@iosandweb.net</a>
                   </p>
                 </div>
               </div>
@@ -133,7 +133,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="py-6 sm:w-11/12 m-auto px-4 w-full flex justify-between items-center text-sm text-white flex-col md:flex-row">
-              <span>&copy; {new Date().getFullYear()} Organic.com. All Rights Reserved.</span>
+              <span>&copy; {new Date().getFullYear()} <a href="/">Fresh Organic Grocery</a>. All Rights Reserved.</span>
               <LazyLoadImage 
                 src={paymentMethods} 
                 alt="Card Payment" 

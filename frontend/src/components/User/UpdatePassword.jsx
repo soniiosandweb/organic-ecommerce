@@ -57,7 +57,7 @@ const UpdatePassword = () => {
 
     return (
         <>
-            <MetaData title="Password Update | Organic" />
+            <MetaData title="Password Update | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
             <main className="w-full py-16 px-4">

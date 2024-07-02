@@ -37,7 +37,7 @@ const UpdateAddress = () => {
 
     return(
         <>
-            <MetaData title="Manage Address | Organic" />
+            <MetaData title="Manage Address | Fresh Organic Grocery" />
 
             <main className="w-full py-16 px-4">
 

@@ -96,7 +96,7 @@ const CouponsTable = () => {
 
     return (
         <>
-            <MetaData title="Admin Coupons | Organic" />
+            <MetaData title="Admin Coupons | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
 

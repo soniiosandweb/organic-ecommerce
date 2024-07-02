@@ -182,7 +182,7 @@ const Payment = () => {
 
     return (
         <>
-            <MetaData title="Organic: Secure Payment | Paytm" />
+            <MetaData title="Fresh Organic Grocery: Secure Payment | Paytm" />
 
             {loading ? <Loader /> : 
 

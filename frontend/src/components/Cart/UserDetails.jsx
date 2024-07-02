@@ -60,7 +60,7 @@ const UserDetails = () => {
 
     return(
         <>
-            <MetaData title="Organic: User Details" />
+            <MetaData title="Fresh Organic Grocery: User Details" />
 
             <main className="w-full py-16 px-4">
 

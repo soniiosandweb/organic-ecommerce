@@ -114,7 +114,7 @@ const ReviewsTable = () => {
 
     return (
         <>
-            <MetaData title="Admin Reviews | Organic" />
+            <MetaData title="Admin Reviews | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
             <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-12 pb-5 border-b border-gray-300">

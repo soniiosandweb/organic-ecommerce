@@ -67,7 +67,7 @@ const NewCategory = () => {
 
     return (
         <>
-            <MetaData title="Admin: New Category | Organic" />
+            <MetaData title="Admin: New Category | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
 

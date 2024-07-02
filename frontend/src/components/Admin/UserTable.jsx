@@ -127,7 +127,7 @@ const UserTable = () => {
 
     return (
         <>
-            <MetaData title="Admin Users | Organic" />
+            <MetaData title="Admin Users | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
 

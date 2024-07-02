@@ -99,7 +99,7 @@ const CategoriesTable = () => {
 
     return (
         <>
-            <MetaData title="Admin Categories | Organic" />
+            <MetaData title="Admin Categories | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
 

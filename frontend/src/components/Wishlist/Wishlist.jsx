@@ -11,7 +11,7 @@ const Wishlist = () => {
 
     return (
         <>
-            <MetaData title="Wishlist | Organic" />
+            <MetaData title="Wishlist | Fresh Organic Grocery" />
 
             <main className="w-full py-16 px-4">
 

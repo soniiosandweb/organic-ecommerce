@@ -38,7 +38,7 @@ const AdminLogin = () => {
 
     return (
         <>
-            <MetaData title="Admin Login | Organic" />
+            <MetaData title="Admin Login | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
 
@@ -56,7 +56,7 @@ const AdminLogin = () => {
                             <Link className="h-20 mb-6 mx-auto w-max flex focus-visible:outline-0" to="/">
                                 <LazyLoadImage 
                                     src={logo}
-                                    alt="Organic Logo"
+                                    alt="Fresh Organic Grocery"
                                     className="h-full w-full object-contain"
                                 />
                             </Link>

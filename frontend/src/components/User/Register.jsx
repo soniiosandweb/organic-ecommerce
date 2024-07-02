@@ -89,7 +89,7 @@ const Register = () => {
 
     return (
         <>
-            <MetaData title="Register | Organic" />
+            <MetaData title="Register | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
             <main className="w-full py-16 px-4">

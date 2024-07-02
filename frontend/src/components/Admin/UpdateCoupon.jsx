@@ -102,7 +102,7 @@ const UpdateCoupon = () => {
 
     return(
         <>
-            <MetaData title="Admin: Update Coupon | Organic" />
+            <MetaData title="Admin: Update Coupon | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
             {updateLoading && <BackdropLoader />}

@@ -20,7 +20,7 @@ const Rating = () => {
 
     return (
         <>
-            <MetaData title="Reviews & Ratings | Organic" />
+            <MetaData title="Reviews & Ratings | Fresh Organic Grocery" />
 
             <main className="w-full py-16 px-4">
 

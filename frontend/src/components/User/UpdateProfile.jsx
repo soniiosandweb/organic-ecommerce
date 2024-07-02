@@ -71,7 +71,7 @@ const UpdateProfile = () => {
 
     return (
         <>
-            <MetaData title="Update Profile | Organic" />
+            <MetaData title="Update Profile | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
             <main className="w-full sm:pt-20 sm:mt-0">

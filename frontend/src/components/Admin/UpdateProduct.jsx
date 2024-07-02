@@ -155,7 +155,7 @@ const UpdateProduct = () => {
 
     return (
         <>
-            <MetaData title="Admin: Update Product | Organic" />
+            <MetaData title="Admin: Update Product | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
             {updateLoading && <BackdropLoader />}

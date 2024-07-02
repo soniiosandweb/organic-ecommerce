@@ -18,7 +18,7 @@ const Cart = () => {
 
     return (
         <>
-            <MetaData title="Shopping Cart | Organic" />
+            <MetaData title="Shopping Cart | Fresh Organic Grocery" />
             <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}

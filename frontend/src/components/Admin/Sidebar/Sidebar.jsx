@@ -92,10 +92,10 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
         <aside className="sidebar z-10 lg:z-0 block min-h-screen fixed left-0 pb-14 max-h-screen w-full sm:w-3/4 lg:w-1/4 xl:w-1/5 bg-gray-800 text-white overflow-x-hidden border-r">
 
             <div className="flex items-center p-2 my-4 mx-3.5">
-                <Link className="h-16 flex w-max mx-auto" to="/">
+                <Link className="h-20 flex w-max mx-auto" to="/">
                     <LazyLoadImage 
                         src={logo}
-                        alt="Organic Logo"
+                        alt="Fresh Organic Grocery"
                         className="h-full w-full object-contain"
                     />
                 </Link>

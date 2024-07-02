@@ -13,7 +13,7 @@ const OrderConfirm = () => {
 
     return (
         <>
-        <MetaData title="Organic: Order Confirmation" />
+        <MetaData title="Fresh Organic Grocery: Order Confirmation" />
 
         <main className="w-full py-16 px-4">
 

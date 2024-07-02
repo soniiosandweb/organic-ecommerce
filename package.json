@@ -1,7 +1,7 @@
 {
-  "name": "green-organic",
+  "name": "fresh-organic-grocery",
   "version": "1.0.0",
-  "description": "Full Stack Organic Ecommerce",
+  "description": "Full Stack Fresh Organic Grocery Ecommerce",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

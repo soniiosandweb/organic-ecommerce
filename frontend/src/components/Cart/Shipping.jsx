@@ -42,7 +42,7 @@ const Shipping = () => {
 
     return (
         <>
-            <MetaData title="Organic: Shipping Details" />
+            <MetaData title="Fresh Organic Grocery: Shipping Details" />
             <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}

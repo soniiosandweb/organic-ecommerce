@@ -14,7 +14,7 @@ exports.processPayment = asyncErrorHandler(async (req, res, next) => {
             amount: req.body.amount,
             currency: "inr",
             metadata: {
-                company: "Organic",
+                company: "Fresh Organic Grocery",
             },
         });
 

@@ -137,7 +137,7 @@ const OrderTable = () => {
 
     return (
         <>
-            <MetaData title="Admin Orders | Organic" />
+            <MetaData title="Admin Orders | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
 

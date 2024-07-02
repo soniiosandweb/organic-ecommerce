@@ -101,7 +101,7 @@ const MainData = () => {
     
     return (
         <>
-            <MetaData title="Admin Dashboard | Organic" />
+            <MetaData title="Admin Dashboard | Fresh Organic Grocery" />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-6">
                 <div className="flex flex-col bg-purple-600 text-white gap-2 rounded-md shadow-lg hover:shadow-xl p-6">
