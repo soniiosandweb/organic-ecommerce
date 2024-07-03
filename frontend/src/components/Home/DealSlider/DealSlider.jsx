@@ -45,10 +45,10 @@ const DealSlider = ({ title, id }) => {
     };
 
     return (
-        <section className="bg-white w-full overflow-hidden py-16">
+        <section className="bg-white w-full overflow-hidden py-8 lg:py-16">
             {/* <!-- header --> */}
             <div className="flex pb-10 justify-start items-center">
-                <h2 className="text-3xl font-semibold">{title}</h2>
+                <h2 className="text-xl sm:text-3xl font-semibold">{title}</h2>
             </div>
             {/* <!-- header --> */}
             {loading ? null :

@@ -189,7 +189,7 @@ const Payment = () => {
                 <main className="w-full py-16 px-4">
 
                     {/* <!-- row --> */}
-                    <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7">
+                    <div className="flex flex-col lg:flex-row gap-3.5 w-full sm:w-11/12 mt-0 lg:mt-4 m-auto lg:mb-7">
 
                         {/* <!-- cart column --> */}
                         <div className="flex-1">
@@ -224,7 +224,7 @@ const Payment = () => {
                                     </form> */}
 
                                     {/* stripe form */}
-                                    <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start gap-3 w-full px-1 sm:px-8 py-4">
+                                    <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start gap-3 w-full px-3 sm:px-8 py-4">
 
                                         <FormControl>
                                             <RadioGroup

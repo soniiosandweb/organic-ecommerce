@@ -27,20 +27,27 @@ const Categories = () => {
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 4,
-                    slidesToScroll: 2
+                    slidesToScroll: 1
                 }
             },
             {
-                breakpoint: 600,
+                breakpoint: 767,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1
                 }
             },
             {
-                breakpoint: 480,
+                breakpoint: 600,
                 settings: {
                     slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
                     slidesToScroll: 1
                 }
             }
@@ -52,7 +59,7 @@ const Categories = () => {
     },[dispatch]);
 
     return (
-        <section className="block bg-white min-w-full py-16 overflow-hidden" id="product_categories">
+        <section className="block bg-white min-w-full py-8 lg:py-16 overflow-hidden" id="product_categories">
 
             <div className="w-full sm:w-11/12 px-4 m-auto flex items-center justify-center flex-wrap gap-4">
 

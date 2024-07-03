@@ -65,8 +65,8 @@ const Banner = () => {
           {banners.map((el, i) => (
             <div className='w-full h-full relative banner-slider-img' key={i}>
               <div className='flex items-center justify-center p-12 h-full flex-col gap-5 text-center'>
-                <p className='text-xl text-white'>{el.subtitle}</p>
-                <h1 className='text-white text-5xl font-semibold'>{el.title}</h1>
+                <p className='text-lg sm:text-xl text-white'>{el.subtitle}</p>
+                <h1 className='text-white text-3xl sm:text-4xl lg:text-5xl font-semibold'>{el.title}</h1>
                 <Link to="/products" className="bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-sm shadow-lg capitalize hover:bg-white hover:text-black">view all</Link>
               </div>
               <LazyLoadImage 

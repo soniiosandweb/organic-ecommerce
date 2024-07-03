@@ -114,7 +114,7 @@ const Register = () => {
                             <div className="flex flex-col gap-4 items-start">
 
                                 {/* <!-- input container column --> */}
-                                <div className="flex flex-col w-full justify-between sm:flex-col gap-3 items-center">
+                                <div className="flex flex-col w-full justify-between md:flex-col gap-3 items-center">
                                     <TextField
                                         fullWidth
                                         id="full-name"
@@ -142,8 +142,8 @@ const Register = () => {
                                 {/* <!-- input container column --> */}
 
                                 {/* <!-- gender input --> */}
-                                <div className="flex gap-4 items-center">
-                                    <h2 className="text-md">Your Gender :</h2>
+                                <div className="flex flex-col md:flex-row gap-4 w-full items-start md:items-center">
+                                    <h2 className="text-md text-left">Your Gender :</h2>
                                     <div className="flex items-center gap-6" id="radioInput">
                                         <RadioGroup
                                             row
@@ -158,7 +158,7 @@ const Register = () => {
                                 {/* <!-- gender input --> */}
 
                                 {/* <!-- input container column --> */}
-                                <div className="flex flex-col w-full justify-between sm:flex-row gap-3 items-center">
+                                <div className="flex flex-col w-full justify-between md:flex-col gap-3 items-center">
                                     <TextField
                                         id="password"
                                         label="Password"
@@ -168,6 +168,7 @@ const Register = () => {
                                         onChange={handleDataChange}
                                         required
                                         className='flex-1'
+                                        fullWidth
                                     />
                                     <TextField
                                         id="confirm-password"
@@ -178,6 +179,7 @@ const Register = () => {
                                         onChange={handleDataChange}
                                         required
                                         className='flex-1'
+                                        fullWidth
                                     />
                                 </div>
                                 {/* <!-- input container column --> */}

@@ -65,7 +65,7 @@ const UserDetails = () => {
             <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}
-                <div className="flex flex-col md:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7">
+                <div className="flex flex-col lg:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7">
 
                     {/* <!-- cart column --> */}
                     <div className="flex-1">
@@ -73,8 +73,8 @@ const UserDetails = () => {
                         <Stepper activeStep={0}>
                             <div className="w-full bg-white">
                                {isAuthenticated === false ?
-                                    <div className="w-full flex flex-col gap-3.5 px-1 sm:px-8 py-8">
-                                        <p className="text-md bg-gray-100 rounded-sm border border-gray-300 p-3 flex gap-2"><PersonOutlineOutlinedIcon /> Returning Customer? <a href="/login?redirect=shipping" className="font-semibold">Click Here To Login</a></p>
+                                    <div className="w-full flex flex-col gap-3.5 px-3 sm:px-8 py-8">
+                                        <p className="text-md bg-gray-100 rounded-sm border border-gray-300 p-3 flex flex-col sm:flex-row gap-2"><span><PersonOutlineOutlinedIcon /> Returning Customer?</span> <a href="/login?redirect=shipping" className="font-semibold">Click Here To Login</a></p>
 
                                         <p className="text-md font-medium py-2">Create Account</p>
 

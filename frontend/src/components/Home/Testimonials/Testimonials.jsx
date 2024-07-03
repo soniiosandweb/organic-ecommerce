@@ -47,7 +47,7 @@ const Testimonials = () => {
 
     return (
         <section className="bg-white w-full overflow-hidden testimonials-section relative">
-            <div className="py-16 sm:w-11/12 m-auto px-4 w-full flex flex-col md:flex-row relative z-10">
+            <div className="py-8 lg:py-16 sm:w-11/12 m-auto px-4 w-full flex flex-col md:flex-row relative z-10">
                 
                 <Slider {...settings} className="flex justify-between w-full testimonial-slider px-5 sm:px-10">
                     {testimonials.map((el, i) => (
@@ -60,7 +60,7 @@ const Testimonials = () => {
 
                             <Rating name="read-only" value={el.rating} readOnly size="medium" precision={0.5} />
                             
-                            <p className='text-xl font-medium w-full lg:w-2/4 m-auto'>{el.content}</p>
+                            <p className='text-lg md:text-xl font-medium w-full lg:w-2/4 m-auto'>{el.content}</p>
                             <h4 className='text-2xl font-semibold my-5'><span className='text-primary-green'>~</span> {el.name} <span className='text-primary-green'>~</span></h4>
                         </div>
                     ))}

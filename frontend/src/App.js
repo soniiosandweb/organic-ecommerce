@@ -53,6 +53,7 @@ import CouponsTable from './components/Admin/CouponsTable';
 import NewCoupon from './components/Admin/NewCoupon';
 import UpdateCoupon from './components/Admin/UpdateCoupon';
 import PrivacyPolicy from './components/Privacy/PrivacyPolicy';
+import TermsOfUse from './components/Privacy/TermsOfUse';
 
 function App() {
 
@@ -113,6 +114,7 @@ function App() {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsOfUse />} />
 
         {/* order process */}
         <Route path="/userdetails" element={

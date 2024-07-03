@@ -27,7 +27,7 @@ const ProductServices = () => {
 
     return (
         <section className="bg-white w-full overflow-hidden relative">
-            <div className="py-16 sm:w-11/12 m-auto px-4 w-full flex flex-col md:flex-row relative z-10 product-services-section">
+            <div className="py-8 lg:py-16 sm:w-11/12 m-auto px-4 w-full flex flex-col md:flex-row relative z-10 product-services-section">
                 {services.map((el, i) => (
                     <div className='w-full md:w-1/3 flex flex-col gap-2 text-center p-5' key={i}>
                         <LazyLoadImage 

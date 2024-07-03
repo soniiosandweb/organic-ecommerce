@@ -48,12 +48,8 @@ const footerLinks = [
     title: "policy",
     links: [
       {
-        name: "Return Policy",
-        redirect: "/",
-      },
-      {
         name: "Terms Of Use",
-        redirect: "/",
+        redirect: "/terms-and-conditions",
       },
       {
         name: "Privacy",
@@ -110,10 +106,10 @@ const Footer = () => {
                   <p className="mt-2 leading-5">SCO 30, First Floor, Near Devaji Plaza, <br/>VIP Road, Zirakpur, PB (India).</p>
 
                   <p className="mt-2 leading-5">
-                    Phone: <a className="text-primary-green" href="tel:+919988223680">+91-99882 23680</a>
+                    Phone: <a className="text-primary-green" href="tel:+919915841204">+91 9915841204</a>
                   </p>
                   <p className="mt-2 leading-5">
-                    Email: <a className="text-primary-green" href="mailto:info@iosandweb.net">info@iosandweb.net</a>
+                    Email: <a className="text-primary-green" href="mailto:info@freshorganicgrocery.com">info@freshorganicgrocery.com</a>
                   </p>
                 </div>
               </div>
@@ -122,7 +118,11 @@ const Footer = () => {
 
                 {footerLinks.map((el, i) => (
                   <div className="w-full md:w-1/4 flex flex-col gap-2 mb-3 sm:mb-6 md:ml-5 items-center md:items-start" key={i}>
-                    <h2 className="text-white mb-5 text-lg font-semibold capitalize">{el.title} <span className='text-primary-green'>~</span></h2>
+                    <h2 className="text-white mb-5 text-lg font-semibold capitalize">
+                      <span className='text-primary-green visible md:hidden'>~ </span> 
+                      {el.title} 
+                      <span className='text-primary-green'> ~</span>
+                    </h2>
                     {el.links.map((item, i) => (
                       <a href={item.redirect} rel="noreferrer" className="hover:text-primary-green" key={i}>{item.name}</a>
                     ))}
@@ -132,8 +132,8 @@ const Footer = () => {
 
               </div>
             </div>
-            <div className="py-6 sm:w-11/12 m-auto px-4 w-full flex justify-between items-center text-sm text-white flex-col md:flex-row">
-              <span>&copy; {new Date().getFullYear()} <a href="/">Fresh Organic Grocery</a>. All Rights Reserved.</span>
+            <div className="py-6 sm:w-11/12 m-auto px-4 w-full flex justify-center md:justify-between items-center text-sm text-white flex-col md:flex-row">
+              <span className='text-center md:text-left'>&copy; {new Date().getFullYear()} <a href="/">Fresh Organic Grocery</a>. All Rights Reserved.</span>
               <LazyLoadImage 
                 src={paymentMethods} 
                 alt="Card Payment" 

@@ -8,7 +8,7 @@ import logo from '../../../assets/images/logo.png';
 import PrimaryDropDownMenu from './PrimaryDropDownMenu';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Grow from "@mui/material/Grow";
@@ -44,7 +44,7 @@ const Header = () => {
     },
     {
       name: "Blogs",
-      redirect: "/",
+      redirect: "/blog",
     },
     {
       name: "Contact Us",
@@ -105,15 +105,15 @@ const Header = () => {
                   <MenuIcon />
                 </button>
               </div>
-              <Link className="h-16 md:h-20 mr-2 md:mr-3 focus-visible:outline-0" to="/">
+              <Link className="h-16 xl:h-20 mr-2 md:mr-3 focus-visible:outline-0" to="/">
                 <LazyLoadImage 
                   className="h-full w-full object-contain" src={logo} alt="Fresh Organic Grocery"
                 />
               </Link>
 
-              <nav className={`${mobileToggleClass ? 'hidden' : 'flex'} xl:flex xl:flex-row flex-col navigation-menu items-start flex-1 gap-5 sm:gap-7 absolute w-full top-16 xl:relative xl:top-0 bg-white py-5 px-5`}>
+              <nav className={`${mobileToggleClass ? 'hidden' : 'flex'} xl:flex xl:flex-row flex-col navigation-menu items-start flex-1 gap-5 sm:gap-7 absolute drop-shadow xl:drop-shadow-none left-0 w-full xl:relative bg-white py-5 px-5`}>
                 {menuLinks.map((item, i) => (
-                  <Link to={item.redirect} className="text-black font-semibold cursor-pointer hover:text-primary-green" key={i}>{item.name}</Link>
+                  <NavLink to={item.redirect} key={i} className="text-black font-semibold cursor-pointer hover:text-primary-green" onClick={() => setMobileToggleClass(!mobileToggleClass)}>{item.name}</NavLink>
                 ))}
               </nav>
 

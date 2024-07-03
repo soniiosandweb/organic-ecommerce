@@ -45,6 +45,9 @@ body {
 .bg-primary-green{
   background-color: green;
 }
+.navigation-menu .active {
+  color: green;
+}
 .min-h-40{
   min-height: 10rem;
 }
@@ -163,7 +166,8 @@ body {
 .coupon_popup .MuiDialogContent-root{
   padding: 24px !important;
 }
-.coupon_popup .MuiPaper-root{
+.coupon_popup .MuiPaper-root,
+.reviews-dialog .MuiPaper-root{
   width: 100%;
 }
 .SnackbarContainer-root{
@@ -172,4 +176,14 @@ body {
 
 .Mui-selected {
   background-color: rgb(25 118 210 / 20%) !important;
+}
+
+/* Header Menu */
+.navigation-menu{
+  top: 0;
+}
+@media (max-width: 1279px){
+  .navigation-menu{
+    top: 72px;
+  }
 }

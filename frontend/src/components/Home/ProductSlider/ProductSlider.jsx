@@ -56,7 +56,7 @@ const ProductSlider = ({ title, tagline }) => {
 
          products && products.length ? 
             <section className="bg-white w-full overflow-hidden">
-                <div className="py-16 sm:w-11/12 m-auto px-4 w-full flex flex-col">
+                <div className="py-8 lg:py-16 sm:w-11/12 m-auto px-4 w-full flex flex-col">
                     {/* <!-- header --> */}
                     <div className="flex py-2 justify-between items-center flex-col sm:flex-row">
                         <div className="title flex flex-col gap-0.5 items-center sm:items-start mb-5 sm:mb-0">

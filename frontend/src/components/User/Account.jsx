@@ -136,7 +136,7 @@ const Account = () => {
                                             {/* <!-- input container column --> */}
 
                                             {/* <!-- gender input --> */}
-                                            <div className="flex gap-4 items-center w-full lg:w-1/2">
+                                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full lg:w-1/2">
                                                 <h2 className="text-md">Your Gender :</h2>
                                                 <div className="flex items-center gap-6" id="radioInput">
                                                     <RadioGroup

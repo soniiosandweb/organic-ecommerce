@@ -5,9 +5,9 @@ const OrderItem = (props) => {
     const { name, image, price, quantity } = props;
 
     return (
-        <div className="flex flex-row px-4 py-2 items-start ">
+        <div className="flex flex-row px-0 py-2 items-start ">
             {/* <!-- image container --> */}
-            <div className="w-full sm:w-32 h-20">
+            <div className="w-32 h-20 mr-2">
                 <LazyLoadImage 
                     className="h-full w-full object-contain" src={image} alt={name}
                 />

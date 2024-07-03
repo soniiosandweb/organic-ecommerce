@@ -50,7 +50,7 @@ const UpdateAddress = () => {
 
                         <h2 className="font-medium text-xl px-4 sm:px-8 py-4 border-b">Manage Address</h2>
 
-                        <form onSubmit={shippingSubmit} autoComplete="off" className="flex flex-col justify-start gap-5 w-full px-1 sm:px-8 py-4">
+                        <form onSubmit={shippingSubmit} autoComplete="off" className="flex flex-col justify-start gap-5 w-full px-4 sm:px-8 py-4">
 
                             <TextField
                                 value={address}
@@ -61,7 +61,7 @@ const UpdateAddress = () => {
                                 required
                             />
 
-                            <div className="flex gap-6">
+                            <div className="flex flex-col sm:flex-row gap-6">
                                 <TextField
                                     value={pincode}
                                     onChange={(e) => setPincode(e.target.value)}
@@ -82,7 +82,7 @@ const UpdateAddress = () => {
                                 />
                             </div>
 
-                            <div className="flex gap-6">
+                            <div className="flex flex-col sm:flex-row gap-6">
                                 <TextField
                                     value={city}
                                     onChange={(e) => setCity(e.target.value)}
@@ -98,7 +98,7 @@ const UpdateAddress = () => {
                                 />
                             </div>
 
-                            <div className="flex gap-6">
+                            <div className="flex flex-col sm:flex-row gap-6">
 
                                 <FormControl fullWidth>
                                     <InputLabel id="country-select">Country</InputLabel>

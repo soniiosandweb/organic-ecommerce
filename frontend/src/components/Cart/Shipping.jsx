@@ -46,7 +46,7 @@ const Shipping = () => {
             <main className="w-full py-16 px-4">
 
                 {/* <!-- row --> */}
-                <div className="flex flex-col md:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7">
+                <div className="flex flex-col lg:flex-row gap-3.5 w-full sm:w-11/12 mt-0 md:mt-4 m-auto md:mb-7">
 
                     {/* <!-- cart column --> */}
                     <div className="flex-1">
@@ -54,7 +54,7 @@ const Shipping = () => {
                         <Stepper activeStep={1}>
                             <div className="w-full bg-white">
 
-                                <form onSubmit={shippingSubmit} autoComplete="off" className="flex flex-col justify-start gap-5 w-full px-1 sm:px-8 py-8">
+                                <form onSubmit={shippingSubmit} autoComplete="off" className="flex flex-col justify-start gap-5 w-full px-3 sm:px-8 py-8">
 
                                     <TextField
                                         value={address}
@@ -65,7 +65,7 @@ const Shipping = () => {
                                         required
                                     />
 
-                                    <div className="flex gap-6">
+                                    <div className="flex flex-col sm:flex-row gap-6">
                                         <TextField
                                             value={pincode}
                                             onChange={(e) => setPincode(e.target.value)}
@@ -86,7 +86,7 @@ const Shipping = () => {
                                         />
                                     </div>
 
-                                    <div className="flex gap-6">
+                                    <div className="flex flex-col sm:flex-row gap-6">
                                         <TextField
                                             value={city}
                                             onChange={(e) => setCity(e.target.value)}
@@ -102,7 +102,7 @@ const Shipping = () => {
                                         />
                                     </div>
 
-                                    <div className="flex gap-6">
+                                    <div className="flex flex-col sm:flex-row gap-6">
 
                                         <FormControl fullWidth>
                                             <InputLabel id="country-select">Country</InputLabel>

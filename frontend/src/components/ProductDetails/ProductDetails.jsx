@@ -132,7 +132,7 @@ const ProductDetails = () => {
                     <main className="w-full sm:mt-0">
                         <div className="py-16 sm:w-11/12 m-auto px-4 w-full relative z-10">
                             {/* <!-- product image & description container --> */}
-                            <div className="w-full flex flex-col sm:flex-row gap-8 bg-white relative pb-10">
+                            <div className="w-full flex flex-col md:flex-row gap-8 bg-white relative pb-10">
 
                                 {/* <!-- image wrapper --> */}
                                 <div className="w-full md:w-2/5">
@@ -151,15 +151,15 @@ const ProductDetails = () => {
                                             </div>
                                         </div>
 
-                                        <div className="w-full flex gap-3 flex-col sm:flex-row">
+                                        <div className="w-full flex gap-3 flex-col sm:flex-row md:flex-col lg:flex-row">
                                             {/* <!-- add to cart btn --> */}
                                             {product.stock > 0 && (
-                                                <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-full sm:w-1/2 flex items-center justify-center gap-2 text-white bg-primary-green rounded-sm shadow hover:shadow-lg hover:bg-black font-semibold">
+                                                <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-full sm:w-1/2 md:w-full lg:w-1/2 flex items-center justify-center gap-2 text-white bg-primary-green rounded-sm shadow hover:shadow-lg hover:bg-black font-semibold">
                                                     <ShoppingCartIcon />
                                                     {itemInCart ? "GO TO CART" : "ADD TO CART"}
                                                 </button>
                                             )}
-                                            <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-sm hover:shadow-lg" : "p-4 w-full sm:w-1/2 flex items-center justify-center gap-2 text-white bg-black rounded-sm hover:shadow-lg hover:bg-primary-green font-semibold"}>
+                                            <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full sm:w-1/2 md:w-full lg:w-1/2 flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-sm hover:shadow-lg" : "p-4 w-full sm:w-1/2 md:w-full lg:w-1/2 flex items-center justify-center gap-2 text-white bg-black rounded-sm hover:shadow-lg hover:bg-primary-green font-semibold"}>
                                                 <FlashOnIcon />
                                                 {product.stock < 1 ? "OUT OF STOCK" : "BUY NOW"}
                                             </button>
@@ -177,7 +177,7 @@ const ProductDetails = () => {
                                     {/* <!-- whole product description --> */}
                                     <div className="flex flex-col gap-4">
 
-                                        <h1 className="text-4xl font-semibold">{product.name}</h1>
+                                        <h1 className="text-2xl sm:text-3xl sm:text-4xl font-semibold">{product.name}</h1>
                                         {/* <!-- rating badge --> */}
                                         <span className="text-sm text-gray-500 font-medium flex gap-2 items-center">
                                             <span className="text-md px-1.5 py-0.5 bg-primary-yellow rounded-sm text-white flex items-center gap-0.5">{product.ratings && product.ratings.toFixed(1)} <StarIcon sx={{ fontSize: "12px" }} /></span>
@@ -206,7 +206,7 @@ const ProductDetails = () => {
                                         {/* <!-- highlights & services details --> */}
                                         <div className="flex flex-col sm:flex-col justify-between">
                                             {/* <!-- category details --> */}
-                                            <div className="flex gap-16 mt-4 items-stretch text-md">
+                                            <div className="flex gap-4 md:gap-16 mt-4 items-stretch text-md">
                                                 <p className="text-black font-medium">Category</p>
 
                                                 <p className="flex flex-col gap-2 w-64 text-black font-medium">
@@ -216,13 +216,13 @@ const ProductDetails = () => {
                                             {/* <!-- category details --> */}
 
                                             {/* <!-- highlights details --> */}
-                                            <div className="flex gap-16 mt-4 items-stretch text-md">
+                                            <div className="flex gap-4 md:gap-16 mt-4 items-stretch text-md">
                                                 <p className="text-black font-medium">Highlights</p>
 
-                                                <ul className="list-disc flex flex-col gap-2 w-64">
+                                                <ul className="list-disc list-inside flex flex-col gap-2 w-64">
                                                     {product.highlights?.map((highlight, i) => (
                                                         <li key={i}>
-                                                            <p className="text-black font-medium">{highlight}</p>
+                                                            <span className="text-black font-medium">{highlight}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -230,7 +230,7 @@ const ProductDetails = () => {
                                             {/* <!-- highlights details --> */}
 
                                             {/* <!-- services details --> */}
-                                            <div className="flex gap-16 mt-4 mr-6 items-stretch text-md">
+                                            <div className="flex gap-4 md:gap-16 mt-4 mr-6 items-stretch text-md">
                                                 <p className="text-black font-medium">Services</p>
                                                 <ul className="flex flex-col gap-2">
                                                     <li>
@@ -268,11 +268,11 @@ const ProductDetails = () => {
                             {/* <!-- reviews border box --> */}
                             <div className="w-full mt-8 md:mt-20 rounded-sm border flex flex-col">
                                 <div className="flex justify-between items-center border-b px-6 py-4 flex-col sm:flex-row gap-5">
-                                    <h2 className="text-2xl font-medium">Ratings & Reviews</h2>
+                                    <h2 className="text-xl sm:text-2xl font-medium">Ratings & Reviews</h2>
                                     <button onClick={handleDialogClose} className="shadow bg-primary-green text-white px-4 py-2 rounded-sm hover:bg-black hover:shadow-lg">Rate Product</button>
                                 </div>
 
-                                <Dialog aria-labelledby='review-dialog' className='reviews-dialog' open={open} onClose={handleDialogClose}>
+                                <Dialog aria-labelledby='review-dialog' className='reviews-dialog' open={open} onClose={handleDialogClose} style={{ margin: "auto"}}>
 
                                     <DialogTitle className="border-b">Submit Review</DialogTitle>
                                     
@@ -287,10 +287,10 @@ const ProductDetails = () => {
                                             label="Review"
                                             multiline
                                             rows={3}
-                                            sx={{ width: 400 }}
                                             size="small"
                                             variant="outlined"
                                             value={comment}
+                                            id="review-input"
                                             onChange={(e) => setComment(e.target.value)}
                                         />
                                     </DialogContent>
@@ -302,7 +302,7 @@ const ProductDetails = () => {
                                 </Dialog>
 
                                 <div className="flex items-center border-b">
-                                    <h2 className="px-6 py-3 text-3xl font-semibold">{product.ratings && product.ratings.toFixed(1)}<StarIcon /></h2>
+                                    <h2 className="px-6 py-3 text-xl sm:text-3xl font-semibold">{product.ratings && product.ratings.toFixed(1)}<StarIcon /></h2>
                                     <p className="text-lg text-gray-500">({product.numOfReviews}) Reviews</p>
                                 </div>
 

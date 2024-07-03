@@ -55,12 +55,12 @@ const ContactUs = () => {
                 <PageBanner title={"Contact"} />
 
                 {/* contact form */}
-                <div className="py-16 sm:w-11/12 m-auto px-4 w-full relative z-10">
-                    <h2 className="text-3xl font-semibold text-center">Contact Details</h2>
+                <div className="py-8 lg:py-16 sm:w-11/12 m-auto px-4 w-full relative z-10">
+                    <h2 className="text-xl sm:text-3xl font-semibold text-center">Contact Details</h2>
 
-                    <form onSubmit={contactSubmit} autoComplete="off" className="flex flex-col justify-start gap-3 w-full sm:w-3/4 mx-auto mt-10">
+                    <form onSubmit={contactSubmit} autoComplete="off" className="flex flex-col justify-start gap-3 w-full lg:w-3/4 mx-auto mt-10">
 
-                        <div className="flex gap-6">
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
                             <TextField
                                 value={yourName}
                                 onChange={(e) => setYourName(e.target.value)}
@@ -99,9 +99,9 @@ const ContactUs = () => {
                 </div>
 
                 {/* contact details */}
-                <div className="py-16 sm:w-11/12 m-auto px-4 w-full relative z-10">
-                    <div className="flex flex-col md:flex-row w-full sm:w-3/4 mx-auto">
-                        <div className="w-1/3 flex items-center gap-3 justify-center">
+                <div className="py-8 lg:py-16 sm:w-11/12 m-auto px-4 w-full relative z-10">
+                    <div className="flex flex-col md:flex-row gap-4 w-full lg:w-3/4 mx-auto">
+                        <div className="w-full md:w-1/3 flex items-center gap-3 justify-start md:justify-center">
                             <PlaceOutlinedIcon />
                             <div className="text-black text-md">
                                 <h4 className="font-semibold">Office Address</h4>
@@ -109,19 +109,19 @@ const ContactUs = () => {
                             </div>
                         </div>
 
-                        <div className="w-1/3 flex items-center gap-3 justify-center">
+                        <div className="w-full md:w-1/3 flex items-center gap-3 justify-start md:justify-center">
                             <EmailOutlinedIcon />
                             <div className="text-black text-md">
                                 <h4 className="font-semibold">Email Address</h4>
-                                <a className="hover:underline" href="mailto:info@iosandweb.net">info@iosandweb.net</a>
+                                <a className="hover:underline" href="mailto:info@freshorganicgrocery.com">info@freshorganicgrocery.com</a>
                             </div>
                         </div>
 
-                        <div className="w-1/3 flex items-center gap-3 justify-center">
+                        <div className="w-full md:w-1/3 flex items-center gap-3 justify-start md:justify-center">
                             <PhoneInTalkOutlinedIcon />
                             <div className="text-black text-md">
                                 <h4 className="font-semibold">Phone Number</h4>
-                                <a className="hover:underline" href="tel:+919988223680">+91-99882 23680</a>
+                                <a className="hover:underline" href="tel:+919915841204">+91 9915841204</a>
                             </div>
                         </div>
 

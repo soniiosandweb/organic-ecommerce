@@ -98,7 +98,7 @@ const PriceSidebar = ({ cartItems }) => {
     }, [dispatch, error, enqueueSnackbar, cartItems, appliedCoupon, isAuthenticated, user]);
 
     return (
-        <div className="flex flex-col md:w-4/12 md:px-1">
+        <div className="flex flex-col lg:w-4/12 md:px-1">
 
             {/* <!-- nav tiles --> */}
             <div className="flex flex-col bg-gray-100 rounded-sm border border-gray-300 sticky top-24 ">

@@ -1,4 +1,5 @@
 import MetaData from '../Layouts/MetaData';
+import PageBanner from '../Layouts/PageBanner';
 
 const PrivacyPolicy = () => {
     return(
@@ -7,9 +8,9 @@ const PrivacyPolicy = () => {
 
             <main className="w-full sm:mt-0">
 
-                <div className="py-16 sm:w-11/12 m-auto px-4 w-full relative z-10">
+                <PageBanner title={"Privacy Policy"} />
 
-                    <h1 className="text-3xl font-semibold text-center">Privacy Policy</h1>
+                <div className="py-8 lg:py-16 sm:w-11/12 m-auto px-4 w-full relative z-10 text-md">
 
                     <div className="pt-10 w-full">
                         <h2 className="text-lg font-semibold text-left">Last Updated: 28-06-2024</h2>
@@ -30,7 +31,7 @@ const PrivacyPolicy = () => {
                     <div className="pt-10 w-full">
                         <h3 className="text-lg font-semibold text-left">2. How We Use Your Information</h3>
                         <p className='pt-5'>We use the information we collect for the following purposes:</p>
-                        <ul>
+                        <ul className='list-disc list-inside'>
                             <li>To process and fulfill your orders.</li>
                             <li>To provide and manage your account.</li>
                             <li>To communicate with you about your orders, account, and customer service inquiries.</li>
@@ -57,7 +58,7 @@ const PrivacyPolicy = () => {
                     <div className="pt-10 w-full">
                         <h3 className="text-lg font-semibold text-left">5. Your Rights</h3>
                         <p className='pt-5'>You have the right to:</p>
-                        <ul>
+                        <ul className='list-disc list-inside'>
                             <li>Access and review the personal information we hold about you.</li>
                             <li>Request corrections to any inaccurate or incomplete information.</li>
                             <li>Request the deletion of your personal information, subject to certain legal obligations.</li>
@@ -78,8 +79,8 @@ const PrivacyPolicy = () => {
                     <div className="pt-10 w-full">
                         <h3 className="text-lg font-semibold text-left">8. Contact Us</h3>
                         <p className='pt-5'>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:</p>
-                        <p className='pt-3'><b>Email:</b> <a href='mailto:info@iosandweb.net' className='text-primary-green font-semibold'>info@iosandweb.net</a></p>
-                        <p className='pt-3'><b>Phone:</b> <a className="text-primary-green font-semibold" href="tel:+919988223680">+91-99882 23680</a></p>
+                        <p className='pt-3'><b>Email:</b> <a href='mailto:info@freshorganicgrocery.com' className='text-primary-green font-semibold'>info@freshorganicgrocery.com</a></p>
+                        <p className='pt-3'><b>Phone:</b> <a className="text-primary-green font-semibold" href="tel:+919915841204">+91 9915841204</a></p>
                         <p className='pt-3'><b>Address:</b> SCO 30, First Floor, Near Devaji Plaza, VIP Road, Zirakpur, PB (India).</p>
                     </div>
 
