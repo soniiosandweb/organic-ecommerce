@@ -91,7 +91,7 @@ const AboutUs = () => {
             <main className="w-full sm:mt-0">
 
                 {/* Page banner */}
-                <PageBanner title={"About Us"} />
+                <PageBanner title={"About Us"} colored={false} />
 
                 {/* About section */}
                 <div className="py-8 lg:py-16 px-4 w-full relative z-10">

@@ -52,7 +52,7 @@ const ContactUs = () => {
             <main className="w-full sm:mt-0">
 
                 {/* Page banner */}
-                <PageBanner title={"Contact"} />
+                <PageBanner title={"Contact"} colored={false} />
 
                 {/* contact form */}
                 <div className="py-8 lg:py-16 sm:w-11/12 m-auto px-4 w-full relative z-10">

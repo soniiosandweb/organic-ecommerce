@@ -1,0 +1,17 @@
+.faq-section .MuiPaper-root {
+    border: none;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1), 0 0 5px 0 rgba(0, 0, 0, 0.06);
+    margin-bottom: 15px;
+}
+.faq-section .MuiPaper-root.Mui-expanded{
+    margin: 0 0 15px 0;
+}
+.faq-section .MuiPaper-root:before{
+    display: none;
+}
+.faq-section .MuiPaper-root .MuiAccordionSummary-content {
+    margin: 15px 0;
+}
+.faq-section .MuiPaper-root.Mui-expanded .MuiAccordionSummary-content{
+    color: green;
+}

@@ -12,18 +12,22 @@ const footerLinks = [
       {
         name: "About Us",
         redirect: "/about-us",
+        target: "",
       },
       {
         name: "Shop",
         redirect: "/products",
+        target: "",
       },
       {
         name: "Blogs",
         redirect: "/",
+        target: "",
       },
       {
         name: "Contact Us",
         redirect: "/contact",
+        target: "",
       },
     ]
   },
@@ -32,15 +36,18 @@ const footerLinks = [
     links: [
       {
         name: "Shipping",
-        redirect: "/",
+        redirect: "/shipping-policy",
+        target: "",
       },
       {
         name: "Cancellation & Returns",
-        redirect: "/",
+        redirect: "/cancellation-return",
+        target: "",
       },
       {
         name: "FAQ",
         redirect: "/",
+        target: "",
       }
     ]
   },
@@ -50,10 +57,12 @@ const footerLinks = [
       {
         name: "Terms Of Use",
         redirect: "/terms-and-conditions",
+        target: "",
       },
       {
         name: "Privacy",
         redirect: "/privacy-policy",
+        target: "",
       },
     ]
   },
@@ -62,15 +71,18 @@ const footerLinks = [
     links: [
       {
         name: "Facebook",
-        redirect: "/",
+        redirect: "https://www.facebook.com/",
+        target: "_blank",
       },
       {
         name: "Twitter",
-        redirect: "/",
+        redirect: "https://twitter.com/",
+        target: "_blank",
       },
       {
         name: "YouTube",
-        redirect: "/",
+        redirect: "https://www.youtube.com/",
+        target: "_blank",
       }
     ]
   }
@@ -124,7 +136,7 @@ const Footer = () => {
                       <span className='text-primary-green'> ~</span>
                     </h2>
                     {el.links.map((item, i) => (
-                      <a href={item.redirect} rel="noreferrer" className="hover:text-primary-green" key={i}>{item.name}</a>
+                      <a href={item.redirect} rel="noreferrer" className="hover:text-primary-green" key={i} target={item.target}>{item.name}</a>
                     ))}
 
                   </div>
@@ -133,7 +145,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="py-6 sm:w-11/12 m-auto px-4 w-full flex justify-center md:justify-between items-center text-sm text-white flex-col md:flex-row">
-              <span className='text-center md:text-left'>&copy; {new Date().getFullYear()} <a href="/">Fresh Organic Grocery</a>. All Rights Reserved.</span>
+              <span className='text-center md:text-left'>&copy; {new Date().getFullYear()} <a href="/" className='font-semibold text-primary-green'>Fresh Organic Grocery</a>. All Rights Reserved.</span>
               <LazyLoadImage 
                 src={paymentMethods} 
                 alt="Card Payment" 

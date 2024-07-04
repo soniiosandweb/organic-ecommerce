@@ -128,7 +128,7 @@ const ProductDetails = () => {
         <>
             {loading ? <Loader /> : (
                 <>
-                    <MetaData title={product.name} />
+                    <MetaData title={`${product.name} | Fresh Organic Grocery `} />
                     <main className="w-full sm:mt-0">
                         <div className="py-16 sm:w-11/12 m-auto px-4 w-full relative z-10">
                             {/* <!-- product image & description container --> */}
@@ -159,7 +159,7 @@ const ProductDetails = () => {
                                                     {itemInCart ? "GO TO CART" : "ADD TO CART"}
                                                 </button>
                                             )}
-                                            <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full sm:w-1/2 md:w-full lg:w-1/2 flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-sm hover:shadow-lg" : "p-4 w-full sm:w-1/2 md:w-full lg:w-1/2 flex items-center justify-center gap-2 text-white bg-black rounded-sm hover:shadow-lg hover:bg-primary-green font-semibold"}>
+                                            <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-sm hover:shadow-lg" : "p-4 w-full sm:w-1/2 md:w-full lg:w-1/2 flex items-center justify-center gap-2 text-white bg-black rounded-sm hover:shadow-lg hover:bg-primary-green font-semibold"}>
                                                 <FlashOnIcon />
                                                 {product.stock < 1 ? "OUT OF STOCK" : "BUY NOW"}
                                             </button>

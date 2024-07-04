@@ -8,9 +8,9 @@ const TermsOfUse = () => {
 
             <main className="w-full sm:mt-0">
                 
-                <PageBanner title={"Terms & Conditions"} />
+                <PageBanner title={"Terms & Conditions"} colored={true} />
 
-                <div className="py-8 lg:py-16 sm:w-11/12 m-auto px-4 w-full relative z-10 text-md">
+                <div className="py-8 lg:py-16 sm:w-11/12 xl:w-8/12 m-auto px-4 w-full relative z-10 text-md">
 
                     <div className="pt-10 w-full">
                         <h3 className="text-lg font-semibold text-left">1. Introduction</h3>
