@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
-import Actions from './Actions';
-import MetaData from '../Layouts/MetaData';
-import BackdropLoader from '../Layouts/BackdropLoader';
+import Actions from '../Actions';
+import MetaData from '../../Layouts/MetaData';
+import BackdropLoader from '../../Layouts/BackdropLoader';
 import { Link } from 'react-router-dom';
-import { DELETE_COUPON_RESET } from '../../constants/couponConstants';
-import { deleteCoupon, clearErrors, getAllCouponsAdmin } from '../../actions/couponAction';
+import { DELETE_COUPON_RESET } from '../../../constants/couponConstants';
+import { deleteCoupon, clearErrors, getAllCouponsAdmin } from '../../../actions/couponAction';
 
 const CouponsTable = () => {
 

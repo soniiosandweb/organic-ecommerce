@@ -3,14 +3,14 @@ import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { clearErrors, getOrderDetails, updateOrder } from '../../actions/orderAction';
-import { UPDATE_ORDER_RESET } from '../../constants/orderConstants';
-import { formatDate } from '../../utils/functions';
-import TrackStepper from '../Order/TrackStepper';
-import Loading from './Loading';
+import { clearErrors, getOrderDetails, updateOrder } from '../../../actions/orderAction';
+import { UPDATE_ORDER_RESET } from '../../../constants/orderConstants';
+import { formatDate } from '../../../utils/functions';
+import TrackStepper from '../../Order/TrackStepper';
+import Loading from '../Loading';
 import { Link } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import MetaData from '../Layouts/MetaData';
+import MetaData from '../../Layouts/MetaData';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const UpdateOrder = () => {

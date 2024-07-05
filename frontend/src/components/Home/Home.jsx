@@ -9,7 +9,8 @@ import MetaData from '../Layouts/MetaData';
 import ProductServices from './ProductServices/ProductServices';
 import Testimonials from './Testimonials/Testimonials';
 import CategoriesBanner from './CategoriesBanner/CategoriesBanner';
-import Faq from './Faq/Faq';
+import Faq from './Faqs/Faq';
+import Blog from './Blogs/Blog';
 
 const Home = () => {
 
@@ -43,6 +44,8 @@ const Home = () => {
         <Testimonials />
 
         <Faq />
+
+        <Blog />
 
       </main>
     </>

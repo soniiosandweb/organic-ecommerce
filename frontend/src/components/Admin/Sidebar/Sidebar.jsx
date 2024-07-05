@@ -10,6 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Avatar from '@mui/material/Avatar';
 import CategoryIcon from '@mui/icons-material/Category';
 import DiscountIcon from '@mui/icons-material/Discount';
+import QueueIcon from '@mui/icons-material/Queue';
 import { useDispatch, useSelector } from 'react-redux';
 import './Sidebar.css';
 import { useSnackbar } from 'notistack';
@@ -57,6 +58,11 @@ const navMenu = [
         icon: <DiscountIcon />,
         label: "Coupons",
         ref: "/admin/coupons",
+    },
+    {
+        icon: <QueueIcon />,
+        label: "FAQs",
+        ref: "/admin/faqs",
     },
     {
         icon: <LogoutIcon />,

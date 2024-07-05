@@ -177,7 +177,9 @@ body {
 .Mui-selected {
   background-color: rgb(25 118 210 / 20%) !important;
 }
-
+.MuiPagination-root .MuiPaginationItem-root.Mui-selected {
+  background-color: green !IMPORTANT;
+}
 /* Header Menu */
 .navigation-menu{
   top: 0;

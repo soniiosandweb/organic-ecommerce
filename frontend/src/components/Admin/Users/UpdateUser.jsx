@@ -2,17 +2,17 @@ import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { clearErrors, getUserDetails, updateUser } from '../../actions/userAction';
-import { UPDATE_USER_RESET, REMOVE_USER_DETAILS } from '../../constants/userConstants';
-import Loading from './Loading';
+import { clearErrors, getUserDetails, updateUser } from '../../../actions/userAction';
+import { UPDATE_USER_RESET, REMOVE_USER_DETAILS } from '../../../constants/userConstants';
+import Loading from '../Loading';
 import Avatar from '@mui/material/Avatar';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import TextField from '@mui/material/TextField';
-import MetaData from '../Layouts/MetaData';
-import BackdropLoader from '../Layouts/BackdropLoader';
+import MetaData from '../../Layouts/MetaData';
+import BackdropLoader from '../../Layouts/BackdropLoader';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const UpdateUser = () => {

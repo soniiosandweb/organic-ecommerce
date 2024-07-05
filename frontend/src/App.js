@@ -26,14 +26,14 @@ import MyOrders from './components/Order/MyOrders';
 import OrderDetails from './components/Order/OrderDetails';
 import Dashboard from './components/Admin/Dashboard';
 import MainData from './components/Admin/MainData';
-import OrderTable from './components/Admin/OrderTable';
-import UpdateOrder from './components/Admin/UpdateOrder';
-import ProductTable from './components/Admin/ProductTable';
-import NewProduct from './components/Admin/NewProduct';
-import UpdateProduct from './components/Admin/UpdateProduct';
-import UserTable from './components/Admin/UserTable';
-import UpdateUser from './components/Admin/UpdateUser';
-import ReviewsTable from './components/Admin/ReviewsTable';
+import OrderTable from './components/Admin/Orders/OrderTable';
+import UpdateOrder from './components/Admin/Orders/UpdateOrder';
+import ProductTable from './components/Admin/Products/ProductTable';
+import NewProduct from './components/Admin/Products/NewProduct';
+import UpdateProduct from './components/Admin/Products/UpdateProduct';
+import UserTable from './components/Admin/Users/UserTable';
+import UpdateUser from './components/Admin/Users/UpdateUser';
+import ReviewsTable from './components/Admin/Reviews/ReviewsTable';
 import Wishlist from './components/Wishlist/Wishlist';
 import NotFound from './components/NotFound';
 import {loadStripe} from '@stripe/stripe-js';
@@ -44,18 +44,22 @@ import ContactUs from './components/ContactUs/ContactUs';
 import AboutUs from './components/AboutUs/AboutUs';
 import UpdateAddress from './components/User/UpdateAddress';
 import Rating from './components/Rating/Rating';
-import NewCategory from './components/Admin/NewCategory';
-import CategoriesTable from './components/Admin/CategoriesTable';
-import UpdateCategory from './components/Admin/UpdateCategory';
+import NewCategory from './components/Admin/Categories/NewCategory';
+import CategoriesTable from './components/Admin/Categories/CategoriesTable';
+import UpdateCategory from './components/Admin/Categories/UpdateCategory';
 import AdminLogin from './components/Admin/AdminLogin';
 import UserDetails from './components/Cart/UserDetails';
-import CouponsTable from './components/Admin/CouponsTable';
-import NewCoupon from './components/Admin/NewCoupon';
-import UpdateCoupon from './components/Admin/UpdateCoupon';
+import CouponsTable from './components/Admin/Coupons/CouponsTable';
+import NewCoupon from './components/Admin/Coupons/NewCoupon';
+import UpdateCoupon from './components/Admin/Coupons/UpdateCoupon';
 import PrivacyPolicy from './components/Policy/PrivacyPolicy';
 import TermsOfUse from './components/Policy/TermsOfUse';
 import CancellationReturn from './components/Policy/CancellationReturn';
 import ShippingPolicy from './components/Policy/ShippingPolicy';
+import FaqsTable from './components/Admin/Faqs/FaqsTable';
+import NewFaq from './components/Admin/Faqs/NewFaq';
+import UpdateFaq from './components/Admin/Faqs/UpdateFaq';
+
 
 function App() {
 
@@ -331,6 +335,30 @@ function App() {
           <ProtectedRoute isAdmin={true}>
             <Dashboard activeTab={6}>
               <UpdateCoupon />
+            </Dashboard>
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin/faqs" element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard activeTab={7}>
+              <FaqsTable />
+            </Dashboard>
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin/new_faq" element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard activeTab={7}>
+              <NewFaq />
+            </Dashboard>
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin/faq/:id" element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard activeTab={7}>
+              <UpdateFaq />
             </Dashboard>
           </ProtectedRoute>
         } ></Route>

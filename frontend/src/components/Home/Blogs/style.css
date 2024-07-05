@@ -1,0 +1,12 @@
+.blog-home .blog-img{
+    transition: 0.4s;
+}
+.blog-home:hover{
+    cursor: pointer;
+}
+.blog-home:hover .blog-img{
+    transform: scale(1.15);
+}
+.blog-home:hover .blog-title{
+    color: green;
+}

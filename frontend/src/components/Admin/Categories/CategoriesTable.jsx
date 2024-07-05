@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
-import Actions from './Actions';
-import MetaData from '../Layouts/MetaData';
-import BackdropLoader from '../Layouts/BackdropLoader';
+import Actions from '../Actions';
+import MetaData from '../../Layouts/MetaData';
+import BackdropLoader from '../../Layouts/BackdropLoader';
 import { Link } from 'react-router-dom';
-import { getAllCategories, clearErrors, deleteCategory } from '../../actions/categoryAction';
-import { DELETE_CATEGORY_RESET } from '../../constants/categoryConstants';
+import { getAllCategories, clearErrors, deleteCategory } from '../../../actions/categoryAction';
+import { DELETE_CATEGORY_RESET } from '../../../constants/categoryConstants';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const CategoriesTable = () => {

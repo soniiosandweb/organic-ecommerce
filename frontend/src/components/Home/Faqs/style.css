@@ -1,3 +1,8 @@
+.faq-section{
+    background-image: url('../../../assets/images/faq-bg.png');
+    background-size: cover;
+    background-position: top center;
+}
 .faq-section .MuiPaper-root {
     border: none;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1), 0 0 5px 0 rgba(0, 0, 0, 0.06);

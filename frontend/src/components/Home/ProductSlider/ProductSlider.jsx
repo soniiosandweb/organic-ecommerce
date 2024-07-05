@@ -18,19 +18,18 @@ const ProductSlider = ({ title, tagline }) => {
         dots: false,
         infinite: true,
         slidesToShow: 3,
-        slidesToScroll: 3,
-        initialSlide: 1,
-        swipe: false,
+        slidesToScroll: 1,
+        swipe: true,
         pauseOnHover: true,
         arrows: false,
         prevArrow: <PreviousBtn />,
         nextArrow: <NextBtn />,
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 1279,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2
+                    slidesToScroll: 1
                 }
             },
             {
@@ -68,7 +67,7 @@ const ProductSlider = ({ title, tagline }) => {
 
                     <div className="flex py-10 justify-between ">
 
-                        <div className='hidden md:block w-1/4'>
+                        <div className='hidden md:block w-1/3 xl:1/4'>
                             <div className='trending-banner h-full w-full relative'>
                                 <div className='trending-text h-full w-full flex items-center flex-col z-10 relative p-5 lg:p-10'>
                                     <h3 className='text-3xl font-semibold text-center mt-0 lg:mt-10 mb-5'>Shop From Categories</h3>
@@ -82,7 +81,7 @@ const ProductSlider = ({ title, tagline }) => {
                                 />
                             </div>
                         </div>
-                        <div className='w-full md:w-3/4 flex-1'>
+                        <div className='w-full md:w-2/3 xl:w-3/4 flex-1'>
                             {loading ? null :
                                 <Slider {...settings} className="flex justify-between product-slider-home">
                                     {products && getRandomProducts(products, 9).map((product) => (

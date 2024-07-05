@@ -28,6 +28,10 @@ exports.updateCoupon = asyncErrorHandler(async (req, res, next) => {
 
     let coupons = await Coupons.findById(req.params.id);
 
+    if (!coupons) {
+        return next(new ErrorHandler("Coupon Not Found", 404));
+    }
+
     if(req.body.usersId){
         let specs = [];
         req.body.usersId.forEach((s) => {

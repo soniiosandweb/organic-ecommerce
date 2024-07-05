@@ -46,7 +46,7 @@ const footerLinks = [
       },
       {
         name: "FAQ",
-        redirect: "/",
+        redirect: "/#faq",
         target: "",
       }
     ]

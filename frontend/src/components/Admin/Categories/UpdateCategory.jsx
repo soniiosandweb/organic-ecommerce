@@ -2,10 +2,10 @@ import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { clearErrors, getCategoryDetails, updateCategory } from "../../actions/categoryAction";
-import { REMOVE_CATEGORY_DETAILS, UPDATE_CATEGORY_RESET } from "../../constants/categoryConstants";
-import MetaData from "../Layouts/MetaData";
-import BackdropLoader from "../Layouts/BackdropLoader";
+import { clearErrors, getCategoryDetails, updateCategory } from "../../../actions/categoryAction";
+import { REMOVE_CATEGORY_DETAILS, UPDATE_CATEGORY_RESET } from "../../../constants/categoryConstants";
+import MetaData from "../../Layouts/MetaData";
+import BackdropLoader from "../../Layouts/BackdropLoader";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import TextField from '@mui/material/TextField';
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -82,7 +82,7 @@ const UpdateCategory = () => {
 
     return (
         <>
-            <MetaData title="Admin: New Category | Fresh Organic Grocery" />
+            <MetaData title="Admin: Update Category | Fresh Organic Grocery" />
 
             {loading && <BackdropLoader />}
             {updateLoading && <BackdropLoader />}

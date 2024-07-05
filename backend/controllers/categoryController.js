@@ -28,10 +28,14 @@ exports.addCategory = asyncErrorHandler(async (req, res, next) => {
     });
 });
 
-// Update User Profile
+// Update User Category
 exports.updateCategory = asyncErrorHandler(async (req, res, next) => {
 
     let categories = await Categories.findById(req.params.id);
+
+    if (!categories) {
+        return next(new ErrorHandler("Category Not Found", 404));
+    }
 
     if(req.body.category !== "") {
 
