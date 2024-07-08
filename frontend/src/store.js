@@ -11,6 +11,7 @@ import { contactReducer } from './reducers/contactReducer';
 import { allCategoriesReducer, categoryDetailsReducer, categoryReducer, limitCategoriesReducer, newCategoryReducer } from './reducers/categoryReducer';
 import { allAdminCouponsReducer, allCouponsReducer, couponDetailsReducer, couponReducer, newCouponReducer, setCouponCode } from './reducers/couponReducer';
 import { allFaqReducer, faqDetailsReducer, faqReducer, newFaqReducer } from './reducers/faqReducer';
+import { blogDetailsReducer, blogReducer, blogsReducer, newBlogReducer } from './reducers/blogReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -54,6 +55,10 @@ const reducer = combineReducers({
     faqs: faqReducer,
     newFaq: newFaqReducer,
     faqDetails: faqDetailsReducer,
+    blogs: blogsReducer,
+    blogDetails: blogDetailsReducer,
+    newBlog: newBlogReducer,
+    blog: blogReducer,
 });
 
 let initialState = {

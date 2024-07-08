@@ -59,6 +59,7 @@ import ShippingPolicy from './components/Policy/ShippingPolicy';
 import FaqsTable from './components/Admin/Faqs/FaqsTable';
 import NewFaq from './components/Admin/Faqs/NewFaq';
 import UpdateFaq from './components/Admin/Faqs/UpdateFaq';
+import BlogTable from './components/Admin/Blogs/BlogTable';
 
 
 function App() {
@@ -359,6 +360,14 @@ function App() {
           <ProtectedRoute isAdmin={true}>
             <Dashboard activeTab={7}>
               <UpdateFaq />
+            </Dashboard>
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin/blogs" element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard activeTab={7}>
+              <BlogTable />
             </Dashboard>
           </ProtectedRoute>
         } ></Route>
