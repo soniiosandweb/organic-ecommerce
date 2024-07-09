@@ -43,10 +43,13 @@ body {
 
 /* theme css */
 .bg-primary-green{
-  background-color: green;
+  background-color: #0da487;
 }
 .navigation-menu .active {
-  color: green;
+  color: #0da487;
+}
+.text-gray{
+  color: #747474;
 }
 .min-h-40{
   min-height: 10rem;
@@ -62,14 +65,29 @@ body {
   color: black;
   letter-spacing: inherit;
   font-size: inherit;
+  background: transparent;
 }
-#userDropDown-menu{
+#userDropDown-menu,
+#userDropDown-menuCat{
   padding: 0;
 }
-
+#userDropDownCat {
+  background: #0da487;
+  color: #fff;
+  padding: 8px 20px;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 600;
+}
+#userDropDownCat:hover{
+  background: #000;
+}
 /* search bar */
 .searchbar-header{
-   max-width: 50%
+   max-width: 80%;
+   width: 100%;
+   margin: auto;
+   border-radius: 5px;
 }
 
 /* Arrows position */
@@ -101,7 +119,7 @@ body {
 }
 
 .product-category-home:hover img{
-  border-color: green;
+  border-color: #0da487;
   animation-name: animation-wobble-horizontal;
   animation-duration: 1s;
   animation-timing-function: ease-in-out;
@@ -178,7 +196,7 @@ body {
   background-color: rgb(25 118 210 / 20%) !important;
 }
 .MuiPagination-root .MuiPaginationItem-root.Mui-selected {
-  background-color: green !IMPORTANT;
+  background-color: #0da487 !important;
 }
 /* Header Menu */
 .navigation-menu{
