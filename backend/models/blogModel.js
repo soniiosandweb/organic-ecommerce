@@ -6,6 +6,11 @@ const blogSchema = new mongoose.Schema({
         required: [true, "Please enter blog name"],
         trim: true
     },
+    except: {
+        type: String,
+        required: [true, "Please enter blog except"],
+        trim: true,
+    },
     description: {
         type: String,
         required: [true, "Please enter blog description"]

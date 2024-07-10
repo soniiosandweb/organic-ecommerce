@@ -7,7 +7,7 @@ import Actions from '../Actions';
 import MetaData from '../../Layouts/MetaData';
 import BackdropLoader from '../../Layouts/BackdropLoader';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { clearErrors, deleteBlog, getAdminBlogs, getBlogs } from '../../../actions/blogAction';
+import { clearErrors, deleteBlog, getAdminBlogs } from '../../../actions/blogAction';
 import { DELETE_BLOG_RESET } from '../../../constants/blogConstants';
 
 const BlogTable = () => {
@@ -67,13 +67,19 @@ const BlogTable = () => {
             },
         },
         {
+            field: "description",
+            headerName: "Description",
+            minWidth: 200,
+            flex: 1,
+        },
+        {
             field: "category",
             headerName: "Category",
             minWidth: 100,
             flex: 0.5,
             renderCell: (params) => {
                 return (
-                    <span>{params.row.category !== undefined ? params.row.category.name : null}</span>
+                    <span>{params.row.category !== undefined ? params.row.category : null}</span>
                 );
             },
         },
@@ -98,7 +104,8 @@ const BlogTable = () => {
         rows.unshift({
             id: item._id,
             name: item.name,
-            image: item.images[0].url,
+            image: item.image.url,
+            description: item.description,
             category: item.category,
         });
     });

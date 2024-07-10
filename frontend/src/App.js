@@ -60,6 +60,8 @@ import FaqsTable from './components/Admin/Faqs/FaqsTable';
 import NewFaq from './components/Admin/Faqs/NewFaq';
 import UpdateFaq from './components/Admin/Faqs/UpdateFaq';
 import BlogTable from './components/Admin/Blogs/BlogTable';
+import NewBlog from './components/Admin/Blogs/NewBlog';
+import UpdateBlog from './components/Admin/Blogs/UpdateBlog';
 
 
 function App() {
@@ -73,6 +75,11 @@ function App() {
     WebFont.load({
       google: {
         families: ["Barlow:300,400,500,600,700"]
+      },
+    });
+    WebFont.load({
+      google: {
+        families: ["Public Sans:300,400,500,600,700"]
       },
     });
     WebFont.load({
@@ -366,8 +373,24 @@ function App() {
 
         <Route path="/admin/blogs" element={
           <ProtectedRoute isAdmin={true}>
-            <Dashboard activeTab={7}>
+            <Dashboard activeTab={8}>
               <BlogTable />
+            </Dashboard>
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin/new_blog" element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard activeTab={8}>
+              <NewBlog />
+            </Dashboard>
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin/blog/:id" element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard activeTab={8}>
+              <UpdateBlog />
             </Dashboard>
           </ProtectedRoute>
         } ></Route>

@@ -4,17 +4,17 @@
 
 body {
     background-color: #fff;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Public Sans', sans-serif;
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
-  font-family: 'Lora', sans-serif;
+  font-family: 'Public Sans', sans-serif;
   line-height: 1.4 !important;
 }
 .font-lora{
-  font-family: 'Lora', sans-serif;
+  font-family: 'Public Sans', sans-serif;
 }
 .font-barlow{
-  font-family: 'Barlow', sans-serif;
+  font-family: 'Public Sans', sans-serif;
 }
 /* hover navbar dropdown arrow */
 .arrow_down {
@@ -89,7 +89,10 @@ body {
    margin: auto;
    border-radius: 5px;
 }
-
+.searchbar-header input:focus {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
 /* Arrows position */
 .arrows-position-0 .slick-prev {
   left: 0;
