@@ -63,8 +63,8 @@ const Products = () => {
         if(categoriesLoading === undefined){
             dispatch(getAllCategories());
         }
-        
         dispatch(getProducts(keyword, category, price, ratings, currentPage));
+        
     }, [dispatch, keyword, category, price, ratings, currentPage, error, enqueueSnackbar, categoriesLoading]);
 
     return (
@@ -84,7 +84,7 @@ const Products = () => {
 
                                 {/* <!-- filters header --> */}
                                 <div className="flex items-center justify-between gap-5 px-4 py-2 border-b border-gray-300 flex-col sm:flex-row lg:flex-col xl:flex-row">
-                                    <p className="text-lg font-bold uppercase">Filters</p>
+                                    <p className="text-md font-bold uppercase">Filters</p>
                                     <span className="capitalize bg-primary-green text-white text-md cursor-pointer font-semibold px-5 py-2.5 rounded-sm shadow-lg hover:bg-black" onClick={() => clearFilters()}>clear all</span>
                                 </div>
 

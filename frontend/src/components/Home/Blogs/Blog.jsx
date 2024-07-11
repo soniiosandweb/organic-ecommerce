@@ -32,11 +32,11 @@ const Blog = () => {
                             </div>
                         </Link>
                         <div className="flex flex-col gap-2 mt-4">
-                            <p className="text-md text-primary-green font-medium">February 21, 2024</p>
+                            <p className="text-sm text-primary-green font-medium">February 21, 2024</p>
                             <Link to={`/products`} className="flex flex-col items-left text-left group w-full">
-                                <h2 className="text-xl font-semibold blog-title">Made Confident Bigger Chance As</h2>
+                                <h2 className="text-xl font-medium blog-title">Made Confident Bigger Chance As</h2>
                             </Link>
-                            <p className="text-md">Our goal has always been to motivate, encourage and release our fellow creatives to do their thing Sed a libero. Mauris...</p>
+                            <p className="text-sm">Our goal has always been to motivate, encourage and release our fellow creatives to do their thing Sed a libero. Mauris...</p>
                         </div>
                     </div>
                    
@@ -51,11 +51,11 @@ const Blog = () => {
                             </div>
                         </Link>
                         <div className="flex flex-col gap-2 mt-4">
-                            <p className="text-md text-primary-green font-medium">February 21, 2024</p>
+                            <p className="text-sm text-primary-green font-medium">February 21, 2024</p>
                             <Link to={`/products`} className="flex flex-col items-left text-left group w-full">
-                                <h2 className="text-xl font-semibold blog-title">Spicy Choose Plush Amazing Proven</h2>
+                                <h2 className="text-xl font-medium blog-title">Spicy Choose Plush Amazing Proven</h2>
                             </Link>
-                            <p className="text-md">Our goal has always been to motivate, encourage and release our fellow creatives to do their thing Sed a libero. Mauris...</p>
+                            <p className="text-sm">Our goal has always been to motivate, encourage and release our fellow creatives to do their thing Sed a libero. Mauris...</p>
                         </div>
                     </div>
                     
@@ -70,11 +70,11 @@ const Blog = () => {
                             </div>
                         </Link>
                         <div className="flex flex-col gap-2 mt-4">
-                            <p className="text-md text-primary-green font-medium">February 21, 2024</p>
+                            <p className="text-sm text-primary-green font-medium">February 21, 2024</p>
                             <Link to={`/products`} className="flex flex-col items-left text-left group w-full">
-                                <h2 className="text-xl font-semibold blog-title">Feedback Creamy Thought Chance</h2>
+                                <h2 className="text-xl font-medium blog-title">Feedback Creamy Thought Chance</h2>
                             </Link>
-                            <p className="text-md">Our goal has always been to motivate, encourage and release our fellow creatives to do their thing Sed a libero. Mauris...</p>
+                            <p className="text-sm">Our goal has always been to motivate, encourage and release our fellow creatives to do their thing Sed a libero. Mauris...</p>
                         </div>
                     </div>
                   
@@ -89,11 +89,11 @@ const Blog = () => {
                             </div>
                         </Link>
                         <div className="flex flex-col gap-2 mt-4">
-                            <p className="text-md text-primary-green font-medium">February 21, 2024</p>
+                            <p className="text-sm text-primary-green font-medium">February 21, 2024</p>
                             <Link to={`/products`} className="flex flex-col items-left text-left group w-full">
-                                <h2 className="text-xl font-semibold blog-title">The Fashion Breakfast</h2>
+                                <h2 className="text-xl font-medium blog-title">The Fashion Breakfast</h2>
                             </Link>
-                            <p className="text-md">Our goal has always been to motivate, encourage and release our fellow creatives to do their thing Sed a libero. Mauris...</p>
+                            <p className="text-sm">Our goal has always been to motivate, encourage and release our fellow creatives to do their thing Sed a libero. Mauris...</p>
                         </div>
                     </div>
 

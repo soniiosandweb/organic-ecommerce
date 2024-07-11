@@ -156,12 +156,12 @@ const ProductDetails = () => {
                                             {product.stock > 0 && (
                                                 <button onClick={itemInCart ? goToCart : addToCartHandler} className="p-4 w-full sm:w-1/2 md:w-full lg:w-1/2 flex items-center justify-center gap-2 text-white bg-primary-green rounded-sm shadow hover:shadow-lg hover:bg-black font-semibold">
                                                     <ShoppingCartIcon />
-                                                    {itemInCart ? "GO TO CART" : "ADD TO CART"}
+                                                    {itemInCart ? "Go To Cart" : "Add To Cart"}
                                                 </button>
                                             )}
                                             <button onClick={buyNow} disabled={product.stock < 1 ? true : false} className={product.stock < 1 ? "p-4 w-full flex items-center justify-center gap-2 text-white bg-red-600 cursor-not-allowed rounded-sm hover:shadow-lg" : "p-4 w-full sm:w-1/2 md:w-full lg:w-1/2 flex items-center justify-center gap-2 text-white bg-black rounded-sm hover:shadow-lg hover:bg-primary-green font-semibold"}>
                                                 <FlashOnIcon />
-                                                {product.stock < 1 ? "OUT OF STOCK" : "BUY NOW"}
+                                                {product.stock < 1 ? "Out Of Stock" : "Buy Now"}
                                             </button>
                                             {/* <!-- add to cart btn --> */}
                                         </div>
@@ -177,7 +177,7 @@ const ProductDetails = () => {
                                     {/* <!-- whole product description --> */}
                                     <div className="flex flex-col gap-4">
 
-                                        <h1 className="text-2xl sm:text-3xl sm:text-4xl font-semibold">{product.name}</h1>
+                                        <h1 className="text-2xl sm:text-3xl font-medium">{product.name}</h1>
                                         {/* <!-- rating badge --> */}
                                         <span className="text-sm text-gray-500 font-medium flex gap-2 items-center">
                                             <span className="text-md px-1.5 py-0.5 bg-primary-yellow rounded-sm text-white flex items-center gap-0.5">{product.ratings && product.ratings.toFixed(1)} <StarIcon sx={{ fontSize: "12px" }} /></span>
@@ -186,8 +186,8 @@ const ProductDetails = () => {
                                         {/* <!-- rating badge --> */}
 
                                         {/* <!-- price desc --> */}
-                                        <h2 className="flex items-baseline gap-2 text-3xl font-medium">
-                                            <span className="text-black text-3xl font-medium">₹{product.price?.toLocaleString()}</span>
+                                        <h2 className="flex items-baseline gap-2 text-2xl font-medium">
+                                            <span className="text-black text-2xl font-medium">₹{product.price?.toLocaleString()}</span>
                                             {product.cuttedPrice !== 0 ?
                                                 <>
                                                    <span className="text-base text-gray-500 line-through font-medium text-xl">₹{product.cuttedPrice?.toLocaleString()}</span>
@@ -206,7 +206,7 @@ const ProductDetails = () => {
                                         {/* <!-- highlights & services details --> */}
                                         <div className="flex flex-col sm:flex-col justify-between">
                                             {/* <!-- category details --> */}
-                                            <div className="flex gap-4 md:gap-16 mt-4 items-stretch text-md">
+                                            <div className="flex gap-4 md:gap-16 mt-4 items-stretch text-sm">
                                                 <p className="text-black font-medium">Category</p>
 
                                                 <p className="flex flex-col gap-2 w-64 text-black font-medium">
@@ -216,7 +216,7 @@ const ProductDetails = () => {
                                             {/* <!-- category details --> */}
 
                                             {/* <!-- highlights details --> */}
-                                            <div className="flex gap-4 md:gap-16 mt-4 items-stretch text-md">
+                                            <div className="flex gap-4 md:gap-16 mt-4 items-stretch text-sm">
                                                 <p className="text-black font-medium">Highlights</p>
 
                                                 <ul className="list-disc list-inside flex flex-col gap-2 w-64">
@@ -230,7 +230,7 @@ const ProductDetails = () => {
                                             {/* <!-- highlights details --> */}
 
                                             {/* <!-- services details --> */}
-                                            <div className="flex gap-4 md:gap-16 mt-4 mr-6 items-stretch text-md">
+                                            <div className="flex gap-4 md:gap-16 mt-4 mr-6 items-stretch text-sm">
                                                 <p className="text-black font-medium">Services</p>
                                                 <ul className="flex flex-col gap-2">
                                                     <li>
@@ -252,7 +252,7 @@ const ProductDetails = () => {
                                         <div className="w-full mt-6 rounded-sm border flex flex-col">
                                             <h3 className="px-6 py-4 border-b text-xl font-semibold">Product Description</h3>
                                             <div className="p-6">
-                                                <p className="text-md">{product.description}</p>
+                                                <div dangerouslySetInnerHTML={{__html:product.description}} className='text-sm'></div>
                                             </div>
                                         </div>
                                         {/* <!-- border box --> */}
@@ -268,7 +268,7 @@ const ProductDetails = () => {
                             {/* <!-- reviews border box --> */}
                             <div className="w-full mt-8 md:mt-20 rounded-sm border flex flex-col">
                                 <div className="flex justify-between items-center border-b px-6 py-4 flex-col sm:flex-row gap-5">
-                                    <h2 className="text-xl sm:text-2xl font-medium">Ratings & Reviews</h2>
+                                    <h2 className="text-xl font-medium">Ratings & Reviews</h2>
                                     <button onClick={handleDialogClose} className="shadow bg-primary-green text-white px-4 py-2 rounded-sm hover:bg-black hover:shadow-lg">Rate Product</button>
                                 </div>
 
@@ -302,8 +302,8 @@ const ProductDetails = () => {
                                 </Dialog>
 
                                 <div className="flex items-center border-b">
-                                    <h2 className="px-6 py-3 text-xl sm:text-3xl font-semibold">{product.ratings && product.ratings.toFixed(1)}<StarIcon /></h2>
-                                    <p className="text-lg text-gray-500">({product.numOfReviews}) Reviews</p>
+                                    <h2 className="px-6 py-3 text-xl sm:text-3xl font-medium">{product.ratings && product.ratings.toFixed(1)}<StarIcon /></h2>
+                                    <p className="text-md text-gray-500">({product.numOfReviews}) Reviews</p>
                                 </div>
 
                                 {viewAll ?

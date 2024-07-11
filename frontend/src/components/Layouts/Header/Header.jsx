@@ -19,17 +19,13 @@ import Avatar from '@mui/material/Avatar';
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import SortOutlinedIcon from '@mui/icons-material/SortOutlined';
 import { getAllCategories } from '../../../actions/categoryAction';
-// import facebook from '../../../assets/images/facebook.png';
-// import twitter from '../../../assets/images/twitter.png';
-// import youtube from '../../../assets/images/youtube.png';
-import ElectricBoltOutlinedIcon from '@mui/icons-material/ElectricBoltOutlined';
 import Slider from 'react-slick';
 
 const Header = () => {
 
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const { categories } = useSelector((state) => state.allCategories);
+  const { categories, loading: categoriesLoading } = useSelector((state) => state.allCategories);
 
   const { cartItems } = useSelector(state => state.cart);
 
@@ -143,10 +139,13 @@ const Header = () => {
 
     setAdminRoute(location.pathname.split("/", 2).includes("admin"));
 
-    dispatch(getAllCategories());
+   
+    if(categoriesLoading === undefined){
+      dispatch(getAllCategories());
+    }
     window.addEventListener("scroll", listenScrollEvent);
 
-  }, [open, location, openCat, dispatch]);
+  }, [open, location, openCat, dispatch, categoriesLoading]);
 
   var settings = {
     vertical: true,
@@ -169,29 +168,20 @@ const Header = () => {
             <div className="w-full sm:w-11/12 m-auto px-4 flex justify-between items-center relative">
 
               <div className="w-full items-center justify-center xl:justify-start xl:w-1/4 flex">
-                <p className='text-sm text-white font-medium flex items-center gap-1'><FmdGoodOutlinedIcon /> SCO 30, VIP Road, Zirakpur, PB (India)</p>
+                <p className='text-xs sm:text-sm text-white flex items-center gap-1'><FmdGoodOutlinedIcon /> SCO 30, VIP Road, Zirakpur, PB (India)</p>
               </div>
 
               <div className="hidden xl:flex flex-1 items-center justify-center xl:w-2/4 overflow-hidden">
                 <Slider {...settings} className="w-full">
                   <div>
-                    <p className='text-sm text-white font-medium text-center'><span className='font-semibold'>Welcome to Fresh Organic Grocery</span> new offers every single day!</p>
+                    <p className='text-sm text-white text-center'><span className='font-semibold'>Welcome to Fresh Organic Grocery</span> new offers every single day!</p>
                   </div>
                   <div>
-                    <p className='text-sm text-white font-medium text-center'>Something you love is now on sale! <a href="/shop" className='font-semibold underline'>Buy Now!</a></p>
+                    <p className='text-sm text-white text-center'>Something you love is now on sale! <a href="/shop" className='font-semibold underline'>Buy Now!</a></p>
                   </div>
                 </Slider>
               </div>
               <div className="hidden xl:flex items-center justify-end gap-3 sm:gap-5 w-full md:w-1/4">
-                {/* <a href="https://www.facebook.com/" rel="noreferrer" className="w-4" target="_blank">
-                  <img src={facebook} alt='facebook'></img>
-                </a>
-                <a href="https://www.twitter.com/" rel="noreferrer" className="w-4" target="_blank">
-                  <img src={twitter} alt="twitter"></img>
-                </a>
-                <a href="https://www.youtube.com/" rel="noreferrer" className="w-4" target="_blank">
-                  <img src={youtube} alt='youtube'></img>
-                </a> */}
               </div>
               
             </div>
@@ -240,23 +230,23 @@ const Header = () => {
               {/* <!-- right navs and searchbar --> */}
               <div className="flex w-1/2 lg:w-1/4 items-center justify-end ml-1 sm:ml-0 relative">
 
-                <Link to="tel:+919915841204" className="flex items-center gap-2 relative px-2 sm:px-4 border-r border-gray-400">
+                <Link to="tel:+919915841204" className="hidden sm:flex items-center gap-2 relative px-4 border-r border-gray-400">
                   <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-phone-call text-gray"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>
                 </Link>
 
-                <Link to="/wishlist" className="flex items-center gap-2 relative px-2 sm:px-4 border-r border-gray-400">
+                <Link to="/wishlist" className="flex items-center gap-2 relative px-4 border-r border-gray-400">
                   <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-heart text-gray"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></span>
                   
-                  <div className="w-5 h-5 p-2 bg-red-500 text-white text-sm rounded-full absolute -top-2 left-3 flex justify-center items-center border">
+                  <div className="w-4 h-4 p-2 bg-red-400 text-white text-xs rounded-sm absolute -top-2 right-2 flex justify-center items-center border">
                     {wishlistItems.length}
                   </div>
 
                 </Link>
 
-                <Link to="/cart" className="flex items-center gap-2 relative px-2 sm:px-4 border-r border-gray-400">
+                <Link to="/cart" className="flex items-center gap-2 relative px-4 border-r border-gray-400">
                   <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-shopping-cart text-gray"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></span>
                 
-                  <div className="w-5 h-5 p-2 bg-red-500 text-white text-sm rounded-full absolute -top-2 left-3 flex justify-center items-center border">
+                  <div className="w-4 h-4 p-2 bg-red-400 text-white text-xs rounded-sm absolute -top-2 right-2 flex justify-center items-center border">
                     {cartItems.length}
                   </div>
                 </Link>
@@ -268,7 +258,7 @@ const Header = () => {
                     </Link>
                     :
                     (
-                      <div className='pl-2 sm:pl-4'>
+                      <div className='pl-0'>
                         <Button
                           ref={anchorRef}
                           id="userDropDown"
@@ -281,6 +271,7 @@ const Header = () => {
                           <Avatar
                               alt="Avatar"
                               src={user.avatar && user.avatar.url}
+                              sx={{ width: 32, height: 32 }}
                           />
                           <span>{open ? <ExpandLessIcon sx={{ fontSize: "16px" }} /> : <ExpandMoreIcon sx={{ fontSize: "16px" }} />}</span>
                         </Button>
@@ -377,7 +368,7 @@ const Header = () => {
                             className="p-0 border border-gray-300 w-60"
                           >
                             {categories && categories.map((item, i) => (
-                              <Link to={`/products?category=${item._id}`} key={i} onClick={handleCloseCat} className='px-3 py-2 border-b flex gap-3 items-center hover:bg-gray-50'>{item.name}</Link>
+                              <a href={`/products?category=${item._id}`} key={i} onClick={handleCloseCat} className='px-3 py-2 border-b flex gap-3 items-center hover:bg-gray-50'>{item.name}</a>
                             ))}
                           </MenuList>
                         </ClickAwayListener>
@@ -406,9 +397,10 @@ const Header = () => {
               {/* <!-- nav container --> */}
 
               <div className='flex items-center'>
-                <button className="bg-gray-100 w-full px-4 py-3 text-md font-semibold text-primary-green hover:bg-primary-green hover:text-white rounded-sm capitalize outline-none flex justify-between items-center" >
-                    <ElectricBoltOutlinedIcon /> Deal Today
-                  </button>
+                <button className="bg-green-100 w-full px-4 py-3 text-md font-bold text-primary-green hover:bg-primary-green hover:text-white rounded-sm capitalize outline-none gap-2 flex justify-between items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  Deal Today
+                </button>
               </div>
             </div>
           </div>

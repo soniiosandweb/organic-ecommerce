@@ -22,7 +22,7 @@ const Wishlist = () => {
                     <div className="flex-1 shadow border border-gray-300 bg-white">
                         {/* <!-- wishlist container --> */}
                         <div className="flex flex-col">
-                            <h2 className="font-medium text-xl px-4 sm:px-8 py-4 border-b">My Wishlist ({wishlistItems.length})</h2>
+                            <h2 className="font-medium text-lg px-4 sm:px-8 py-4 border-b">My Wishlist ({wishlistItems.length})</h2>
 
                             {wishlistItems.length === 0 && (
                                 <div className="flex items-center flex-col gap-2 m-6">

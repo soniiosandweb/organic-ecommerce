@@ -279,8 +279,8 @@ module.exports = {
     },
     fontSize: {
       xxs: ['11px', { lineHeight: '1rem' }],
-      xs: ['0.75rem', { lineHeight: '1rem' }],
-      sm: ['0.875rem', { lineHeight: '1.25rem' }],
+      xs: ['13px', { lineHeight: '1.2' }],
+      sm: ['15px', { lineHeight: '1.7' }],
       base: ['1rem', { lineHeight: '1.5rem' }],
       lg: ['1.125rem', { lineHeight: '1.75rem' }],
       xl: ['1.25rem', { lineHeight: '1.75rem' }],

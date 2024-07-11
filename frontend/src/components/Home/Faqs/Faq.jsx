@@ -39,7 +39,7 @@ const Faq = () => {
                             <h6 className='font-semibold'>{faq.title}</h6>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <p className=''>{faq.description}</p>
+                            <p className='text-sm'>{faq.description}</p>
                         </AccordionDetails>
                     </Accordion>
                 ))}

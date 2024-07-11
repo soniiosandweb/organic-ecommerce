@@ -70,7 +70,7 @@ const UpdatePassword = () => {
                     {/* <!-- signup column --> */}
                     <div className="flex-1 overflow-hidden border border-gray-300 shadow bg-white">
 
-                        <h2 className="font-medium text-xl px-4 sm:px-8 py-4 border-b">Update Password</h2>
+                        <h2 className="font-medium text-lg px-4 sm:px-8 py-4 border-b">Update Password</h2>
 
                         {/* <!-- personal info procedure container --> */}
                         <form

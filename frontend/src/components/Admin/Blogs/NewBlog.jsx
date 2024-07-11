@@ -14,6 +14,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { createBlog, clearErrors } from '../../../actions/blogAction';
 import { NEW_BLOG_RESET } from '../../../constants/blogConstants';
 import { categories } from '../../../utils/constants';
+import Editor from 'react-simple-wysiwyg';
 
 const NewBlog = () => {
 
@@ -44,6 +45,14 @@ const NewBlog = () => {
     }
 
     const handleBlogImageChange = (e) => {
+
+        let file = e.target.files[0];
+
+        if (file.size > 1e6) {
+            enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
+            return;
+        }
+        
         const reader = new FileReader();
 
         reader.onload = () => {
@@ -129,17 +138,7 @@ const NewBlog = () => {
                 </div>
                     
                 <div className="flex flex-col gap-3 w-full xl:w-2/3">
-                    <TextField
-                        label="Description"
-                        multiline
-                        rows={5}
-                        required
-                        variant="outlined"
-                        size="medium"
-                        name="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
+                    <Editor value={description} onChange={(e) => setDescription(e.target.value)} />
                 </div>
                 
                 <div className="flex justify-between gap-4 flex-col md:flex-row xl:w-2/3">

@@ -29,7 +29,7 @@ const Cart = () => {
 
                         {/* <!-- cart items container --> */}
                         <div className="flex flex-col border border-gray-300 bg-white">
-                            <span className="font-semibold text-xl px-2 sm:px-8 py-4 border-b border-gray-300">My Cart ({cartItems.length})</span>
+                            <span className="font-medium text-lg px-2 sm:px-8 py-4 border-b border-gray-300">My Cart ({cartItems.length})</span>
 
                             {cartItems && cartItems.length === 0 && (
                                 <EmptyCart />
@@ -51,7 +51,7 @@ const Cart = () => {
 
                         {/* <!-- saved for later items container --> */}
                         <div className="flex flex-col mt-10 border border-gray-300 bg-white">
-                            <span className="font-semibold text-xl px-2 sm:px-8 py-4 border-b border-gray-300">Saved For Later ({saveForLaterItems.length})</span>
+                            <span className="font-medium text-lg px-2 sm:px-8 py-4 border-b border-gray-300">Saved For Later ({saveForLaterItems.length})</span>
                             {saveForLaterItems && saveForLaterItems.map((item) => (
                                 <SaveForLaterItem {...item} />
                             )

@@ -91,10 +91,10 @@ exports.updateBlog = asyncErrorHandler(async (req, res, next) => {
         return next(new ErrorHandler("Blog Not Found", 404));
     }
 
-    if(req.body.image !== "") {
+    if(req.body.blogImage !== "") {
 
         await cloudinary.v2.uploader.destroy(blog.image.public_id);
-        const result = await cloudinary.v2.uploader.upload(req.body.image, {
+        const result = await cloudinary.v2.uploader.upload(req.body.blogImage, {
             folder: "blog",
         });
 

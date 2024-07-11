@@ -37,7 +37,7 @@ const OrderDetails = () => {
                             <div className="flex flex-col gap-10 max-w-6xl mx-auto">
 
                                 <div className="flex flex-col w-full gap-3">
-                                    <h3 className="font-semibold text-xl text-center">Order Status</h3>
+                                    <h3 className="font-medium text-xl text-center">Order Status</h3>
                                     <TrackStepper
                                         orderOn={order.createdAt}
                                         shippedAt={order.shippedAt}
@@ -52,9 +52,9 @@ const OrderDetails = () => {
 
                                     <div className='flex flex-col gap-3 flex-1 border border-gray-300 bg-white p-4 md:p-8'>
 
-                                        <p className="w-full text-lg"><span className='font-semibold'>Total:</span> ₹{order.totalPrice.toLocaleString()}</p>
-                                        <p className="w-full text-lg"><span className='font-semibold'>Payment Method:</span> {order.paymentInfo.method === "stripe" ? "Stripe" : "Cash on delivery"}</p>
-                                        <p className="w-full text-lg font-semibold">Order Items: </p>
+                                        <p className="w-full text-md"><span className='font-medium'>Total:</span> ₹{order.totalPrice.toLocaleString()}</p>
+                                        <p className="w-full text-md"><span className='font-medium'>Payment Method:</span> {order.paymentInfo.method === "stripe" ? "Stripe" : "Cash on delivery"}</p>
+                                        <p className="w-full text-md font-medium">Order Items: </p>
 
                                         {order.orderItems && order.orderItems.map((item,index) => {
 
@@ -68,9 +68,9 @@ const OrderDetails = () => {
                                                             />
                                                         </div>
                                                         <div className="flex flex-col gap-1 overflow-hidden">
-                                                            <p className="text-lg font-semibold">{name.length > 60 ? `${name.substring(0, 60)}...` : name}</p>
-                                                            <p className="text-md mt-2">Quantity: {quantity}</p>
-                                                            <p className="text-md">Price: ₹{price.toLocaleString()}</p>
+                                                            <p className="text-md font-medium">{name.length > 60 ? `${name.substring(0, 60)}...` : name}</p>
+                                                            <p className="text-sm mt-2">Quantity: {quantity}</p>
+                                                            <p className="text-sm">Price: ₹{price.toLocaleString()}</p>
                                                             
                                                         </div>
                                                 </div>
@@ -83,14 +83,14 @@ const OrderDetails = () => {
 
                                     <div className="w-full flex flex-col gap-3 flex-1 border border-gray-300 bg-white p-4 md:p-8">
 
-                                        <h3 className="font-semibold text-xl">Delivery Address</h3>
-                                        <h4 className="font-medium text-lg">{order.user.name}</h4>
-                                        <p className="text-md">{`${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state} - ${order.shippingInfo.pincode}`}</p>
-                                        <div className="flex gap-2 text-md">
+                                        <h3 className="font-medium text-lg">Delivery Address</h3>
+                                        <h4 className="font-medium text-md">{order.user.name}</h4>
+                                        <p className="text-sm">{`${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state} - ${order.shippingInfo.pincode}`}</p>
+                                        <div className="flex gap-2 text-sm">
                                             <p className="font-medium">Email</p>
                                             <p>{order.user.email}</p>
                                         </div>
-                                        <div className="flex gap-2 text-md">
+                                        <div className="flex gap-2 text-sm">
                                             <p className="font-medium">Phone Number</p>
                                             <p>{order.shippingInfo.phoneNo}</p>
                                         </div>

@@ -11,10 +11,10 @@ body {
   line-height: 1.4 !important;
 }
 .font-lora{
-  font-family: 'Public Sans', sans-serif;
+  font-family: 'Lora', sans-serif;
 }
 .font-barlow{
-  font-family: 'Public Sans', sans-serif;
+  font-family: 'Barlow', sans-serif;
 }
 /* hover navbar dropdown arrow */
 .arrow_down {
@@ -66,6 +66,7 @@ body {
   letter-spacing: inherit;
   font-size: inherit;
   background: transparent;
+  padding-left: 1rem;
 }
 #userDropDown-menu,
 #userDropDown-menuCat{
@@ -89,7 +90,7 @@ body {
    margin: auto;
    border-radius: 5px;
 }
-.searchbar-header input:focus {
+.searchbar-header input {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
@@ -103,7 +104,7 @@ body {
 
 /* 404 page not found */
 .font-300 {
-  font-size: 300px;
+  font-size: 200px;
   line-height: 1 !important;
 }
 

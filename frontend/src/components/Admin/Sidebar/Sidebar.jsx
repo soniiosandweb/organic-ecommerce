@@ -132,7 +132,7 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
                                     <span>{label}</span>
                                 </button>
                             ) : (
-                                <Link to={ref} onClick={menuClick} className={`${activeTab === index ? "bg-gray-700" : "hover:bg-gray-700"} flex gap-3 items-center py-3 px-4 font-medium`}>
+                                <Link to={ref} onClick={menuClick} className={`${activeTab === index ? "bg-gray-700" : "hover:bg-gray-700"} flex gap-3 items-center py-2 px-4 font-medium text-sm`}>
                                     <span>{icon}</span>
                                     <span>{label}</span>
                                 </Link>

@@ -60,8 +60,8 @@ const Testimonials = () => {
 
                             <Rating name="read-only" value={el.rating} readOnly size="medium" precision={0.5} />
                             
-                            <p className='text-lg md:text-xl font-medium w-full lg:w-2/4 m-auto'>{el.content}</p>
-                            <h4 className='text-2xl font-semibold my-5'><span className='text-primary-green'>~</span> {el.name} <span className='text-primary-green'>~</span></h4>
+                            <p className='text-md font-medium w-full lg:w-2/4 m-auto'>{el.content}</p>
+                            <h4 className='text-xl font-semibold my-5'><span className='text-primary-green'>~</span> {el.name} <span className='text-primary-green'>~</span></h4>
                         </div>
                     ))}
                 </Slider>

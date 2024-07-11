@@ -48,7 +48,7 @@ const UpdateAddress = () => {
                     {/* <!-- Address column --> */}
                     <div className="flex-1 overflow-hidden border border-gray-300 shadow bg-white">
 
-                        <h2 className="font-medium text-xl px-4 sm:px-8 py-4 border-b">Manage Address</h2>
+                        <h2 className="font-medium text-lg px-4 sm:px-8 py-4 border-b">Manage Address</h2>
 
                         <form onSubmit={shippingSubmit} autoComplete="off" className="flex flex-col justify-start gap-5 w-full px-4 sm:px-8 py-4">
 

@@ -70,7 +70,7 @@ const ProductSlider = ({ title, tagline }) => {
                         <div className='hidden md:block w-1/3 xl:1/4'>
                             <div className='trending-banner h-full w-full relative'>
                                 <div className='trending-text h-full w-full flex items-center flex-col z-10 relative p-5 lg:p-10'>
-                                    <h3 className='text-3xl font-semibold text-center mt-0 lg:mt-10 mb-5'>Shop From Categories</h3>
+                                    <h3 className='text-3xl font-medium text-center mt-0 lg:mt-10 mb-5'>Shop From Categories</h3>
                                     <button className="bg-primary-green text-md font-medium text-white px-5 py-2.5 rounded-sm shadow-lg capitalize hover:bg-black" onClick={() => document.getElementById('product_categories')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}>Shop now</button>
                                 </div>
                                 

@@ -14,6 +14,7 @@ import { getAllCategories } from '../../../actions/categoryAction';
 import { Link } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Editor from 'react-simple-wysiwyg';
 
 const UpdateProduct = () => {
 
@@ -176,7 +177,7 @@ const UpdateProduct = () => {
                 </div>
 
                 <div className="flex flex-col gap-3 w-full xl:w-2/3">
-                    <TextField
+                    {/* <TextField
                         label="Description"
                         multiline
                         rows={5}
@@ -185,7 +186,8 @@ const UpdateProduct = () => {
                         size="medium"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                    />
+                    /> */}
+                    <Editor value={description} onChange={(e) => setDescription(e.target.value)} />
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-3 w-full xl:w-2/3">

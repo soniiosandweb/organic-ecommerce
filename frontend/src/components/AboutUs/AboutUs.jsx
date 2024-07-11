@@ -97,9 +97,10 @@ const AboutUs = () => {
                 <div className="py-8 lg:py-16 px-4 w-full relative z-10">
                     <div className="flex sm:w-11/12 m-auto flex-col md:flex-row w-full gap-16 md:gap-6 lg:gap-16 pt-8">
                         <div className="w-full md:w-1/2 lg:w-2/5 flex flex-col gap-5 justify-center">
-                            <p className="text-md text-primary-green font-semibold uppercase">~ Organic Cereal Fusion ~</p>
-                            <h2 className="text-3xl md:text-5xl font-semibold">Organic Whole Grain Breakfast Mixes</h2>
-                            <p className="text-md text-black">Organic cereals are an extremely popular breakfast food, very good for health: oat cereal, organic cereal, brown rice cereal, sorghum… It is especially convenient…</p>
+                            <p className="text-sm text-primary-green font-semibold uppercase">~ Organic Cereal Fusion ~</p>
+                            <h2 className="text-3xl md:text-4xl font-medium">Organic Whole Grain Breakfast Mixes</h2>
+                            <p className="text-sm text-black">Just a few seconds to measure your body temperature. Up to 5 users! The battery lasts up to 2 years. There are many variations of passages of Lorem Ipsum available. We started in 2019 and haven't stopped smashing it since. A global brand that doesn't sleep, we are 24/7 and always bringing something new with over 100 new products dropping on the monhtly, bringing you the latest looks for less.</p>
+                            <p className="text-sm text-black">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
 
                             <Link to="/products" className="inline-block w-max bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-sm shadow-lg capitalize hover:bg-black">See more</Link>
                         </div>
@@ -118,9 +119,10 @@ const AboutUs = () => {
                 <div className="py-8 lg:py-16 px-4 w-full relative z-10 bg-gray-100">
                     <div className="flex sm:w-11/12 m-auto flex-col md:flex-row-reverse w-full gap-16 md:gap-6 lg:gap-16 py-8">
                         <div className="w-full md:w-1/2 flex flex-col gap-5 justify-center">
-                            <p className="text-md text-primary-green font-semibold uppercase">~ Pure Organic Pantry ~</p>
-                            <h2 className="text-3xl md:text-5xl font-semibold">Exploring the World of Organic Foods</h2>
-                            <p className="text-md text-black">Organic food is a concept that refers to foods that are raised or grown using the methods and standards of organic agriculture, which do not use: Artificial chemicals pesticides…</p>
+                            <p className="text-sm text-primary-green font-semibold uppercase">~ Pure Organic Pantry ~</p>
+                            <h2 className="text-3xl md:text-4xl font-medium">Exploring the World of Organic Foods</h2>
+                            <p className="text-sm text-black">Organic food is a concept that refers to foods that are raised or grown using the methods and standards of organic agriculture, which do not use: Artificial chemicals pesticides…</p>
+                            <p className="text-sm text-black">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
 
                             <Link to="/products" className="inline-block w-max bg-primary-green text-md font-medium text-white px-10 py-2.5 rounded-sm shadow-lg capitalize hover:bg-black">See More</Link>
                         </div>
@@ -156,8 +158,8 @@ const AboutUs = () => {
                 <div className="py-8 lg:py-16 px-4 w-full relative z-10">
                     <div className="flex sm:w-11/12 m-auto flex-col w-full gap-2 md:gap-6 lg:gap-16 py-8">
                         <div className="w-full flex flex-col gap-5 items-center justify-center">
-                            <p className="text-md text-primary-green font-semibold uppercase">~ Organic Excellence ~</p>
-                            <h2 className="text-3xl md:text-5xl font-semibold">Healthful Goodness for Life</h2>
+                            <p className="text-sm text-primary-green font-semibold uppercase">~ Organic Excellence ~</p>
+                            <h2 className="text-3xl md:text-4xl font-medium">Healthful Goodness for Life</h2>
                         </div>
 
                         <div className="w-full flex flex-col lg:flex-row gap-6 lg:gap-10 mt-10 lg:mt-0">

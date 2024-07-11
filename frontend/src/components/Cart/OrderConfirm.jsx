@@ -30,7 +30,7 @@ const OrderConfirm = () => {
                             ))}
                         </div>
                         <div className="flex flex-col sm:flex-row justify-between items-center bg-white px-6 py-3 rounded-b-sm">
-                            <p className="text-sm font-medium text-center sm:text-left mb-3 sm:mb-0">Order confirmation email will be sent to <span className="font-medium">{user.email}</span></p>
+                            <p className="text-sm text-center sm:text-left mb-3 sm:mb-0">Order confirmation email will be sent to <span className="font-medium">{user.email}</span></p>
                             <button onClick={() => { navigate('/process/payment') }} className="w-full sm:w-1/3 bg-primary-green px-6 py-2 text-white font-medium rounded-sm shadow hover:bg-black capitalize">continue</button>
                         </div>
                     </Stepper>

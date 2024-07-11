@@ -12,22 +12,22 @@ const Stepper = ({ activeStep, children }) => {
 
     const steps = [
         {
-            label: "LOGIN",
+            label: "Login",
             desc: <p className="font-medium text-sm">{isAuthenticated !== false ? user.name : null} <span className="text-sm font-normal">{isAuthenticated !== false ? user.email : null}</span></p>,
             link: "",
         },
         {
-            label: "DELIVERY ADDRESS",
+            label: "Delivery Address",
             desc: <p className="font-medium text-sm">{isAuthenticated !== false ? user.name : null} <span className="text-sm font-normal">{address}</span></p>,
             link: "/shipping",
         },
         {
-            label: "ORDER SUMMARY",
+            label: "Order Summary",
             desc: <p className="font-medium text-sm">{cartItems.length} Item</p>,
             link: "/order/confirm",
         },
         {
-            label: "PAYMENT OPTIONS",
+            label: "Payment Options",
             desc: <p className="font-medium text-sm">Paytm</p>,
             link: "",
         }

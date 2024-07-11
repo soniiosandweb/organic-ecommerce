@@ -101,27 +101,27 @@ const ContactUs = () => {
                 {/* contact details */}
                 <div className="py-8 lg:py-16 sm:w-11/12 m-auto px-4 w-full relative z-10">
                     <div className="flex flex-col md:flex-row gap-4 w-full lg:w-3/4 mx-auto">
-                        <div className="w-full md:w-1/3 flex items-center gap-3 justify-start md:justify-center">
+                        <div className="w-full md:w-1/3 flex items-start gap-3 justify-start md:justify-center">
                             <PlaceOutlinedIcon />
                             <div className="text-black text-md">
                                 <h4 className="font-semibold">Office Address</h4>
-                                <p>SCO 30, First Floor, Near Devaji Plaza, VIP Road, Zirakpur, PB (India).</p>
+                                <p className="text-sm">SCO 30, First Floor, Near Devaji Plaza, VIP Road, Zirakpur, PB (India).</p>
                             </div>
                         </div>
 
-                        <div className="w-full md:w-1/3 flex items-center gap-3 justify-start md:justify-center">
+                        <div className="w-full md:w-1/3 flex items-start gap-3 justify-start md:justify-center">
                             <EmailOutlinedIcon />
                             <div className="text-black text-md">
                                 <h4 className="font-semibold">Email Address</h4>
-                                <a className="hover:underline" href="mailto:info@freshorganicgrocery.com">info@freshorganicgrocery.com</a>
+                                <a className="hover:underline text-sm" href="mailto:info@freshorganicgrocery.com">info@freshorganicgrocery.com</a>
                             </div>
                         </div>
 
-                        <div className="w-full md:w-1/3 flex items-center gap-3 justify-start md:justify-center">
+                        <div className="w-full md:w-1/3 flex items-start gap-3 justify-start md:justify-center">
                             <PhoneInTalkOutlinedIcon />
                             <div className="text-black text-md">
                                 <h4 className="font-semibold">Phone Number</h4>
-                                <a className="hover:underline" href="tel:+919915841204">+91 9915841204</a>
+                                <a className="hover:underline text-sm" href="tel:+919915841204">+91 9915841204</a>
                             </div>
                         </div>
 

@@ -126,16 +126,16 @@ const MyOrders = () => {
 
                             {/* <!-- filters header --> */}
                             <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center justify-between gap-5 px-4 py-2 border-b border-gray-300">
-                                <p className="text-lg font-bold uppercase">Filters</p>
+                                <p className="text-md font-bold uppercase">Filters</p>
                                 <span onClick={clearFilters} className="capitalize bg-primary-green text-white text-md cursor-pointer font-semibold px-5 py-2.5 rounded-sm shadow-lg hover:bg-black">clear all</span>
                             </div>
 
                             {/* <!-- order status checkboxes --> */}
                             <div className="flex flex-col py-3 text-sm">
-                                <span className="text-lg font-semibold px-4">Order Status</span>
+                                <span className="text-md font-medium px-4">Order Status</span>
 
                                 {/* <!-- checkboxes --> */}
-                                <div className="flex flex-col gap-3 px-4 mt-1 pb-3 border-b border-gray-300">
+                                <div className="flex flex-col text-sm gap-3 px-4 mt-1 pb-3 border-b border-gray-300">
                                     <FormControl>
                                         <RadioGroup
                                             aria-labelledby="orderstatus-radio-buttons-group"
@@ -156,7 +156,7 @@ const MyOrders = () => {
 
                             {/* <!-- order time checkboxes --> */}
                             <div className="flex flex-col pb-2 text-sm">
-                                <span className="text-lg font-semibold px-4">Order Time</span>
+                                <span className="text-md font-medium px-4">Order Time</span>
 
                                 {/* <!-- checkboxes --> */}
                                 <div className="flex flex-col gap-3 mt-1 px-4 pb-3">
@@ -228,7 +228,7 @@ const MyOrders = () => {
                                                 
 
                                                 <div className="flex flex-col gap-1.5">
-                                                    <p className="text-md font-medium flex items-center gap-1">
+                                                    <p className="text-sm font-medium flex items-center gap-1">
                                                         {orderStatus === "Shipped" ? (
                                                             <>
                                                                 <span className="text-primary-green pb-0.5">
@@ -253,14 +253,14 @@ const MyOrders = () => {
                                                         )}
                                                     </p>
                                                     {orderStatus === "Delivered" ?
-                                                        <p className="text-md ml-1">Your item has been {orderStatus}</p>
+                                                        <p className="text-sm ml-1">Your item has been {orderStatus}</p>
                                                         : orderStatus === "Shipped" ?
-                                                            <p className="text-md ml-1">Your item has been {orderStatus}</p> :
-                                                            <p className="text-md ml-1">Seller has processed your order</p>
+                                                            <p className="text-sm ml-1">Your item has been {orderStatus}</p> :
+                                                            <p className="text-sm ml-1">Seller has processed your order</p>
                                                     }
 
-                                                    <p className="text-md"><span className='font-medium'>Total:</span> ₹{totalPrice.toLocaleString()}</p>
-                                                    <p className="text-md"><span className='font-medium'>Payment Method:</span> {paymentInfo.method === "stripe" ? "Stripe" : "Cash on delivery"}</p>
+                                                    <p className="text-sm"><span className='font-medium'>Total:</span> ₹{totalPrice.toLocaleString()}</p>
+                                                    <p className="text-sm"><span className='font-medium'>Payment Method:</span> {paymentInfo.method === "stripe" ? "Stripe" : "Cash on delivery"}</p>
                                                 </div>
                                             </div>
                                         </Link>

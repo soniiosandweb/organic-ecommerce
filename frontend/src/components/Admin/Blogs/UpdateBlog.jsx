@@ -12,6 +12,7 @@ import { REMOVE_BLOG_DETAILS, UPDATE_BLOG_RESET } from "../../../constants/blogC
 import { categories } from "../../../utils/constants";
 import MenuItem from '@mui/material/MenuItem';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Editor from 'react-simple-wysiwyg';
 
 const UpdateBlog = () => {
 
@@ -47,6 +48,13 @@ const UpdateBlog = () => {
     }
 
     const handleBlogImageChange = (e) => {
+        let file = e.target.files[0];
+
+        if (file.size > 1e6) {
+            enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
+            return;
+        }
+        
         const reader = new FileReader();
 
         setImage("")
@@ -71,7 +79,7 @@ const UpdateBlog = () => {
         formData.set("name", name);
         formData.set("description", description);
         formData.set("category", category);
-        formData.set("image", image);
+        formData.set("blogImage", image);
         formData.set("except", except);
 
         tags.forEach((h) => {
@@ -149,18 +157,9 @@ const UpdateBlog = () => {
                 </div>
                     
                 <div className="flex flex-col gap-3 w-full xl:w-2/3">
-                    <TextField
-                        label="Description"
-                        multiline
-                        rows={5}
-                        required
-                        variant="outlined"
-                        size="medium"
-                        name="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
+                    <Editor value={description} onChange={(e) => setDescription(e.target.value)} />
                 </div>
+                
                 
                 <div className="flex justify-between gap-4 flex-col md:flex-row xl:w-2/3">
                     <TextField
@@ -213,7 +212,7 @@ const UpdateBlog = () => {
 
                     <h2 className="font-medium">Featured Image</h2>
                     <div className="w-full flex gap-2 justify-center items-center overflow-x-auto h-32 border border-gray-300 rounded">
-                        {oldImage && (
+                        {oldImage && !imagePreview &&(
                             <LazyLoadImage 
                                 src={oldImage.url}
                                 alt="Product Category"

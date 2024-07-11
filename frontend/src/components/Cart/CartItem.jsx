@@ -59,7 +59,7 @@ const CartItem = ({ product, name, seller, price, cuttedPrice, image, stock, qua
                     <div className="flex flex-col lg:flex-row justify-between items-start pr-5 gap-3 lg:gap-0">
                         <div className="flex flex-col gap-2 sm:w-3/5">
                             <Link to={`/product/${product}/`}>
-                                <p className="text-xl font-semibold group-hover:text-primary-green">{name.length > 42 ? `${name.substring(0, 42)}...` : name}</p>
+                                <p className="text-lg font-medium group-hover:text-primary-green">{name.length > 42 ? `${name.substring(0, 42)}...` : name}</p>
                             </Link>
                             {/* <!-- price desc --> */}
                             <div className="flex gap-2 text-lg font-medium">
@@ -90,8 +90,8 @@ const CartItem = ({ product, name, seller, price, cuttedPrice, image, stock, qua
                             {/* <p className="text-sm">Delivery by {getDeliveryDate()} | <span className="text-primary-green">Free</span> <span className="line-through">₹{quantity * 40}</span></p> */}
                             {inCart && (
                                 <>
-                                <button onClick={() => saveForLaterHandler(product)} className="font-bold text-primary-green hover:text-black text-start lg:text-center">SAVE FOR LATER</button>
-                                <button onClick={() => removeCartItem(product)} className="text-red-600 font-bold hover:text-red-700 text-start lg:text-center">REMOVE</button>
+                                <button onClick={() => saveForLaterHandler(product)} className="font-semibold text-primary-green hover:text-black text-start lg:text-center">SAVE FOR LATER</button>
+                                <button onClick={() => removeCartItem(product)} className="text-red-600 font-semibold hover:text-red-700 text-start lg:text-center">REMOVE</button>
                                 </>
                             )}
                         </div>

@@ -99,7 +99,7 @@ const Account = () => {
                                         encType="multipart/form-data"
                                         className="w-full"
                                     >
-                                        <h2 className="font-medium text-xl px-4 sm:px-8 py-4 border-b">Personal Information <button type="button" className="text-md font-semibold text-primary-green font-medium ml-8 cursor-pointer" onClick={() => setEditProfile(!editProfile)}>Edit</button></h2>
+                                        <h2 className="font-medium text-lg px-4 sm:px-8 py-4 border-b">Personal Information <button type="button" className="text-md text-primary-green font-medium ml-8 cursor-pointer" onClick={() => setEditProfile(!editProfile)}>Edit</button></h2>
 
                                         {/* <!-- edit info container --> */}
                                         <div className="flex flex-col gap-8 m-4 sm:mx-8 sm:my-6">

@@ -38,8 +38,8 @@ const Sidebar = ({ activeTab }) => {
                 </div>
                 {/* <!-- user icon --> */}
                 <div className="flex flex-col gap-1">
-                    <p className="text-md">Hello,</p>
-                    <h2 className="font-semibold text-lg capitalize">{user.name}</h2>
+                    <p className="text-sm">Hello,</p>
+                    <h2 className="font-medium text-md capitalize">{user.name}</h2>
                 </div>
             </div>
             {/* <!-- profile card --> */}
@@ -50,7 +50,7 @@ const Sidebar = ({ activeTab }) => {
                 {/* <!-- my orders tab --> */}
                 <div className="flex items-center gap-5 px-4 py-4 border-b">
                     <span className="text-primary-green"><FolderIcon /></span>
-                    <Link className="flex w-full capitalize justify-between font-semibold text-black hover:text-primary-green" to="/orders">
+                    <Link className="flex w-full capitalize justify-between font-medium text-black hover:text-primary-green" to="/orders">
                         My orders
                         <span><ChevronRightIcon /></span>
                     </Link>
@@ -60,30 +60,30 @@ const Sidebar = ({ activeTab }) => {
                 {/* <!-- account settings tab --> */}
                 <div className="flex items-center gap-5 px-4 py-4">
                     <span className="text-primary-green"><PersonIcon /></span>
-                    <p className="flex w-full justify-between font-semibold text-black capitalize">Account settings</p>
+                    <p className="flex w-full justify-between font-medium text-black capitalize">Account settings</p>
                 </div>
                 <div className="flex flex-col pb-3 border-b text-md">
-                    <Link to="/account" className={`${activeTab === "profile" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-3 pl-14`}>Profile Information</Link>
-                    <Link className={`${activeTab === "password" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-3 pl-14`} to="/password/update">Change Password</Link>
-                    <Link className={`${activeTab === "address" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-3 pl-14`} to="/address">Manage Addresses</Link>
+                    <Link to="/account" className={`${activeTab === "profile" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-2 pl-14 text-sm`}>Profile Information</Link>
+                    <Link className={`${activeTab === "password" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-2 pl-14 text-sm`} to="/password/update">Change Password</Link>
+                    <Link className={`${activeTab === "address" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-2 pl-14 text-sm`} to="/address">Manage Addresses</Link>
                 </div>
                 {/* <!-- account settings tab --> */}
 
                 {/* <!-- my stuff tab --> */}
                 <div className="flex items-center gap-5 px-4 py-4">
                     <span className="text-primary-green"><FolderSharedIcon /></span>
-                    <p className="flex w-full justify-between font-semibold capitalize text-black">My stuff</p>
+                    <p className="flex w-full justify-between font-medium capitalize text-black">My stuff</p>
                 </div>
                 <div className="flex flex-col pb-3 border-b text-md">
-                    <Link className={`${activeTab === "rating" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-3 pl-14`} to="/rating">My Reviews & Ratings</Link>
-                    <Link to="/wishlist" className={`${activeTab === "wishlist" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-3 pl-14`}>My Wishlist</Link>
+                    <Link className={`${activeTab === "rating" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-2 pl-14 text-sm`} to="/rating">My Reviews & Ratings</Link>
+                    <Link to="/wishlist" className={`${activeTab === "wishlist" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-2 pl-14 text-sm`}>My Wishlist</Link>
                 </div>
                 {/* <!-- my stuff tab --> */}
 
                 {/* <!-- logout tab --> */}
                 <div className="flex items-center gap-5 px-4 py-4 border-b">
                     <span className="text-primary-green"><PowerSettingsNewIcon /></span>
-                    <div className="flex w-full justify-between font-semibold text-black hover:text-primary-green cursor-pointer" onClick={handleLogout}>
+                    <div className="flex w-full justify-between font-medium text-black hover:text-primary-green cursor-pointer" onClick={handleLogout}>
                         Logout
                         <span><ChevronRightIcon /></span>
                     </div>

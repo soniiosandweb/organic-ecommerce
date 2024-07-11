@@ -35,8 +35,8 @@ const ProductServices = () => {
                             alt={el.title}
                             className="w-max m-auto object-contain object-center mb-3 cursor-pointer"
                         />
-                        <h3 className='text-xl font-semibold'>{el.title}</h3>
-                        <p className='text-md w-full lg:w-3/4 m-auto'>{el.subtitle}</p>
+                        <h3 className='text-xl font-medium'>{el.title}</h3>
+                        <p className='text-sm w-full lg:w-3/4 m-auto'>{el.subtitle}</p>
                     </div>
                 ))}
             </div>

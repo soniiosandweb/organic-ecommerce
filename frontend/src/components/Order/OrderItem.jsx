@@ -18,9 +18,9 @@ const OrderItem = (props) => {
             <div className="flex flex-col sm:flex-row justify-between w-full">
 
                 <div className="flex flex-col gap-1 overflow-hidden">
-                    <p className="text-lg font-semibold">{name.length > 40 ? `${name.substring(0, 40)}...` : name}</p>
-                    <p className="text-md mt-2">Quantity: {quantity}</p>
-                    <p className="text-md ">Price: ₹{(quantity * price).toLocaleString()}</p>
+                    <p className="text-md font-medium">{name.length > 40 ? `${name.substring(0, 40)}...` : name}</p>
+                    <p className="text-sm mt-2">Quantity: {quantity}</p>
+                    <p className="text-sm ">Price: ₹{(quantity * price).toLocaleString()}</p>
                 </div>
 
             </div>

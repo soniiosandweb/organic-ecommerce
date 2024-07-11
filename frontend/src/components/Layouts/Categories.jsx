@@ -71,7 +71,7 @@ const Categories = () => {
                                 className="h-full w-full rounded-full object-cover border-4 border-gray" src={item.image.url} alt={item.name}
                             />
                         </div>
-                        <p className="text-xl text-black mt-5 font-semibold group-hover:text-primary-green font-lora text-center">{item.name}</p>
+                        <p className="text-xl text-black mt-5 font-medium group-hover:text-primary-green text-center">{item.name}</p>
                     </Link>
                 ))}
             </Slider>
