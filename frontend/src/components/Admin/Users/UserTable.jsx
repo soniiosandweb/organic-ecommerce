@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
-import { clearErrors, deleteUser, getAllUsers } from '../../../actions/userAction';
+import { clearErrors, deleteUser, getAllUsersOnly } from '../../../actions/userAction';
 import { DELETE_USER_RESET } from '../../../constants/userConstants';
 import Actions from '../Actions';
 import MetaData from '../../Layouts/MetaData';
@@ -14,8 +14,10 @@ const UserTable = () => {
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
 
-    const { users, error } = useSelector((state) => state.users);
+    const { error } = useSelector((state) => state.users);
     const { loading, isDeleted, error: deleteError } = useSelector((state) => state.profile);
+
+    const { usersall } = useSelector((state) => state.usersOnly);
 
     useEffect(() => {
         if (error) {
@@ -30,7 +32,7 @@ const UserTable = () => {
             enqueueSnackbar("User Deleted Successfully", { variant: "success" });
             dispatch({ type: DELETE_USER_RESET });
         }
-        dispatch(getAllUsers());
+        dispatch(getAllUsersOnly());
     }, [dispatch, error, deleteError, isDeleted, enqueueSnackbar]);
 
     const deleteUserHandler = (id) => {
@@ -113,7 +115,7 @@ const UserTable = () => {
 
     const rows = [];
 
-    users && users.forEach((item) => {
+    usersall && usersall.forEach((item) => {
         rows.unshift({
             id: item._id,
             name: item.name,

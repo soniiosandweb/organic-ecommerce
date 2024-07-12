@@ -63,9 +63,12 @@ const Categories = () => {
 
             <div className="w-full sm:w-11/12 px-4 m-auto flex items-center justify-center flex-wrap gap-4">
 
-            <Slider {...settings} className="flex justify-between w-full testimonial-slider px-5 sm:px-10">
+            <Slider {...settings} className="flex justify-center w-full categories-slider testimonial-slider px-5 sm:px-10">
                 {categories && categories.map((item, i) => (
-                    <Link to={`/products?category=${item._id}`} className="flex-1 flex-col gap-1 items-center p-2 group w-1/3 md:w-1/5 text-center product-category-home" key={i}>
+                    <div className='block w-full flex-1'>
+
+                    
+                    <Link to={`/products?category=${item._id}`} className="flex flex-1 flex-col gap-1 items-center p-2 group text-center product-category-home" key={i}>
                         <div className="h-28 w-28 md:h-32 md:w-32 xl:h-40 xl:w-40 m-auto">
                             <LazyLoadImage 
                                 className="h-full w-full rounded-full object-cover border-4 border-gray" src={item.image.url} alt={item.name}
@@ -73,6 +76,7 @@ const Categories = () => {
                         </div>
                         <p className="text-xl text-black mt-5 font-medium group-hover:text-primary-green text-center">{item.name}</p>
                     </Link>
+                    </div>
                 ))}
             </Slider>
 

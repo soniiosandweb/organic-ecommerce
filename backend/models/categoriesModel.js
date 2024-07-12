@@ -12,6 +12,16 @@ const categorySchema = new mongoose.Schema({
             required: true
         }
     },
+    icon: {
+        public_id: {
+            type: String,
+            required: true
+        },
+        url: {
+            type: String,
+            required: true
+        }
+    },
     name: {
         type: String,
         required: [true, "Please enter category name"]

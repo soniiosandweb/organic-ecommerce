@@ -158,7 +158,12 @@ body {
       transform: translateX(0);
   }
 }
-
+/* categories slider */
+.categories-slider .slick-track{
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
 /* related products */
 .related-product-slider .slick-track {
   margin-left:0;

@@ -60,6 +60,12 @@ const UpdateProduct = () => {
         // setOldImages([]);
 
         files.forEach((file) => {
+
+            if (file.size > 1e6) {
+                enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
+                return;
+            }
+
             const reader = new FileReader();
 
             reader.onload = () => {

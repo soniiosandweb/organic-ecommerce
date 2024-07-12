@@ -24,6 +24,9 @@ const NewCategory = () => {
     const [category, setCategory] = useState("");
     const [categoryPreview, setCategoryPreview] = useState("");
 
+    const [icon, setIcon] = useState("");
+    const [iconPreview, setIconPreview] = useState("");
+
     const newCategorySubmitHandler = (e) => {
         e.preventDefault();
 
@@ -32,21 +35,56 @@ const NewCategory = () => {
             return;
         }
 
+        if(!icon){
+            enqueueSnackbar("Add Category Icon", { variant: "warning" });
+            return;
+        }
+
         const formData = new FormData();
 
         formData.set("name", name);
         formData.set("category", category);
+        formData.set("icon", icon);
        
         dispatch(createCategory(formData));
     }
 
     const handleCategoryChange = (e) => {
+
+        let file = e.target.files[0];
+
+        if (file.size > 1e6) {
+            enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
+            return;
+        }
+
         const reader = new FileReader();
 
         reader.onload = () => {
             if (reader.readyState === 2) {
                 setCategoryPreview(reader.result);
                 setCategory(reader.result);
+            }
+        };
+
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    const handleCategoryIconChange = (e) => {
+
+        let file = e.target.files[0];
+
+        if (file.size > 1e6) {
+            enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
+            return;
+        }
+        
+        const reader = new FileReader();
+
+        reader.onload = () => {
+            if (reader.readyState === 2) {
+                setIconPreview(reader.result);
+                setIcon(reader.result);
             }
         };
 
@@ -86,6 +124,31 @@ const NewCategory = () => {
                         onChange={(e) => setName(e.target.value)}
                     />
                     
+                </div>
+
+                <div className="flex flex-col gap-2 w-full lg:w-2/3 xl:w-1/3">
+                
+                    <h2 className="font-medium">Category Icon</h2>
+                    <div className="w-full flex gap-2 justify-center items-center overflow-x-auto h-32 border border-gray-300 rounded">
+                        {!iconPreview ? <ImageIcon /> :
+                            <LazyLoadImage 
+                                src={iconPreview}
+                                alt="Category"
+                                className="w-full h-full object-contain"
+                            />
+                        }
+                    </div>
+                    <label className="w-full rounded bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow hover:shadow-lg">
+                        <input
+                            type="file"
+                            name="icon"
+                            accept="image/*"
+                            onChange={handleCategoryIconChange}
+                            className="hidden"
+                        />
+                        Choose Category Icon
+                    </label>
+
                 </div>
 
                 <div className="flex flex-col gap-2 w-full lg:w-2/3 xl:w-1/3">
