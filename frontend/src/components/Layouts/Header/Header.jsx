@@ -20,12 +20,20 @@ import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
 import SortOutlinedIcon from '@mui/icons-material/SortOutlined';
 import { getAllCategories } from '../../../actions/categoryAction';
 import Slider from 'react-slick';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import CloseIcon from '@mui/icons-material/Close';
+import { getFeaturedProducts } from '../../../actions/productAction';
+import { getDiscount } from '../../../utils/functions';
 
 const Header = () => {
 
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { categories, loading: categoriesLoading } = useSelector((state) => state.allCategories);
+
+  const { featuredProducts, loading: featuredLoading } = useSelector((state) => state.featured);
 
   const { cartItems } = useSelector(state => state.cart);
 
@@ -35,6 +43,16 @@ const Header = () => {
   const [ headerBorder, setHeaderBorder ] = useState("shadow-none");
 
   const [adminRoute, setAdminRoute] = useState(false);
+
+  const [dealsOpen, setDealsOpen] = useState(false);
+
+  const handlePopupOpen = () => {
+    setDealsOpen(true);
+  };
+
+  const handlePopupClose = () => {
+    setDealsOpen(false);
+  };
 
   const location = useLocation();
 
@@ -143,6 +161,8 @@ const Header = () => {
     if(categoriesLoading === undefined){
       dispatch(getAllCategories());
     }
+
+    dispatch(getFeaturedProducts());
     window.addEventListener("scroll", listenScrollEvent);
 
   }, [open, location, openCat, dispatch, categoriesLoading]);
@@ -352,7 +372,7 @@ const Header = () => {
                   placement="bottom-start"
                   transition
                   disablePortal
-                  className='z-10'
+                  className='z-20'
                 >
                   {({ TransitionProps, placement }) => (
                     <Grow
@@ -402,13 +422,63 @@ const Header = () => {
               {/* <!-- nav container --> */}
 
               <div className='flex items-center'>
-                <button className="bg-green-100 w-full px-4 py-3 text-md font-bold text-primary-green hover:bg-primary-green hover:text-white rounded-sm capitalize outline-none gap-2 flex justify-between items-center">
+                <button className="bg-green-100 w-full px-4 py-3 text-md font-bold text-primary-green hover:bg-primary-green hover:text-white rounded-sm capitalize outline-none gap-2 flex justify-between items-center" onClick={handlePopupOpen}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                   <span className='hidden sm:block'>Deal Today</span>
                 </button>
               </div>
             </div>
           </div>
+
+
+          <Dialog
+                open={dealsOpen}
+                onClose={handlePopupClose}
+                className="coupon_popup w-full"
+            >
+                <DialogTitle className="border-b flex justify-between items-center">
+                  <div>Deal Today <p className='text-sm'>Recommended deals for you.</p></div> <CloseIcon onClick={handlePopupClose} className="cursor-pointer" /></DialogTitle>
+                <DialogContent className="flex flex-col m-1 gap-4">
+                  <ul className='flex flex-col gap-2'>
+                    {!featuredLoading && featuredProducts?.length === 0 && (
+                      <li>No Product Found.</li>
+                    )}
+
+                    {featuredLoading ? null : (
+                      featuredProducts?.map((product, i) => (
+                        <li key={i} className='border border-gray-300 p-2 rounded'>
+                          <Link to={`/product/${product._id}/`} className="flex flex-row items-center text-center group w-full gap-4">
+                            <div className="w-20 sm:w-1/6 h-full bg-[#f4f4f4]">
+                                <LazyLoadImage 
+                                  className="w-full h-full object-contain" src={product.images[0].url} alt={product.name}
+                                />
+                            </div>
+                            <div className='w-full sm:w-5/6 flex flex-col gap-2 items-start'>
+                              <h2 className="text-sm sm:text-lg font-semibold group-hover:text-primary-green">{product.name.length > 50 ? `${product.name.substring(0, 50)}...` : product.name}</h2>
+
+                              <div className="flex items-center gap-1.5 text-md font-medium">
+                                  <span>₹{product.price.toLocaleString()}</span>
+                                  {product.cuttedPrice !== 0 ?
+                                      <>
+                                          <span className="text-gray-500 line-through text-md">₹{product.cuttedPrice.toLocaleString()}</span>
+                                          <span className="text-md text-primary-green">{getDiscount(product.price, product.cuttedPrice)}%&nbsp;off</span>
+                                      </>
+                                  : null  
+                                  }
+                              </div>
+                            </div>
+                            
+                          </Link>
+                        </li>
+                      ))
+                                        
+                    )}
+                  </ul>
+                    
+                </DialogContent>
+                
+            </Dialog>
+
         </>
       )}
     </>

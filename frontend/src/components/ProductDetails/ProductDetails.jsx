@@ -172,7 +172,7 @@ const ProductDetails = () => {
                                 {/* <!-- image wrapper --> */}
 
                                 {/* <!-- product desc wrapper --> */}
-                                <div className="flex-1 py-2">
+                                <div className="flex-1 md:w-3/5 py-2">
 
                                     {/* <!-- whole product description --> */}
                                     <div className="flex flex-col gap-4">
@@ -252,7 +252,7 @@ const ProductDetails = () => {
                                         <div className="w-full mt-6 rounded-sm border flex flex-col">
                                             <h3 className="px-6 py-4 border-b text-xl font-semibold">Product Description</h3>
                                             <div className="p-6">
-                                                <div dangerouslySetInnerHTML={{__html:product.description}} className='text-sm'></div>
+                                                <div dangerouslySetInnerHTML={{__html:product.description}} className='text-sm overflow-x-hidden'></div>
                                             </div>
                                         </div>
                                         {/* <!-- border box --> */}

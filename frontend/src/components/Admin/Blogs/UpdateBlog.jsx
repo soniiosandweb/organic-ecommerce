@@ -74,6 +74,11 @@ const UpdateBlog = () => {
     const updateCategorySubmitHandler = (e) => {
         e.preventDefault();
 
+        if (description.length <= 0) {
+            enqueueSnackbar("Add Blog Content", { variant: "warning" });
+            return;
+        }
+
         const formData = new FormData();
 
         formData.set("name", name);
@@ -157,6 +162,7 @@ const UpdateBlog = () => {
                 </div>
                     
                 <div className="flex flex-col gap-3 w-full xl:w-2/3">
+                    <h2 className="font-medium">Content</h2>
                     <Editor value={description} onChange={(e) => setDescription(e.target.value)} />
                 </div>
                 

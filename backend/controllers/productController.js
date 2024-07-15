@@ -70,6 +70,20 @@ exports.getAdminProducts = asyncErrorHandler(async (req, res, next) => {
     });
 });
 
+// Get All Featured products
+exports.getFeaturedProducts = asyncErrorHandler(async (req, res, next) => {
+    const products = await Product.find({featured : true}).populate('category');
+
+    if (!products) {
+        return next(new ErrorHandler("Product Not Found", 404));
+    }
+
+    res.status(200).json({
+        success: true,
+        products,
+    });
+});
+
 // Create Product ---ADMIN
 exports.createProduct = asyncErrorHandler(async (req, res, next) => {
 

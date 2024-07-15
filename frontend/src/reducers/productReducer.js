@@ -40,6 +40,9 @@ import {
     USER_REVIEWS_SUCCESS,
     USER_REVIEWS_FAIL,
     REMOVE_REVIEWS_DETAILS,
+    FEATURED_PRODUCTS_REQUEST,
+    FEATURED_PRODUCTS_SUCCESS,
+    FEATURED_PRODUCTS_FAIL,
 } from "../constants/productConstants";
 
 export const productsReducer = (state = { products: [] }, { type, payload }) => {
@@ -315,6 +318,36 @@ export const userReviewsReducer = (state = { userReviews: [] }, { type, payload 
                 userReviews: payload,
             };
         case USER_REVIEWS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: payload,
+            };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            };
+        default:
+            return state;
+    }
+}
+
+// Featured products
+export const featuredProductsReducer = (state = { featuredProducts: [] }, { type, payload }) => {
+
+    switch (type) {
+        case FEATURED_PRODUCTS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            };
+        case FEATURED_PRODUCTS_SUCCESS:
+            return {
+                loading: false,
+                featuredProducts: payload,
+            };
+        case FEATURED_PRODUCTS_FAIL:
             return {
                 ...state,
                 loading: false,

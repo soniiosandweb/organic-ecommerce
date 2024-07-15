@@ -34,6 +34,9 @@ import {
     USER_REVIEWS_REQUEST,
     USER_REVIEWS_SUCCESS,
     USER_REVIEWS_FAIL,
+    FEATURED_PRODUCTS_REQUEST,
+    FEATURED_PRODUCTS_SUCCESS,
+    FEATURED_PRODUCTS_FAIL,
 } from "../constants/productConstants";
 
 // Get All Products --- Filter/Search/Sort
@@ -131,6 +134,26 @@ export const getSliderProducts = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: SLIDER_PRODUCTS_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+// Get Featured Products
+export const getFeaturedProducts = () => async (dispatch) => {
+    try {
+        dispatch({ type: FEATURED_PRODUCTS_REQUEST });
+
+        const { data } = await axios.get(`/api/v1/product/featured`);
+
+        dispatch({
+            type: FEATURED_PRODUCTS_SUCCESS,
+            payload: data.products,
+        });
+    } catch (error) {
+        console.log(error)
+        dispatch({
+            type: FEATURED_PRODUCTS_FAIL,
             payload: error.response.data.message,
         });
     }

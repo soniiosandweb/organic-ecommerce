@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Editor from 'react-simple-wysiwyg';
+import { Checkbox, FormControlLabel } from '@mui/material';
 
 const UpdateProduct = () => {
 
@@ -41,6 +42,7 @@ const UpdateProduct = () => {
     const [images, setImages] = useState([]);
     const [oldImages, setOldImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
+    const [featured, setFeatured] = useState(false);
 
     const addHighlight = () => {
         if (!highlightInput.trim()) return;
@@ -90,6 +92,11 @@ const UpdateProduct = () => {
     const newProductSubmitHandler = (e) => {
         e.preventDefault();
 
+        if (description.length <= 0) {
+            enqueueSnackbar("Add Product Description", { variant: "warning" });
+            return;
+        }
+
         if (images.length <= 0 && oldImages.length <= 0) {
             enqueueSnackbar("Add Product Images", { variant: "warning" });
             return;
@@ -104,6 +111,7 @@ const UpdateProduct = () => {
         formData.set("category", category);
         formData.set("stock", stock);
         formData.set("warranty", warranty ? warranty : 0);
+        formData.set("featured", featured);
 
         if(oldImages && oldImages.length){
 
@@ -140,6 +148,7 @@ const UpdateProduct = () => {
             setWarranty(product.warranty);
             setHighlights(product.highlights);
             setOldImages(product.images);
+            setFeatured(product.featured);
         }
         if (error) {
             enqueueSnackbar(error, { variant: "error" });
@@ -183,16 +192,7 @@ const UpdateProduct = () => {
                 </div>
 
                 <div className="flex flex-col gap-3 w-full xl:w-2/3">
-                    {/* <TextField
-                        label="Description"
-                        multiline
-                        rows={5}
-                        required
-                        variant="outlined"
-                        size="medium"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    /> */}
+                    <h2 className="font-medium">Description</h2>
                     <Editor value={description} onChange={(e) => setDescription(e.target.value)} />
                 </div>
 
@@ -346,6 +346,12 @@ const UpdateProduct = () => {
                         />
                         Choose Files
                     </label>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full lg:w-2/3">
+                    <div className="flex items-center gap-6" id="radioInput">
+                        <FormControlLabel value={featured} onChange={()=> setFeatured(!featured)} control={<Checkbox checked={featured} />} label="Featured Product" />
+                    </div>
                 </div>
 
                 <div className="flex flex-col gap-2 sm:w-1/3">
