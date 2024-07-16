@@ -46,6 +46,21 @@ exports.getBlogDetails = asyncErrorHandler(async (req, res, next) => {
     });
 });
 
+// Get Latest Blogs
+exports.getLatestBlogs = asyncErrorHandler(async (req, res, next) => {
+    const blogs = await Blog.find().limit(4);
+
+    if (!blogs) {
+        return next(new ErrorHandler("Blog Not Found", 404));
+    }
+
+    res.status(200).json({
+        success: true,
+        blogs,
+    });
+});
+
+
 // Get All Blogs ---ADMIN
 exports.getAdminBlogs = asyncErrorHandler(async (req, res, next) => {
     const blogs = await Blog.find();

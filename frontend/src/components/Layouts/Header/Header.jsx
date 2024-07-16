@@ -71,7 +71,7 @@ const Header = () => {
     },
     {
       name: "Blogs",
-      redirect: "/blog",
+      redirect: "/blogs",
     },
     {
       name: "Contact Us",

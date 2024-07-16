@@ -51,11 +51,11 @@ const Product = (props) => {
             <div className="flex flex-col items-center gap-2 p-4 relative border shadow-lg w-full h-full">
                 {/* <!-- image & product title --> */}
                 <Link to={`/product/${_id}/`} className="flex flex-col items-center text-center group w-full">
-                    <div className="w-full max-h-96 h-full bg-[#f4f4f4]">
+                    <div className="w-full h-72 bg-[#f4f4f4]">
                         <LazyLoadImage 
                             src={images[0].url}
                             alt={name}
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-cover"
                         />
                     </div>
                     <h2 className="text-xl mt-4 font-semibold group-hover:text-primary-green">{name.length > 50 ? `${name.substring(0, 50)}...` : name}</h2>

@@ -62,6 +62,7 @@ import UpdateFaq from './components/Admin/Faqs/UpdateFaq';
 import BlogTable from './components/Admin/Blogs/BlogTable';
 import NewBlog from './components/Admin/Blogs/NewBlog';
 import UpdateBlog from './components/Admin/Blogs/UpdateBlog';
+import Blogs from './components/Blog/Blogs';
 
 
 function App() {
@@ -131,6 +132,7 @@ function App() {
         <Route path="/terms-and-conditions" element={<TermsOfUse />} />
         <Route path='/cancellation-return' element={<CancellationReturn />} />
         <Route path='/shipping-policy' element={<ShippingPolicy />} />
+        <Route path='/blogs' element={<Blogs />} />
 
         {/* order process */}
         <Route path="/userdetails" element={

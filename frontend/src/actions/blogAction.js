@@ -1,12 +1,16 @@
-import { ADMIN_BLOGS_FAIL, ADMIN_BLOGS_REQUEST, ADMIN_BLOGS_SUCCESS, ALL_BLOGS_FAIL, ALL_BLOGS_REQUEST, ALL_BLOGS_SUCCESS, BLOG_DETAILS_FAIL, BLOG_DETAILS_REQUEST, BLOG_DETAILS_SUCCESS, CLEAR_ERRORS, DELETE_BLOG_FAIL, DELETE_BLOG_REQUEST, DELETE_BLOG_SUCCESS, NEW_BLOG_FAIL, NEW_BLOG_REQUEST, NEW_BLOG_SUCCESS, UPDATE_BLOG_FAIL, UPDATE_BLOG_REQUEST, UPDATE_BLOG_SUCCESS } from "../constants/blogConstants";
+import { ADMIN_BLOGS_FAIL, ADMIN_BLOGS_REQUEST, ADMIN_BLOGS_SUCCESS, ALL_BLOGS_FAIL, ALL_BLOGS_REQUEST, ALL_BLOGS_SUCCESS, BLOG_DETAILS_FAIL, BLOG_DETAILS_REQUEST, BLOG_DETAILS_SUCCESS, CLEAR_ERRORS, DELETE_BLOG_FAIL, DELETE_BLOG_REQUEST, DELETE_BLOG_SUCCESS, LATEST_BLOG_FAIL, LATEST_BLOG_REQUEST, LATEST_BLOG_SUCCESS, NEW_BLOG_FAIL, NEW_BLOG_REQUEST, NEW_BLOG_SUCCESS, UPDATE_BLOG_FAIL, UPDATE_BLOG_REQUEST, UPDATE_BLOG_SUCCESS } from "../constants/blogConstants";
 import axios from "axios";
 
 // Get All Blogs
-export const getBlogs = (currentPage = 1) => async (dispatch) => {
+export const getBlogs = (currentPage = 1,category) => async (dispatch) => {
     try {
         dispatch({ type: ALL_BLOGS_REQUEST });
 
         let url = `/api/v1/blogs?page=${currentPage}`;
+
+        if (category) {
+            url = `/api/v1/blogs?category=${category}&page=${currentPage}`;
+        }
 
         const { data } = await axios.get(url);
 
@@ -57,6 +61,25 @@ export const getAdminBlogs = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ADMIN_BLOGS_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+// Get Latest Blog
+export const getLatestBlogs = () => async (dispatch) => {
+    try {
+        dispatch({ type: LATEST_BLOG_REQUEST });
+
+        const { data } = await axios.get(`/api/v1/blog/latest`);
+
+        dispatch({
+            type: LATEST_BLOG_SUCCESS,
+            payload: data.blogs,
+        });
+    } catch (error) {
+        dispatch({
+            type: LATEST_BLOG_FAIL,
             payload: error.response.data.message,
         });
     }
