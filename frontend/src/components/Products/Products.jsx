@@ -14,7 +14,6 @@ import Product from './Product';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import StarIcon from '@mui/icons-material/Star';
-// import { categories } from '../../utils/constants';
 import MetaData from '../Layouts/MetaData';
 import { useLocation } from 'react-router-dom';
 import noResult from '../../assets/images/no-search-results.webp';

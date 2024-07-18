@@ -34,7 +34,7 @@ exports.getAllBlogs = asyncErrorHandler(async (req, res, next) => {
 // Get Blog Details
 exports.getBlogDetails = asyncErrorHandler(async (req, res, next) => {
 
-    const blog = await Blog.findById(req.params.id);
+    const blog = await Blog.findById(req.params.id).populate('user');
 
     if (!blog) {
         return next(new ErrorHandler("Blog Not Found", 404));

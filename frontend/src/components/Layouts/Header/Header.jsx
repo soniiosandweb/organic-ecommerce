@@ -450,7 +450,7 @@ const Header = () => {
                           <Link to={`/product/${product._id}/`} className="flex flex-row items-center text-center group w-full gap-4">
                             <div className="w-20 sm:w-1/6 h-full bg-[#f4f4f4]">
                                 <LazyLoadImage 
-                                  className="w-full h-full object-contain" src={product.images[0].url} alt={product.name}
+                                  className="w-full h-full object-cover" src={product.images[0].url} alt={product.name}
                                 />
                             </div>
                             <div className='w-full sm:w-5/6 flex flex-col gap-2 items-start'>

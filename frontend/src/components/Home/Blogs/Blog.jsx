@@ -1,7 +1,4 @@
 import { Link } from "react-router-dom"
-import banner1 from '../../../assets/images/Categories/banner-1.webp';
-import banner2 from '../../../assets/images/Categories/banner-2.webp';
-import banner3 from '../../../assets/images/Categories/banner-3.webp';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import './style.css';
 import { useDispatch, useSelector } from "react-redux";
@@ -36,7 +33,7 @@ const Blog = () => {
                     {!loading && latestBlogs && (
                         latestBlogs.map((blog, index) => (
                             <div className="gap-2 p-4 relative w-full h-full border shadow-lg flex flex-col blog-home" key={index}>
-                                <Link to={`/blogs`} className="flex flex-col items-center text-center group w-full">
+                                <Link to={`/blog/${blog._id}/`} className="flex flex-col items-center text-center group w-full">
                                     <div className="w-full h-48 bg-white overflow-hidden">
                                         <LazyLoadImage 
                                             src={blog.image.url}
@@ -47,7 +44,7 @@ const Blog = () => {
                                 </Link>
                                 <div className="flex flex-col gap-2 mt-4 items-left">
                                     <p className="text-sm text-primary-green font-medium items-left">{formatDate(blog.createdAt)}</p>
-                                    <Link to={`/blogs`} className="flex flex-col items-left text-left group w-full">
+                                    <Link to={`/blog/${blog._id}/`} className="flex flex-col items-left text-left group w-full">
                                         <h2 className="text-xl font-medium blog-title">{blog.name.length > 50 ? `${blog.name.substring(0, 50)}...` : blog.name}</h2>
                                     </Link>
                                     <p className="text-sm">{blog.except}</p>

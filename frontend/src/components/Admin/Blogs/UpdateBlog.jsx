@@ -180,8 +180,8 @@ const UpdateBlog = () => {
                     >
                         <MenuItem value="">Select Category</MenuItem>
                         {categories && categories.map((el, i) => (
-                            <MenuItem value={el} key={i}>
-                                {el}
+                            <MenuItem value={el.id} key={i}>
+                                {el.name}
                             </MenuItem>
                         ))}
                     </TextField>

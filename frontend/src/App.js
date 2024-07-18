@@ -63,6 +63,7 @@ import BlogTable from './components/Admin/Blogs/BlogTable';
 import NewBlog from './components/Admin/Blogs/NewBlog';
 import UpdateBlog from './components/Admin/Blogs/UpdateBlog';
 import Blogs from './components/Blog/Blogs';
+import BlogDetails from './components/Blog/BlogDetails';
 
 
 function App() {
@@ -133,6 +134,8 @@ function App() {
         <Route path='/cancellation-return' element={<CancellationReturn />} />
         <Route path='/shipping-policy' element={<ShippingPolicy />} />
         <Route path='/blogs' element={<Blogs />} />
+        <Route path="/blogs/:keyword" element={<Blogs />} />
+        <Route path='/blog/:id/' element={<BlogDetails />} />
 
         {/* order process */}
         <Route path="/userdetails" element={

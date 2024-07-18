@@ -1,7 +1,7 @@
 import { useSnackbar } from "notistack";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { clearErrors, getBlogs } from "../../actions/blogAction";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { clearErrors, getBlogs, getLatestBlogs } from "../../actions/blogAction";
 import {categories} from '../../utils/constants';
 import Blog from "./Blog";
 import { FormControl, FormControlLabel, Pagination, Radio, RadioGroup } from "@mui/material";
@@ -12,22 +12,27 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import MetaData from "../Layouts/MetaData";
 import { useEffect, useState } from "react";
+import { formatDate } from "../../utils/functions";
 
 const Blogs = () => {
 
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
     const params = useParams();
+    const location = useLocation();
 
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState(location.search ? location.search.split("=")[1] : "");
 
     // pagination
     const [currentPage, setCurrentPage] = useState(1);
 
     // filter toggles
     const [categoryToggle, setCategoryToggle] = useState(true);
+    const [postToggle, setPostToggle] = useState(true);
 
     const { blogs, loading, error, resultPerPage, filteredBlogsCount } = useSelector((state) => state.blogs);
+
+    const {latestBlogs, loading:latestLoading} = useSelector((state) => state.latestBlog);
 
     const keyword = params.keyword;
 
@@ -41,6 +46,8 @@ const Blogs = () => {
             dispatch(clearErrors());
         }
         dispatch(getBlogs(keyword, category, currentPage));
+
+        dispatch(getLatestBlogs());
         
     }, [dispatch, keyword, category, currentPage, error, enqueueSnackbar]);
 
@@ -54,7 +61,7 @@ const Blogs = () => {
                     <div className="flex flex-col lg:flex-row gap-5">
 
                         {/* <!-- sidebar column  --> */}
-                        <div className="flex flex-col w-full lg:w-1/4 px-1">
+                        <div className="flex flex-col w-full lg:w-1/4 px-1 gap-6">
 
                             {/* <!-- nav tiles --> */}
                             <div className="flex flex-col bg-white border border-gray-300">
@@ -88,7 +95,7 @@ const Blogs = () => {
                                                         value={category}
                                                     >
                                                         {categories && categories.map((el, i) => (
-                                                            <FormControlLabel  key={i} value={el} control={<Radio size="small" />} label={<span className="text-sm">{el}</span>} />
+                                                            <FormControlLabel  key={i} value={el.id} control={<Radio size="small" />} label={<span className="text-sm">{el.name}</span>} />
                                                         ))}
                                                     </RadioGroup>
                                                 </FormControl>
@@ -103,10 +110,48 @@ const Blogs = () => {
                             </div>
                             {/* <!-- nav tiles --> */}
 
+                            {/* pupular posts */}
+                            <div className="flex flex-col border border-gray-300 px-4">
+
+                                <div className="flex justify-between cursor-pointer py-2 pb-4 items-center" onClick={() => setPostToggle(!postToggle)}>
+                                    <p className="text-lg font-semibold">Popular Post</p>
+                                    {postToggle ?
+                                        <ExpandLessIcon sx={{ fontSize: "20px" }} /> :
+                                        <ExpandMoreIcon sx={{ fontSize: "20px" }} />
+                                    }
+                                </div>
+
+                                {postToggle && (
+                                    <div className="flex flex-col gap-6 pb-3">
+                                        {!latestLoading && latestBlogs && (
+                                            latestBlogs.map((blog, index) => (
+                                                <div className="flex flex-row gap-4" key={index}>
+                                                <Link to={`/blog/${blog._id}/`} className="flex flex-row items-start text-center group w-full gap-4">
+                                                        <div className="w-16 h-12 bg-[#f4f4f4]">
+                                                            <LazyLoadImage 
+                                                            className="w-full h-full object-cover" src={blog.image.url} alt={blog.name}
+                                                            />
+                                                        </div>
+                                                        <div className='w-full sm:w-5/6 flex flex-col gap-1 items-start'>
+                                                            <h2 className="text-sm sm:text-md font-semibold text-left group-hover:text-primary-green">{blog.name.length > 50 ? `${blog.name.substring(0, 50)}...` : blog.name}</h2>
+
+                                                            <p className="text-sm text-gray-500 items-left">{formatDate(blog.createdAt)}</p>
+                                                        </div>
+                                                    
+                                                    </Link>
+                                                </div>
+                                            ))
+                                        )}
+                                    </div>
+                                )}
+
+                            </div>
+                            {/* popular posts */}
+
+
                         </div>
                         {/* <!-- sidebar column  --> */}
-
-                        {/* <!-- search column --> */}
+                       
                         <div className="flex-1">
 
                             {!loading && blogs?.length === 0 && (
@@ -140,7 +185,7 @@ const Blogs = () => {
                                 </div>
                             )}
                         </div>
-                        {/* <!-- search column --> */}
+                     
                     </div >
                     {/* <!-- row --> */}
                 </div>
