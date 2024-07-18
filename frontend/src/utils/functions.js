@@ -1,3 +1,5 @@
+import { categories } from "./constants";
+
 export const getDiscount = (price, cuttedPrice) => {
     return (((cuttedPrice - price) / cuttedPrice) * 100).toFixed();
 }
@@ -19,4 +21,9 @@ export const getRandomProducts = (prodsArray, n) => {
 export const getRelatedProducts = (prodsArray, n, id) => {
     prodsArray = prodsArray.filter((product, i) => product._id !== id)
     return prodsArray.sort(() => 0.5 - Math.random()).slice(0, n)
+}
+
+export const getCategory = (id) => {
+    const catValue = categories.filter(cat => cat.id === id);
+    return catValue[0].name;
 }

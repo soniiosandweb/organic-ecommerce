@@ -9,6 +9,7 @@ import BackdropLoader from '../../Layouts/BackdropLoader';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { clearErrors, deleteBlog, getAdminBlogs } from '../../../actions/blogAction';
 import { DELETE_BLOG_RESET } from '../../../constants/blogConstants';
+import { getCategory } from '../../../utils/functions';
 
 const BlogTable = () => {
 
@@ -79,7 +80,7 @@ const BlogTable = () => {
             flex: 0.5,
             renderCell: (params) => {
                 return (
-                    <span>{params.row.category !== undefined ? params.row.category : null}</span>
+                    <span>{params.row.category !== undefined ? getCategory(params.row.category)  : null}</span>
                 );
             },
         },

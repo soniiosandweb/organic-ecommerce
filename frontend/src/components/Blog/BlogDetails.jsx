@@ -7,7 +7,7 @@ import Loader from "../Layouts/Loader";
 import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
-import { formatDate } from "../../utils/functions";
+import { formatDate, getCategory } from "../../utils/functions";
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -156,7 +156,7 @@ const BlogDetails = () => {
 
                                     <ul className="flex flex-row gap-2">
                                         <li>
-                                            <span className="text-black text-sm font-medium border border-gray-300 rounded-full px-6 py-2">{blog.category}</span>
+                                            <span className="text-black text-sm font-medium border border-gray-300 rounded-full px-6 py-2">{blog.category && (getCategory(blog.category))}</span>
                                         </li>
                                     </ul>
                                 </div>
