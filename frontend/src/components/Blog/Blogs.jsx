@@ -47,9 +47,11 @@ const Blogs = () => {
         }
         dispatch(getBlogs(keyword, category, currentPage));
 
-        dispatch(getLatestBlogs());
-        
-    }, [dispatch, keyword, category, currentPage, error, enqueueSnackbar]);
+        if(latestLoading === undefined){ 
+            dispatch(getLatestBlogs());
+        }
+
+    }, [dispatch, keyword, category, latestLoading, currentPage, error, enqueueSnackbar]);
 
     return (
         <>
