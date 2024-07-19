@@ -61,7 +61,7 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
                 </Link>
             } */}
 
-            <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-50 rounded-t" to="/account">
+            <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-200 rounded-t" to="/account">
                 <span className="text-primary-green"><AccountCircleIcon sx={{ fontSize: "18px" }} /></span>
                 My Profile
             </Link>
@@ -72,7 +72,7 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
                 return (
                     <div key={i}>
                         {title === "Wishlist" ? (
-                            <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-50" to={redirect} key={i}>
+                            <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-200" to={redirect} key={i}>
                                 <span className="text-primary-green">{icon}</span>
                                 {title}
                                 <span className="ml-auto mr-3 bg-red-600 w-6 h-6 text-white text-center rounded-full">
@@ -80,7 +80,7 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
                                 </span>
                             </Link>
                         ) : (
-                            <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-50" to={redirect} key={i}>
+                            <Link onClick={handleClose} className="px-3 py-2.5 border-b flex gap-3 items-center hover:bg-gray-200" to={redirect} key={i}>
                                 <span className="text-primary-green">{icon}</span>
                                 {title}
                             </Link>
@@ -89,7 +89,7 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
                 )
             })}
 
-            <div className="px-3 py-2.5 flex gap-3 items-center hover:bg-gray-50 rounded-b cursor-pointer" onClick={handleLogout} >
+            <div className="px-3 py-2.5 flex gap-3 items-center hover:bg-gray-200 rounded-b cursor-pointer" onClick={handleLogout} >
                 <span className="text-primary-green"><PowerSettingsNewIcon sx={{ fontSize: "18px" }} /></span>
                 Logout
             </div>

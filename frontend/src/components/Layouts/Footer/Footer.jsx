@@ -26,7 +26,7 @@ const footerLinks = [
       },
       {
         name: "Blogs",
-        redirect: "/",
+        redirect: "/blogs",
         target: "",
       },
       {

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, getBlogDetails, getLatestBlogs } from "../../actions/blogAction";
+import { clearErrors, getBlogDetails, getLatestBlogs, getRelatedBlogs } from "../../actions/blogAction";
 import { useSnackbar } from "notistack";
 import { Link, useParams } from "react-router-dom";
 import MetaData from "../Layouts/MetaData";
@@ -21,6 +21,7 @@ const BlogDetails = () => {
 
     const { blog, loading, error } = useSelector((state) => state.blogDetails);
     const {latestBlogs, loading:latestLoading} = useSelector((state) => state.latestBlog);
+    const {relatedBlogs, loading:relatedLoading} = useSelector((state) => state.relatedBlog);
 
     const [postToggle, setPostToggle] = useState(true);
     const [categoryToggle, setCategoryToggle] = useState(true);
@@ -35,6 +36,9 @@ const BlogDetails = () => {
       
         dispatch(getBlogDetails(blogId));
         dispatch(getLatestBlogs());
+        if(blogId){
+            dispatch(getRelatedBlogs(blogId));
+        }
     }, [dispatch, blogId, error, enqueueSnackbar]);
 
     return (
@@ -42,7 +46,7 @@ const BlogDetails = () => {
             <>
                 <MetaData title={`${blog.name} | Fresh Organic Grocery `} />
 
-                <section className={`bg-gray-100 w-full overflow-hidden blog-details-banner relative min-h-96  z-10`}>
+                <section className={`bg-gray-100 w-full overflow-hidden blog-details-banner relative min-h-96 z-10`}>
                     <div className="py-16 sm:w-11/12 m-auto px-4 w-full flex flex-col items-center relative justify-center h-full">
                         <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center w-full lg:w-9/12`}>{blog.name}</h1>
                         <p className={`flex gap-5 text-medium text-white items-center py-4`}>
@@ -178,6 +182,41 @@ const BlogDetails = () => {
                             </div>
                         </div>
                         
+                        {/* Related Blog */}
+                        <div className="flex flex-col gap-3 mt-10">
+                            <div className="flex pt-10 justify-start items-center">
+                                <h2 className="text-xl sm:text-3xl font-semibold">Keep reading...</h2>
+                            </div>
+
+                            <div className="py-10 gap-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 w-full place-content-start">
+
+                                {!relatedLoading && relatedBlogs.length > 0 ? (
+                                    relatedBlogs.map((blog, index) => (
+                                        <div className="gap-2 p-4 relative w-full h-full border shadow-lg flex flex-col blog-home" key={index}>
+                                            <Link to={`/blog/${blog._id}/`} className="flex flex-col items-center text-center group w-full">
+                                                <div className="w-full h-48 bg-white overflow-hidden">
+                                                    <LazyLoadImage 
+                                                        src={blog.image.url}
+                                                        alt="blog1"
+                                                        className="w-full h-full object-cover blog-img"
+                                                    />
+                                                </div>
+                                            </Link>
+                                            <div className="flex flex-col gap-2 mt-4 items-left">
+                                                <p className="text-sm text-primary-green font-medium items-left">{formatDate(blog.createdAt)}</p>
+                                                <Link to={`/blog/${blog._id}/`} className="flex flex-col items-left text-left group w-full">
+                                                    <h2 className="text-xl font-medium blog-title">{blog.name.length > 50 ? `${blog.name.substring(0, 50)}...` : blog.name}</h2>
+                                                </Link>
+                                                <p className="text-sm">{blog.except}</p>
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : 
+                                    <p className='text-md'>No Blog Found</p>
+                                }
+
+                            </div>
+                        </div>
                     </div>
                 </main>
 

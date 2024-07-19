@@ -184,13 +184,13 @@ const Register = () => {
                                 </div>
                                 {/* <!-- input container column --> */}
 
-                                <div className="flex flex-col w-full justify-between sm:flex-row gap-3 items-center">
+                                <div className="flex flex-col w-full justify-start sm:flex-row gap-3 items-center">
                                     <Avatar
                                         alt="Avatar Preview"
                                         src={avatarPreview}
                                         sx={{ width: 56, height: 56 }}
                                     />
-                                    <label className="rounded-sm font-medium bg-gray-400 text-center cursor-pointer text-white w-full py-2 px-2.5 shadow hover:shadow-lg">
+                                    <label className="rounded-sm font-medium bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow hover:bg-gray-700">
                                         <input
                                             type="file"
                                             name="avatar"

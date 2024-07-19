@@ -11,7 +11,7 @@ import { contactReducer } from './reducers/contactReducer';
 import { allCategoriesReducer, categoryDetailsReducer, categoryReducer, limitCategoriesReducer, newCategoryReducer } from './reducers/categoryReducer';
 import { allAdminCouponsReducer, allCouponsReducer, couponDetailsReducer, couponReducer, newCouponReducer, setCouponCode } from './reducers/couponReducer';
 import { allFaqReducer, faqDetailsReducer, faqReducer, newFaqReducer } from './reducers/faqReducer';
-import { blogDetailsReducer, blogReducer, blogsReducer, latestBlogReducer, newBlogReducer } from './reducers/blogReducer';
+import { blogDetailsReducer, blogReducer, blogsReducer, latestBlogReducer, newBlogReducer, relatedBlogReducer } from './reducers/blogReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -61,6 +61,7 @@ const reducer = combineReducers({
     blog: blogReducer,
     featured: featuredProductsReducer,
     latestBlog: latestBlogReducer,
+    relatedBlog: relatedBlogReducer,
 });
 
 let initialState = {

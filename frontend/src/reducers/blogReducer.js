@@ -1,4 +1,4 @@
-import { ADMIN_BLOGS_FAIL, ADMIN_BLOGS_REQUEST, ADMIN_BLOGS_SUCCESS, ALL_BLOGS_FAIL, ALL_BLOGS_REQUEST, ALL_BLOGS_SUCCESS, BLOG_DETAILS_FAIL, BLOG_DETAILS_REQUEST, BLOG_DETAILS_SUCCESS, CLEAR_ERRORS, DELETE_BLOG_FAIL, DELETE_BLOG_REQUEST, DELETE_BLOG_RESET, DELETE_BLOG_SUCCESS, LATEST_BLOG_FAIL, LATEST_BLOG_REQUEST, LATEST_BLOG_SUCCESS, NEW_BLOG_FAIL, NEW_BLOG_REQUEST, NEW_BLOG_RESET, NEW_BLOG_SUCCESS, REMOVE_BLOG_DETAILS, UPDATE_BLOG_FAIL, UPDATE_BLOG_REQUEST, UPDATE_BLOG_RESET, UPDATE_BLOG_SUCCESS } from "../constants/blogConstants";
+import { ADMIN_BLOGS_FAIL, ADMIN_BLOGS_REQUEST, ADMIN_BLOGS_SUCCESS, ALL_BLOGS_FAIL, ALL_BLOGS_REQUEST, ALL_BLOGS_SUCCESS, BLOG_DETAILS_FAIL, BLOG_DETAILS_REQUEST, BLOG_DETAILS_SUCCESS, CLEAR_ERRORS, DELETE_BLOG_FAIL, DELETE_BLOG_REQUEST, DELETE_BLOG_RESET, DELETE_BLOG_SUCCESS, LATEST_BLOG_FAIL, LATEST_BLOG_REQUEST, LATEST_BLOG_SUCCESS, NEW_BLOG_FAIL, NEW_BLOG_REQUEST, NEW_BLOG_RESET, NEW_BLOG_SUCCESS, RELATED_BLOG_FAIL, RELATED_BLOG_REQUEST, RELATED_BLOG_SUCCESS, REMOVE_BLOG_DETAILS, UPDATE_BLOG_FAIL, UPDATE_BLOG_REQUEST, UPDATE_BLOG_RESET, UPDATE_BLOG_SUCCESS } from "../constants/blogConstants";
 
 export const blogsReducer = (state = { blogs: [] }, { type, payload }) => {
 
@@ -169,6 +169,36 @@ export const latestBlogReducer = (state = { latestBlogs: [] }, { type, payload }
                 latestBlogs: payload,
             };
         case LATEST_BLOG_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: payload,
+            };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            };
+        default:
+            return state;
+    }
+}
+
+// Related Blogs
+export const relatedBlogReducer = (state = { relatedBlogs: [] }, { type, payload }) => {
+
+    switch (type) {
+        case RELATED_BLOG_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            };
+        case RELATED_BLOG_SUCCESS:
+            return {
+                loading: false,
+                relatedBlogs: payload,
+            };
+        case RELATED_BLOG_FAIL:
             return {
                 ...state,
                 loading: false,

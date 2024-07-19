@@ -65,17 +65,15 @@ const Categories = () => {
 
             <Slider {...settings} className="flex justify-center w-full categories-slider testimonial-slider px-5 sm:px-10">
                 {categories && categories.map((item, i) => (
-                    <div className='block w-full flex-1'>
-
-                    
-                    <Link to={`/products?category=${item._id}`} className="flex flex-1 flex-col gap-1 items-center p-2 group text-center product-category-home" key={i}>
-                        <div className="h-28 w-28 md:h-32 md:w-32 xl:h-40 xl:w-40 m-auto">
-                            <LazyLoadImage 
-                                className="h-full w-full rounded-full object-cover border-4 border-gray" src={item.image.url} alt={item.name}
-                            />
-                        </div>
-                        <p className="text-xl text-black mt-5 font-medium group-hover:text-primary-green text-center">{item.name}</p>
-                    </Link>
+                    <div className='block w-full flex-1' key={i}>
+                        <Link to={`/products?category=${item._id}`} className="flex flex-1 flex-col gap-1 items-center p-2 group text-center product-category-home" key={i}>
+                            <div className="h-28 w-28 md:h-32 md:w-32 xl:h-40 xl:w-40 m-auto">
+                                <LazyLoadImage 
+                                    className="h-full w-full rounded-full object-cover border-4 border-gray" src={item.image.url} alt={item.name}
+                                />
+                            </div>
+                            <p className="text-xl text-black mt-5 font-medium group-hover:text-primary-green text-center">{item.name}</p>
+                        </Link>
                     </div>
                 ))}
             </Slider>

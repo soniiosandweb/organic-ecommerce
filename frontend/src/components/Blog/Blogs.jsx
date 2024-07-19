@@ -128,7 +128,7 @@ const Blogs = () => {
                                         {!latestLoading && latestBlogs && (
                                             latestBlogs.map((blog, index) => (
                                                 <div className="flex flex-row gap-4" key={index}>
-                                                <Link to={`/blog/${blog._id}/`} className="flex flex-row items-start text-center group w-full gap-4">
+                                                    <Link to={`/blog/${blog._id}/`} className="flex flex-row items-start text-center group w-full gap-4">
                                                         <div className="w-16 h-12 bg-[#f4f4f4]">
                                                             <LazyLoadImage 
                                                             className="w-full h-full object-cover" src={blog.image.url} alt={blog.name}

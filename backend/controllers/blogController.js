@@ -60,6 +60,26 @@ exports.getLatestBlogs = asyncErrorHandler(async (req, res, next) => {
     });
 });
 
+// Get Related Blogs
+exports.getRelatedBlogs = asyncErrorHandler(async (req, res, next) => {
+
+    const blog = await Blog.findById(req.params.id);
+
+    if (!blog) {
+        return next(new ErrorHandler("Blog Not Found", 404));
+    }
+
+    const blogs = await Blog.find({'_id': {$ne: req.params.id}, 'category': blog.category}).limit(4);
+
+    if (!blogs) {
+        return next(new ErrorHandler("Blog Not Found", 404));
+    }
+
+    res.status(200).json({
+        success: true,
+        blogs,
+    });
+});
 
 // Get All Blogs ---ADMIN
 exports.getAdminBlogs = asyncErrorHandler(async (req, res, next) => {

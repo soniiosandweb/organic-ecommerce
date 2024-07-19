@@ -5,6 +5,7 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import GroupIcon from '@mui/icons-material/Group';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LogoutIcon from '@mui/icons-material/Logout';
 import CloseIcon from '@mui/icons-material/Close';
 import Avatar from '@mui/material/Avatar';
@@ -17,58 +18,6 @@ import { useSnackbar } from 'notistack';
 import { logoutUser } from '../../../actions/userAction';
 import logo from '../../../assets/images/logo-white.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-
-const navMenu = [
-    {
-        icon: <EqualizerIcon />,
-        label: "Dashboard",
-        ref: "/admin/dashboard",
-    },
-    {
-        icon: <ShoppingBagIcon />,
-        label: "Orders",
-        ref: "/admin/orders",
-    },
-    {
-        icon: <InventoryIcon />,
-        label: "Products",
-        ref: "/admin/products",
-    },
-    {
-        icon: <CategoryIcon />,
-        label: "Categories",
-        ref: "/admin/categories",
-    },
-    {
-        icon: <GroupIcon />,
-        label: "Users",
-        ref: "/admin/users",
-    },
-    {
-        icon: <ReviewsIcon />,
-        label: "Reviews",
-        ref: "/admin/reviews",
-    },
-    {
-        icon: <DiscountIcon />,
-        label: "Coupons",
-        ref: "/admin/coupons",
-    },
-    {
-        icon: <QueueIcon />,
-        label: "FAQs",
-        ref: "/admin/faqs",
-    },
-    {
-        icon: <ArticleOutlinedIcon />,
-        label: "Blogs",
-        ref: "/admin/blogs",
-    },
-    {
-        icon: <LogoutIcon />,
-        label: "Logout",
-    },
-];
 
 const Sidebar = ({ activeTab, setToggleSidebar }) => {
 
@@ -94,8 +43,66 @@ const Sidebar = ({ activeTab, setToggleSidebar }) => {
         }
     }
 
+    
+    const navMenu = [
+        {
+            icon: <EqualizerIcon />,
+            label: "Dashboard",
+            ref: "/admin/dashboard",
+        },
+        {
+            icon: <ShoppingBagIcon />,
+            label: "Orders",
+            ref: "/admin/orders",
+        },
+        {
+            icon: <InventoryIcon />,
+            label: "Products",
+            ref: "/admin/products",
+        },
+        {
+            icon: <CategoryIcon />,
+            label: "Categories",
+            ref: "/admin/categories",
+        },
+        {
+            icon: <GroupIcon />,
+            label: "Users",
+            ref: "/admin/users",
+        },
+        {
+            icon: <ReviewsIcon />,
+            label: "Reviews",
+            ref: "/admin/reviews",
+        },
+        {
+            icon: <DiscountIcon />,
+            label: "Coupons",
+            ref: "/admin/coupons",
+        },
+        {
+            icon: <QueueIcon />,
+            label: "FAQs",
+            ref: "/admin/faqs",
+        },
+        {
+            icon: <ArticleOutlinedIcon />,
+            label: "Blogs",
+            ref: "/admin/blogs",
+        },
+        {
+            icon: <AccountBoxIcon />,
+            label: "Profile",
+            ref: "/admin/profile/"+ user._id,
+        },
+        {
+            icon: <LogoutIcon />,
+            label: "Logout",
+        },
+    ];
+
     return (
-        <aside className="sidebar z-10 lg:z-0 block min-h-screen fixed left-0 pb-14 max-h-screen w-full sm:w-3/4 lg:w-1/4 xl:w-1/5 bg-gray-800 text-white overflow-x-hidden border-r">
+        <aside className="sidebar z-10 lg:z-0 block min-h-screen fixed left-0 pb-14 max-h-screen w-full lg:w-1/4 xl:w-1/5 bg-gray-800 text-white overflow-x-hidden border-r">
 
             <div className="flex items-center p-2 my-4 mx-3.5">
                 <Link className="h-20 flex w-max mx-auto" to="/admin">

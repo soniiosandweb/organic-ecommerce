@@ -218,6 +218,10 @@ exports.updatePassword = asyncErrorHandler(async (req, res, next) => {
         return next(new ErrorHandler("Old Password is Invalid", 400));
     }
 
+    if(req.body.oldPassword === req.body.newPassword) {
+        return next(new ErrorHandler("New password is same as Old Password.", 400));
+    }
+
     user.password = req.body.newPassword;
     await user.save();
     sendToken(user, 201, res);
@@ -308,6 +312,25 @@ exports.updateUserRole = asyncErrorHandler(async (req, res, next) => {
         email: req.body.email,
         gender: req.body.gender,
         role: req.body.role,
+    }
+
+    if(req.body.avatar !== "") {
+        const user = await User.findById(req.user.id);
+
+        const imageId = user.avatar.public_id;
+
+        await cloudinary.v2.uploader.destroy(imageId);
+
+        const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: "avatars",
+            width: 150,
+            crop: "scale",
+        });
+
+        newUserData.avatar = {
+            public_id: myCloud.public_id,
+            url: myCloud.secure_url,
+        }
     }
 
     await User.findByIdAndUpdate(req.params.id, newUserData, {

@@ -6,7 +6,7 @@ import logo from '../../../assets/images/logo.png';
 import PrimaryDropDownMenu from './PrimaryDropDownMenu';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Grow from "@mui/material/Grow";
@@ -31,6 +31,8 @@ const Header = () => {
 
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { categories, loading: categoriesLoading } = useSelector((state) => state.allCategories);
 
   const { featuredProducts, loading: featuredLoading } = useSelector((state) => state.featured);
@@ -53,6 +55,11 @@ const Header = () => {
   const handlePopupClose = () => {
     setDealsOpen(false);
   };
+
+  const handleDealsClick = (id) => {
+    setDealsOpen(false);
+    navigate('/product/'+id);
+  }
 
   const location = useLocation();
 
@@ -197,7 +204,7 @@ const Header = () => {
                     <p className='text-sm text-white text-center'><span className='font-semibold'>Welcome to Fresh Organic Grocery</span> new offers every single day!</p>
                   </div>
                   <div>
-                    <p className='text-sm text-white text-center'>Something you love is now on sale! <a href="/shop" className='font-semibold underline'>Buy Now!</a></p>
+                    <p className='text-sm text-white text-center'>Something you love is now on sale! <a href="/products" className='font-semibold underline'>Buy Now!</a></p>
                   </div>
                 </Slider>
               </div>
@@ -393,7 +400,7 @@ const Header = () => {
                             className="p-0 border border-gray-300 w-60"
                           >
                             {categories && categories.map((item, i) => (
-                              <a href={`/products?category=${item._id}`} key={i} onClick={handleCloseCat} className='px-3 py-2 border-b flex gap-3 items-center hover:bg-gray-50'>
+                              <a href={`/products?category=${item._id}`} key={i} onClick={handleCloseCat} className='px-3 py-2 border-b flex gap-3 items-center hover:bg-gray-200'>
                                 {item.icon && (
                                   <img src={item.icon.url} alt={item.name} className='w-6 h-6 object-contain'/>
                                 )}
@@ -447,7 +454,7 @@ const Header = () => {
                     {featuredLoading ? null : (
                       featuredProducts?.map((product, i) => (
                         <li key={i} className='border border-gray-300 p-2 rounded'>
-                          <Link to={`/product/${product._id}/`} className="flex flex-row items-center text-center group w-full gap-4">
+                          <div className="flex flex-row items-center text-center group w-full gap-4 cursor-pointer" onClick={()=> handleDealsClick(product._id)}>
                             <div className="w-20 sm:w-1/6 h-full bg-[#f4f4f4]">
                                 <LazyLoadImage 
                                   className="w-full h-full object-cover" src={product.images[0].url} alt={product.name}
@@ -468,7 +475,7 @@ const Header = () => {
                               </div>
                             </div>
                             
-                          </Link>
+                          </div>
                         </li>
                       ))
                                         

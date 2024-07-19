@@ -96,6 +96,13 @@ const NewProduct = () => {
             return;
         }
 
+        if(cuttedPrice !== 0){
+            if(cuttedPrice < price){
+                enqueueSnackbar("Product Price must be greater than selling Price.", { variant: "warning" });
+                return;
+            }
+        }
+
         const formData = new FormData();
 
         formData.set("name", name);

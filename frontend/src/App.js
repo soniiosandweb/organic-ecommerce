@@ -64,6 +64,7 @@ import NewBlog from './components/Admin/Blogs/NewBlog';
 import UpdateBlog from './components/Admin/Blogs/UpdateBlog';
 import Blogs from './components/Blog/Blogs';
 import BlogDetails from './components/Blog/BlogDetails';
+import AdminProfile from './components/Admin/AdminProfile';
 
 
 function App() {
@@ -139,9 +140,7 @@ function App() {
 
         {/* order process */}
         <Route path="/userdetails" element={
-
             <UserDetails />
-
         } ></Route>
 
         <Route path="/shipping" element={
@@ -396,6 +395,14 @@ function App() {
           <ProtectedRoute isAdmin={true}>
             <Dashboard activeTab={8}>
               <UpdateBlog />
+            </Dashboard>
+          </ProtectedRoute>
+        } ></Route>
+
+        <Route path="/admin/profile/:id" element={
+          <ProtectedRoute isAdmin={true}>
+            <Dashboard activeTab={9}>
+              <AdminProfile />
             </Dashboard>
           </ProtectedRoute>
         } ></Route>

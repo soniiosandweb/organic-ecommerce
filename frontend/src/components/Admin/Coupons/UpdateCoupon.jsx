@@ -133,7 +133,7 @@ const UpdateCoupon = () => {
                         name="discount"
                         InputProps={{
                             inputProps: {
-                                min: 0
+                                min: 1
                             }
                         }}
                         required

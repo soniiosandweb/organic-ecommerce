@@ -102,6 +102,7 @@ const MyOrders = () => {
                 order.name.toLowerCase().includes(search.toLowerCase()))
         }));
         setFilteredOrders(arr);
+        console.log(arr)
     }
 
     const clearFilters = () => {
@@ -188,19 +189,19 @@ const MyOrders = () => {
                     <div className="flex-1">
 
                         {loading ? <Loader /> : (
-                            <div className="flex flex-col gap-3 overflow-hidden">
+                            <div className="flex flex-col gap-3 overflow-hidden pb-3">
 
                                 {/* <!-- searchbar --> */}
-                                <form onSubmit={searchOrders} className="flex items-center justify-between w-full bg-white border border-gray-300 rounded hover:shadow flex-col sm:flex-row">
-                                    <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" name="search" placeholder="Search your orders here" className="w-full py-2 px-3 sm:px-5 text-md outline-none flex-1 sm:rounded-l" />
-                                    <button type="submit" className="w-full sm:w-max h-full text-md px-2 sm:px-4 py-2.5 text-white bg-primary-green hover:bg-blue-600 sm:rounded-r flex items-center gap-1">
+                                <form onSubmit={searchOrders} className="flex items-center justify-between w-full bg-white border-0 border-gray-300 flex-col sm:flex-row order-search">
+                                    <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" name="search" placeholder="Search your orders here" className="w-full text-md flex-1 outline-none border border-solid border-gray-300 placeholder-gray-500 px-4 sm:px-6 h-12 focus:border-primary-green" />
+                                    <button type="submit" className="h-12 px-4 border border-solid border-primary-green text-white bg-primary-green hover:bg-black hover:border-black flex items-center gap-1">
                                         <SearchIcon sx={{ fontSize: "22px" }} />
                                         Search Orders
                                     </button>
                                 </form>
                                 {/* <!-- searchbar --> */}
 
-                                {orders && filteredOrders.length === 0 && (
+                                {orders && filteredOrders.length === 0 ? (
                                     <div className="flex items-center flex-col gap-2 p-8 bg-white text-md">
                                         <LazyLoadImage 
                                             src={noResult} alt="Empty Orders"
@@ -208,9 +209,7 @@ const MyOrders = () => {
                                         <span className="text-lg font-medium">Sorry, no results found</span>
                                         <p>Edit search or clear all filters</p>
                                     </div>
-                                )}
-
-                                {orders && filteredOrders.map((order, index) => {
+                                ): filteredOrders.map((order, index) => {
 
                                     const { _id, orderStatus, orderItems, createdAt, deliveredAt, totalPrice, paymentInfo } = order;
 

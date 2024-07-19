@@ -1,4 +1,4 @@
-import { ADMIN_BLOGS_FAIL, ADMIN_BLOGS_REQUEST, ADMIN_BLOGS_SUCCESS, ALL_BLOGS_FAIL, ALL_BLOGS_REQUEST, ALL_BLOGS_SUCCESS, BLOG_DETAILS_FAIL, BLOG_DETAILS_REQUEST, BLOG_DETAILS_SUCCESS, CLEAR_ERRORS, DELETE_BLOG_FAIL, DELETE_BLOG_REQUEST, DELETE_BLOG_SUCCESS, LATEST_BLOG_FAIL, LATEST_BLOG_REQUEST, LATEST_BLOG_SUCCESS, NEW_BLOG_FAIL, NEW_BLOG_REQUEST, NEW_BLOG_SUCCESS, UPDATE_BLOG_FAIL, UPDATE_BLOG_REQUEST, UPDATE_BLOG_SUCCESS } from "../constants/blogConstants";
+import { ADMIN_BLOGS_FAIL, ADMIN_BLOGS_REQUEST, ADMIN_BLOGS_SUCCESS, ALL_BLOGS_FAIL, ALL_BLOGS_REQUEST, ALL_BLOGS_SUCCESS, BLOG_DETAILS_FAIL, BLOG_DETAILS_REQUEST, BLOG_DETAILS_SUCCESS, CLEAR_ERRORS, DELETE_BLOG_FAIL, DELETE_BLOG_REQUEST, DELETE_BLOG_SUCCESS, LATEST_BLOG_FAIL, LATEST_BLOG_REQUEST, LATEST_BLOG_SUCCESS, NEW_BLOG_FAIL, NEW_BLOG_REQUEST, NEW_BLOG_SUCCESS, RELATED_BLOG_FAIL, RELATED_BLOG_REQUEST, RELATED_BLOG_SUCCESS, UPDATE_BLOG_FAIL, UPDATE_BLOG_REQUEST, UPDATE_BLOG_SUCCESS } from "../constants/blogConstants";
 import axios from "axios";
 
 // Get All Blogs
@@ -80,6 +80,25 @@ export const getLatestBlogs = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: LATEST_BLOG_FAIL,
+            payload: error.response.data.message,
+        });
+    }
+};
+
+// Get Realted Blog
+export const getRelatedBlogs = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: RELATED_BLOG_REQUEST });
+
+        const { data } = await axios.get(`/api/v1/blog/related/${id}`);
+
+        dispatch({
+            type: RELATED_BLOG_SUCCESS,
+            payload: data.blogs,
+        });
+    } catch (error) {
+        dispatch({
+            type: RELATED_BLOG_FAIL,
             payload: error.response.data.message,
         });
     }

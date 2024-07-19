@@ -94,6 +94,17 @@ body {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+
+/* order search */
+.order-search button{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.order-search input {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
 /* Arrows position */
 .arrows-position-0 .slick-prev {
   left: 0;
@@ -231,4 +242,14 @@ body {
 }
 .blog-details-banner .blog-banner-img{
   z-index: -1;
+}
+@media (max-width: 1023px){
+  .blog-details-banner {
+    height: 450px;
+  }
+}
+@media (max-width: 639px){
+  .blog-details-banner {
+    height: 350px;
+  }
 }
