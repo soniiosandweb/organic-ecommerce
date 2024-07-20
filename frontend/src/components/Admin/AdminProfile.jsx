@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import MetaData from "../Layouts/MetaData"
-import { REMOVE_USER_DETAILS, UPDATE_USER_RESET } from "../../constants/userConstants";
-import { clearErrors, getUserDetails, loadUser, updateUser } from "../../actions/userAction";
+import { REMOVE_USER_DETAILS, UPDATE_PASSWORD_RESET, UPDATE_USER_RESET } from "../../constants/userConstants";
+import { clearErrors, getUserDetails, loadUser, updatePassword, updateUser } from "../../actions/userAction";
 import { useEffect, useState } from "react";
 import { useSnackbar } from "notistack";
 import { useNavigate, useParams } from "react-router-dom";
@@ -30,6 +30,11 @@ const AdminProfile = () => {
     const [role, setRole] = useState("");
 
     const [editProfile, setEditProfile] = useState(true);
+    const [editPassword, setEditPassword] = useState(true);
+
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleUpdateDataChange = (e) => {
         const reader = new FileReader();
@@ -57,6 +62,26 @@ const AdminProfile = () => {
         dispatch(updateUser(userId, formData));
     }
 
+    const updatePasswordSubmitHandler = (e) => {
+        e.preventDefault();
+
+        if (newPassword.length < 8) {
+            enqueueSnackbar("Password length must be atleast 8 characters", { variant: "warning" });
+            return;
+        }
+        if (newPassword !== confirmPassword) {
+            enqueueSnackbar("Password Doesn't Match", { variant: "error" });
+            return;
+        }
+
+        const formData = new FormData();
+        formData.set("oldPassword", oldPassword);
+        formData.set("newPassword", newPassword);
+        formData.set("confirmPassword", confirmPassword);
+
+        dispatch(updatePassword(formData));
+    }
+
     useEffect(() => {
         if (user && user._id !== userId) {
             dispatch(getUserDetails(userId));
@@ -76,6 +101,7 @@ const AdminProfile = () => {
             dispatch({ type: UPDATE_USER_RESET });
             dispatch(loadUser());
             dispatch({ type: REMOVE_USER_DETAILS });
+            dispatch({ type: UPDATE_PASSWORD_RESET });
             navigate("/admin");
         }
     }, [dispatch, userId, user, navigate, isUpdated, updateError, enqueueSnackbar]);
@@ -162,6 +188,63 @@ const AdminProfile = () => {
 
                         <div className="flex flex-col gap-2 sm:w-1/3">
                             <input form="userform" type="submit" className={`uppercase p-3 text-white font-medium rounded-sm shadow cursor-pointer ${editProfile ? "bg-gray-500 cursor-not-allowed" : "bg-primary-green hover:bg-black"}`} value="Update" name="updateProduct" disabled={editProfile}/>
+                        </div>
+                    </form>
+
+                    <form onSubmit={updatePasswordSubmitHandler} className="flex flex-col bg-white rounded-sm border border-gray-300 shadow gap-5 p-3 lg:p-5" id="passwordform">
+                        
+                        <h2 className="font-medium text-lg pb-4 border-b">Update Password <button type="button" className="text-md text-primary-green font-medium ml-8 cursor-pointer" onClick={() => setEditPassword(!editPassword)}>Edit</button></h2>
+
+                        <div className="flex flex-col gap-3 w-full lg:w-2/3">
+                            <TextField
+                                fullWidth
+                                label="Current Password"
+                                type="password"
+                                name="oldPassword"
+                                value={oldPassword}
+                                onChange={(e) => setOldPassword(e.target.value)}
+                                required
+                                InputProps={{
+                                    readOnly: editPassword,
+                                }}
+                                variant={editPassword ? "filled" : "outlined"}
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-3 w-full lg:w-2/3">
+                            <TextField
+                                fullWidth
+                                label="New Password"
+                                type="password"
+                                name="newPassword"
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                                required
+                                InputProps={{
+                                    readOnly: editPassword,
+                                }}
+                                variant={editPassword ? "filled" : "outlined"}
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-3 w-full lg:w-2/3">
+                            <TextField
+                                fullWidth
+                                label="Confirm New Password"
+                                type="password"
+                                name="confirmPassword"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
+                                InputProps={{
+                                    readOnly: editPassword,
+                                }}
+                                variant={editPassword ? "filled" : "outlined"}
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-2 sm:w-1/3">
+                            <input form="passwordform" type="submit" className={`uppercase p-3 text-white font-medium rounded-sm shadow cursor-pointer ${editPassword ? "bg-gray-500 cursor-not-allowed" : "bg-primary-green hover:bg-black"}`} value="Update Password" name="updatePassword" disabled={editPassword}/>
                         </div>
                     </form>
 

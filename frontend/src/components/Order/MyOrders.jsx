@@ -101,13 +101,16 @@ const MyOrders = () => {
             orderItems: el.orderItems.filter((order) =>
                 order.name.toLowerCase().includes(search.toLowerCase()))
         }));
-        setFilteredOrders(arr);
-        console.log(arr)
+        const arrNew =  arr.filter((order) => order.orderItems.length > 0 );
+
+        setFilteredOrders(arrNew);
     }
 
     const clearFilters = () => {
         setStatus("");
         setOrderTime(0);
+        setSearch("");
+        setFilteredOrders(orders);
     }
 
     return (
