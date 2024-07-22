@@ -63,9 +63,9 @@ const Sidebar = ({ activeTab }) => {
                     <p className="flex w-full justify-between font-medium text-black capitalize">Account settings</p>
                 </div>
                 <div className="flex flex-col pb-3 border-b text-md">
-                    <Link to="/account" className={`${activeTab === "profile" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-2 pl-14 text-sm`}>Profile Information</Link>
-                    <Link className={`${activeTab === "password" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-2 pl-14 text-sm`} to="/password/update">Change Password</Link>
-                    <Link className={`${activeTab === "address" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-2 pl-14 text-sm`} to="/address">Manage Addresses</Link>
+                    <Link to="/account" className={`${activeTab === "profile" ? "bg-gray-200 text-primary-green font-medium" : "hover:bg-gray-200 hover:text-primary-green"} p-2 pl-14 text-sm`}>Profile Information</Link>
+                    <Link className={`${activeTab === "password" ? "bg-gray-200 text-primary-green font-medium" : "hover:bg-gray-200 hover:text-primary-green"} p-2 pl-14 text-sm`} to="/password/update">Change Password</Link>
+                    <Link className={`${activeTab === "address" ? "bg-gray-200 text-primary-green font-medium" : "hover:bg-gray-200 hover:text-primary-green"} p-2 pl-14 text-sm`} to="/address">Manage Addresses</Link>
                 </div>
                 {/* <!-- account settings tab --> */}
 
@@ -75,8 +75,8 @@ const Sidebar = ({ activeTab }) => {
                     <p className="flex w-full justify-between font-medium capitalize text-black">My stuff</p>
                 </div>
                 <div className="flex flex-col pb-3 border-b text-md">
-                    <Link className={`${activeTab === "rating" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-2 pl-14 text-sm`} to="/rating">My Reviews & Ratings</Link>
-                    <Link to="/wishlist" className={`${activeTab === "wishlist" ? "bg-blue-50 text-primary-green font-medium" : "hover:bg-blue-50 hover:text-primary-green"} p-2 pl-14 text-sm`}>My Wishlist</Link>
+                    <Link className={`${activeTab === "rating" ? "bg-gray-200 text-primary-green font-medium" : "hover:bg-gray-200 hover:text-primary-green"} p-2 pl-14 text-sm`} to="/rating">My Reviews & Ratings</Link>
+                    <Link to="/wishlist" className={`${activeTab === "wishlist" ? "bg-gray-200 text-primary-green font-medium" : "hover:bg-gray-200 hover:text-primary-green"} p-2 pl-14 text-sm`}>My Wishlist</Link>
                 </div>
                 {/* <!-- my stuff tab --> */}
 
