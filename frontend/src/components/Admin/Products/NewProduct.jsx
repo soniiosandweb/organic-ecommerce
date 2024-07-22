@@ -291,7 +291,7 @@ const NewProduct = () => {
                         ))}
                     </div>
 
-                    <label className="rounded-sm font-medium bg-gray-400 text-center cursor-pointer text-white p-2 shadow hover:shadow-lg my-2">
+                    <label className="rounded-sm font-medium bg-gray-400 text-center cursor-pointer text-white p-2 shadow hover:shadow-lg my-2 hover:bg-gray-700">
                         <input
                             type="file"
                             name="images"

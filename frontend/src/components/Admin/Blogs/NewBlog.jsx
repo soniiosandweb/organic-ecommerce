@@ -206,7 +206,7 @@ const NewBlog = () => {
                             />
                         }
                     </div>
-                    <label className="w-full rounded bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow hover:shadow-lg">
+                    <label className="w-full rounded bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow hover:shadow-lg hover:bg-gray-700">
                         <input
                             type="file"
                             name="image"

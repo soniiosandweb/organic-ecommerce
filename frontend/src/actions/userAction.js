@@ -194,7 +194,7 @@ export const logoutUser = () => async (dispatch,getState) => {
 
         dispatch({ type: EMPTY_COUPON_CODE });
 
-        localStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon))
+        window.sessionStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon))
 
     } catch (error) {
         dispatch({

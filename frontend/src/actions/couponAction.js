@@ -134,7 +134,7 @@ export const setCouponCode = (coupon) => (dispatch, getState) => {
         payload: coupon,
     });
 
-    localStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon));
+    window.sessionStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon));
 }
 
 // Remove coupon code
@@ -142,7 +142,7 @@ export const emptyCouponCode = () => async (dispatch, getState) => {
 
     dispatch({ type: EMPTY_COUPON_CODE });
 
-    localStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon))
+    window.sessionStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon))
 }
 
 // Clear All Errors

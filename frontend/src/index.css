@@ -16,6 +16,9 @@ body {
 .font-barlow{
   font-family: 'Barlow', sans-serif;
 }
+.css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root{
+  z-index: 2000 !important;
+}
 /* hover navbar dropdown arrow */
 .arrow_down {
   border-left: 11px solid transparent;

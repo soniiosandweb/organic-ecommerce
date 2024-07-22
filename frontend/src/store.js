@@ -6,7 +6,7 @@ import { newProductReducer, newReviewReducer, productDetailsReducer, productRedu
 import { cartReducer } from './reducers/cartReducer';
 import { saveForLaterReducer } from './reducers/saveForLaterReducer';
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer, paymentAddReducer, paymentStatusReducer } from './reducers/orderReducer';
-import { wishlistReducer } from './reducers/wishlistReducer';
+import { addWishlistsReducer, wishlistReducer, wishlistsReducer } from './reducers/wishlistReducer';
 import { contactReducer } from './reducers/contactReducer';
 import { allCategoriesReducer, categoryDetailsReducer, categoryReducer, limitCategoriesReducer, newCategoryReducer } from './reducers/categoryReducer';
 import { allAdminCouponsReducer, allCouponsReducer, couponDetailsReducer, couponReducer, newCouponReducer, setCouponCode } from './reducers/couponReducer';
@@ -62,33 +62,35 @@ const reducer = combineReducers({
     featured: featuredProductsReducer,
     latestBlog: latestBlogReducer,
     relatedBlog: relatedBlogReducer,
+    newWIshlist: addWishlistsReducer,
+    wishlists: wishlistsReducer,
 });
 
 let initialState = {
     cart: {
-        cartItems: localStorage.getItem('cartItems')
-            ? JSON.parse(localStorage.getItem('cartItems'))
+        cartItems: window.sessionStorage.getItem('cartItems')
+            ? JSON.parse(window.sessionStorage.getItem('cartItems'))
             : [],
-        shippingInfo: localStorage.getItem("shippingInfo")
-            ? JSON.parse(localStorage.getItem("shippingInfo"))
+        shippingInfo: window.sessionStorage.getItem("shippingInfo")
+            ? JSON.parse(window.sessionStorage.getItem("shippingInfo"))
             : {},
-        totalAmount: localStorage.getItem("totalAmount")
-            ? JSON.parse(localStorage.getItem('totalAmount'))
+        totalAmount: window.sessionStorage.getItem("totalAmount")
+            ? JSON.parse(window.sessionStorage.getItem('totalAmount'))
             : null,
     },
     saveForLater: {
-        saveForLaterItems: localStorage.getItem('saveForLaterItems')
-            ? JSON.parse(localStorage.getItem('saveForLaterItems'))
+        saveForLaterItems: window.sessionStorage.getItem('saveForLaterItems')
+            ? JSON.parse(window.sessionStorage.getItem('saveForLaterItems'))
             : [],
     },
     wishlist: {
-        wishlistItems: localStorage.getItem('wishlistItems')
-            ? JSON.parse(localStorage.getItem('wishlistItems'))
+        wishlistItems: window.sessionStorage.getItem('wishlistItems')
+            ? JSON.parse(window.sessionStorage.getItem('wishlistItems'))
             : [],
     },
     appliedCode: {
-        appliedCoupon: localStorage.getItem('appliedCoupon')
-            ? JSON.parse(localStorage.getItem('appliedCoupon'))
+        appliedCoupon: window.sessionStorage.getItem('appliedCoupon')
+            ? JSON.parse(window.sessionStorage.getItem('appliedCoupon'))
             : {},
     },
 };

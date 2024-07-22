@@ -11,7 +11,7 @@ export const saveForLater = (id) => async (dispatch, getState) => {
         payload: product
     });
 
-    localStorage.setItem('saveForLaterItems', JSON.stringify(getState().saveForLater.saveForLaterItems))
+    window.sessionStorage.setItem('saveForLaterItems', JSON.stringify(getState().saveForLater.saveForLaterItems))
 }
 
 // Remove From Save For Later
@@ -22,5 +22,5 @@ export const removeFromSaveForLater = (id) => async (dispatch, getState) => {
         payload: id,
     });
 
-    localStorage.setItem('saveForLaterItems', JSON.stringify(getState().saveForLater.saveForLaterItems))
+    window.sessionStorage.setItem('saveForLaterItems', JSON.stringify(getState().saveForLater.saveForLaterItems))
 }

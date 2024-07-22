@@ -341,7 +341,7 @@ const UpdateProduct = () => {
                             </span>
                         ))}
                     </div>
-                    <label className="rounded-sm font-medium bg-gray-400 text-center cursor-pointer text-white p-2 shadow hover:shadow-lg my-2" htmlFor="images">
+                    <label className="rounded-sm font-medium bg-gray-400 text-center cursor-pointer text-white p-2 shadow hover:shadow-lg my-2 hover:bg-gray-700" htmlFor="images">
                         <input
                             type="file"
                             name="images"

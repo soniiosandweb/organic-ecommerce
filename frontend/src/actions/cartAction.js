@@ -19,7 +19,7 @@ export const addItemsToCart = (id, quantity = 1) => async (dispatch, getState) =
         },
     });
 
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+    window.sessionStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
 
 // remove cart item
@@ -33,10 +33,10 @@ export const removeItemsFromCart = (id) => async (dispatch, getState) => {
     if((getState().cart.cartItems).length === 0){
         dispatch({ type: EMPTY_COUPON_CODE });
 
-        localStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon))
+        window.sessionStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon))
     }
 
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+    window.sessionStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
 
 // empty cart
@@ -44,11 +44,11 @@ export const emptyCart = () => async (dispatch, getState) => {
 
     dispatch({ type: EMPTY_CART });
 
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+    window.sessionStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 
     dispatch({ type: EMPTY_COUPON_CODE });
 
-    localStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon))
+    window.sessionStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon))
 }
 
 export const setTotalAmount = (amount) => async (dispatch, getState) => {
@@ -58,7 +58,7 @@ export const setTotalAmount = (amount) => async (dispatch, getState) => {
         payload: amount,
      });
 
-    localStorage.setItem('totalAmount', JSON.stringify(getState().cart.totalAmount))
+     window.sessionStorage.setItem('totalAmount', JSON.stringify(getState().cart.totalAmount))
 }
 
 // save shipping info
@@ -69,5 +69,5 @@ export const saveShippingInfo = (data) => async (dispatch) => {
         payload: data,
     });
 
-    localStorage.setItem('shippingInfo', JSON.stringify(data));
+    window.sessionStorage.setItem('shippingInfo', JSON.stringify(data));
 }

@@ -101,9 +101,9 @@ const UpdateAddress = () => {
                             <div className="flex flex-col sm:flex-row gap-6">
 
                                 <FormControl fullWidth>
-                                    <InputLabel id="country-select">Country</InputLabel>
+                                    <InputLabel id="country-select-label">Country</InputLabel>
                                     <Select
-                                        labelId="country-select"
+                                        labelId="country-select-label"
                                         id="country-select"
                                         defaultValue={country}
                                         disabled
@@ -115,12 +115,12 @@ const UpdateAddress = () => {
                                 </FormControl>
 
                                 <FormControl fullWidth disabled={country ? false : true}>
-                                    <InputLabel id="state-select">State</InputLabel>
+                                    <InputLabel id="state-select-label">State *</InputLabel>
                                     <Select
-                                        labelId="state-select"
+                                        labelId="state-select-label"
                                         id="state-select"
                                         value={state}
-                                        label="State"
+                                        label="State "
                                         onChange={(e) => setState(e.target.value)}
                                         required
                                     >

@@ -19,6 +19,7 @@ import { useLocation } from 'react-router-dom';
 import noResult from '../../assets/images/no-search-results.webp';
 import { getAllCategories } from '../../actions/categoryAction';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { TextField } from '@mui/material';
 
 const Products = () => {
 
@@ -27,7 +28,9 @@ const Products = () => {
     const params = useParams();
     const location = useLocation();
 
-    const [price, setPrice] = useState([0, 200000]);
+    const [price, setPrice] = useState([0, 20000]);
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(20000);
     const [category, setCategory] = useState(location.search ? location.search.split("=")[1] : "");
     const [ratings, setRatings] = useState(0);
 
@@ -46,10 +49,29 @@ const Products = () => {
 
     const priceHandler = (e, newPrice) => {
         setPrice(newPrice);
+        setMinPrice(newPrice[0]);
+        setMaxPrice(newPrice[1]);
+    }
+
+    const handlePriceChange = (min, max) => {
+        let minValue = parseInt(min);
+        if(isNaN(minValue)){
+            minValue = 0;
+        } 
+
+        let maxValue = parseInt(max);
+        if(isNaN(maxValue)){
+            maxValue = 20000;
+        } 
+        setPrice([minValue, maxValue]);
+        setMinPrice(minValue);
+        setMaxPrice(maxValue);
     }
 
     const clearFilters = () => {
-        setPrice([0, 200000]);
+        setPrice([0, 20000]);
+        setMinPrice(0);
+        setMaxPrice(20000);
         setCategory("");
         setRatings(0);
     }
@@ -99,14 +121,43 @@ const Products = () => {
                                             valueLabelDisplay="auto"
                                             getAriaLabel={() => 'Price range slider'}
                                             min={0}
-                                            max={200000}
+                                            max={20000}
                                             color='primary'
                                         />
 
                                         <div className="flex gap-3 items-center justify-between mb-2 min-w-full flex-col sm:flex-row lg:flex-col xl:flex-row">
-                                            <span className="flex-1 border px-4 py-1 rounded-sm text-gray-800 bg-gray-50">₹{price[0].toLocaleString()}</span>
+                                            <TextField
+                                                placeholder="Min Price"
+                                                type="number"
+                                                variant="outlined"
+                                                size="small"
+                                                InputProps={{
+                                                    inputProps: {
+                                                        min: 0,
+                                                        max: 20000
+                                                    },
+                                                    inputMode: 'numeric'
+                                                }}
+                                                value={minPrice}
+                                                onChange={(e) => handlePriceChange(e.target.value, maxPrice)}
+                                                className="flex-1 border px-4 py-1 rounded-sm text-gray-800 bg-gray-50"
+                                            />
                                             <span className="font-medium text-gray-400">to</span>
-                                            <span className="flex-1 border px-4 py-1 rounded-sm text-gray-800 bg-gray-50">₹{price[1].toLocaleString()}</span>
+                                            <TextField
+                                                placeholder="Min Price"
+                                                type="number"
+                                                variant="outlined"
+                                                size="small"
+                                                InputProps={{
+                                                    inputProps: {
+                                                        min: 0,
+                                                        max: 20000
+                                                    }
+                                                }}
+                                                value={maxPrice}
+                                                onChange={(e) => handlePriceChange(minPrice, e.target.value)}
+                                                className="flex-1 border px-4 py-1 rounded-sm text-gray-800 bg-gray-50"
+                                            />
                                         </div>
                                     </div>
                                     {/* price slider filter */}
