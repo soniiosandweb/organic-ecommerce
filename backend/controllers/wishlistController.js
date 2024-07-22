@@ -4,7 +4,7 @@ const ErrorHandler = require('../utils/errorHandler');
 
 // Get Wishlist Item
 exports.getWishlists = asyncErrorHandler(async (req, res, next) => {
-    const wishlist = await Wishlist.find({"user": req.params.id}).populate('user').populate('product');
+    const wishlist = await Wishlist.find({user: req.params.id}).populate('user').populate('product');
 
     if (!wishlist) {
         return next(new ErrorHandler("Wishlist Item Not Found", 404));
