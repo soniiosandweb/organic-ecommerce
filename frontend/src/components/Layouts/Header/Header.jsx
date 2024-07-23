@@ -26,6 +26,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import CloseIcon from '@mui/icons-material/Close';
 import { getFeaturedProducts } from '../../../actions/productAction';
 import { getDiscount } from '../../../utils/functions';
+import { getWIshlistItems } from '../../../actions/wishlistAction';
 
 const Header = () => {
 
@@ -39,7 +40,7 @@ const Header = () => {
 
   const { cartItems } = useSelector(state => state.cart);
 
-  const { wishlistItems } = useSelector((state) => state.wishlist);
+  const { wishlists, loading: wishlistLoading } = useSelector((state) => state.wishlists);
 
   const [mobileToggleClass, setMobileToggleClass ] = useState(true);
   const [ headerBorder, setHeaderBorder ] = useState("shadow-none");
@@ -172,7 +173,11 @@ const Header = () => {
     dispatch(getFeaturedProducts());
     window.addEventListener("scroll", listenScrollEvent);
 
-  }, [open, location, openCat, dispatch, categoriesLoading]);
+    if(user && user._id && wishlistLoading === undefined){
+      dispatch(getWIshlistItems(user._id));
+    }
+
+  }, [open, location, openCat, dispatch, categoriesLoading, user, wishlistLoading]);
 
   var settings = {
     vertical: true,
@@ -264,9 +269,9 @@ const Header = () => {
                 <Link to="/wishlist" className="flex items-center gap-2 relative px-4 border-r border-gray-400">
                   <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-heart text-gray"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></span>
                   
-                  {wishlistItems.length > 0 && (
+                  {wishlists.length > 0 && (
                     <div className="w-4 h-4 p-2 bg-red-400 text-white text-xs rounded-sm absolute -top-2 right-2 flex justify-center items-center border">
-                      {wishlistItems.length}
+                      {wishlists.length}
                     </div>
                   )}
 

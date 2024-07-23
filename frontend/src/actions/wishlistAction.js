@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_TO_WISHLIST, ADD_WISHLIST_ERROR, ADD_WISHLIST_REQUEST, ADD_WISHLIST_SUCCESS, CLEAR_ERRORS, GET_WISHLIST_ERROR, GET_WISHLIST_REQUEST, GET_WISHLIST_SUCCESS, REMOVE_FROM_WISHLIST } from "../constants/wishlistConstants";
+import { ADD_WISHLIST_ERROR, ADD_WISHLIST_REQUEST, ADD_WISHLIST_SUCCESS, CLEAR_ERRORS, GET_WISHLIST_ERROR, GET_WISHLIST_REQUEST, GET_WISHLIST_SUCCESS, REMOVE_WISHLIST_FAIL, REMOVE_WISHLIST_REQUEST, REMOVE_WISHLIST_SUCCESS } from "../constants/wishlistConstants";
 
 // Add Item to Wishlist
 export const addWishlistItem = (wishlistData) => async (dispatch) => {
@@ -39,35 +39,22 @@ export const getWIshlistItems = (id) => async (dispatch) => {
     }
 };
 
-// Add To Wishlist
-export const addToWishlist = (id) => async (dispatch, getState) => {
-    const { data } = await axios.get(`/api/v1/product/${id}`);
+// Delete WIshlist Item
+export const deleteWishlist = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: REMOVE_WISHLIST_REQUEST });
+        const { data } = await axios.delete(`/api/v1/wishlist/delete/${id}`);
 
-    dispatch({
-        type: ADD_TO_WISHLIST,
-        payload: {
-            product: data.product._id,
-            name: data.product.name,
-            price: data.product.price,
-            cuttedPrice: data.product.cuttedPrice,
-            image: data.product.images[0].url,
-            ratings: data.product.ratings,
-            reviews: data.product.numOfReviews,
-        },
-    });
-
-    window.sessionStorage.setItem('wishlistItems', JSON.stringify(getState().wishlist.wishlistItems))
-}
-
-// Remove From Wishlist
-export const removeFromWishlist = (id) => async (dispatch, getState) => {
-
-    dispatch({
-        type: REMOVE_FROM_WISHLIST,
-        payload: id,
-    });
-
-    window.sessionStorage.setItem('wishlistItems', JSON.stringify(getState().wishlist.wishlistItems))
+        dispatch({
+            type: REMOVE_WISHLIST_SUCCESS,
+            payload: data.success,
+        });
+    } catch (error) {
+        dispatch({
+            type: REMOVE_WISHLIST_FAIL,
+            payload: error.response.data.message,
+        });
+    }
 }
 
 // Clear All Errors

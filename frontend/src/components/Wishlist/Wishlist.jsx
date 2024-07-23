@@ -10,16 +10,16 @@ import { getWIshlistItems } from '../../actions/wishlistAction';
 const Wishlist = () => {
 
     const dispatch = useDispatch();
-
-    // const { wishlistItems } = useSelector((state) => state.wishlist);
+    
     const { user } = useSelector((state) => state.user);
-    const { wishlists } = useSelector((state) => state.wishlists);
+    const { wishlists, loading: wishlistLoading } = useSelector((state) => state.wishlists);
+    
 
     useEffect(() => {
-        if(user && user._id){
+        if(user && user._id && wishlistLoading === undefined){
             dispatch(getWIshlistItems(user._id));
         }
-    }, [dispatch, user])
+    }, [dispatch, user, wishlistLoading])
 
     return (
         <>

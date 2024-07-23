@@ -6,7 +6,7 @@ import { newProductReducer, newReviewReducer, productDetailsReducer, productRedu
 import { cartReducer } from './reducers/cartReducer';
 import { saveForLaterReducer } from './reducers/saveForLaterReducer';
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer, paymentAddReducer, paymentStatusReducer } from './reducers/orderReducer';
-import { addWishlistsReducer, wishlistReducer, wishlistsReducer } from './reducers/wishlistReducer';
+import { addWishlistsReducer, removeWishlistReducer, wishlistsReducer } from './reducers/wishlistReducer';
 import { contactReducer } from './reducers/contactReducer';
 import { allCategoriesReducer, categoryDetailsReducer, categoryReducer, limitCategoriesReducer, newCategoryReducer } from './reducers/categoryReducer';
 import { allAdminCouponsReducer, allCouponsReducer, couponDetailsReducer, couponReducer, newCouponReducer, setCouponCode } from './reducers/couponReducer';
@@ -36,7 +36,6 @@ const reducer = combineReducers({
     reviews: productReviewsReducer,
     review: reviewReducer,
     userReviews: userReviewsReducer,
-    wishlist: wishlistReducer,
     contactForm: contactReducer,
     newCategory: newCategoryReducer,
     allCategories: allCategoriesReducer,
@@ -64,6 +63,7 @@ const reducer = combineReducers({
     relatedBlog: relatedBlogReducer,
     newWIshlist: addWishlistsReducer,
     wishlists: wishlistsReducer,
+    wishlistItem: removeWishlistReducer,
 });
 
 let initialState = {
@@ -83,11 +83,11 @@ let initialState = {
             ? JSON.parse(window.sessionStorage.getItem('saveForLaterItems'))
             : [],
     },
-    wishlist: {
-        wishlistItems: window.sessionStorage.getItem('wishlistItems')
-            ? JSON.parse(window.sessionStorage.getItem('wishlistItems'))
-            : [],
-    },
+    // wishlist: {
+    //     wishlistItems: window.sessionStorage.getItem('wishlistItems')
+    //         ? JSON.parse(window.sessionStorage.getItem('wishlistItems'))
+    //         : [],
+    // },
     appliedCode: {
         appliedCoupon: window.sessionStorage.getItem('appliedCoupon')
             ? JSON.parse(window.sessionStorage.getItem('appliedCoupon'))

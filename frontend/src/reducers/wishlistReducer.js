@@ -1,33 +1,4 @@
-import { ADD_TO_WISHLIST, ADD_WISHLIST_ERROR, ADD_WISHLIST_REQUEST, ADD_WISHLIST_RESET, ADD_WISHLIST_SUCCESS, CLEAR_ERRORS, GET_WISHLIST_ERROR, GET_WISHLIST_REQUEST, GET_WISHLIST_SUCCESS, REMOVE_FROM_WISHLIST } from "../constants/wishlistConstants";
-
-export const wishlistReducer = (state = { wishlistItems: [] }, { type, payload }) => {
-    switch (type) {
-        case ADD_TO_WISHLIST:
-            const item = payload;
-            const itemExist = state.wishlistItems.find((i) => i.product === item.product);
-
-            if (itemExist) {
-                return {
-                    ...state,
-                    wishlistItems: state.wishlistItems.map((i) =>
-                        i.product === itemExist.product ? item : i
-                    ),
-                }
-            } else {
-                return {
-                    ...state,
-                    wishlistItems: [...state.wishlistItems, item],
-                }
-            }
-        case REMOVE_FROM_WISHLIST:
-            return {
-                ...state,
-                wishlistItems: state.wishlistItems.filter((i) => i.product !== payload)
-            }
-        default:
-            return state;
-    }
-}
+import { ADD_WISHLIST_ERROR, ADD_WISHLIST_REQUEST, ADD_WISHLIST_RESET, ADD_WISHLIST_SUCCESS, CLEAR_ERRORS, GET_WISHLIST_ERROR, GET_WISHLIST_REQUEST, GET_WISHLIST_SUCCESS, REMOVE_WISHLIST_FAIL, REMOVE_WISHLIST_REQUEST, REMOVE_WISHLIST_RESET, REMOVE_WISHLIST_SUCCESS } from "../constants/wishlistConstants";
 
 export const addWishlistsReducer = (state = { wishlist: [] }, { type, payload }) => {
     switch (type) {
@@ -80,6 +51,41 @@ export const wishlistsReducer = (state = { wishlists: [] }, { type, payload }) =
             return {
                 loading: false,
                 error: payload,
+            };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            };
+        default:
+            return state;
+    }
+}
+
+// Blog Reducer
+export const removeWishlistReducer = (state = {}, { type, payload }) => {
+    switch (type) {
+        case REMOVE_WISHLIST_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            };
+        case REMOVE_WISHLIST_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isDeleted: payload,
+            };
+        case REMOVE_WISHLIST_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: payload,
+            };
+        case REMOVE_WISHLIST_RESET:
+            return {
+                ...state,
+                isDeleted: false,
             };
         case CLEAR_ERRORS:
             return {

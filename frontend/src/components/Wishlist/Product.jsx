@@ -2,19 +2,36 @@ import { Link } from 'react-router-dom';
 import { getDiscount } from '../../utils/functions';
 import DeleteIcon from '@mui/icons-material/Delete';
 import StarIcon from '@mui/icons-material/Star';
-import { removeFromWishlist } from '../../actions/wishlistAction';
-import { useDispatch } from 'react-redux';
+import { clearErrors, deleteWishlist, getWIshlistItems } from '../../actions/wishlistAction';
+import { useDispatch, useSelector } from 'react-redux';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useEffect } from 'react';
+import { REMOVE_WISHLIST_RESET } from '../../constants/wishlistConstants';
+import { useSnackbar } from 'notistack';
 
 const Product = (props) => {
 
-    const { product } = props;
+    const { _id, product, user } = props;
 
     const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
+    const { isDeleted, error: deleteError } = useSelector((state) => state.wishlistItem);
 
-    const deleteHandler = () => {
-        dispatch(removeFromWishlist(product._id));
+    const deleteHandler = (id) => {
+        dispatch(deleteWishlist(id));
+        enqueueSnackbar("Remove From Wishlist", { variant: "success" });
     }
+
+    useEffect(() => {
+        if (deleteError) {
+            enqueueSnackbar(deleteError, { variant: "error" });
+            dispatch(clearErrors());
+        }
+        if (isDeleted) {
+            dispatch({ type: REMOVE_WISHLIST_RESET });
+            dispatch(getWIshlistItems(user._id));
+        }
+    }, [dispatch, isDeleted, deleteError, enqueueSnackbar, user])
 
     return (
         <div className="flex gap-4 border-b p-4 sm:pb-8 w-full group overflow-hidden">
@@ -33,11 +50,11 @@ const Product = (props) => {
                         {/* <!-- rating badge --> */}
                         <span className="text-sm text-gray-500 font-medium flex gap-2 items-center">
                             <span className="text-md px-1.5 py-0.5 bg-primary-green rounded-sm text-white flex items-center gap-0.5">{product.ratings} <StarIcon sx={{ fontSize: "14px" }} /></span>
-                            <span>({product.numOfReviews.toLocaleString()})</span>
+                            <span>({product.numOfReviews.toLocaleString()} Reviews)</span>
                         </span>
                         {/* <!-- rating badge --> */}
                     </Link>
-                    <button onClick={deleteHandler} className="text-red-600 hover:text-red-700"><span><DeleteIcon /></span></button>
+                    <button onClick={() => deleteHandler(_id)} className="text-red-600 hover:text-red-700"><span><DeleteIcon /></span></button>
                 </div>
                 {/* <!-- product title --> */}
 

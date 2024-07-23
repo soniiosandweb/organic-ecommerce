@@ -4,12 +4,14 @@ import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import { Link, useNavigate } from 'react-router-dom';
 import { getDiscount } from '../../utils/functions';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToWishlist, removeFromWishlist } from '../../actions/wishlistAction';
 import { useSnackbar } from 'notistack';
 import Rating from '@mui/material/Rating';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { addItemsToCart } from '../../actions/cartAction';
 import Tooltip from '@mui/material/Tooltip';
+import { addWishlistItem, clearErrors, deleteWishlist, getWIshlistItems } from '../../actions/wishlistAction';
+import { ADD_WISHLIST_RESET, REMOVE_WISHLIST_RESET } from '../../constants/wishlistConstants';
+import { useEffect } from 'react';
 
 const Product = ({ _id, name, images, ratings, numOfReviews, price, cuttedPrice, stock }) => {
 
@@ -17,10 +19,14 @@ const Product = ({ _id, name, images, ratings, numOfReviews, price, cuttedPrice,
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
 
-    const { wishlistItems } = useSelector((state) => state.wishlist);
     const { cartItems } = useSelector((state) => state.cart);
 
-    const itemInWishlist = wishlistItems.some((i) => i.product === _id);
+    const { user } = useSelector((state) => state.user);
+    const { wishlists, loading: wishlistLoading } = useSelector((state) => state.wishlists);
+    const { isDeleted, error: deleteError } = useSelector((state) => state.wishlistItem);
+    const { success: isAdded, error: addError } = useSelector((state) => state.newWIshlist);
+
+    const itemExist = wishlists.some((i) => i.product._id === _id);
 
     const itemInCart = cartItems.some((i) => i.product === _id);
 
@@ -34,14 +40,47 @@ const Product = ({ _id, name, images, ratings, numOfReviews, price, cuttedPrice,
     }
 
     const addToWishlistHandler = () => {
-        if (itemInWishlist) {
-            dispatch(removeFromWishlist(_id));
-            enqueueSnackbar("Remove From Wishlist", { variant: "success" });
+        if(user && user._id){
+            if(itemExist){
+                const item = wishlists.filter((i) => i.product._id === _id);
+                dispatch(deleteWishlist(item[0]._id));
+                enqueueSnackbar("Item Removed Successfully", { variant: "success" });
+            } else {
+                const data = {
+                    product: _id,
+                    user: user._id,
+                };
+                dispatch(addWishlistItem(data));
+                enqueueSnackbar("Added To Wishlist", { variant: "success" });
+            }
         } else {
-            dispatch(addToWishlist(_id));
-            enqueueSnackbar("Added To Wishlist", { variant: "success" });
+            enqueueSnackbar("Please Login to add item in wishlist", { variant: "warning" });
         }
     }
+
+    useEffect(() => {
+        if(user && user._id && wishlistLoading === undefined){
+            dispatch(getWIshlistItems(user._id));
+        }
+        if (deleteError) {
+            enqueueSnackbar(deleteError, { variant: "error" });
+            dispatch(clearErrors());
+        }
+        if (addError) {
+            enqueueSnackbar(addError, { variant: "error" });
+            dispatch(clearErrors());
+        }
+        if (isDeleted) {
+            
+            dispatch({ type: REMOVE_WISHLIST_RESET });
+            dispatch(getWIshlistItems(user._id));
+        }
+        if (isAdded) {
+            
+            dispatch({ type: ADD_WISHLIST_RESET });
+            dispatch(getWIshlistItems(user._id));
+        }
+    }, [dispatch, wishlistLoading, user, deleteError, isDeleted, isAdded, addError, enqueueSnackbar])
 
     return (
 
@@ -92,7 +131,7 @@ const Product = ({ _id, name, images, ratings, numOfReviews, price, cuttedPrice,
 
                         {/* <!-- wishlist badge --> */}
                         <Tooltip title="Wishlist" placement="top" arrow>
-                            <span onClick={addToWishlistHandler} className={`${itemInWishlist ? "text-red-500" : "hover:text-red-500 text-gray-300"} cursor-pointer`}><FavoriteIcon sx={{ fontSize: "24px" }} /></span>
+                            <span onClick={addToWishlistHandler} className={`${itemExist ? "text-red-500" : "hover:text-red-500 text-gray-300"} cursor-pointer`}><FavoriteIcon sx={{ fontSize: "24px" }} /></span>
                         </Tooltip>
                         {/* <!-- wishlist badge --> */}
 

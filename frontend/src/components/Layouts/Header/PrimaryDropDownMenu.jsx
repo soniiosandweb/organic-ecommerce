@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { logoutUser } from '../../../actions/userAction';
+import { getWIshlistItems } from '../../../actions/wishlistAction';
 
 const PrimaryDropDownMenu = ({ setOpen, user }) => {
 
@@ -16,7 +17,7 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
 
-    const { wishlistItems } = useSelector((state) => state.wishlist);
+    const { wishlists, loading: wishlistLoading } = useSelector((state) => state.wishlists);
 
     const handleLogout = () => {
         dispatch(logoutUser());
@@ -31,7 +32,13 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
 
     const handleClose = () => {
         setOpen(false);
-      };
+    };
+
+    useEffect(() => {
+        if(user && user._id && wishlistLoading === undefined){
+            dispatch(getWIshlistItems(user._id));
+        }
+    }, [dispatch, user, wishlistLoading])
 
     const navs = [
         {
@@ -76,7 +83,7 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
                                 <span className="text-primary-green">{icon}</span>
                                 {title}
                                 <span className="ml-auto mr-3 bg-red-600 w-6 h-6 text-white text-center rounded-full">
-                                    {wishlistItems.length}
+                                    {wishlists.length}
                                 </span>
                             </Link>
                         ) : (
