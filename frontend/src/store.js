@@ -12,6 +12,7 @@ import { allCategoriesReducer, categoryDetailsReducer, categoryReducer, limitCat
 import { allAdminCouponsReducer, allCouponsReducer, couponDetailsReducer, couponReducer, newCouponReducer, setCouponCode } from './reducers/couponReducer';
 import { allFaqReducer, faqDetailsReducer, faqReducer, newFaqReducer } from './reducers/faqReducer';
 import { blogDetailsReducer, blogReducer, blogsReducer, latestBlogReducer, newBlogReducer, relatedBlogReducer } from './reducers/blogReducer';
+import { addressReducer, addShippingReducer, shippingReducer } from './reducers/shippingReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -64,6 +65,9 @@ const reducer = combineReducers({
     newWIshlist: addWishlistsReducer,
     wishlists: wishlistsReducer,
     wishlistItem: removeWishlistReducer,
+    shipping: shippingReducer,
+    newShipping: addShippingReducer,
+    address: addressReducer,
 });
 
 let initialState = {

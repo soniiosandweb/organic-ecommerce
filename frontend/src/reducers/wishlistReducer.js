@@ -1,4 +1,4 @@
-import { ADD_WISHLIST_ERROR, ADD_WISHLIST_REQUEST, ADD_WISHLIST_RESET, ADD_WISHLIST_SUCCESS, CLEAR_ERRORS, GET_WISHLIST_ERROR, GET_WISHLIST_REQUEST, GET_WISHLIST_SUCCESS, REMOVE_WISHLIST_FAIL, REMOVE_WISHLIST_REQUEST, REMOVE_WISHLIST_RESET, REMOVE_WISHLIST_SUCCESS } from "../constants/wishlistConstants";
+import { ADD_WISHLIST_ERROR, ADD_WISHLIST_REQUEST, ADD_WISHLIST_RESET, ADD_WISHLIST_SUCCESS, CLEAR_ERRORS, GET_WISHLIST_ERROR, GET_WISHLIST_REQUEST, GET_WISHLIST_RESET, GET_WISHLIST_SUCCESS, REMOVE_WISHLIST_FAIL, REMOVE_WISHLIST_REQUEST, REMOVE_WISHLIST_RESET, REMOVE_WISHLIST_SUCCESS } from "../constants/wishlistConstants";
 
 export const addWishlistsReducer = (state = { wishlist: [] }, { type, payload }) => {
     switch (type) {
@@ -52,6 +52,12 @@ export const wishlistsReducer = (state = { wishlists: [] }, { type, payload }) =
                 loading: false,
                 error: payload,
             };
+        case GET_WISHLIST_RESET:
+            return {
+                ...state,
+                loading: false,
+                wishlists: [],
+            }
         case CLEAR_ERRORS:
             return {
                 ...state,

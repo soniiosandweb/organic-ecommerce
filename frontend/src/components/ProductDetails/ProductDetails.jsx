@@ -152,9 +152,11 @@ const ProductDetails = () => {
             dispatch(getWIshlistItems(user._id));
         }
 
-        dispatch(getProductDetails(productId));
-       
-    }, [dispatch, productId, error, reviewError, success, enqueueSnackbar, user, isAdded, isDeleted, addError, deleteError, wishlistLoading]);
+        if(productId !== product._id){
+          dispatch(getProductDetails(productId));  
+        }
+        
+    }, [dispatch, productId, error, reviewError, success, enqueueSnackbar, user, isAdded, isDeleted, addError, deleteError, wishlistLoading, loading, product]);
 
     useEffect(() => {
         dispatch(getSimilarProducts(product.category ? product.category._id : null));

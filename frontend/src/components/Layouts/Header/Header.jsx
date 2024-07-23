@@ -164,20 +164,22 @@ const Header = () => {
     prevOpenCat.current = openCat;
 
     setAdminRoute(location.pathname.split("/", 2).includes("admin"));
-
    
     if(categoriesLoading === undefined){
       dispatch(getAllCategories());
     }
 
-    dispatch(getFeaturedProducts());
+    if(featuredLoading === undefined){
+      dispatch(getFeaturedProducts());
+    }
+
     window.addEventListener("scroll", listenScrollEvent);
 
     if(user && user._id && wishlistLoading === undefined){
       dispatch(getWIshlistItems(user._id));
     }
 
-  }, [open, location, openCat, dispatch, categoriesLoading, user, wishlistLoading]);
+  }, [open, location, openCat, dispatch, categoriesLoading, user, wishlistLoading, featuredLoading]);
 
   var settings = {
     vertical: true,
@@ -405,12 +407,12 @@ const Header = () => {
                             className="p-0 border border-gray-300 w-60"
                           >
                             {categories && categories.map((item, i) => (
-                              <a href={`/products?category=${item._id}`} key={i} onClick={handleCloseCat} className='px-3 py-2 border-b flex gap-3 items-center hover:bg-gray-200'>
+                              <Link to={`/products?category=${item._id}`} key={i} onClick={handleCloseCat} className='px-3 py-2 border-b flex gap-3 items-center hover:bg-gray-200' reloadDocument={true}>
                                 {item.icon && (
                                   <img src={item.icon.url} alt={item.name} className='w-6 h-6 object-contain'/>
                                 )}
                                 {item.name}
-                              </a>
+                              </Link>
                               
                             ))}
                           </MenuList>
@@ -444,52 +446,51 @@ const Header = () => {
 
 
           <Dialog
-                open={dealsOpen}
-                onClose={handlePopupClose}
-                className="coupon_popup w-full"
-            >
-                <DialogTitle className="border-b flex justify-between items-center">
-                  <div>Deal Today <p className='text-sm'>Recommended deals for you.</p></div> <CloseIcon onClick={handlePopupClose} className="cursor-pointer" /></DialogTitle>
-                <DialogContent className="flex flex-col m-1 gap-4">
-                  <ul className='flex flex-col gap-2'>
-                    {!featuredLoading && featuredProducts?.length === 0 && (
-                      <li>No Product Found.</li>
-                    )}
+            open={dealsOpen}
+            onClose={handlePopupClose}
+            className="coupon_popup w-full"
+          >
+            <DialogTitle className="border-b flex justify-between items-center">
+              <div>Deal Today <p className='text-sm'>Recommended deals for you.</p></div> <CloseIcon onClick={handlePopupClose} className="cursor-pointer" />
+            </DialogTitle>
+            <DialogContent className="flex flex-col m-1 gap-4">
+              <ul className='flex flex-col gap-2'>
+                {!featuredLoading && featuredProducts?.length === 0 && (
+                  <li>No Product Found.</li>
+                )}
 
-                    {featuredLoading ? null : (
-                      featuredProducts?.map((product, i) => (
-                        <li key={i} className='border border-gray-300 p-2 rounded'>
-                          <div className="flex flex-row items-center text-center group w-full gap-4 cursor-pointer" onClick={()=> handleDealsClick(product._id)}>
-                            <div className="w-20 sm:w-1/6 h-full bg-[#f4f4f4]">
-                                <LazyLoadImage 
-                                  className="w-full h-full object-cover" src={product.images[0].url} alt={product.name}
-                                />
-                            </div>
-                            <div className='w-full sm:w-5/6 flex flex-col gap-2 items-start'>
-                              <h2 className="text-sm sm:text-lg font-semibold group-hover:text-primary-green">{product.name.length > 50 ? `${product.name.substring(0, 50)}...` : product.name}</h2>
+                {featuredLoading ? null : (
+                  featuredProducts?.map((product, i) => (
+                    <li key={i} className='border border-gray-300 p-2 rounded'>
+                      <div className="flex flex-row items-center text-center group w-full gap-4 cursor-pointer" onClick={()=> handleDealsClick(product._id)}>
+                        <div className="w-20 sm:w-1/6 h-full bg-[#f4f4f4]">
+                          <LazyLoadImage className="w-full h-full object-cover" src={product.images[0].url} alt={product.name} />
+                        </div>
+                        <div className='w-full sm:w-5/6 flex flex-col gap-2 items-start'>
+                          <h2 className="text-sm sm:text-lg font-semibold group-hover:text-primary-green">{product.name.length > 50 ? `${product.name.substring(0, 50)}...` : product.name}</h2>
 
-                              <div className="flex items-center gap-1.5 text-md font-medium">
-                                  <span>₹{product.price.toLocaleString()}</span>
-                                  {product.cuttedPrice !== 0 ?
-                                      <>
-                                          <span className="text-gray-500 line-through text-md">₹{product.cuttedPrice.toLocaleString()}</span>
-                                          <span className="text-md text-primary-green">{getDiscount(product.price, product.cuttedPrice)}%&nbsp;off</span>
-                                      </>
-                                  : null  
-                                  }
-                              </div>
-                            </div>
-                            
+                          <div className="flex items-center gap-1.5 text-md font-medium">
+                            <span>₹{product.price.toLocaleString()}</span>
+                            {product.cuttedPrice !== 0 ?
+                              <>
+                                <span className="text-gray-500 line-through text-md">₹{product.cuttedPrice.toLocaleString()}</span>
+                                <span className="text-md text-primary-green">{getDiscount(product.price, product.cuttedPrice)}%&nbsp;off</span>
+                              </>
+                              : null  
+                            }
                           </div>
-                        </li>
-                      ))
+                        </div>
+                            
+                      </div>
+                    </li>
+                  ))
                                         
-                    )}
-                  </ul>
+                )}
+              </ul>
                     
-                </DialogContent>
+            </DialogContent>
                 
-            </Dialog>
+          </Dialog>
 
         </>
       )}

@@ -32,6 +32,7 @@ const coupon = require('./routes/couponRoute');
 const faq = require('./routes/faqRoute');
 const blog = require('./routes/blogRoute');
 const wishlist = require('./routes/wishlistRoute');
+const shipping = require('./routes/shippingRoute');
 
 app.use('/api/v1', user);
 app.use('/api/v1', product);
@@ -42,6 +43,7 @@ app.use('/api/v1', coupon);
 app.use('/api/v1', faq);
 app.use('/api/v1', blog);
 app.use('/api/v1', wishlist);
+app.use('/api/v1', shipping);
 
 // error middleware
 app.use(errorMiddleware);

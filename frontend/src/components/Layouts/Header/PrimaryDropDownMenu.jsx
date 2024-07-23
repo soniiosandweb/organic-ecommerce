@@ -37,7 +37,8 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
     useEffect(() => {
         if(user && user._id && wishlistLoading === undefined){
             dispatch(getWIshlistItems(user._id));
-        }
+        } 
+     
     }, [dispatch, user, wishlistLoading])
 
     const navs = [

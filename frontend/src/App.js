@@ -66,7 +66,6 @@ import Blogs from './components/Blog/Blogs';
 import BlogDetails from './components/Blog/BlogDetails';
 import AdminProfile from './components/Admin/AdminProfile';
 
-
 function App() {
 
   const dispatch = useDispatch();

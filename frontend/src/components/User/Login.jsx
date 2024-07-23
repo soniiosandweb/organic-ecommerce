@@ -7,6 +7,7 @@ import { useSnackbar } from 'notistack';
 import BackdropLoader from '../Layouts/BackdropLoader';
 import MetaData from '../Layouts/MetaData';
 import FormSidebar from './FormSidebar';
+import { getWIshlistItems } from '../../actions/wishlistAction';
 
 const Login = () => {
 
@@ -15,7 +16,7 @@ const Login = () => {
     const { enqueueSnackbar } = useSnackbar();
     const location = useLocation();
 
-    const { loading, isAuthenticated, error } = useSelector((state) => state.user);
+    const { loading, isAuthenticated, error, user } = useSelector((state) => state.user);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -34,9 +35,10 @@ const Login = () => {
         }
         if (isAuthenticated) {
             dispatch(loadPaymentKey());
+            dispatch(getWIshlistItems(user._id));
             navigate(`/${redirect}`)
         }
-    }, [dispatch, error, isAuthenticated, redirect, navigate, enqueueSnackbar]);
+    }, [dispatch, error, isAuthenticated, user, redirect, navigate, enqueueSnackbar]);
 
     return (
         <>
