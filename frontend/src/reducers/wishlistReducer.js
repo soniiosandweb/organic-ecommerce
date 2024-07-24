@@ -55,7 +55,7 @@ export const wishlistsReducer = (state = { wishlists: [] }, { type, payload }) =
         case GET_WISHLIST_RESET:
             return {
                 ...state,
-                loading: false,
+                loading: undefined,
                 wishlists: [],
             }
         case CLEAR_ERRORS:

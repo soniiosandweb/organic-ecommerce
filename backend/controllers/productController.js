@@ -318,15 +318,57 @@ exports.createProductReview = asyncErrorHandler(async (req, res, next) => {
 // Get All Reviews of Product
 exports.getProductReviews = asyncErrorHandler(async (req, res, next) => {
 
-    const product = await Product.findById(req.query.id);
+    var datasets = [];
 
-    if (!product) {
-        return next(new ErrorHandler("Product Not Found", 404));
+    var newarr = [];
+
+    if(req.query.id){
+
+        const product = await Product.findById(req.query.id);
+
+        if (!product) {
+            return next(new ErrorHandler("Product Not Found", 404));
+        }
+
+        product.reviews.forEach((rev) => {
+            newarr.push({
+                '_id' : rev._id,
+                'user': rev.name,
+                'rating': rev.rating,
+                'comment': rev.comment,
+                'product': product.name,
+                'productId': product._id,
+            })
+        })
+
+
+    } else {
+        const products = await Product.find({ numOfReviews: { $gt: 0 } });
+
+        if (!products) {
+            return next(new ErrorHandler("Product Not Found", 404));
+        }
+
+        products.forEach((product) => {
+
+            product.reviews.forEach((rev) => {
+                newarr.push({
+                    '_id' : rev._id,
+                    'user': rev.name,
+                    'rating': rev.rating,
+                    'comment': rev.comment,
+                    'product': product.name,
+                    'productId': product._id,
+                })
+            })
+            
+        });
+
     }
-
+    
     res.status(200).json({
         success: true,
-        reviews: product.reviews
+        reviews: newarr
     });
 });
 

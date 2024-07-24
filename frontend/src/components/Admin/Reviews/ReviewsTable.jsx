@@ -30,9 +30,9 @@ const ReviewsTable = () => {
     }
 
     useEffect(() => {
-        if (productId.length === 24) {
+       // if (productId.length === 24) {
             dispatch(getAllReviews(productId));
-        }
+        //}
         if (error) {
             enqueueSnackbar(error, { variant: "error" });
             dispatch(clearErrors());
@@ -50,23 +50,29 @@ const ReviewsTable = () => {
 
     }, [dispatch, error, deleteError, isDeleted, productId, enqueueSnackbar]);
 
-    const deleteReviewHandler = (id) => {
-        dispatch(deleteReview(id, productId));
+    const deleteReviewHandler = (id, product) => {
+        dispatch(deleteReview(id, product));
     }
 
     const columns = [
         {
             field: "id",
             headerName: "S.No.",
-            minWidth: 200,
+            minWidth: 100,
             flex: 0.5,
             renderCell: (params) => params.api.getAllRowIds().indexOf(params.id)+1
+        },
+        {
+            field: "product",
+            headerName: "Product",
+            minWidth: 150,
+            flex: 1,
         },
         {
             field: "user",
             headerName: "User",
             minWidth: 150,
-            flex: 0.5,
+            flex: 1,
         },
         {
             field: "rating",
@@ -84,7 +90,7 @@ const ReviewsTable = () => {
             field: "comment",
             headerName: "Comment",
             minWidth: 200,
-            flex: 0.5,
+            flex: 1,
         },
         {
             field: "actions",
@@ -95,7 +101,7 @@ const ReviewsTable = () => {
             sortable: false,
             renderCell: (params) => {
                 return (
-                    <Actions editRoute={"review"} deleteHandler={deleteReviewHandler} id={params.row.id} />
+                    <Actions editRoute={"review"} deleteHandler={() => deleteReviewHandler(params.row.id, params.row.productId)} id={params.row.id} />
                 );
             },
         },
@@ -106,9 +112,11 @@ const ReviewsTable = () => {
     reviews && reviews.forEach((rev) => {
         rows.push({
             id: rev._id,
+            product: rev.product,
             rating: rev.rating,
             comment: rev.comment,
-            user: rev.name,
+            user: rev.user,
+            productId: rev.productId,
         });
     });
 
