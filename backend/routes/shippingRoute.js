@@ -8,8 +8,6 @@ router.route('/shipping/:id').get(getAddressDetails);
 
 router.route('/address/add').post(isAuthenticatedUser, createShippingAddress);
 
-router.route('/address/:id')
-    .put(isAuthenticatedUser, updateShipping)
-    .delete(isAuthenticatedUser, deleteShipping);
+router.route('/address/:id').put(isAuthenticatedUser, updateShipping);
 
 module.exports = router;

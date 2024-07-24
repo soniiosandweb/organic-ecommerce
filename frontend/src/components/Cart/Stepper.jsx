@@ -1,14 +1,20 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getAddressDetails } from '../../actions/shippingAction';
 
 const Stepper = ({ activeStep, children }) => {
 
-    const { user, isAuthenticated } = useSelector((state) => state.user);
-    const { shippingInfo, cartItems } = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
 
-    const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state} - ${shippingInfo.pincode}`;
+    const { user, isAuthenticated } = useSelector((state) => state.user);
+    const { cartItems } = useSelector((state) => state.cart);
+
+    const { addressInfo, loading } = useSelector((state) => state.address);
+    
+    const [address, setAddress] = useState('');
 
     const steps = [
         {
@@ -32,6 +38,15 @@ const Stepper = ({ activeStep, children }) => {
             link: "",
         }
     ]
+
+    useEffect(() => {
+        if(loading === undefined && user){
+            dispatch(getAddressDetails(user._id));
+        } 
+        if(addressInfo.length > 0 ){
+            setAddress(`${addressInfo[0].address}, ${addressInfo[0].city}, ${addressInfo[0].state} - ${addressInfo[0].pincode}`);
+        }
+    }, [dispatch, user, addressInfo, loading])
 
     return (
         <div className="flex flex-col gap-4">

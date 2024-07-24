@@ -25,6 +25,7 @@ import { newOrderData } from '../../actions/orderAction';
 import { emptyCart } from '../../actions/cartAction';
 import Loader from '../Layouts/Loader';
 import { emptyCouponCode } from '../../actions/couponAction';
+import { getAddressDetails } from '../../actions/shippingAction';
 
 const Payment = () => {
 
@@ -41,10 +42,14 @@ const Payment = () => {
 
     const { loading } = useSelector((state) => state.paymentKey);
 
-    const { shippingInfo, cartItems } = useSelector((state) => state.cart);
+    const { cartItems } = useSelector((state) => state.cart);
     const { user } = useSelector((state) => state.user);
-    const { error } = useSelector((state) => state.newOrder);
+    const { success, error } = useSelector((state) => state.newOrder);
     const { totalAmount } = useSelector((state) => state.cart);
+
+    const { addressInfo, loading: addressLoading } = useSelector((state) => state.address);
+
+    const [shippingInfo, setShippingInfo] = useState('');
 
     const totalPrice = totalAmount;
 
@@ -52,6 +57,7 @@ const Payment = () => {
         amount: Math.round(totalAmount),
         email: user.email,
         phoneNo: shippingInfo.phoneNo,
+        description: "Organic Products",
     };
 
     const order = {
@@ -142,10 +148,10 @@ const Payment = () => {
                             };
 
                             dispatch(newOrderData(order));
-                            dispatch(emptyCart());
-                            dispatch(emptyCouponCode());
+                            // dispatch(emptyCart());
+                            // dispatch(emptyCouponCode());
 
-                            navigate("/orders/success");
+                            // navigate("/orders/success");
                         } else {
                             enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
                         }
@@ -163,11 +169,10 @@ const Payment = () => {
                 method: method,
             };
 
-            dispatch(newOrderData(order));
-            dispatch(emptyCart());
-            dispatch(emptyCouponCode());
+            console.log(order)
 
-            navigate("/orders/success");
+            dispatch(newOrderData(order));
+            
         }
         
     };
@@ -177,7 +182,22 @@ const Payment = () => {
             dispatch(clearErrors());
             enqueueSnackbar(error, { variant: "error" });
         }
-    }, [dispatch, error, enqueueSnackbar]);
+
+        if(success){
+            dispatch(emptyCart());
+            dispatch(emptyCouponCode());
+
+            navigate("/orders/success");
+        }
+
+        if(addressLoading === undefined){
+            dispatch(getAddressDetails(user._id));
+        } 
+        if(addressInfo.length > 0 ){
+            setShippingInfo(addressInfo[0]);
+        }
+
+    }, [dispatch, error, enqueueSnackbar, loading, user, addressLoading, addressInfo, navigate, success]);
 
 
     return (

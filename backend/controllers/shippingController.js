@@ -6,7 +6,7 @@ const ErrorHandler = require('../utils/errorHandler');
 // Get Address Details
 exports.getAddressDetails = asyncErrorHandler(async (req, res, next) => {
 
-    const shipping = await Shipping.findById(req.params.id);
+    const shipping = await Shipping.find({user: req.params.id});
 
     if (!shipping) {
         return next(new ErrorHandler("Shipping Address Not Found", 404));
@@ -54,21 +54,5 @@ exports.updateShipping = asyncErrorHandler(async (req, res, next) => {
     res.status(201).json({
         success: true,
         shipping
-    });
-});
-
-// Delete Shipping Address
-exports.deleteShipping = asyncErrorHandler(async (req, res, next) => {
-
-    const shipping = await Shipping.findById(req.params.id);
-
-    if (!shipping) {
-        return next(new ErrorHandler("Shipping Address Not Found", 404));
-    }
-
-    await shipping.remove();
-
-    res.status(201).json({
-        success: true
     });
 });

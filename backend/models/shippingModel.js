@@ -17,6 +17,10 @@ const shippingSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    landmark: {
+        type: String,
+        required: false
+    },
     pincode: {
         type: Number,
         required: true

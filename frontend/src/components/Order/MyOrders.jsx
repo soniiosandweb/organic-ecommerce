@@ -255,10 +255,10 @@ const MyOrders = () => {
                                                         )}
                                                     </p>
                                                     {orderStatus === "Delivered" ?
-                                                        <p className="text-sm ml-1">Your item has been {orderStatus}</p>
+                                                        <p className="text-sm">Your item has been {orderStatus}</p>
                                                         : orderStatus === "Shipped" ?
-                                                            <p className="text-sm ml-1">Your item has been {orderStatus}</p> :
-                                                            <p className="text-sm ml-1">Seller has processed your order</p>
+                                                            <p className="text-sm">Your item has been {orderStatus}</p> :
+                                                            <p className="text-sm">Seller has processed your order</p>
                                                     }
 
                                                     <p className="text-sm"><span className='font-medium'>Total:</span> ₹{totalPrice.toLocaleString()}</p>

@@ -12,6 +12,7 @@ exports.processPayment = asyncErrorHandler(async (req, res, next) => {
     try {
         const myPayment = await stripe.paymentIntents.create({
             amount: req.body.amount,
+            description: "Organic Products",
             currency: "inr",
             metadata: {
                 company: "Fresh Organic Grocery",

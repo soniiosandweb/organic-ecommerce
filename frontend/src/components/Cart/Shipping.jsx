@@ -3,15 +3,17 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PriceSidebar from './PriceSidebar';
 import Stepper from './Stepper';
 import { useSnackbar } from 'notistack';
-import { saveShippingInfo } from '../../actions/cartAction';
 import { useNavigate } from 'react-router-dom';
 import MetaData from '../Layouts/MetaData';
 import states from '../../utils/states';
+import { createShipping, getAddressDetails, updateShipping } from '../../actions/shippingAction';
+import { clearErrors } from '../../actions/wishlistAction';
+import { NEW_SHIPPING_RESET, UPDATE_SHIPPING_RESET } from '../../constants/shippingConstants';
 
 const Shipping = () => {
 
@@ -20,14 +22,19 @@ const Shipping = () => {
     const { enqueueSnackbar } = useSnackbar();
 
     const { cartItems } = useSelector((state) => state.cart);
-    const { shippingInfo } = useSelector((state) => state.cart);
+    const { user } = useSelector((state) => state.user);
+    const { addressInfo, loading } = useSelector((state) => state.address);
+    const { success, error } = useSelector((state) => state.newShipping);
+    const { isUpdated, error: updateError } = useSelector((state) => state.shipping);
 
-    const [address, setAddress] = useState(shippingInfo.address);
-    const [city, setCity] = useState(shippingInfo.city);
+    const [addressId, setAddressId] = useState('');
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
     const [country, setCountry] = useState('IN');
-    const [state, setState] = useState(shippingInfo.state);
-    const [pincode, setPincode] = useState(shippingInfo.pincode);
-    const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
+    const [state, setState] = useState('');
+    const [landmark, setLandmark] = useState('');
+    const [pincode, setPincode] = useState('');
+    const [phoneNo, setPhoneNo] = useState('');
 
     const shippingSubmit = (e) => {
         e.preventDefault();
@@ -36,9 +43,52 @@ const Shipping = () => {
             enqueueSnackbar("Invalid Phone Number", { variant: "error" });
             return;
         }
-        dispatch(saveShippingInfo({ address, city, country, state, pincode, phoneNo }));
-        navigate("/order/confirm");
+
+        if(addressId){
+            dispatch(updateShipping(addressId, { address, city, country, state, pincode, phoneNo, landmark }));
+        } else {
+            dispatch(createShipping({ address, city, country, state, pincode, phoneNo, landmark }));
+        }
+        
+        //navigate("/order/confirm");
     }
+
+    useEffect(() => {
+        if(error){
+            enqueueSnackbar(error, { variant: "error" });
+            dispatch(clearErrors());
+        }
+        if (success) {
+            dispatch({ type: NEW_SHIPPING_RESET });
+            dispatch(getAddressDetails(user._id));
+            navigate("/order/confirm");
+        }
+
+        if(updateError){
+            enqueueSnackbar(error, { variant: "error" });
+            dispatch(clearErrors());
+        }
+        if (isUpdated) {
+            dispatch({ type: UPDATE_SHIPPING_RESET });
+            dispatch(getAddressDetails(user._id));
+            navigate("/order/confirm");
+        }
+
+        if(loading === undefined){
+            dispatch(getAddressDetails(user._id));
+        } 
+        if(addressInfo.length > 0 ){
+            setAddressId(addressInfo[0]._id);
+            setAddress(addressInfo[0].address);
+            setCity(addressInfo[0].city);
+            setCountry(addressInfo[0].country);
+            setState(addressInfo[0].state);
+            setPincode(addressInfo[0].pincode);
+            setPhoneNo(addressInfo[0].phoneNo);
+            setLandmark(addressInfo[0].landmark);
+        }
+       
+    }, [dispatch, user, navigate, enqueueSnackbar, error, success, addressInfo, loading, updateError, isUpdated]);
 
     return (
         <>
@@ -99,6 +149,8 @@ const Shipping = () => {
                                             label="Landmark (Optional)"
                                             fullWidth
                                             variant="outlined"
+                                            value={landmark}
+                                            onChange={(e) => setLandmark(e.target.value)}
                                         />
                                     </div>
 

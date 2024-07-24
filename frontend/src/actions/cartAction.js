@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ADD_TO_CART, EMPTY_CART, REMOVE_FROM_CART, SAVE_SHIPPING_INFO, TOTAL_AMOUNT } from "../constants/cartConstants";
+import { ADD_TO_CART, EMPTY_CART, REMOVE_FROM_CART, TOTAL_AMOUNT } from "../constants/cartConstants";
 import { EMPTY_COUPON_CODE } from "../constants/couponConstants";
 
 // add to cart
@@ -59,15 +59,4 @@ export const setTotalAmount = (amount) => async (dispatch, getState) => {
      });
 
      window.sessionStorage.setItem('totalAmount', JSON.stringify(getState().cart.totalAmount))
-}
-
-// save shipping info
-export const saveShippingInfo = (data) => async (dispatch) => {
-
-    dispatch({
-        type: SAVE_SHIPPING_INFO,
-        payload: data,
-    });
-
-    window.sessionStorage.setItem('shippingInfo', JSON.stringify(data));
 }

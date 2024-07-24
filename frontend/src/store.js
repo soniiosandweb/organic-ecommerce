@@ -75,9 +75,6 @@ let initialState = {
         cartItems: window.sessionStorage.getItem('cartItems')
             ? JSON.parse(window.sessionStorage.getItem('cartItems'))
             : [],
-        shippingInfo: window.sessionStorage.getItem("shippingInfo")
-            ? JSON.parse(window.sessionStorage.getItem("shippingInfo"))
-            : {},
         totalAmount: window.sessionStorage.getItem("totalAmount")
             ? JSON.parse(window.sessionStorage.getItem('totalAmount'))
             : null,

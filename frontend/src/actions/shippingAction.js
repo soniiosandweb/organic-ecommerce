@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DELETE_SHIPPING_FAIL, DELETE_SHIPPING_REQUEST, DELETE_SHIPPING_SUCCESS, GET_SHIPPING_FAIL, GET_SHIPPING_REQUEST, GET_SHIPPING_SUCCESS, NEW_SHIPPING_FAIL, NEW_SHIPPING_REQUEST, NEW_SHIPPING_SUCCESS, UPDATE_SHIPPING_FAIL, UPDATE_SHIPPING_REQUEST, UPDATE_SHIPPING_SUCCESS, CLEAR_ERRORS } from "../constants/shippingConstants";
+import { GET_SHIPPING_FAIL, GET_SHIPPING_REQUEST, GET_SHIPPING_SUCCESS, NEW_SHIPPING_FAIL, NEW_SHIPPING_REQUEST, NEW_SHIPPING_SUCCESS, UPDATE_SHIPPING_FAIL, UPDATE_SHIPPING_REQUEST, UPDATE_SHIPPING_SUCCESS, CLEAR_ERRORS } from "../constants/shippingConstants";
 
 // Get Address Details
 export const getAddressDetails = (id) => async (dispatch) => {
@@ -53,24 +53,6 @@ export const updateShipping = (id, addressData) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: UPDATE_SHIPPING_FAIL,
-            payload: error.response.data.message,
-        });
-    }
-}
-
-// Delete Shipping Address
-export const deleteShipping = (id) => async (dispatch) => {
-    try {
-        dispatch({ type: DELETE_SHIPPING_REQUEST });
-        const { data } = await axios.delete(`/api/v1/address/${id}`);
-
-        dispatch({
-            type: DELETE_SHIPPING_SUCCESS,
-            payload: data.success,
-        });
-    } catch (error) {
-        dispatch({
-            type: DELETE_SHIPPING_FAIL,
             payload: error.response.data.message,
         });
     }

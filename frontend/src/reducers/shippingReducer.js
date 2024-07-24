@@ -1,7 +1,6 @@
-import { GET_SHIPPING_FAIL, GET_SHIPPING_REQUEST, GET_SHIPPING_SUCCESS, CLEAR_ERRORS, NEW_SHIPPING_REQUEST, NEW_SHIPPING_SUCCESS, NEW_SHIPPING_FAIL, NEW_SHIPPING_RESET, UPDATE_SHIPPING_REQUEST, DELETE_SHIPPING_REQUEST, UPDATE_SHIPPING_SUCCESS, DELETE_SHIPPING_SUCCESS, UPDATE_SHIPPING_FAIL, DELETE_SHIPPING_FAIL, UPDATE_SHIPPING_RESET, DELETE_SHIPPING_RESET } from "../constants/shippingConstants";
+import { GET_SHIPPING_FAIL, GET_SHIPPING_REQUEST, GET_SHIPPING_SUCCESS, CLEAR_ERRORS, NEW_SHIPPING_REQUEST, NEW_SHIPPING_SUCCESS, NEW_SHIPPING_FAIL, NEW_SHIPPING_RESET, UPDATE_SHIPPING_REQUEST, UPDATE_SHIPPING_SUCCESS, UPDATE_SHIPPING_FAIL, UPDATE_SHIPPING_RESET } from "../constants/shippingConstants";
 
-
-export const addressReducer = (state = { address: {} }, { type, payload }) => {
+export const addressReducer = (state = { addressInfo: {} }, { type, payload }) => {
 
     switch (type) {
         case GET_SHIPPING_REQUEST:
@@ -12,7 +11,7 @@ export const addressReducer = (state = { address: {} }, { type, payload }) => {
         case GET_SHIPPING_SUCCESS:
             return {
                 loading: false,
-                address: payload,
+                addressInfo: payload,
             };
         case GET_SHIPPING_FAIL:
             return {
@@ -53,6 +52,7 @@ export const addShippingReducer = (state = { shipping: {} }, { type, payload }) 
             return {
                 ...state,
                 success: false,
+                shipping: {},
             };
         case CLEAR_ERRORS:
             return {
@@ -68,7 +68,6 @@ export const addShippingReducer = (state = { shipping: {} }, { type, payload }) 
 export const shippingReducer = (state = {}, { type, payload }) => {
     switch (type) {
         case UPDATE_SHIPPING_REQUEST:
-        case DELETE_SHIPPING_REQUEST:
             return {
                 ...state,
                 loading: true,
@@ -79,14 +78,7 @@ export const shippingReducer = (state = {}, { type, payload }) => {
                 loading: false,
                 isUpdated: payload,
             };
-        case DELETE_SHIPPING_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                isDeleted: payload,
-            };
         case UPDATE_SHIPPING_FAIL:
-        case DELETE_SHIPPING_FAIL:
             return {
                 ...state,
                 loading: false,
@@ -96,11 +88,6 @@ export const shippingReducer = (state = {}, { type, payload }) => {
             return {
                 ...state,
                 isUpdated: false,
-            };
-        case DELETE_SHIPPING_RESET:
-            return {
-                ...state,
-                isDeleted: false,
             };
         case CLEAR_ERRORS:
             return {
