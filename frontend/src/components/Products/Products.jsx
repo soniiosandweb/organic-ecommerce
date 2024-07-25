@@ -123,6 +123,7 @@ const Products = () => {
                                             min={0}
                                             max={20000}
                                             color='primary'
+                                            className='price-slider'
                                         />
 
                                         <div className="flex gap-3 items-center justify-between mb-2 min-w-full flex-col sm:flex-row lg:flex-col xl:flex-row">

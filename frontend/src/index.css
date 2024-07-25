@@ -63,8 +63,16 @@ body {
 .shadow {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1), 0 0 5px 0 rgba(0, 0, 0, 0.06);
 }
-.social_link:hover svg {
+.social_link:hover svg{
   fill: #0da487;
+}
+.header-svg:hover  svg {
+  color: #0da487;
+}
+.MuiSlider-root.price-slider {
+  width: 94%;
+  margin-left: auto;
+  margin-right: auto;
 }
 /* Header */
 #userDropDown{
