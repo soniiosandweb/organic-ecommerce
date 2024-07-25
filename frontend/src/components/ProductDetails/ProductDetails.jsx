@@ -19,14 +19,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
-import { NEW_REVIEW_RESET } from '../../constants/productConstants';
+import { NEW_REVIEW_RESET, REMOVE_PRODUCT_DETAILS } from '../../constants/productConstants';
 import { addItemsToCart } from '../../actions/cartAction';
 import { getDiscount } from '../../utils/functions';
 import { addWishlistItem, deleteWishlist, getWIshlistItems } from '../../actions/wishlistAction';
 import MetaData from '../Layouts/MetaData';
 import DealSlider from '../Home/DealSlider/DealSlider';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { ADD_WISHLIST_RESET, REMOVE_WISHLIST_RESET } from '../../constants/wishlistConstants';
+import { ADD_WISHLIST_RESET, GET_WISHLIST_RESET, REMOVE_WISHLIST_RESET } from '../../constants/wishlistConstants';
 
 const ProductDetails = () => {
 
@@ -45,8 +45,8 @@ const ProductDetails = () => {
     const { success, error: reviewError } = useSelector((state) => state.newReview);
     const { cartItems } = useSelector((state) => state.cart);
 
-    const { user } = useSelector((state) => state.user);
-    const { wishlists, loading: wishlistLoading } = useSelector((state) => state.wishlists);
+    const { user, isAuthenticated } = useSelector((state) => state.user);
+    const { wishlists, loading: wishlistLoading, error: wishlistError } = useSelector((state) => state.wishlists);
     const { isDeleted, error: deleteError } = useSelector((state) => state.wishlistItem);
     const { success: isAdded, error: addError } = useSelector((state) => state.newWIshlist);
 
@@ -103,7 +103,12 @@ const ProductDetails = () => {
     }
 
     const handleDialogClose = () => {
-        setOpen(!open);
+        if(isAuthenticated){
+            setOpen(!open);
+        } else {
+            enqueueSnackbar("Please Login to Rate Product", { variant: "warning" });
+        }
+        
     }
 
     const itemInCart = cartItems.some((i) => i.product === productId);
@@ -129,6 +134,7 @@ const ProductDetails = () => {
         if (success) {
             enqueueSnackbar("Review Submitted Successfully", { variant: "success" });
             dispatch({ type: NEW_REVIEW_RESET });
+            dispatch({ type: REMOVE_PRODUCT_DETAILS });
         }
 
         if (deleteError) {
@@ -152,11 +158,15 @@ const ProductDetails = () => {
             dispatch(getWIshlistItems(user._id));
         }
 
+        if(wishlistError){
+            dispatch({ type: GET_WISHLIST_RESET });
+        }
+
         if(productId !== product._id){
           dispatch(getProductDetails(productId));  
         }
         
-    }, [dispatch, productId, error, reviewError, success, enqueueSnackbar, user, isAdded, isDeleted, addError, deleteError, wishlistLoading, loading, product]);
+    }, [dispatch, productId, error, reviewError, success, enqueueSnackbar, user, isAdded, isDeleted, addError, deleteError, wishlistLoading, loading, product, wishlistError]);
 
     useEffect(() => {
         dispatch(getSimilarProducts(product.category ? product.category._id : null));

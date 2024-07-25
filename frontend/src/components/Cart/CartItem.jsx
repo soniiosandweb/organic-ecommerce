@@ -78,7 +78,7 @@ const CartItem = ({ product, name, seller, price, cuttedPrice, image, stock, qua
 
                             {/* <!-- quantity --> */}
                             <div className="flex gap-1 items-center">
-                                <span onClick={() => decreaseQuantity(product, quantity)} className="w-7 h-7 text-xl font-medium bg-gray-100 rounded-full border flex items-center justify-center cursor-pointer border-gray-300"><p>-</p></span>
+                                <span onClick={() => decreaseQuantity(product, quantity)} className="w-7 h-7 text-xl font-medium bg-gray-100 rounded-full border flex items-center justify-center cursor-pointer border-gray-300">&minus;</span>
                                 <input className="w-11 border outline-none text-center rounded-sm py-0.5 text-black font-medium text-md qtyInput border-gray-300" value={quantity} disabled />
                                 <span onClick={() => increaseQuantity(product, quantity, stock)} className="w-7 h-7 text-xl font-medium bg-gray-100 rounded-full border flex items-center justify-center cursor-pointer border-gray-300">+</span>
                             </div>

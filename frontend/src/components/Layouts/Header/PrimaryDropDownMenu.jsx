@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { logoutUser } from '../../../actions/userAction';
 import { getWIshlistItems } from '../../../actions/wishlistAction';
+import { GET_WISHLIST_RESET } from '../../../constants/wishlistConstants';
 
 const PrimaryDropDownMenu = ({ setOpen, user }) => {
 
@@ -17,7 +18,7 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
 
-    const { wishlists, loading: wishlistLoading } = useSelector((state) => state.wishlists);
+    const { wishlists, loading: wishlistLoading, error: wishlistError } = useSelector((state) => state.wishlists);
 
     const handleLogout = () => {
         dispatch(logoutUser());
@@ -38,8 +39,12 @@ const PrimaryDropDownMenu = ({ setOpen, user }) => {
         if(user && user._id && wishlistLoading === undefined){
             dispatch(getWIshlistItems(user._id));
         } 
+
+        if(wishlistError){
+            dispatch({ type: GET_WISHLIST_RESET });
+        }
      
-    }, [dispatch, user, wishlistLoading])
+    }, [dispatch, user, wishlistLoading, wishlistError])
 
     const navs = [
         {

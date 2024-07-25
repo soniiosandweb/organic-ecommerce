@@ -6,20 +6,25 @@ import wishlistEmpty from '../../assets/images/mywishlist-empty.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useEffect } from 'react';
 import { getWIshlistItems } from '../../actions/wishlistAction';
+import { GET_WISHLIST_RESET } from '../../constants/wishlistConstants';
 
 const Wishlist = () => {
 
     const dispatch = useDispatch();
     
     const { user } = useSelector((state) => state.user);
-    const { wishlists, loading: wishlistLoading } = useSelector((state) => state.wishlists);
+    const { wishlists, loading: wishlistLoading, error: wishlistError } = useSelector((state) => state.wishlists);
     
 
     useEffect(() => {
         if(user && user._id && wishlistLoading === undefined){
             dispatch(getWIshlistItems(user._id));
         }
-    }, [dispatch, user, wishlistLoading])
+        
+        if(wishlistError){
+            dispatch({ type: GET_WISHLIST_RESET });
+        }
+    }, [dispatch, user, wishlistLoading, wishlistError])
 
     return (
         <>

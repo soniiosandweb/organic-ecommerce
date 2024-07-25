@@ -60,16 +60,27 @@ const Register = () => {
 
     const handleDataChange = (e) => {
         if (e.target.name === "avatar") {
-            const reader = new FileReader();
 
-            reader.onload = () => {
-                if (reader.readyState === 2) {
-                    setAvatarPreview(reader.result);
-                    setAvatar(reader.result);
+            let file = e.target.files[0];
+
+            if(file){
+
+                if (file.size > 1e6) {
+                    enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
+                    return;
                 }
-            };
+                
+                const reader = new FileReader();
 
-            reader.readAsDataURL(e.target.files[0]);
+                reader.onload = () => {
+                    if (reader.readyState === 2) {
+                        setAvatarPreview(reader.result);
+                        setAvatar(reader.result);
+                    }
+                };
+
+                reader.readAsDataURL(e.target.files[0]);
+            }
 
         } else {
             setUser({ ...user, [e.target.name]: e.target.value });

@@ -58,9 +58,9 @@ const ContactUs = () => {
                 <div className="py-8 lg:py-16 sm:w-11/12 m-auto px-4 w-full relative z-10">
                     <h2 className="text-xl sm:text-3xl font-semibold text-center">Contact Details</h2>
 
-                    <form onSubmit={contactSubmit} autoComplete="off" className="flex flex-col justify-start gap-3 w-full lg:w-3/4 mx-auto mt-10">
+                    <form onSubmit={contactSubmit} autoComplete="off" className="flex flex-col justify-start gap-5 w-full lg:w-3/4 mx-auto mt-10">
 
-                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
+                        <div className="flex flex-col sm:flex-row gap-5 sm:gap-6">
                             <TextField
                                 value={yourName}
                                 onChange={(e) => setYourName(e.target.value)}
@@ -113,7 +113,7 @@ const ContactUs = () => {
                             <EmailOutlinedIcon />
                             <div className="text-black text-md">
                                 <h4 className="font-semibold">Email Address</h4>
-                                <a className="hover:underline text-sm" href="mailto:info@freshorganicgrocery.com">info@freshorganicgrocery.com</a>
+                                <a className="hover:text-primary-green text-sm" href="mailto:info@freshorganicgrocery.com">info@freshorganicgrocery.com</a>
                             </div>
                         </div>
 
@@ -121,7 +121,7 @@ const ContactUs = () => {
                             <PhoneInTalkOutlinedIcon />
                             <div className="text-black text-md">
                                 <h4 className="font-semibold">Phone Number</h4>
-                                <a className="hover:underline text-sm" href="tel:+919915841204">+91 9915841204</a>
+                                <a className="hover:text-primary-green text-sm" href="tel:+919915841204">+91 9915841204</a>
                             </div>
                         </div>
 

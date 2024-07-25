@@ -1,4 +1,4 @@
-import { REMOVE_FROM_SAVE_FOR_LATER, SAVE_FOR_LATER } from "../constants/saveForLaterConstants";
+import { EMPTY_SAVE_FOR_LATER, REMOVE_FROM_SAVE_FOR_LATER, SAVE_FOR_LATER } from "../constants/saveForLaterConstants";
 
 export const saveForLaterReducer = (state = { saveForLaterItems: [] }, { type, payload }) => {
     switch (type) {
@@ -24,6 +24,11 @@ export const saveForLaterReducer = (state = { saveForLaterItems: [] }, { type, p
                 saveForLaterItems: state.saveForLaterItems.filter((i) =>
                     i.product !== payload
                 ),
+            }
+        case EMPTY_SAVE_FOR_LATER:
+            return {
+                ...state,
+                saveForLaterItems: [],
             }
         default:
             return state;

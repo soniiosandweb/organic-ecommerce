@@ -98,13 +98,15 @@ const FaqsTable = () => {
                 <DataGrid
                     rows={rows}
                     columns={columns}
-                    pageSize={10}
                     disableSelectIconOnClick
                     sx={{
                         boxShadow: 0,
                         border: 0,
                     }}
                     disableSelectionOnClick 
+                    autoPageSize
+                    pageSizeOptions={[5, 10, 25]}
+                    pagination
                 />
             </div>
 

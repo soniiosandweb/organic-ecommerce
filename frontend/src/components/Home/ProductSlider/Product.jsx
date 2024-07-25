@@ -11,7 +11,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { addItemsToCart } from '../../../actions/cartAction';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import { useEffect } from 'react';
-import { ADD_WISHLIST_RESET, REMOVE_WISHLIST_RESET } from '../../../constants/wishlistConstants';
+import { ADD_WISHLIST_RESET, GET_WISHLIST_RESET, REMOVE_WISHLIST_RESET } from '../../../constants/wishlistConstants';
 
 const Product = (props) => {
 
@@ -24,11 +24,11 @@ const Product = (props) => {
     const { cartItems } = useSelector((state) => state.cart);
 
     const { user } = useSelector((state) => state.user);
-    const { wishlists, loading: wishlistLoading } = useSelector((state) => state.wishlists);
+    const { wishlists, loading: wishlistLoading, error: wishlistError } = useSelector((state) => state.wishlists);
     const { isDeleted, error: deleteError } = useSelector((state) => state.wishlistItem);
     const { success: isAdded, error: addError } = useSelector((state) => state.newWIshlist);
 
-    const itemExist = wishlists.some((i) => i.product._id === _id);
+    const itemExist = wishlists && wishlists.some((i) => i.product._id === _id);
 
     const itemInCart = cartItems.some((i) => i.product === _id);
 
@@ -64,6 +64,9 @@ const Product = (props) => {
         if(user && user._id && wishlistLoading === undefined){
             dispatch(getWIshlistItems(user._id));
         }
+        if(wishlistError){
+            dispatch({ type: GET_WISHLIST_RESET });
+        }
         if (deleteError) {
             enqueueSnackbar(deleteError, { variant: "error" });
             dispatch(clearErrors());
@@ -82,7 +85,7 @@ const Product = (props) => {
             dispatch({ type: ADD_WISHLIST_RESET });
             dispatch(getWIshlistItems(user._id));
         }
-    }, [dispatch, wishlistLoading, user, deleteError, isDeleted, isAdded, addError, enqueueSnackbar])
+    }, [dispatch, wishlistLoading, user, deleteError, isDeleted, isAdded, addError, enqueueSnackbar, wishlistError])
 
     return (
         <div className="gap-2 px-4 relative w-full h-full">

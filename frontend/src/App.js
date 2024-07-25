@@ -7,7 +7,6 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { loadPaymentKey, loadUser } from './actions/userAction';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import UpdateProfile from './components/User/UpdateProfile';
 import UpdatePassword from './components/User/UpdatePassword';
 import ForgotPassword from './components/User/ForgotPassword';
 import ResetPassword from './components/User/ResetPassword';
@@ -191,12 +190,6 @@ function App() {
             <Account />
           </ProtectedRoute>
         } ></Route>
-        {/* 
-        <Route path="/account/update" element={
-          <ProtectedRoute>
-            <UpdateProfile />
-          </ProtectedRoute>
-        } ></Route> */}
 
         <Route path="/password/update" element={
           <ProtectedRoute>

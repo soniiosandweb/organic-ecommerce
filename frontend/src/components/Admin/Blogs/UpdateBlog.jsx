@@ -50,25 +50,28 @@ const UpdateBlog = () => {
     const handleBlogImageChange = (e) => {
         let file = e.target.files[0];
 
-        if (file.size > 1e6) {
-            enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
-            return;
+        if(file){
+            if (file.size > 1e6) {
+                enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
+                return;
+            }
+            
+            const reader = new FileReader();
+
+            setImage("")
+            setImagePreview("")
+            setOldImage("")
+
+            reader.onload = () => {
+                if (reader.readyState === 2) {
+                    setImagePreview(reader.result);
+                    setImage(reader.result);
+                }
+            };
+
+            reader.readAsDataURL(e.target.files[0]);
         }
         
-        const reader = new FileReader();
-
-        setImage("")
-        setImagePreview("")
-        setOldImage("")
-
-        reader.onload = () => {
-            if (reader.readyState === 2) {
-                setImagePreview(reader.result);
-                setImage(reader.result);
-            }
-        };
-
-        reader.readAsDataURL(e.target.files[0]);
     }
 
     const updateCategorySubmitHandler = (e) => {
@@ -217,32 +220,35 @@ const UpdateBlog = () => {
                 <div className="flex flex-col gap-2 xl:w-2/3">
 
                     <h2 className="font-medium">Featured Image</h2>
-                    <div className="w-full flex gap-2 justify-center items-center overflow-x-auto h-32 border border-gray-300 rounded">
-                        {oldImage && !imagePreview &&(
-                            <LazyLoadImage 
-                                src={oldImage.url}
-                                alt="Product Category"
-                                className="w-full h-full object-contain"
+
+                    <label className='w-full group cursor-pointer border border-gray-300 rounded'>
+                        <div className="w-full flex gap-2 justify-center items-center overflow-x-auto h-32 border border-gray-300 rounded">
+                            {oldImage && !imagePreview &&(
+                                <LazyLoadImage 
+                                    src={oldImage.url}
+                                    alt="Product Category"
+                                    className="w-full h-full object-contain"
+                                />
+                            )}
+                            
+                            {!imagePreview ? null :
+                                <LazyLoadImage 
+                                    src={imagePreview}
+                                    alt="Product Category"
+                                    className="w-full h-full object-contain"
+                                />
+                            }
+                        </div>
+                        <p className="w-full rounded-b border border-gray-400 bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow group-hover:border-gray-700 group-hover:bg-gray-700">
+                            <input
+                                type="file"
+                                name="image"
+                                accept="image/*"
+                                onChange={handleBlogImageChange}
+                                className="hidden"
                             />
-                        )}
-                        
-                        {!imagePreview ? null :
-                            <LazyLoadImage 
-                                src={imagePreview}
-                                alt="Product Category"
-                                className="w-full h-full object-contain"
-                            />
-                        }
-                    </div>
-                    <label className="w-full rounded bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow hover:shadow-lg hover:bg-gray-700">
-                        <input
-                            type="file"
-                            name="image"
-                            accept="image/*"
-                            onChange={handleBlogImageChange}
-                            className="hidden"
-                        />
-                        Choose Featured Image
+                            Choose Featured Image
+                        </p>
                     </label>
 
                 </div>

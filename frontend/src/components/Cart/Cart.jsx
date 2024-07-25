@@ -42,7 +42,7 @@ const Cart = () => {
 
                             {/* <!-- place order btn --> */}
                             <div className="flex justify-end">
-                                <button onClick={placeOrderHandler} disabled={cartItems.length < 1 ? true : false} className={`${cartItems.length < 1 ? "bg-primary-grey cursor-not-allowed" : "bg-primary-green"} w-full lg:w-1/4 mx-2 sm:mx-6 my-4 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm hover:bg-black`}>Checkout</button>
+                                <button onClick={placeOrderHandler} disabled={cartItems.length < 1 ? true : false} className={`${cartItems.length < 1 ? "bg-primary-grey cursor-not-allowed" : "bg-primary-green hover:bg-black"} w-full lg:w-1/4 mx-2 sm:mx-6 my-4 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm`}>Checkout</button>
                             </div>
                             {/* <!-- place order btn --> */}
 
@@ -52,8 +52,8 @@ const Cart = () => {
                         {/* <!-- saved for later items container --> */}
                         <div className="flex flex-col mt-10 border border-gray-300 bg-white">
                             <span className="font-medium text-lg px-2 sm:px-8 py-4 border-b border-gray-300">Saved For Later ({saveForLaterItems.length})</span>
-                            {saveForLaterItems && saveForLaterItems.map((item) => (
-                                <SaveForLaterItem {...item} />
+                            {saveForLaterItems && saveForLaterItems.map((item, index) => (
+                                <SaveForLaterItem {...item} key={index} />
                             )
                             )}
                         </div>

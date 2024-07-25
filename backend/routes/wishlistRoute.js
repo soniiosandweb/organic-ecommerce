@@ -4,7 +4,7 @@ const { getWishlists, createWishlist, deleteWishlist } = require('../controllers
 
 const router = express.Router();
 
-router.route('/wishlist/:id').get(getWishlists);
+router.route('/wishlist/:id').get(isAuthenticatedUser, getWishlists);
 
 router.route('/wishlist/new').post(isAuthenticatedUser, createWishlist);
 

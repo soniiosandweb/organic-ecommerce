@@ -1,4 +1,6 @@
+import { EMPTY_CART } from '../constants/cartConstants';
 import { EMPTY_COUPON_CODE } from '../constants/couponConstants';
+import { EMPTY_SAVE_FOR_LATER } from '../constants/saveForLaterConstants';
 import {
     LOGIN_USER_REQUEST,
     LOGIN_USER_SUCCESS,
@@ -194,8 +196,12 @@ export const logoutUser = () => async (dispatch,getState) => {
 
         dispatch({ type: EMPTY_COUPON_CODE });
 
+        dispatch({ type: EMPTY_CART });
+
+        dispatch({ type: EMPTY_SAVE_FOR_LATER });
+
         window.sessionStorage.setItem('appliedCoupon', JSON.stringify(getState().appliedCode.appliedCoupon));
-        window.location.reload();
+        window.sessionStorage.clear();
 
     } catch (error) {
         dispatch({

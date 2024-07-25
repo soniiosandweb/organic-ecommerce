@@ -62,9 +62,9 @@ const SaveForLaterItem = ({ product, name, seller, price, cuttedPrice, image, st
 
                             {/* <!-- quantity --> */}
                             <div className="flex gap-1 items-center">
-                                <span className="w-7 h-7 text-xl font-medium bg-gray-100 rounded-sm border flex items-center justify-center cursor-not-allowed border-gray-300"><p>-</p></span>
+                                <span className="w-7 h-7 text-xl font-medium bg-gray-100 border flex items-center justify-center rounded-full cursor-not-allowed border-gray-300">&minus;</span>
                                 <input className="w-11 border outline-none text-center rounded-sm py-0.5 text-black font-medium text-md qtyInput border-gray-300" value={quantity} disabled />
-                                <span className="w-7 h-7 text-xl font-medium bg-gray-100 rounded-sm border flex items-center justify-center cursor-not-allowed border-gray-300">+</span>
+                                <span className="w-7 h-7 text-xl font-medium bg-gray-100 border flex items-center justify-center rounded-full cursor-not-allowed border-gray-300">+</span>
                             </div>
                             {/* <!-- quantity --> */}
 

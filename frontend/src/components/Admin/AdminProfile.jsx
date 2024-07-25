@@ -37,16 +37,26 @@ const AdminProfile = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleUpdateDataChange = (e) => {
-        const reader = new FileReader();
-        setAvatar("");
-        reader.onload = () => {
-            if (reader.readyState === 2) {
-                setAvatarPreview(reader.result);
-                setAvatar(reader.result);
-            }
-        };
+        let file = e.target.files[0];
 
-        reader.readAsDataURL(e.target.files[0]);
+        if(file){
+
+            if (file.size > 1e6) {
+                enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
+                return;
+            }
+            
+            const reader = new FileReader();
+            setAvatar("");
+            reader.onload = () => {
+                if (reader.readyState === 2) {
+                    setAvatarPreview(reader.result);
+                    setAvatar(reader.result);
+                }
+            };
+
+            reader.readAsDataURL(e.target.files[0]);
+        }
     }
 
     const updateUserSubmitHandler = (e) => {

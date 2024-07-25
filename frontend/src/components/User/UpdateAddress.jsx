@@ -131,7 +131,7 @@ const UpdateAddress = () => {
                                 />
                                 <TextField
                                     value={phoneNo}
-                                    onChange={(e) => setPhoneNo(e.target.value)}
+                                    onChange={(e) => setPhoneNo(e.target.value.slice(0, 10))}
                                     type="number"
                                     label="Phone No"
                                     fullWidth

@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import product from '../../../assets/images/Footer/product.svg';
 import delivery from '../../../assets/images/Footer/delivery.svg';
 import discount from '../../../assets/images/Footer/discount.svg';
@@ -195,7 +194,7 @@ const Footer = () => {
             <div className="py-6 sm:w-11/12 m-auto w-full flex justify-center md:justify-between items-center text-xs flex-col lg:flex-row gap-2">
 
               <div className='flex items-center flex-1 justify-center lg:justify-start w-full lg:w-1/3'>
-                <p className='text-center lg:text-left'>&copy; {new Date().getFullYear()} <a href="/" className='font-semibold text-primary-green'>Fresh Organic Grocery</a>. All Rights Reserved.</p>
+                <p className='text-center lg:text-left'>&copy; {new Date().getFullYear()} <a href="/" className='font-semibold text-primary-green hover:underline'>Fresh Organic Grocery</a>. All Rights Reserved.</p>
               </div>
               
               <div className='flex items-center justify-center flex-1 w-full lg:w-1/3'>
@@ -208,14 +207,16 @@ const Footer = () => {
 
               <div className='flex items-center gap-3 flex-1 w-full lg:w-1/3 justify-center lg:justify-end'>
                 <span className='text-sm'>Stay connected :</span>
-                <a href="https://www.facebook.com/" rel="noreferrer" className="" target="_blank">
+                <a href="https://www.facebook.com/" rel="noreferrer" className="social_link" target="_blank">
                   <svg fill="#4a5568" className='w-5 h-5' width="64px" height="64px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M21.95 5.005l-3.306-.004c-3.206 0-5.277 2.124-5.277 5.415v2.495H10.05v4.515h3.317l-.004 9.575h4.641l.004-9.575h3.806l-.003-4.514h-3.803v-2.117c0-1.018.241-1.533 1.566-1.533l2.366-.001.01-4.256z"></path></g></svg>
                 </a>
-                <a href="https://twitter.com/" rel="noreferrer" className="" target="_blank">
+                <a href="https://twitter.com/" rel="noreferrer" className="social_link" target="_blank">
                   <svg fill="#4a5568" className='w-5 h-5' width="64px" height="64px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M11.919 24.94c-2.548 0-4.921-.747-6.919-2.032a9.049 9.049 0 0 0 6.681-1.867 4.512 4.512 0 0 1-4.215-3.137c.276.054.559.082.848.082.412 0 .812-.056 1.193-.156a4.519 4.519 0 0 1-3.622-4.425v-.059a4.478 4.478 0 0 0 2.042.564 4.507 4.507 0 0 1-2.008-3.758c0-.824.225-1.602.612-2.268a12.811 12.811 0 0 0 9.303 4.715 4.517 4.517 0 0 1 7.692-4.115 9.107 9.107 0 0 0 2.866-1.094 4.542 4.542 0 0 1-1.983 2.498 9.08 9.08 0 0 0 2.592-.71 9.283 9.283 0 0 1-2.252 2.337c.008.193.014.388.014.583-.001 5.962-4.542 12.843-12.844 12.842"></path></g></svg>
                 </a>
-                <a href="http://instagram.com/" rel="noreferrer" className="" target="_blank">
-                  <InstagramIcon sx={{ fontSize: "1rem" }}/>
+                <a href="http://instagram.com/" rel="noreferrer" className="social_link" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30"
+                    className='w-4 h-4' fill="#4a5568"><path d="M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953 L 3 20.001953 C 3 23.860953 6.1419531 27 10.001953 27 L 20.001953 27 C 23.860953 27 27 23.858047 27 19.998047 L 27 9.9980469 C 27 6.1390469 23.858047 3 19.998047 3 L 9.9980469 3 z M 22 7 C 22.552 7 23 7.448 23 8 C 23 8.552 22.552 9 22 9 C 21.448 9 21 8.552 21 8 C 21 7.448 21.448 7 22 7 z M 15 9 C 18.309 9 21 11.691 21 15 C 21 18.309 18.309 21 15 21 C 11.691 21 9 18.309 9 15 C 9 11.691 11.691 9 15 9 z M 15 11 A 4 4 0 0 0 11 15 A 4 4 0 0 0 15 19 A 4 4 0 0 0 19 15 A 4 4 0 0 0 15 11 z"></path>
+                  </svg>
                 </a>
                 
               </div>

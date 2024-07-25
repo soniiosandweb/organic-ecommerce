@@ -32,50 +32,58 @@ const UpdateCategory = () => {
     const [oldIcon, setOldIcon] = useState("");
 
     const handleCategoryChange = (e) => {
+
         let file = e.target.files[0];
 
-        if (file.size > 1e6) {
-            enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
-            return;
-        }
-        const reader = new FileReader();
-
-        setCategoryImg("")
-        setCategoryPreview("")
-        setOldImage("")
-
-        reader.onload = () => {
-            if (reader.readyState === 2) {
-                setCategoryPreview(reader.result);
-                setCategoryImg(reader.result);
+        if(file){
+            if (file.size > 1e6) {
+                enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
+                return;
             }
-        };
+            const reader = new FileReader();
 
-        reader.readAsDataURL(e.target.files[0]);
+            setCategoryImg("")
+            setCategoryPreview("")
+            setOldImage("")
+
+            reader.onload = () => {
+                if (reader.readyState === 2) {
+                    setCategoryPreview(reader.result);
+                    setCategoryImg(reader.result);
+                }
+            };
+
+            reader.readAsDataURL(e.target.files[0]);
+        }
+        
     }
 
     const handleCategoryIconChange = (e) => {
+
         let file = e.target.files[0];
 
-        if (file.size > 1e6) {
-            enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
-            return;
-        }
-
-        const reader = new FileReader();
-
-        setIconImg("")
-        setIconPreview("")
-        setOldIcon("")
-
-        reader.onload = () => {
-            if (reader.readyState === 2) {
-                setIconPreview(reader.result);
-                setIconImg(reader.result);
+        if(file){
+            if (file.size > 1e6) {
+                enqueueSnackbar("Please upload a file smaller than 1 MB", { variant: "warning" });
+                return;
             }
-        };
 
-        reader.readAsDataURL(e.target.files[0]);
+            const reader = new FileReader();
+
+            setIconImg("")
+            setIconPreview("")
+            setOldIcon("")
+
+            reader.onload = () => {
+                if (reader.readyState === 2) {
+                    setIconPreview(reader.result);
+                    setIconImg(reader.result);
+                }
+            };
+
+            reader.readAsDataURL(e.target.files[0]);
+        }
+        
     }
 
     const updateCategorySubmitHandler = (e) => {
@@ -143,32 +151,34 @@ const UpdateCategory = () => {
                 <div className="flex flex-col gap-2 w-full lg:w-2/3 xl:w-1/3">
                 
                     <h2 className="font-medium">Category Icon</h2>
-                    <div className="w-full flex gap-2 justify-center items-center overflow-x-auto h-32 border rounded">
-                        {oldIcon && !iconPreview &&(
-                            <LazyLoadImage 
-                                src={oldIcon.url}
-                                alt="Category Icon"
-                                className="w-full h-full object-contain"
+                    <label className='w-full group cursor-pointer border border-gray-300 rounded'>
+                        <div className="w-full flex gap-2 justify-center items-center overflow-x-auto h-32 border rounded">
+                            {oldIcon && !iconPreview &&(
+                                <LazyLoadImage 
+                                    src={oldIcon.url}
+                                    alt="Category Icon"
+                                    className="w-full h-full object-contain"
+                                />
+                            )}
+                            
+                            {!iconPreview ? null :
+                                <LazyLoadImage 
+                                    src={iconPreview}
+                                    alt="Category Icon"
+                                    className="w-full h-full object-contain"
+                                />
+                            }
+                        </div>
+                        <p className="w-full rounded-b border border-gray-400 bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow group-hover:border-gray-700 group-hover:bg-gray-700">
+                            <input
+                                type="file"
+                                name="icon"
+                                accept="image/*"
+                                onChange={handleCategoryIconChange}
+                                className="hidden"
                             />
-                        )}
-                        
-                        {!iconPreview ? null :
-                            <LazyLoadImage 
-                                src={iconPreview}
-                                alt="Category Icon"
-                                className="w-full h-full object-contain"
-                            />
-                        }
-                    </div>
-                    <label className="w-full rounded-sm bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow hover:shadow-lg hover:bg-gray-700">
-                        <input
-                            type="file"
-                            name="icon"
-                            accept="image/*"
-                            onChange={handleCategoryIconChange}
-                            className="hidden"
-                        />
-                        Choose Category Icon
+                            Choose Category Icon
+                        </p>
                     </label>
 
                 </div>
@@ -176,32 +186,34 @@ const UpdateCategory = () => {
                 <div className="flex flex-col gap-2 w-full lg:w-2/3 xl:w-1/3">
                 
                     <h2 className="font-medium">Category Image</h2>
-                    <div className="w-full flex gap-2 justify-center items-center overflow-x-auto h-32 border rounded">
-                        {oldImage && !categoryPreview && (
-                            <LazyLoadImage 
-                                src={oldImage.url}
-                                alt="Product Category"
-                                className="w-full h-full object-contain"
+                    <label className='w-full group cursor-pointer border border-gray-300 rounded'>
+                        <div className="w-full flex gap-2 justify-center items-center overflow-x-auto h-32 border rounded">
+                            {oldImage && !categoryPreview && (
+                                <LazyLoadImage 
+                                    src={oldImage.url}
+                                    alt="Product Category"
+                                    className="w-full h-full object-contain"
+                                />
+                            )}
+                            
+                            {!categoryPreview ? null :
+                                <LazyLoadImage 
+                                    src={categoryPreview}
+                                    alt="Product Category"
+                                    className="w-full h-full object-contain"
+                                />
+                            }
+                        </div>
+                        <p className="w-full rounded-b border border-gray-400 bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow group-hover:border-gray-700 group-hover:bg-gray-700">
+                            <input
+                                type="file"
+                                name="category"
+                                accept="image/*"
+                                onChange={handleCategoryChange}
+                                className="hidden"
                             />
-                        )}
-                        
-                        {!categoryPreview ? null :
-                            <LazyLoadImage 
-                                src={categoryPreview}
-                                alt="Product Category"
-                                className="w-full h-full object-contain"
-                            />
-                        }
-                    </div>
-                    <label className="w-full rounded-sm bg-gray-400 text-center cursor-pointer text-white py-2 px-2.5 shadow hover:shadow-lg hover:bg-gray-700">
-                        <input
-                            type="file"
-                            name="category"
-                            accept="image/*"
-                            onChange={handleCategoryChange}
-                            className="hidden"
-                        />
-                        Choose Category Image
+                            Choose Category Image
+                        </p>
                     </label>
 
                 </div>
