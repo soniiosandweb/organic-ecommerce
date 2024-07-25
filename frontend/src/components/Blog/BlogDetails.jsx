@@ -160,7 +160,7 @@ const BlogDetails = () => {
 
                                     <ul className="flex flex-row gap-2">
                                         <li>
-                                            <span className="text-black text-sm font-medium border border-gray-300 rounded-full px-6 py-2">{blog.category && (getCategory(blog.category))}</span>
+                                            <span className="cursor-default text-black text-sm font-medium border border-gray-300 rounded-full px-6 py-2 hover:bg-primary-green hover:text-white">{blog.category && (getCategory(blog.category))}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -173,7 +173,7 @@ const BlogDetails = () => {
                                     <ul className="flex flex-row gap-2">
                                         {blog.tags && blog.tags?.map((tag, i) => (
                                             <li key={i}>
-                                                <span className="text-black text-sm font-medium border border-gray-300 rounded-full px-6 py-2">{tag}</span>
+                                                <span className="cursor-default text-black text-sm font-medium border border-gray-300 rounded-full px-6 py-2 hover:bg-primary-green hover:text-white">{tag}</span>
                                             </li>
                                         ))}
                                     </ul>
