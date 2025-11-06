@@ -262,7 +262,7 @@ const MyOrders = () => {
                                                     }
 
                                                     <p className="text-sm"><span className='font-medium'>Total:</span> ₹{totalPrice.toLocaleString()}</p>
-                                                    <p className="text-sm"><span className='font-medium'>Payment Method:</span> {paymentInfo.method === "stripe" ? "Stripe" : "Cash on delivery"}</p>
+                                                    <p className="text-sm"><span className='font-medium'>Payment Method:</span> {paymentInfo.method === "stripe" ? "Stripe" : paymentInfo.method === "googlepay" ? "Google Pay" : paymentInfo.method === "razorpay" ? "Razorpay" : "Cash on delivery"}</p>
                                                 </div>
                                             </div>
                                         </Link>

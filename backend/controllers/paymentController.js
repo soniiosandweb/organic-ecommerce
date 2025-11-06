@@ -6,12 +6,25 @@ const Payment = require('../models/paymentModel');
 const ErrorHandler = require('../utils/errorHandler');
 const { v4: uuidv4 } = require('uuid');
 
+const Stripe = require("stripe");
+
+const stripePay = new Stripe(`${process.env.STRIPE_SECRET_KEY}`);
+
+const Razorpay = require('razorpay');
+
+console.log(process.env.RAZORPAY_KEY_ID)
+
+const instance = new Razorpay({
+    key_id: 'rzp_test_dt8ARo16LbgcBt',
+    key_secret: 'uEkLzjMFQIgSmMcwsFjg2TKy'
+});
+
 exports.processPayment = asyncErrorHandler(async (req, res, next) => {
     
 
     try {
         const myPayment = await stripe.paymentIntents.create({
-            amount: req.body.amount,
+            amount: Math.round(req.body.amount * 100),
             description: "Organic Products",
             currency: "inr",
             metadata: {
@@ -182,4 +195,51 @@ exports.getPaymentStatus = asyncErrorHandler(async (req, res, next) => {
         success: true,
         txn,
     });
+});
+
+// Google Pay Process Data
+exports.googlePayProcess = asyncErrorHandler(async (req, res, next) => {
+  try {
+    const { token, amount } = req.body;
+
+    if (!token || !amount) {
+      return res.status(400).json({ success: false, error: "Missing token or amount" });
+    }
+
+    const parsedToken = JSON.parse(token);
+
+    const charge = await stripePay.charges.create({
+      amount: Math.round(amount * 100),
+      currency: "inr",
+      source: parsedToken.id,
+      description: "Google Pay Payment",
+    });
+
+    res.status(200).json({
+        success: true,
+        transactionId: charge.id,
+        paymentStatus: charge.status,
+        paymentMethod: charge.payment_method_details?.type || "gpay",
+        livemode: charge.livemode,
+    });
+
+  } catch (error) {
+    console.error("Payment error:", error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Razor Pay Create Order
+exports.razorPayCreateOrder = asyncErrorHandler(async (req, res, next) => {
+  try {
+    const { amount } = req.body;
+    const order = await instance.orders.create({ 
+        amount: Math.round(parseFloat(amount) * 100),
+        currency: 'INR', 
+        receipt: 'rcpt_' + Date.now() 
+    });
+    res.json({ order });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });

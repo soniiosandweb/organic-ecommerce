@@ -18,6 +18,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import stripeImg from '../../assets/images/stripe.webp';
+import googlePayImg from '../../assets/images/google-pay-logo.webp';
+import razorPay from '../../assets/images/razorpay.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import MetaData from '../Layouts/MetaData';
 import { useNavigate } from "react-router-dom";
@@ -26,6 +28,7 @@ import { emptyCart } from '../../actions/cartAction';
 import Loader from '../Layouts/Loader';
 import { emptyCouponCode } from '../../actions/couponAction';
 import { getAddressDetails } from '../../actions/shippingAction';
+import GooglePayButton from '@google-pay/button-react';
 
 const Payment = () => {
 
@@ -163,6 +166,56 @@ const Payment = () => {
                 enqueueSnackbar(error.message, { variant: "error" });
 
             }
+
+        } if(method === 'razorpay') {
+
+            try {
+                const { data } = await axios.post(
+                    `/api/v1/payment/razor-create-order`,
+                    { amount: totalAmount }
+                );
+
+                const options = {
+                    key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+                    amount: data.order.amount,
+                    currency: "INR",
+                    name: "Demo Store",
+                    description: "Test Transaction",
+                    order_id: data.order.id,
+                    handler: async function (response) {
+
+                        const paymentId = response.razorpay_payment_id;
+
+                        const payment = {
+                            id: paymentId,
+                            client_secret: paymentId,
+                            status: 'succeeded',
+                            amount: totalAmount,
+                            livemode: 'false',
+                        }
+
+                        dispatch(addPaymentData(payment));
+
+                        order.paymentInfo = {
+                            id: paymentId,
+                            status: 'succeeded',
+                            method: method,
+                        };
+
+                        dispatch(newOrderData(order));
+                        
+                    },
+                    prefill: { email: "soni@iosandweb.net", contact: "9999999999" },
+                    theme: { color: "#0da487" },
+                };
+
+                const rzp = new window.Razorpay(options);
+                rzp.open();
+
+            } catch (err) {
+                enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
+            }
+
         } else {
             order.paymentInfo = {
                 status: "succeeded",
@@ -177,6 +230,56 @@ const Payment = () => {
         
     };
 
+    const handlePaymentData = async (paymentData) => {
+        try {
+
+            // Extract the token string from GPay response
+            const token = paymentData.paymentMethodData.tokenizationData.token;
+
+            // Send to backend for processing
+            const response = await fetch(`/api/v1/payment/process-googlepay`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    token,
+                    amount: totalAmount,
+                }),
+            });
+
+            const result = await response.json();
+            console.log("Server response:", result);
+            if(result.success) {
+
+                const parsedToken = JSON.parse(token);
+
+                const payment = {
+                    id: result.transactionId,
+                    client_secret: parsedToken.id,
+                    status: result.paymentStatus,
+                    amount: totalAmount,
+                    livemode: result.livemode,
+                }
+
+                dispatch(addPaymentData(payment));
+
+                order.paymentInfo = {
+                    id: result.transactionId,
+                    status: result.paymentStatus,
+                    method: method,
+                };
+
+                dispatch(newOrderData(order));
+
+            } else { 
+                enqueueSnackbar("Processing Payment Failed!", { variant: "error" })
+            }
+
+        } catch (error) {
+            console.error("Error processing payment:", error);
+            enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
+        }
+    }
+
     useEffect(() => {
         if (error) {
             dispatch(clearErrors());
@@ -186,7 +289,7 @@ const Payment = () => {
         if(success){
             dispatch(emptyCart());
             dispatch(emptyCouponCode());
-
+            dispatch(clearErrors());
             navigate("/orders/success");
         }
 
@@ -276,6 +379,32 @@ const Payment = () => {
                                                     }
                                                 />
 
+                                                <FormControlLabel
+                                                    value="googlepay"
+                                                    control={<Radio />}
+                                                    label={
+                                                        <div className="flex items-center gap-4">
+                                                            <span>Google Pay</span>
+                                                            <LazyLoadImage 
+                                                                className="h-8 object-contain" src={googlePayImg} alt="Google Pay Logo" 
+                                                            />
+                                                        </div>
+                                                    }
+                                                />
+
+                                                <FormControlLabel
+                                                    value="razorpay"
+                                                    control={<Radio />}
+                                                    label={
+                                                        <div className="flex items-center gap-4">
+                                                            <span>Razorpay</span>
+                                                            <LazyLoadImage 
+                                                                className="h-8 object-contain" src={razorPay} alt="Razor Pay Logo" 
+                                                            />
+                                                        </div>
+                                                    }
+                                                />
+
                                             </RadioGroup>
                                         </FormControl>
 
@@ -295,7 +424,47 @@ const Payment = () => {
                                         }
 
                                         <div className='flex-1 w-full'>
-                                            <input ref={paymentBtn} type="submit" value="Place Order" className="bg-primary-green w-full sm:w-1/4 my-2 py-3.5 text-sm font-medium text-white shadow hover:bg-black rounded-sm capitalize outline-none cursor-pointer" />
+                                            {method === 'googlepay' ? 
+                                                <GooglePayButton
+                                                    environment="TEST"
+                                                    buttonColor="black"
+                                                    buttonType="buy"
+                                                    paymentRequest={{
+                                                        apiVersion: 2,
+                                                        apiVersionMinor: 0,
+                                                        allowedPaymentMethods: [
+                                                        {
+                                                            type: "CARD",
+                                                            parameters: {
+                                                            allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+                                                            allowedCardNetworks: ["MASTERCARD", "VISA"],
+                                                            },
+                                                            tokenizationSpecification: {
+                                                                type: "PAYMENT_GATEWAY",
+                                                                parameters: {
+                                                                    gateway: "stripe",
+                                                                    "stripe:version": "2020-08-27",
+                                                                    "stripe:publishableKey": "pk_test_51PNSx7A2nuiqtZl37LIvC5AJQsJzg84hvRtbXSwIUk9u7KF827dUDUx3htyk2h0HKCmxYkpQQFx6gryUpEHJxetx00icrat2gT",
+                                                                },
+                                                            },
+                                                        },
+                                                        ],
+                                                        merchantInfo: {
+                                                            merchantName: "Fresh Organic Grocery",
+                                                        },
+                                                        transactionInfo: {
+                                                            totalPriceStatus: "FINAL",
+                                                            totalPriceLabel: "Total",
+                                                            totalPrice: totalAmount.toString(),
+                                                            currencyCode: "INR",
+                                                            countryCode: "IN",
+                                                        },
+                                                    }}
+                                                    onLoadPaymentData={handlePaymentData}
+                                                />
+                                            :
+                                                <input ref={paymentBtn} type="submit" value="Place Order" className="bg-primary-green w-full sm:w-1/4 my-2 py-3.5 text-sm font-medium text-white shadow hover:bg-black rounded-sm capitalize outline-none cursor-pointer" />
+                                            }
                                         </div>
                                     
                                     </form>
