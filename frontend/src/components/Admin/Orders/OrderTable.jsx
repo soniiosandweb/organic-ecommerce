@@ -96,7 +96,7 @@ const OrderTable = () => {
             flex: 1,
             renderCell: (params) => {
                 return (
-                    <span>{params.row.method === "stripe" ? "Stripe" : "Cash on delivery"}</span>
+                    <span>{params.row.method === "stripe" ? "Stripe" : params.row.method === "googlepay" ? "Google Pay" : params.row.method === "razorpay" ? "Razorpay" : params.row.method === "phonepe" ? "PhonePe" : "Cash on delivery"}</span>
                 );
             },
         },
