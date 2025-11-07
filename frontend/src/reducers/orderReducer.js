@@ -23,6 +23,7 @@ export const newOrderReducer = (state = {}, { type, payload }) => {
                 ...state,
                 error: null,
                 success: null,
+                order: null,
             };
         default:
             return state;

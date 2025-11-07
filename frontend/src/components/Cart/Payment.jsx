@@ -20,6 +20,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import stripeImg from '../../assets/images/stripe.webp';
 import googlePayImg from '../../assets/images/google-pay-logo.webp';
 import razorPay from '../../assets/images/razorpay.png';
+import phonePayLogo from '../../assets/images/PhonePe-Logo.webp';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import MetaData from '../Layouts/MetaData';
 import { useNavigate } from "react-router-dom";
@@ -167,7 +168,7 @@ const Payment = () => {
 
             }
 
-        } if(method === 'razorpay') {
+        } else if(method === 'razorpay') {
 
             try {
                 const { data } = await axios.post(
@@ -214,6 +215,29 @@ const Payment = () => {
 
             } catch (err) {
                 enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
+            }
+
+        } else if(method === 'phonepe') {
+
+            try {
+                const res = await axios.post(`/api/v1/payment/phonepay-initiate`, {
+                    amount: totalAmount,
+                    mobileNumber: shippingInfo.phoneNo,
+                    name: user.name,
+                    merchantUserId: 'USER'+Date.now()
+                });
+                if (res.data && res.data.redirectUrl) {
+                    // redirect to PhonePe payment page
+                    window.location.href = res.data.redirectUrl;
+                } else {
+                    console.error('Invalid payment initiation response', res.data);
+                    // alert('Invalid payment initiation response', res.data.message);
+                    enqueueSnackbar("Invalid payment initiation response", { variant: "error" });
+                }
+            } catch (err) {
+                console.error('Payment initiation failed', err);
+                // alert('Payment initiation failed', err);
+                enqueueSnackbar("Payment initiation failed", { variant: "error" });
             }
 
         } else {
@@ -301,7 +325,6 @@ const Payment = () => {
         }
 
     }, [dispatch, error, enqueueSnackbar, loading, user, addressLoading, addressInfo, navigate, success]);
-
 
     return (
         <>
@@ -400,6 +423,19 @@ const Payment = () => {
                                                             <span>Razorpay</span>
                                                             <LazyLoadImage 
                                                                 className="h-8 object-contain" src={razorPay} alt="Razor Pay Logo" 
+                                                            />
+                                                        </div>
+                                                    }
+                                                />
+
+                                                <FormControlLabel
+                                                    value="phonepe"
+                                                    control={<Radio />}
+                                                    label={
+                                                        <div className="flex items-center gap-4">
+                                                            <span>PhonePe</span>
+                                                            <LazyLoadImage 
+                                                                className="h-8 object-contain" src={phonePayLogo} alt="PhonePe Logo" 
                                                             />
                                                         </div>
                                                     }

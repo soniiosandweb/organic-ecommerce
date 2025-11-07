@@ -5,19 +5,26 @@ const https = require('https');
 const Payment = require('../models/paymentModel');
 const ErrorHandler = require('../utils/errorHandler');
 const { v4: uuidv4 } = require('uuid');
-
+const crypto = require('crypto');
+const axios = require("axios");
 const Stripe = require("stripe");
 
 const stripePay = new Stripe(`${process.env.STRIPE_SECRET_KEY}`);
 
 const Razorpay = require('razorpay');
-console.log(process.env.NODE_ENV)
-console.log(process.env.RAZORPAY_KEY_ID)
 
 const instance = new Razorpay({
-    key_id: 'rzp_test_dt8ARo16LbgcBt',
-    key_secret: 'uEkLzjMFQIgSmMcwsFjg2TKy'
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET
 });
+
+// Phone Pay Ids
+const MERCHANT_ID = process.env.PHONEPE_MERCHANT_ID;
+const SALT_KEY = process.env.PHONEPE_SALT_KEY;
+const SALT_INDEX = process.env.PHONEPE_SALT_INDEX;
+const PHONE_PE_HOST_URL = process.env.PHONEPE_API_URL;
+const APP_BE_URL  = process.env.REDIRECT_URL_SUCCESS;
+
 
 exports.processPayment = asyncErrorHandler(async (req, res, next) => {
     
@@ -242,4 +249,105 @@ exports.razorPayCreateOrder = asyncErrorHandler(async (req, res, next) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+// Initiate Phone Pay Payment
+exports.initiatePayment = asyncErrorHandler(async (req, res, next) => {
+
+    const {amount} = req.body;
+
+    // User ID is the ID of the user present in our application DB
+    let userId = "MUID123";
+
+    // Generate a unique merchant transaction ID for each transaction
+    let merchantTransactionId = uuidv4();
+
+    // redirect url => phonePe will redirect the user to this url once payment is completed. It will be a GET request, since redirectMode is "REDIRECT"
+    let normalPayLoad = {
+        merchantId: MERCHANT_ID, //* PHONEPE_MERCHANT_ID . Unique for each account (private)
+        merchantTransactionId: merchantTransactionId,
+        merchantUserId: userId,
+        amount: amount * 100, // converting to paise
+        redirectUrl: `${APP_BE_URL}/${merchantTransactionId}`,
+        redirectMode: "REDIRECT",
+        mobileNumber: "9999999999",
+        paymentInstrument: {
+            type: "PAY_PAGE",
+        },
+    };
+
+    // make base64 encoded payload
+    let bufferObj = Buffer.from(JSON.stringify(normalPayLoad), "utf8");
+    let base64EncodedPayload = bufferObj.toString("base64");
+
+    // X-VERIFY => SHA256(base64EncodedPayload + "/pg/v1/pay" + SALT_KEY) + ### + SALT_INDEX
+    let string = base64EncodedPayload + "/pg/v1/pay" + SALT_KEY;
+    let sha256_val = crypto.createHash("sha256").update(string).digest("hex");
+    let xVerifyChecksum = sha256_val + "###" + SALT_INDEX;
+
+    axios
+        .post(
+            `${PHONE_PE_HOST_URL}/pg/v1/pay`,
+            {
+                request: base64EncodedPayload,
+            },
+            {
+                headers: {
+                "Content-Type": "application/json",
+                "X-VERIFY": xVerifyChecksum,
+                accept: "application/json",
+                },
+            }
+        )
+    .then(function (response) {
+      console.log("response->", JSON.stringify(response.data));
+        res.json({
+            success: true,
+            redirectUrl: response.data.data.instrumentResponse.redirectInfo.url
+        });
+      //res.redirect(response.data.data.instrumentResponse.redirectInfo.url);
+    })
+    .catch(function (error) {
+      res.send(error);
+    });
+});
+
+// Check Payment Status
+exports.checkPaymentStatus = asyncErrorHandler(async (req, res, next) => {
+    const { merchantTransactionId } = req.params;
+
+    if (merchantTransactionId) {
+        let statusUrl =
+        `${PHONE_PE_HOST_URL}/pg/v1/status/${MERCHANT_ID}/` +
+        merchantTransactionId;
+
+        // generate X-VERIFY
+        let string =
+        `/pg/v1/status/${MERCHANT_ID}/` + merchantTransactionId + SALT_KEY;
+        let sha256_val = crypto.createHash("sha256").update(string).digest("hex");
+        let xVerifyChecksum = sha256_val + "###" + SALT_INDEX;
+
+        axios
+        .get(statusUrl, {
+            headers: {
+            "Content-Type": "application/json",
+            "X-VERIFY": xVerifyChecksum,
+            "X-MERCHANT-ID": merchantTransactionId,
+            accept: "application/json",
+            },
+        })
+        .then(async function (response) {
+            console.log("response->", response.data);
+            if (response.data && response.data.code === "PAYMENT_SUCCESS") {
+                res.send(response.data);
+            } else {
+                res.status(500).json({ success: false, error: response.data.message });
+            }
+        })
+        .catch(function (error) {
+            res.send(error);
+        });
+    } else {
+        res.send("Sorry!! Error");
+    }
 });

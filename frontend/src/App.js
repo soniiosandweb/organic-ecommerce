@@ -64,6 +64,7 @@ import UpdateBlog from './components/Admin/Blogs/UpdateBlog';
 import Blogs from './components/Blog/Blogs';
 import BlogDetails from './components/Blog/BlogDetails';
 import AdminProfile from './components/Admin/AdminProfile';
+import OrderResponse from './components/Cart/OrcerResponse';
 
 function App() {
 
@@ -162,6 +163,12 @@ function App() {
             )}
           </ProtectedRoute>
         } ></Route>
+
+        <Route path="/orders/response/:id" element={
+          <ProtectedRoute>
+            <OrderResponse />
+          </ProtectedRoute>
+        } />
 
         <Route path="/orders/success" element={<OrderSuccess success={true} />} />
         <Route path="/orders/failed" element={<OrderSuccess success={false} />} />
