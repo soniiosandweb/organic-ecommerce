@@ -11,7 +11,7 @@ const Stripe = require("stripe");
 const stripePay = new Stripe(`${process.env.STRIPE_SECRET_KEY}`);
 
 const Razorpay = require('razorpay');
-
+console.log(process.env.NODE_ENV)
 console.log(process.env.RAZORPAY_KEY_ID)
 
 const instance = new Razorpay({
