@@ -19,7 +19,7 @@ const TermsOfUse = () => {
 
                     <div className="pt-10 w-full">
                         <h3 className="text-lg font-semibold text-left">2. Definitions</h3>
-                        <p className='pt-5'>"Website" refers to <a href="http://freshorganicgrocery.com/" className="text-primary-green font-semibold">http://freshorganicgrocery.com/</a>.</p>
+                        <p className='pt-5'>"Website" refers to <a href="https://freshorganicgrocery.com/" className="text-primary-green font-semibold">https://freshorganicgrocery.com/</a>.</p>
                         <p className='pt-3'>"We", "us", and "our" refer to Fresh Organic Grocery.</p>
                         <p className='pt-3'>"User" refers to any individual or entity using our website.</p>
                     </div>

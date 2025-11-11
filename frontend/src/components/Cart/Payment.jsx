@@ -180,8 +180,8 @@ const Payment = () => {
                     key: process.env.REACT_APP_RAZORPAY_KEY_ID,
                     amount: data.order.amount,
                     currency: "INR",
-                    name: "Demo Store",
-                    description: "Test Transaction",
+                    name: "Fresh Organic Grocery",
+                    description: "Product Transaction",
                     order_id: data.order.id,
                     handler: async function (response) {
 
@@ -206,7 +206,7 @@ const Payment = () => {
                         dispatch(newOrderData(order));
                         
                     },
-                    prefill: { email: "soni@iosandweb.net", contact: "9999999999" },
+                    prefill: { email: user.email, contact: shippingInfo.phoneNo },
                     theme: { color: "#0da487" },
                 };
 

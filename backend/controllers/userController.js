@@ -36,7 +36,7 @@ exports.registerUser = asyncErrorHandler(async (req, res, next) => {
             <p>Thank you for joining us. We can’t wait to see you explore and find your favorites!</p>
             <p>Warm regards,</p>
             <p>Team Fresh Organic Grocery</p>
-            <p><a href="http://freshorganicgrocery.com/">http://freshorganicgrocery.com/</a>`;
+            <p><a href="https://freshorganicgrocery.com/">https://freshorganicgrocery.com/</a>`;
 
     await sendEmail({
         email: email,
