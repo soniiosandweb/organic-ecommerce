@@ -23,6 +23,7 @@ cloudinary.config({
 // deployment
 __dirname = path.resolve();
 
+console.log(PORT);
 console.log(process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === 'production') {
